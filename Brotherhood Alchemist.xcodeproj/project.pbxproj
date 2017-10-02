@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780837B11F81EF6B00357BF9 /* AvailableRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */; };
+		780837B21F81EF6B00357BF9 /* AvailableRecipesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */; };
+		780837B41F81F11000357BF9 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B31F81F11000357BF9 /* Ingredient.swift */; };
+		780837B61F81F13700357BF9 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
+		780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */; };
+		780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */; };
 		78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */; };
 		78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24E1F81C9230036FAA2 /* RootViewController.swift */; };
 		78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2501F81C9230036FAA2 /* Main.storyboard */; };
@@ -20,6 +26,12 @@
 /* Begin PBXFileReference section */
 		50B22F19621B3CF270FC4703 /* Pods-Brotherhood Alchemist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brotherhood Alchemist.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist.release.xcconfig"; sourceTree = "<group>"; };
 		592CFD707884EEA2FCB93598 /* Pods-Brotherhood Alchemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brotherhood Alchemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist.debug.xcconfig"; sourceTree = "<group>"; };
+		780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableRecipesViewController.swift; sourceTree = "<group>"; };
+		780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailableRecipesViewController.xib; sourceTree = "<group>"; };
+		780837B31F81F11000357BF9 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		780837B51F81F13700357BF9 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAvailableTableViewCell.swift; sourceTree = "<group>"; };
+		780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientAvailableTableViewCell.xib; sourceTree = "<group>"; };
 		78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78EEE24E1F81C9230036FAA2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +64,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		780837BB1F8200DF00357BF9 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				780837B31F81F11000357BF9 /* Ingredient.swift */,
+				780837B51F81F13700357BF9 /* Effect.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		78EEE2401F81C9230036FAA2 = {
 			isa = PBXGroup;
 			children = (
@@ -75,22 +96,19 @@
 			children = (
 				78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */,
 				78EEE24E1F81C9230036FAA2 /* RootViewController.swift */,
-				78EEE2631F81CF160036FAA2 /* Menu */,
 				78EEE2501F81C9230036FAA2 /* Main.storyboard */,
+				780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */,
+				780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */,
+				78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */,
+				78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */,
+				780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */,
+				780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */,
+				780837BB1F8200DF00357BF9 /* Database */,
 				78EEE2531F81C9230036FAA2 /* Assets.xcassets */,
 				78EEE2551F81C9230036FAA2 /* LaunchScreen.storyboard */,
 				78EEE2581F81C9230036FAA2 /* Info.plist */,
 			);
 			path = "Brotherhood Alchemist";
-			sourceTree = "<group>";
-		};
-		78EEE2631F81CF160036FAA2 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */,
-				78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */,
-			);
-			path = Menu;
 			sourceTree = "<group>";
 		};
 		CDF929A294AC95A64C1538FD /* Pods */ = {
@@ -165,7 +183,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */,
 				78EEE2571F81C9230036FAA2 /* LaunchScreen.storyboard in Resources */,
+				780837B21F81EF6B00357BF9 /* AvailableRecipesViewController.xib in Resources */,
 				78EEE2621F81CF100036FAA2 /* IngredientsViewController.xib in Resources */,
 				78EEE2541F81C9230036FAA2 /* Assets.xcassets in Resources */,
 				78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */,
@@ -249,7 +269,11 @@
 			files = (
 				78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
+				780837B41F81F11000357BF9 /* Ingredient.swift in Sources */,
+				780837B11F81EF6B00357BF9 /* AvailableRecipesViewController.swift in Sources */,
+				780837B61F81F13700357BF9 /* Effect.swift in Sources */,
 				78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */,
+				780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

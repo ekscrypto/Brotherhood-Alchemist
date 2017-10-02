@@ -13,6 +13,11 @@ class RootViewController: SOContainerViewController {
     @IBOutlet var appIconLaunchImageView: UIImageView!
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Effect.populateList()
+        Ingredient.populateList()
+
         hideLaunchAssets()
     }
 
@@ -21,7 +26,7 @@ class RootViewController: SOContainerViewController {
             self.appIconLaunchImageView.alpha = 0.0
         }, completion: { (_) in
             self.appIconLaunchImageView.isHidden = true
-//            self.setupSidebar()
+            self.setupSidebar()
         })
     }
 
@@ -34,5 +39,6 @@ class RootViewController: SOContainerViewController {
 
         self.sideViewController = IngredientsViewController.fromNib()
         self.topViewControllerDimColor = UIColor(white: 0.0, alpha: 0.1)
+        self.topViewController = AvailableRecipesViewController.fromNib()
     }
 }
