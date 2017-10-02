@@ -101,10 +101,30 @@
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <view key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="o59-I6-JAg">
+                    <view key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="FQW-hg-9Uc">
                         <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MFz-fK-zFi">
+                                <rect key="frame" x="8" y="6" width="51" height="31"/>
+                                <color key="onTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" red="0.58444148936170215" green="0.15301519276831954" blue="0.14381724720297098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GROUP DISABLED &amp; ENABLED" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbX-hf-lNk">
+                                <rect key="frame" x="65" y="14.5" width="302" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MFz-fK-zFi" firstAttribute="top" secondItem="FQW-hg-9Uc" secondAttribute="top" constant="6" id="3bt-Qu-rUm"/>
+                            <constraint firstItem="zbX-hf-lNk" firstAttribute="leading" secondItem="MFz-fK-zFi" secondAttribute="trailing" constant="8" id="7hv-WD-ujI"/>
+                            <constraint firstItem="MFz-fK-zFi" firstAttribute="leading" secondItem="FQW-hg-9Uc" secondAttribute="leading" constant="8" id="HUz-Jh-9iM"/>
+                            <constraint firstAttribute="trailing" secondItem="zbX-hf-lNk" secondAttribute="trailing" constant="8" id="n69-HZ-WHo"/>
+                            <constraint firstItem="zbX-hf-lNk" firstAttribute="centerY" secondItem="MFz-fK-zFi" secondAttribute="centerY" id="nHM-xO-13G"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="1wW-da-0AQ"/>

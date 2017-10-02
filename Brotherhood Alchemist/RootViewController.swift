@@ -25,7 +25,7 @@ class RootViewController: UIViewController {
     }
 
     func hideLaunchAssets() {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 1.0, animations: {
             self.appIconLaunchImageView.alpha = 0.0
         }, completion: { (_) in
             self.appIconLaunchImageView.isHidden = true

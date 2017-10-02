@@ -104,7 +104,27 @@
                     <view key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="cL1-X6-RoS">
                         <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZ6-Ya-iUd">
+                                <rect key="frame" x="8" y="6" width="51" height="31"/>
+                                <color key="onTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GROUP DISABLED &amp; ENABLED" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvJ-gU-ySx">
+                                <rect key="frame" x="65" y="14.5" width="302" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WvJ-gU-ySx" firstAttribute="centerY" secondItem="KZ6-Ya-iUd" secondAttribute="centerY" id="2ib-hc-ioI"/>
+                            <constraint firstAttribute="trailing" secondItem="WvJ-gU-ySx" secondAttribute="trailing" constant="8" id="ctj-Xu-ToZ"/>
+                            <constraint firstItem="WvJ-gU-ySx" firstAttribute="leading" secondItem="KZ6-Ya-iUd" secondAttribute="trailing" constant="8" id="hhj-3J-SQZ"/>
+                            <constraint firstItem="KZ6-Ya-iUd" firstAttribute="top" secondItem="cL1-X6-RoS" secondAttribute="top" constant="6" id="irP-Hv-CNa"/>
+                            <constraint firstItem="KZ6-Ya-iUd" firstAttribute="leading" secondItem="cL1-X6-RoS" secondAttribute="leading" constant="8" id="yck-DX-m6U"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="quU-HL-GW2"/>
