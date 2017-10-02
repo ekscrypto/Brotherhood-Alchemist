@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SidebarOverlay
+import SideMenu
 
-class RootViewController: SOContainerViewController {
+class RootViewController: UIViewController {
     @IBOutlet var appIconLaunchImageView: UIImageView!
 
     override func viewDidAppear(_ animated: Bool) {
@@ -19,6 +19,9 @@ class RootViewController: SOContainerViewController {
         Ingredient.populateList()
 
         hideLaunchAssets()
+        setupSideMenus()
+        customizeNavigationBarStyle()
+        customizeStatusBarAppearance()
     }
 
     func hideLaunchAssets() {
@@ -26,19 +29,31 @@ class RootViewController: SOContainerViewController {
             self.appIconLaunchImageView.alpha = 0.0
         }, completion: { (_) in
             self.appIconLaunchImageView.isHidden = true
-            self.setupSidebar()
         })
     }
 
-    private func setupSidebar() {
-        if UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
-            self.menuSide = .left
-        } else {
-            self.menuSide = .right
-        }
+    private func setupSideMenus() {
+        let leftMenu = UISideMenuNavigationController(rootViewController: IngredientsViewController.fromNib()!)
+        leftMenu.leftSide = true
+        let rightMenu = UISideMenuNavigationController(rootViewController: EffectsViewController.fromNib()!)
+        rightMenu.leftSide = false
 
-        self.sideViewController = IngredientsViewController.fromNib()
-        self.topViewControllerDimColor = UIColor(white: 0.0, alpha: 0.1)
-        self.topViewController = AvailableRecipesViewController.fromNib()
+        SideMenuManager.menuLeftNavigationController = leftMenu
+        SideMenuManager.menuRightNavigationController = rightMenu
+
+        SideMenuManager.menuAddPanGestureToPresent(toView: self.view)
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+    }
+
+    private func customizeStatusBarAppearance() {
+        let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView
+        statusBar?.backgroundColor = UIColor(hex: "#444444")
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
+    private func customizeNavigationBarStyle() {
+        let appearance = UINavigationBar.appearance()
+        appearance.isTranslucent = false
+        appearance.barTintColor = UIColor.darkGray
     }
 }

@@ -19,13 +19,20 @@ class IngredientAvailableTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+//        if false == hasGradient {
+//            let gradient = CAGradientLayer()
+//            gradient.frame = contentView.bounds
+//            gradient.colors = [UIColor(hex: "#000000")!, UIColor(hex: "#333333")!]
+//            contentView.backgroundColor = UIColor.clear
+//            self.backgroundView?.layer.insertSublayer(gradient, at: 0)
+//            hasGradient = true
+//        }
     }
 
     func update(using ingredient: Ingredient) {

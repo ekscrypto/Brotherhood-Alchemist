@@ -20,10 +20,8 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
 
         registerCell()
-
-        print("available ingredients: \(Ingredient.all)")
-
         tableView.reloadData()
+        navigationController?.isNavigationBarHidden = true
     }
 
     func registerCell() {
@@ -39,7 +37,6 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt: \(indexPath.row)")
         guard let ingredientCell = tableView.dequeueReusableCell(withIdentifier: IngredientAvailableTableViewCell.identifier, for: indexPath) as? IngredientAvailableTableViewCell else {
             return UITableViewCell()
         }

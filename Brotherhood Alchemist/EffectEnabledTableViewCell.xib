@@ -11,14 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="ingredientCell" id="KGk-i7-Jjw" customClass="IngredientAvailableTableViewCell" customModule="Brotherhood_Alchemist" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="effectCell" id="Wd5-hV-hCs" customClass="EffectEnabledTableViewCell" customModule="Brotherhood_Alchemist" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wd5-hV-hCs" id="vZ8-Et-Ry3">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-5M-G3w" customClass="SwiftyGradientView" customModule="Brotherhood_Alchemist" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7U-VV-Dyi" customClass="SwiftyGradientView" customModule="Brotherhood_Alchemist" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
@@ -31,35 +31,35 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo3-Hn-TCb">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sas-uc-MA8">
                         <rect key="frame" x="8" y="13" width="245" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0F-XA-b5M">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lco-Jb-bay">
                         <rect key="frame" x="261" y="6" width="51" height="31"/>
                         <color key="onTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="thumbTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </switch>
                 </subviews>
-                <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="b0F-XA-b5M" firstAttribute="leading" secondItem="mo3-Hn-TCb" secondAttribute="trailing" constant="8" id="8by-Mc-mdM"/>
-                    <constraint firstItem="sx9-5M-G3w" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="E0e-fC-8mc"/>
-                    <constraint firstAttribute="trailing" secondItem="sx9-5M-G3w" secondAttribute="trailing" id="Mfk-yf-MIe"/>
-                    <constraint firstAttribute="trailing" secondItem="b0F-XA-b5M" secondAttribute="trailing" constant="10" id="TNo-Bk-BbG"/>
-                    <constraint firstAttribute="bottom" secondItem="b0F-XA-b5M" secondAttribute="bottom" constant="6.5" id="akd-8q-bdv"/>
-                    <constraint firstItem="b0F-XA-b5M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="cCz-zh-mJc"/>
-                    <constraint firstItem="b0F-XA-b5M" firstAttribute="centerY" secondItem="mo3-Hn-TCb" secondAttribute="centerY" id="jK4-d6-Jh6"/>
-                    <constraint firstItem="sx9-5M-G3w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ji9-Lr-Xsz"/>
-                    <constraint firstAttribute="bottom" secondItem="sx9-5M-G3w" secondAttribute="bottom" id="l2F-Th-awu"/>
-                    <constraint firstItem="mo3-Hn-TCb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="oHW-sa-pbg"/>
+                    <constraint firstAttribute="trailing" secondItem="Lco-Jb-bay" secondAttribute="trailing" constant="10" id="2TF-86-YlR"/>
+                    <constraint firstItem="Lco-Jb-bay" firstAttribute="centerY" secondItem="sas-uc-MA8" secondAttribute="centerY" id="5hE-HJ-eh2"/>
+                    <constraint firstItem="Lco-Jb-bay" firstAttribute="leading" secondItem="sas-uc-MA8" secondAttribute="trailing" constant="8" id="C9z-rg-mgg"/>
+                    <constraint firstAttribute="trailing" secondItem="S7U-VV-Dyi" secondAttribute="trailing" id="Kax-Qk-YVE"/>
+                    <constraint firstItem="S7U-VV-Dyi" firstAttribute="leading" secondItem="vZ8-Et-Ry3" secondAttribute="leading" id="LVT-i5-FOO"/>
+                    <constraint firstItem="sas-uc-MA8" firstAttribute="leading" secondItem="vZ8-Et-Ry3" secondAttribute="leading" constant="8" id="VQ5-lP-j5K"/>
+                    <constraint firstItem="S7U-VV-Dyi" firstAttribute="top" secondItem="vZ8-Et-Ry3" secondAttribute="top" id="Zy3-JN-hHG"/>
+                    <constraint firstAttribute="bottom" secondItem="S7U-VV-Dyi" secondAttribute="bottom" id="dpP-a0-cl6"/>
+                    <constraint firstItem="Lco-Jb-bay" firstAttribute="top" secondItem="vZ8-Et-Ry3" secondAttribute="top" constant="6" id="q6X-iP-FWs"/>
+                    <constraint firstAttribute="bottom" secondItem="Lco-Jb-bay" secondAttribute="bottom" constant="6.5" id="t9o-js-4ok"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <viewLayoutGuide key="safeArea" id="6Ll-AM-BiX"/>
             <connections>
-                <outlet property="ingredientNameLabel" destination="mo3-Hn-TCb" id="dYF-Cm-fcz"/>
+                <outlet property="effectNameLabel" destination="sas-uc-MA8" id="QKm-G1-fct"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -31,7 +31,7 @@ class Effect: NSObject {
     let name: String
     let isPositive: Bool
 
-    static var all: [EffectType:Effect] = [:]
+    static var all: [Effect] = []
 
     init(_ effect: EffectType, name: String, isPositive: Bool) {
         self.type = effect
@@ -41,13 +41,18 @@ class Effect: NSObject {
     }
 
     class func populateList() {
-        all[.cureDisease] = Effect(.cureDisease, name: NSLocalizedString("Cure Disease", comment: ""), isPositive: true)
-        all[.damageHealth] = Effect(.damageHealth, name: NSLocalizedString("Damage Health", comment: ""), isPositive: false)
-        all[.damageHealthRegen] = Effect(.damageHealthRegen, name: NSLocalizedString("Damage Health Regeneration", comment: ""), isPositive: false)
-        all[.damageMagicka] = Effect(.damageMagicka, name: NSLocalizedString("Damage Magicka", comment: ""), isPositive: false)
-        all[.damageMagickaRegen] = Effect(.damageMagickaRegen, name: NSLocalizedString("Damage Magicka Regeneration", comment: ""), isPositive: false)
-        all[.damageStamina] = Effect(.damageStamina, name: NSLocalizedString("Damage Stamina", comment: ""), isPositive: false)
-        all[.damageStaminaRegen] = Effect(.damageStaminaRegen, name: NSLocalizedString("Damage Stamina Regeneration", comment: ""), isPositive: false)
+        var list: [Effect] = []
+        list.append(Effect(.cureDisease, name: NSLocalizedString("Cure Disease", comment: ""), isPositive: true))
+        list.append(Effect(.damageHealth, name: NSLocalizedString("Damage Health", comment: ""), isPositive: false))
+        list.append(Effect(.damageHealthRegen, name: NSLocalizedString("Damage Health Regen", comment: ""), isPositive: false))
+        list.append(Effect(.damageMagicka, name: NSLocalizedString("Damage Magicka", comment: ""), isPositive: false))
+        list.append(Effect(.damageMagickaRegen, name: NSLocalizedString("Damage Magicka Regen", comment: ""), isPositive: false))
+        list.append(Effect(.damageStamina, name: NSLocalizedString("Damage Stamina", comment: ""), isPositive: false))
+        list.append(Effect(.damageStaminaRegen, name: NSLocalizedString("Damage Stamina Regen", comment: ""), isPositive: false))
+
+        self.all = list.sorted(by: { (effect1, effect2) -> Bool in
+            return effect1.name.localizedCompare(effect2.name) == .orderedAscending
+        })
     }
 
 }

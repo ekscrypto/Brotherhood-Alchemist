@@ -13,6 +13,14 @@
 		780837B61F81F13700357BF9 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
 		780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */; };
 		780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */; };
+		780837C01F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837BD1F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift */; };
+		780837C11F8255BA00357BF9 /* DispatchOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837BE1F8255BA00357BF9 /* DispatchOnce.swift */; };
+		780837C21F8255BA00357BF9 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837BF1F8255BA00357BF9 /* UIColorHex.swift */; };
+		780837C41F8259F200357BF9 /* SwiftyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C31F8259F200357BF9 /* SwiftyGradientView.swift */; };
+		780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C51F82628F00357BF9 /* EffectsViewController.swift */; };
+		780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837C61F82628F00357BF9 /* EffectsViewController.xib */; };
+		780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */; };
+		780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */; };
 		78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */; };
 		78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24E1F81C9230036FAA2 /* RootViewController.swift */; };
 		78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2501F81C9230036FAA2 /* Main.storyboard */; };
@@ -32,6 +40,14 @@
 		780837B51F81F13700357BF9 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAvailableTableViewCell.swift; sourceTree = "<group>"; };
 		780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientAvailableTableViewCell.xib; sourceTree = "<group>"; };
+		780837BD1F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCapitalizeFirstLetter.swift; sourceTree = "<group>"; };
+		780837BE1F8255BA00357BF9 /* DispatchOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchOnce.swift; sourceTree = "<group>"; };
+		780837BF1F8255BA00357BF9 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		780837C31F8259F200357BF9 /* SwiftyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGradientView.swift; sourceTree = "<group>"; };
+		780837C51F82628F00357BF9 /* EffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsViewController.swift; sourceTree = "<group>"; };
+		780837C61F82628F00357BF9 /* EffectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsViewController.xib; sourceTree = "<group>"; };
+		780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectEnabledTableViewCell.swift; sourceTree = "<group>"; };
+		780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectEnabledTableViewCell.xib; sourceTree = "<group>"; };
 		78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78EEE24E1F81C9230036FAA2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +89,16 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		780837BC1F8255BA00357BF9 /* Swift Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				780837BD1F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift */,
+				780837BE1F8255BA00357BF9 /* DispatchOnce.swift */,
+				780837BF1F8255BA00357BF9 /* UIColorHex.swift */,
+			);
+			path = "Swift Extensions";
+			sourceTree = "<group>";
+		};
 		78EEE2401F81C9230036FAA2 = {
 			isa = PBXGroup;
 			children = (
@@ -94,11 +120,17 @@
 		78EEE24B1F81C9230036FAA2 /* Brotherhood Alchemist */ = {
 			isa = PBXGroup;
 			children = (
+				780837BC1F8255BA00357BF9 /* Swift Extensions */,
 				78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */,
+				780837C31F8259F200357BF9 /* SwiftyGradientView.swift */,
 				78EEE24E1F81C9230036FAA2 /* RootViewController.swift */,
 				78EEE2501F81C9230036FAA2 /* Main.storyboard */,
 				780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */,
 				780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */,
+				780837C51F82628F00357BF9 /* EffectsViewController.swift */,
+				780837C61F82628F00357BF9 /* EffectsViewController.xib */,
+				780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */,
+				780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */,
 				78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */,
 				78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */,
 				780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */,
@@ -185,8 +217,10 @@
 			files = (
 				780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */,
 				78EEE2571F81C9230036FAA2 /* LaunchScreen.storyboard in Resources */,
+				780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */,
 				780837B21F81EF6B00357BF9 /* AvailableRecipesViewController.xib in Resources */,
 				78EEE2621F81CF100036FAA2 /* IngredientsViewController.xib in Resources */,
+				780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */,
 				78EEE2541F81C9230036FAA2 /* Assets.xcassets in Resources */,
 				78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */,
 			);
@@ -234,11 +268,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SidebarOverlay/SidebarOverlay.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SidebarOverlay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -268,11 +302,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */,
+				780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
+				780837C11F8255BA00357BF9 /* DispatchOnce.swift in Sources */,
 				780837B41F81F11000357BF9 /* Ingredient.swift in Sources */,
+				780837C01F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift in Sources */,
+				780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */,
 				780837B11F81EF6B00357BF9 /* AvailableRecipesViewController.swift in Sources */,
 				780837B61F81F13700357BF9 /* Effect.swift in Sources */,
+				780837C21F8255BA00357BF9 /* UIColorHex.swift in Sources */,
 				78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */,
+				780837C41F8259F200357BF9 /* SwiftyGradientView.swift in Sources */,
 				780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
