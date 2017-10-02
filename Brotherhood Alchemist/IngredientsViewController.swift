@@ -37,7 +37,8 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let ingredientCell = tableView.dequeueReusableCell(withIdentifier: IngredientAvailableTableViewCell.identifier, for: indexPath) as? IngredientAvailableTableViewCell else {
+        guard let ingredientCell = tableView.dequeueReusableCell(withIdentifier: IngredientAvailableTableViewCell.identifier,
+                                                                 for: indexPath) as? IngredientAvailableTableViewCell else {
             return UITableViewCell()
         }
         let ingredient = Ingredient.all[indexPath.row]
