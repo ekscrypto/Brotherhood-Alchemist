@@ -10,7 +10,12 @@ import UIKit
 
 class IngredientsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var groupActiveAndInactiveSwitch: UISwitch!
+
+    static let shouldGroupActiveAndInactiveKey = "GroupActiveAndInactiveIngredients"
+
+    fileprivate var sortedIngredients: [[Ingredient]] = []
 
     class func fromNib() -> IngredientsViewController? {
         return IngredientsViewController(nibName: "IngredientsViewController", bundle: nil)
@@ -20,8 +25,36 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
 
         registerCell()
-        tableView.reloadData()
         navigationController?.isNavigationBarHidden = true
+        _ = NotificationCenter.default.addObserver(forName: IngredientTracker.updatedNotification, object: nil, queue: nil, using: { (_) in
+            self.filterAndReload()
+        })
+
+        groupActiveAndInactiveSwitch.isOn = shouldGroupActiveAndInactive()
+        IngredientTracker.markAllActive()
+        filterAndReload()
+    }
+
+    private func filterAndReload() {
+        if shouldGroupActiveAndInactive() {
+            sortedIngredients = [Ingredient.all]
+        } else {
+            var activeIngredients: [Ingredient] = []
+            var inactiveIngredients: [Ingredient] = []
+            for ingredient in Ingredient.all {
+                if IngredientTracker.active.contains(ingredient.type) {
+                    activeIngredients.append(ingredient)
+                } else {
+                    inactiveIngredients.append(ingredient)
+                }
+            }
+            sortedIngredients = [activeIngredients, inactiveIngredients]
+        }
+        tableView?.reloadData()
+    }
+
+    private func shouldGroupActiveAndInactive() -> Bool {
+        return UserDefaults.standard.bool(forKey: IngredientsViewController.shouldGroupActiveAndInactiveKey)
     }
 
     func registerCell() {
@@ -29,20 +62,50 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Ingredient.all.count
+        let ingredientsInSection = sortedIngredients[section]
+        return ingredientsInSection.count
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sortedIngredients.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let ingredientCell = tableView.dequeueReusableCell(withIdentifier: IngredientAvailableTableViewCell.identifier,
-                                                                 for: indexPath) as? IngredientAvailableTableViewCell else {
+        guard let ingredientCell = tableView.dequeueReusableCell(withIdentifier: IngredientAvailableTableViewCell.identifier) as? IngredientAvailableTableViewCell else {
             return UITableViewCell()
         }
-        let ingredient = Ingredient.all[indexPath.row]
+        let ingredients = sortedIngredients[indexPath.section]
+        let ingredient = ingredients[indexPath.row]
         ingredientCell.update(using: ingredient)
         return ingredientCell
+    }
+
+    @IBAction
+    func groupActiveAndInactiveToggled(_: Any?) {
+        let ud = UserDefaults.standard
+        ud.set(groupActiveAndInactiveSwitch.isOn, forKey: IngredientsViewController.shouldGroupActiveAndInactiveKey)
+        ud.synchronize()
+
+        filterAndReload()
+
+        DispatchQueue.main.async {
+            let numberOfActiveIngredients = self.sortedIngredients.first?.count ?? 0
+            let firstRowPath =  IndexPath(row: 0, section: numberOfActiveIngredients > 0 ? 0 : 1)
+            self.tableView?.scrollToRow(at: firstRowPath, at: .top, animated: true)
+        }
+    }
+
+    @IBAction
+    func markAllInactive(_: Any?) {
+        IngredientTracker.markAllInactive()
+    }
+
+    @IBAction
+    func markAllActive(_: Any?) {
+        IngredientTracker.markAllActive()
     }
 }

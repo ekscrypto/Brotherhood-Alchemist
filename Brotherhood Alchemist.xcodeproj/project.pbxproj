@@ -21,6 +21,9 @@
 		780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837C61F82628F00357BF9 /* EffectsViewController.xib */; };
 		780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */; };
 		780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */; };
+		78E8F07C1F82FABE00B07C92 /* IngredientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */; };
+		78E8F07E1F82FB2000B07C92 /* EffectGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */; };
+		78E8F0801F82FE0D00B07C92 /* IngredientTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */; };
 		78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */; };
 		78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24E1F81C9230036FAA2 /* RootViewController.swift */; };
 		78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2501F81C9230036FAA2 /* Main.storyboard */; };
@@ -48,6 +51,9 @@
 		780837C61F82628F00357BF9 /* EffectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsViewController.xib; sourceTree = "<group>"; };
 		780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectEnabledTableViewCell.swift; sourceTree = "<group>"; };
 		780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectEnabledTableViewCell.xib; sourceTree = "<group>"; };
+		78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientGenerator.swift; sourceTree = "<group>"; };
+		78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectGenerator.swift; sourceTree = "<group>"; };
+		78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTracker.swift; sourceTree = "<group>"; };
 		78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78EEE24E1F81C9230036FAA2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +90,10 @@
 			isa = PBXGroup;
 			children = (
 				780837B31F81F11000357BF9 /* Ingredient.swift */,
+				78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */,
+				78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */,
 				780837B51F81F13700357BF9 /* Effect.swift */,
+				78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -305,7 +314,10 @@
 				780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
 				780837C11F8255BA00357BF9 /* DispatchOnce.swift in Sources */,
+				78E8F07C1F82FABE00B07C92 /* IngredientGenerator.swift in Sources */,
+				78E8F07E1F82FB2000B07C92 /* EffectGenerator.swift in Sources */,
 				780837B41F81F11000357BF9 /* Ingredient.swift in Sources */,
+				78E8F0801F82FE0D00B07C92 /* IngredientTracker.swift in Sources */,
 				780837C01F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift in Sources */,
 				780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */,
 				780837B11F81EF6B00357BF9 /* AvailableRecipesViewController.swift in Sources */,

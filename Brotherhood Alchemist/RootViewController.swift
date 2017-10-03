@@ -15,8 +15,8 @@ class RootViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        Effect.populateList()
-        Ingredient.populateList()
+        EffectGenerator.execute()
+        IngredientGenerator.execute()
 
         hideLaunchAssets()
         setupSideMenus()

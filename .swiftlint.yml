@@ -2,4 +2,5 @@ excluded:
   - Pods
 disabled_rules:
   - function_body_length
+  - type_body_length
 line_length: 180
