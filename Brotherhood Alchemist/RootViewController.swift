@@ -18,11 +18,7 @@ class RootViewController: UIViewController {
 
         EffectGenerator.execute()
         IngredientGenerator.execute()
-        print("identifying recipes..")
         ConcoctionGenerator.execute()
-        let mostValuable = Concoction.all.first
-        let leastValuable = Concoction.all.last
-        print("identified a total of \(Concoction.all.count) recipes ranging in value from \(leastValuable!.estimatedValue) to \(mostValuable!.estimatedValue)")
 
         registerUserDefaults()
         hideLaunchAssets()

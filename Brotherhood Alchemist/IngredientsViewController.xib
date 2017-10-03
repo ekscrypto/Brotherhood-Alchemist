@@ -22,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVX-hj-FDj">
-                    <rect key="frame" x="0.0" y="21" width="375" height="27"/>
+                    <rect key="frame" x="0.0" y="21" width="375" height="44"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh0-Lp-CRQ">
-                            <rect key="frame" x="0.0" y="0.0" width="285" height="27"/>
+                            <rect key="frame" x="0.0" y="0.0" width="285" height="44"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="INGREDIENTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ep-OF-F8b">
-                                    <rect key="frame" x="8" y="0.0" width="86" height="27"/>
+                                    <rect key="frame" x="8" y="0.0" width="86" height="44"/>
                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
                                     <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -42,10 +42,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hq6-eG-jZV">
-                            <rect key="frame" x="286" y="0.0" width="44" height="27"/>
+                            <rect key="frame" x="286" y="0.0" width="44" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebF-yc-jtS">
-                                    <rect key="frame" x="4" y="0.0" width="36" height="27"/>
+                                    <rect key="frame" x="4" y="0.0" width="36" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
                                     <state key="normal" title="NONE">
@@ -65,10 +65,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oxx-0K-wmS">
-                            <rect key="frame" x="331" y="0.0" width="44" height="27"/>
+                            <rect key="frame" x="331" y="0.0" width="44" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trr-Ub-XCX">
-                                    <rect key="frame" x="4" y="0.0" width="36" height="27"/>
+                                    <rect key="frame" x="4" y="0.0" width="36" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
                                     <state key="normal" title="ALL">
@@ -92,6 +92,7 @@
                     <constraints>
                         <constraint firstItem="Hq6-eG-jZV" firstAttribute="height" secondItem="Oxx-0K-wmS" secondAttribute="height" id="2tv-Jc-7hA"/>
                         <constraint firstItem="Gh0-Lp-CRQ" firstAttribute="height" secondItem="TVX-hj-FDj" secondAttribute="height" id="4C9-u9-Z2Y"/>
+                        <constraint firstAttribute="height" constant="44" id="Fif-rC-BGX"/>
                         <constraint firstItem="Hq6-eG-jZV" firstAttribute="leading" secondItem="Gh0-Lp-CRQ" secondAttribute="trailing" constant="1" id="MZt-Gw-kyY"/>
                         <constraint firstItem="Gh0-Lp-CRQ" firstAttribute="centerY" secondItem="TVX-hj-FDj" secondAttribute="centerY" id="OnX-bO-c7T"/>
                         <constraint firstItem="Hq6-eG-jZV" firstAttribute="height" secondItem="Gh0-Lp-CRQ" secondAttribute="height" id="Rcj-m1-Z5w"/>
@@ -104,7 +105,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qaR-DH-y8N">
-                    <rect key="frame" x="0.0" y="49" width="375" height="618"/>
+                    <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

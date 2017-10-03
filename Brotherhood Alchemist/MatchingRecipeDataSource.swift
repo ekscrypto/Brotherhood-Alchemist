@@ -35,8 +35,6 @@ class MatchingRecipeDataSource: NSObject, UITableViewDataSource {
         let activeIngredients = IngredientTracker.active
         let activeEffects = EffectTracker.active
 
-        print("Initiating new search using ingredients \(activeIngredients) and effects \(activeEffects)")
-
         searchRevision += 1
         let referenceSearchRevision = searchRevision
         searchResults = []
@@ -48,7 +46,7 @@ class MatchingRecipeDataSource: NSObject, UITableViewDataSource {
             var matchingConcoctions: [Concoction] = []
             for concoction in Concoction.all {
                 if self.searchRevision != referenceSearchRevision {
-                    print("Search aborted revision \(self.searchRevision) != \(referenceSearchRevision)")
+//                    print("Search aborted revision \(self.searchRevision) != \(referenceSearchRevision)")
                     return
                 }
 
@@ -72,10 +70,9 @@ class MatchingRecipeDataSource: NSObject, UITableViewDataSource {
             }
             DispatchQueue.main.async {
                 if self.searchRevision != referenceSearchRevision {
-                    print("Search aborted revision \(self.searchRevision) != \(referenceSearchRevision)")
+//                    print("Search aborted revision \(self.searchRevision) != \(referenceSearchRevision)")
                     return
                 }
-                print("Search completed, found \(matchingConcoctions.count) matches")
                 self.statusLabel?.text = "\(matchingConcoctions.count) Recipes"
                 self.statusLabel?.isHidden = false
                 self.searchResults = matchingConcoctions
@@ -87,7 +84,7 @@ class MatchingRecipeDataSource: NSObject, UITableViewDataSource {
 
     func registerCell() {
         guard tableView != nil else {
-            print("ERROR: tableView undefined, will not be able to register cell identifier")
+//            print("ERROR: tableView undefined, will not be able to register cell identifier")
             return
         }
 

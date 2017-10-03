@@ -32,37 +32,37 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5w-fn-PG7">
-                                <rect key="frame" x="0.0" y="20" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_drag" translatesAutoresizingMaskIntoConstraints="NO" id="0nv-dI-gb0">
-                                        <rect key="frame" x="0.0" y="4" width="24" height="24"/>
+                                        <rect key="frame" x="0.0" y="5.5" width="33" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="0nv-dI-gb0" secondAttribute="height" multiplier="1:1" id="HBN-Bk-jOl"/>
                                         </constraints>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INGREDIENTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQ5-tt-iSv">
-                                        <rect key="frame" x="24" y="9.5" width="83.5" height="14.5"/>
+                                        <rect key="frame" x="33" y="15.5" width="83.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96078431369999995" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_drag" translatesAutoresizingMaskIntoConstraints="NO" id="H6o-Lf-EiB">
-                                        <rect key="frame" x="351" y="4" width="24" height="24"/>
+                                        <rect key="frame" x="342" y="5.5" width="33" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="H6o-Lf-EiB" secondAttribute="height" multiplier="1:1" id="h64-we-Jqa"/>
                                         </constraints>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EFFECTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JX4-B7-ov4">
-                                        <rect key="frame" x="296.5" y="9.5" width="54.5" height="14.5"/>
+                                        <rect key="frame" x="287.5" y="15.5" width="54.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96078431369999995" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="OUf-jU-9H6">
-                                        <rect key="frame" x="177" y="6" width="20" height="20"/>
+                                        <rect key="frame" x="177" y="12" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="101656 Recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsi-8r-YMA">
-                                        <rect key="frame" x="140" y="9" width="96" height="14.5"/>
+                                        <rect key="frame" x="140" y="15" width="96" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                                     <constraint firstItem="jQ5-tt-iSv" firstAttribute="centerY" secondItem="h5w-fn-PG7" secondAttribute="centerY" id="Irc-Fv-T2m"/>
                                     <constraint firstItem="JX4-B7-ov4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jQ5-tt-iSv" secondAttribute="trailing" constant="8" id="SGY-QX-LxT"/>
                                     <constraint firstItem="tsi-8r-YMA" firstAttribute="centerY" secondItem="0nv-dI-gb0" secondAttribute="centerY" id="VsO-BX-wNX"/>
-                                    <constraint firstAttribute="height" constant="32" id="WCK-eJ-1N9"/>
+                                    <constraint firstAttribute="height" constant="44" id="WCK-eJ-1N9"/>
                                     <constraint firstItem="JX4-B7-ov4" firstAttribute="centerY" secondItem="jQ5-tt-iSv" secondAttribute="centerY" id="aWj-zC-KJc"/>
                                     <constraint firstItem="OUf-jU-9H6" firstAttribute="centerX" secondItem="h5w-fn-PG7" secondAttribute="centerX" id="iMO-3C-dPr"/>
                                     <constraint firstItem="0nv-dI-gb0" firstAttribute="height" secondItem="h5w-fn-PG7" secondAttribute="height" multiplier="0.75" id="mA3-ZM-SbG"/>
@@ -89,7 +89,7 @@
                                 </constraints>
                             </view>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UyC-vq-e1R">
-                                <rect key="frame" x="0.0" y="52" width="375" height="615"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="cYa-xX-Bxi" id="ZZb-Rn-dpB"/>
