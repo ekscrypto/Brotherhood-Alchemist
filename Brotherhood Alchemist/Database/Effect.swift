@@ -70,14 +70,23 @@ class Effect: NSObject {
 
     let type: EffectType
     let name: String
+    let value: Int
     let isPositive: Bool
 
     static var all: [Effect] = []
 
-    init(_ effect: EffectType, name: String, isPositive: Bool) {
+    init(_ effect: EffectType, name: String, value: Int, isPositive: Bool) {
         self.type = effect
         self.name = name
+        self.value = value
         self.isPositive = isPositive
         super.init()
+    }
+
+    class func matchingType(_ type: EffectType) -> Effect? {
+        for effect in Effect.all where effect.type == type {
+            return effect
+        }
+        return nil
     }
 }

@@ -137,4 +137,11 @@ class Ingredient: NSObject {
         super.init()
     }
 
+    class func matchingType(_ type: IngredientType) -> Ingredient? {
+        for ingredient in Ingredient.all where ingredient.type == type {
+            return ingredient
+        }
+        return nil
+    }
+
 }

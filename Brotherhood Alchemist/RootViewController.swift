@@ -11,17 +11,30 @@ import SideMenu
 
 class RootViewController: UIViewController {
     @IBOutlet var appIconLaunchImageView: UIImageView!
+    @IBOutlet var dataSource: MatchingRecipeDataSource!
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         EffectGenerator.execute()
         IngredientGenerator.execute()
+        print("identifying recipes..")
+        ConcoctionGenerator.execute()
+        let mostValuable = Concoction.all.first
+        let leastValuable = Concoction.all.last
+        print("identified a total of \(Concoction.all.count) recipes ranging in value from \(leastValuable!.estimatedValue) to \(mostValuable!.estimatedValue)")
 
+        registerUserDefaults()
         hideLaunchAssets()
         setupSideMenus()
         customizeNavigationBarStyle()
         customizeStatusBarAppearance()
+    }
+
+    private func registerUserDefaults() {
+        let ud = UserDefaults.standard
+        ud.register(defaults: [EffectsViewController.shouldGroupActiveAndInactiveKey: true])
+        ud.synchronize()
     }
 
     func hideLaunchAssets() {

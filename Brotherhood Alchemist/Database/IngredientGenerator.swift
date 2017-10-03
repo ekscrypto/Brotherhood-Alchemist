@@ -235,5 +235,6 @@ class IngredientGenerator: NSObject {
         Ingredient.all = list.sorted(by: { (ingredient1, ingredient2) -> Bool in
             return ingredient1.name.localizedCompare(ingredient2.name) == .orderedAscending
         })
+        IngredientTracker.markAllActive()
     }
 }

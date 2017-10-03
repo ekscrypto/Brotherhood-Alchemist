@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		780837B11F81EF6B00357BF9 /* AvailableRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */; };
-		780837B21F81EF6B00357BF9 /* AvailableRecipesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */; };
 		780837B41F81F11000357BF9 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B31F81F11000357BF9 /* Ingredient.swift */; };
 		780837B61F81F13700357BF9 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
 		780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */; };
@@ -21,9 +19,16 @@
 		780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837C61F82628F00357BF9 /* EffectsViewController.xib */; };
 		780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */; };
 		780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */; };
+		7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */; };
+		7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */; };
+		7866B1F71F83594600287840 /* MatchingRecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */; };
+		7866B1F91F835BD800287840 /* RecipeIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F81F835BD800287840 /* RecipeIngredientView.swift */; };
 		78E8F07C1F82FABE00B07C92 /* IngredientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */; };
 		78E8F07E1F82FB2000B07C92 /* EffectGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */; };
 		78E8F0801F82FE0D00B07C92 /* IngredientTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */; };
+		78E8F08A1F832FE100B07C92 /* EffectTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F0891F832FE100B07C92 /* EffectTracker.swift */; };
+		78E8F08C1F833B0000B07C92 /* Concoction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08B1F833B0000B07C92 /* Concoction.swift */; };
+		78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08D1F833BC000B07C92 /* ConcoctionGenerator.swift */; };
 		78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */; };
 		78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24E1F81C9230036FAA2 /* RootViewController.swift */; };
 		78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2501F81C9230036FAA2 /* Main.storyboard */; };
@@ -37,8 +42,6 @@
 /* Begin PBXFileReference section */
 		50B22F19621B3CF270FC4703 /* Pods-Brotherhood Alchemist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brotherhood Alchemist.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist.release.xcconfig"; sourceTree = "<group>"; };
 		592CFD707884EEA2FCB93598 /* Pods-Brotherhood Alchemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brotherhood Alchemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist.debug.xcconfig"; sourceTree = "<group>"; };
-		780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableRecipesViewController.swift; sourceTree = "<group>"; };
-		780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailableRecipesViewController.xib; sourceTree = "<group>"; };
 		780837B31F81F11000357BF9 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		780837B51F81F13700357BF9 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAvailableTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,9 +54,16 @@
 		780837C61F82628F00357BF9 /* EffectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsViewController.xib; sourceTree = "<group>"; };
 		780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectEnabledTableViewCell.swift; sourceTree = "<group>"; };
 		780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectEnabledTableViewCell.xib; sourceTree = "<group>"; };
+		7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingRecipeDataSource.swift; sourceTree = "<group>"; };
+		7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingRecipeTableViewCell.swift; sourceTree = "<group>"; };
+		7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingRecipeTableViewCell.xib; sourceTree = "<group>"; };
+		7866B1F81F835BD800287840 /* RecipeIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientView.swift; sourceTree = "<group>"; };
 		78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientGenerator.swift; sourceTree = "<group>"; };
 		78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectGenerator.swift; sourceTree = "<group>"; };
 		78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTracker.swift; sourceTree = "<group>"; };
+		78E8F0891F832FE100B07C92 /* EffectTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectTracker.swift; sourceTree = "<group>"; };
+		78E8F08B1F833B0000B07C92 /* Concoction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concoction.swift; sourceTree = "<group>"; };
+		78E8F08D1F833BC000B07C92 /* ConcoctionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionGenerator.swift; sourceTree = "<group>"; };
 		78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78EEE24E1F81C9230036FAA2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +104,9 @@
 				78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */,
 				780837B51F81F13700357BF9 /* Effect.swift */,
 				78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */,
+				78E8F0891F832FE100B07C92 /* EffectTracker.swift */,
+				78E8F08B1F833B0000B07C92 /* Concoction.swift */,
+				78E8F08D1F833BC000B07C92 /* ConcoctionGenerator.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -133,9 +146,11 @@
 				78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */,
 				780837C31F8259F200357BF9 /* SwiftyGradientView.swift */,
 				78EEE24E1F81C9230036FAA2 /* RootViewController.swift */,
+				7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */,
+				7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */,
+				7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */,
+				7866B1F81F835BD800287840 /* RecipeIngredientView.swift */,
 				78EEE2501F81C9230036FAA2 /* Main.storyboard */,
-				780837AF1F81EF6B00357BF9 /* AvailableRecipesViewController.swift */,
-				780837B01F81EF6B00357BF9 /* AvailableRecipesViewController.xib */,
 				780837C51F82628F00357BF9 /* EffectsViewController.swift */,
 				780837C61F82628F00357BF9 /* EffectsViewController.xib */,
 				780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */,
@@ -227,10 +242,10 @@
 				780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */,
 				78EEE2571F81C9230036FAA2 /* LaunchScreen.storyboard in Resources */,
 				780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */,
-				780837B21F81EF6B00357BF9 /* AvailableRecipesViewController.xib in Resources */,
 				78EEE2621F81CF100036FAA2 /* IngredientsViewController.xib in Resources */,
 				780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */,
 				78EEE2541F81C9230036FAA2 /* Assets.xcassets in Resources */,
+				7866B1F71F83594600287840 /* MatchingRecipeTableViewCell.xib in Resources */,
 				78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,21 +325,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E8F08C1F833B0000B07C92 /* Concoction.swift in Sources */,
 				78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */,
+				78E8F08A1F832FE100B07C92 /* EffectTracker.swift in Sources */,
 				780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
 				780837C11F8255BA00357BF9 /* DispatchOnce.swift in Sources */,
 				78E8F07C1F82FABE00B07C92 /* IngredientGenerator.swift in Sources */,
 				78E8F07E1F82FB2000B07C92 /* EffectGenerator.swift in Sources */,
 				780837B41F81F11000357BF9 /* Ingredient.swift in Sources */,
+				7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */,
 				78E8F0801F82FE0D00B07C92 /* IngredientTracker.swift in Sources */,
 				780837C01F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift in Sources */,
 				780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */,
-				780837B11F81EF6B00357BF9 /* AvailableRecipesViewController.swift in Sources */,
 				780837B61F81F13700357BF9 /* Effect.swift in Sources */,
+				7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */,
+				78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */,
 				780837C21F8255BA00357BF9 /* UIColorHex.swift in Sources */,
 				78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */,
 				780837C41F8259F200357BF9 /* SwiftyGradientView.swift in Sources */,
+				7866B1F91F835BD800287840 /* RecipeIngredientView.swift in Sources */,
 				780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,12 +26,12 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
 
         registerCell()
         navigationController?.isNavigationBarHidden = true
+
         _ = NotificationCenter.default.addObserver(forName: IngredientTracker.updatedNotification, object: nil, queue: nil, using: { (_) in
             self.filterAndReload()
         })
 
         groupActiveAndInactiveSwitch.isOn = shouldGroupActiveAndInactive()
-        IngredientTracker.markAllActive()
         filterAndReload()
     }
 
@@ -58,7 +58,7 @@ class IngredientsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func registerCell() {
-        tableView.register(IngredientAvailableTableViewCell.nib(), forCellReuseIdentifier: IngredientAvailableTableViewCell.identifier)
+        tableView?.register(IngredientAvailableTableViewCell.nib(), forCellReuseIdentifier: IngredientAvailableTableViewCell.identifier)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
