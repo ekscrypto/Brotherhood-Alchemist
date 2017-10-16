@@ -27,6 +27,8 @@ class IngredientGenerator: NSObject {
                                effects: [.restoreStamina, .ravageStamina, .regenerateStamina, .weaknessToShock]))
         list.append(Ingredient(.beehiveHusk, name: NSLocalizedString("Beehive Husk", comment: ""),
                                effects: [.resistPoison, .fortifyLightArmor, .fortifySneak, .fortifyDestruction]))
+        list.append(Ingredient(.beritsAshes, name: NSLocalizedString("Berit's Ashes", comment: ""),
+                               effects: [.damageStamina, .fortifyConjuration, .resistFire, .ravageStamina]))
         list.append(Ingredient(.bleedingCrown, name: NSLocalizedString("Bleeding Crown", comment: ""),
                                effects: [.weaknessToFire, .fortifyBlock, .weaknessToPoison, .resistMagic]))
         list.append(Ingredient(.blisterwort, name: NSLocalizedString("Blisterwort", comment: ""),
@@ -161,7 +163,7 @@ class IngredientGenerator: NSObject {
                                effects: [.restoreStamina, .ravageMagicka, .fortifyPickpocket, .lingeringDamageHealth]))
         list.append(Ingredient(.pearl, name: NSLocalizedString("Pearl", comment: ""),
                                effects: [.restoreStamina, .restoreMagicka, .fortifyBlock, .resistShock]))
-        list.append(Ingredient(.pineThrustEgg, name: NSLocalizedString("Pine Trust Egg", comment: ""),
+        list.append(Ingredient(.pineThrustEgg, name: NSLocalizedString("Pine Thrush Egg", comment: ""),
                                effects: [.restoreStamina, .fortifyLockpicking, .weaknessToPoison, .resistShock]))
         list.append(Ingredient(.poisonBloom, name: NSLocalizedString("Poison Bloom", comment: ""),
                                effects: [.damageHealth, .slow, .fortifyCarryWeight, .fear]))

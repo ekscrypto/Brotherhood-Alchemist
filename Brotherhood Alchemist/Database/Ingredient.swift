@@ -19,6 +19,7 @@ class Ingredient: NSObject {
         case bearClaws
         case bee
         case beehiveHusk
+        case beritsAshes
         case bleedingCrown
         case blisterwort
         case blueButterflyWing
