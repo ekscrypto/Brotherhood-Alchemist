@@ -32,5 +32,23 @@ class RecipeIngredientView: UIView {
     func removeThisIngredient(_: Any?) {
         guard ingredient != nil else { return }
         IngredientTracker.markInactive(ingredient: ingredient!.type)
+
+        alertUserIngredientRemovedFeature()
+    }
+
+    private func alertUserIngredientRemovedFeature() {
+        let ud = UserDefaults.standard
+        let alreadyNotified = ud.bool(forKey: "RecipeIngredientView.Removed.FeatureNotification")
+        if alreadyNotified == false {
+            ud.set(true, forKey: "RecipeIngredientView.Removed.FeatureNotification")
+
+            let title = NSLocalizedString("Ingredient Removed",
+                                          comment: "Title for alert informing user about Remove Ingredient feature")
+            let message = NSLocalizedString("You have just removed an ingredient from the list of active ingredients.  You may use the menu on the left to add it back.",
+                                            comment: "Ingredient removed feature explanation")
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .default, handler: nil))
+            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
     }
 }
