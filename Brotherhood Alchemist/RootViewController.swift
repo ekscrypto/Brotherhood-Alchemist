@@ -29,7 +29,7 @@ class RootViewController: UIViewController {
 
     private func registerUserDefaults() {
         let ud = UserDefaults.standard
-        ud.register(defaults: [EffectsViewController.shouldGroupActiveAndInactiveKey: true])
+        ud.register(defaults: [EffectsViewController.shouldGroupActiveAndInactiveKey: true, IngredientsViewController.shouldGroupActiveAndInactiveKey: true])
         ud.synchronize()
     }
 
