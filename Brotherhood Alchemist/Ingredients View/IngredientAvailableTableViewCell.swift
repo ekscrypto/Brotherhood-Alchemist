@@ -1,24 +1,24 @@
 //
-//  EffectEnabledTableViewCell.swift
+//  IngredientAvailableTableViewCell.swift
 //  Brotherhood Alchemist
 //
 //  Created by Dave Poirier on 2017-10-02.
-//  Copyright © 2017 Soft.io. All rights reserved.
+//  Copyright © 2017-2022 Dave Poirier. All rights reserved.
 //
 
 import UIKit
 
-class EffectEnabledTableViewCell: UITableViewCell {
+class IngredientAvailableTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var effectNameLabel: UILabel!
+    @IBOutlet weak var ingredientNameLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
 
-    weak var effect: Effect!
+    weak var ingredient: Ingredient!
 
     class func nib() -> UINib {
-        return UINib(nibName: "EffectEnabledTableViewCell", bundle: nil)
+        return UINib(nibName: "IngredientAvailableTableViewCell", bundle: nil)
     }
-    static let identifier: String = "effectCell"
+    static let identifier: String = "ingredientCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,10 +29,10 @@ class EffectEnabledTableViewCell: UITableViewCell {
         statusView?.layer.cornerRadius = statusView!.bounds.width * 0.25
     }
 
-    func update(using effect: Effect) {
-        self.effect = effect
-        effectNameLabel?.text = effect.name
-        let selected = EffectTracker.active.contains(effect.type)
+    func update(using ingredient: Ingredient) {
+        self.ingredient = ingredient
+        ingredientNameLabel?.text = ingredient.name
+        let selected = IngredientTracker.active.contains(ingredient.type)
         if selected {
             statusView.backgroundColor = UIColor.green
             statusView?.layer.borderColor = UIColor.white.cgColor
@@ -44,12 +44,12 @@ class EffectEnabledTableViewCell: UITableViewCell {
 
     @IBAction
     func toggleStatus(_: Any?) {
-        guard effect != nil else { return }
-        let selected = EffectTracker.active.contains(effect.type)
+        guard ingredient != nil else { return }
+        let selected = IngredientTracker.active.contains(ingredient.type)
         if selected {
-            EffectTracker.markInactive(effect: effect.type)
+            IngredientTracker.markInactive(ingredient: ingredient.type)
         } else {
-            EffectTracker.markActive(effect: effect.type)
+            IngredientTracker.markActive(ingredient: ingredient.type)
         }
     }
 }

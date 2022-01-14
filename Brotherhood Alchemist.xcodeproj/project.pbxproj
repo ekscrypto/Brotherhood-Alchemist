@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,18 +11,17 @@
 		780837B61F81F13700357BF9 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
 		780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */; };
 		780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */; };
-		780837C01F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837BD1F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift */; };
-		780837C11F8255BA00357BF9 /* DispatchOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837BE1F8255BA00357BF9 /* DispatchOnce.swift */; };
-		780837C21F8255BA00357BF9 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837BF1F8255BA00357BF9 /* UIColorHex.swift */; };
-		780837C41F8259F200357BF9 /* SwiftyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C31F8259F200357BF9 /* SwiftyGradientView.swift */; };
 		780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C51F82628F00357BF9 /* EffectsViewController.swift */; };
 		780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837C61F82628F00357BF9 /* EffectsViewController.xib */; };
 		780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */; };
 		780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */; };
+		7824A10A278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A109278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift */; };
 		7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */; };
 		7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */; };
 		7866B1F71F83594600287840 /* MatchingRecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */; };
 		7866B1F91F835BD800287840 /* RecipeIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F81F835BD800287840 /* RecipeIngredientView.swift */; };
+		78B850D12789C74D003D1E4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D02789C74D003D1E4F /* SceneDelegate.swift */; };
+		78B850D42789C8BD003D1E4F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D32789C8BD003D1E4F /* RootView.swift */; };
 		78E8F07C1F82FABE00B07C92 /* IngredientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */; };
 		78E8F07E1F82FB2000B07C92 /* EffectGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */; };
 		78E8F0801F82FE0D00B07C92 /* IngredientTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */; };
@@ -31,33 +30,29 @@
 		78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08D1F833BC000B07C92 /* ConcoctionGenerator.swift */; };
 		78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */; };
 		78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24E1F81C9230036FAA2 /* RootViewController.swift */; };
-		78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2501F81C9230036FAA2 /* Main.storyboard */; };
 		78EEE2541F81C9230036FAA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2531F81C9230036FAA2 /* Assets.xcassets */; };
 		78EEE2571F81C9230036FAA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2551F81C9230036FAA2 /* LaunchScreen.storyboard */; };
 		78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */; };
 		78EEE2621F81CF100036FAA2 /* IngredientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */; };
-		D2F1BAD593048E6BA4382684 /* Pods_Brotherhood_Alchemist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0D986CED45B0029B62C7DC /* Pods_Brotherhood_Alchemist.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50B22F19621B3CF270FC4703 /* Pods-Brotherhood Alchemist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brotherhood Alchemist.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist.release.xcconfig"; sourceTree = "<group>"; };
-		592CFD707884EEA2FCB93598 /* Pods-Brotherhood Alchemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brotherhood Alchemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist.debug.xcconfig"; sourceTree = "<group>"; };
 		780837B31F81F11000357BF9 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		780837B51F81F13700357BF9 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAvailableTableViewCell.swift; sourceTree = "<group>"; };
 		780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientAvailableTableViewCell.xib; sourceTree = "<group>"; };
-		780837BD1F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCapitalizeFirstLetter.swift; sourceTree = "<group>"; };
-		780837BE1F8255BA00357BF9 /* DispatchOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchOnce.swift; sourceTree = "<group>"; };
-		780837BF1F8255BA00357BF9 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
-		780837C31F8259F200357BF9 /* SwiftyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGradientView.swift; sourceTree = "<group>"; };
 		780837C51F82628F00357BF9 /* EffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsViewController.swift; sourceTree = "<group>"; };
 		780837C61F82628F00357BF9 /* EffectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsViewController.xib; sourceTree = "<group>"; };
 		780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectEnabledTableViewCell.swift; sourceTree = "<group>"; };
 		780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectEnabledTableViewCell.xib; sourceTree = "<group>"; };
+		7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brotherhood AlchemistTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7824A109278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brotherhood_AlchemistTests.swift; sourceTree = "<group>"; };
 		7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingRecipeDataSource.swift; sourceTree = "<group>"; };
 		7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingRecipeTableViewCell.xib; sourceTree = "<group>"; };
 		7866B1F81F835BD800287840 /* RecipeIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientView.swift; sourceTree = "<group>"; };
+		78B850D02789C74D003D1E4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		78B850D32789C8BD003D1E4F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientGenerator.swift; sourceTree = "<group>"; };
 		78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectGenerator.swift; sourceTree = "<group>"; };
 		78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTracker.swift; sourceTree = "<group>"; };
@@ -67,35 +62,31 @@
 		78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78EEE24E1F81C9230036FAA2 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		78EEE2511F81C9230036FAA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78EEE2531F81C9230036FAA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78EEE2561F81C9230036FAA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78EEE2581F81C9230036FAA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 		78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientsViewController.xib; sourceTree = "<group>"; };
-		DF0D986CED45B0029B62C7DC /* Pods_Brotherhood_Alchemist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brotherhood_Alchemist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7824A104278A9DBC001BABC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78EEE2461F81C9230036FAA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2F1BAD593048E6BA4382684 /* Pods_Brotherhood_Alchemist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		145928C504DA6EE0567E4051 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DF0D986CED45B0029B62C7DC /* Pods_Brotherhood_Alchemist.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		780837BB1F8200DF00357BF9 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,23 +102,55 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		780837BC1F8255BA00357BF9 /* Swift Extensions */ = {
+		7824A108278A9DBC001BABC5 /* Brotherhood AlchemistTests */ = {
 			isa = PBXGroup;
 			children = (
-				780837BD1F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift */,
-				780837BE1F8255BA00357BF9 /* DispatchOnce.swift */,
-				780837BF1F8255BA00357BF9 /* UIColorHex.swift */,
+				7824A109278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift */,
 			);
-			path = "Swift Extensions";
+			path = "Brotherhood AlchemistTests";
+			sourceTree = "<group>";
+		};
+		78B850D22789C8A7003D1E4F /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				78EEE24E1F81C9230036FAA2 /* RootViewController.swift */,
+				78B850D32789C8BD003D1E4F /* RootView.swift */,
+				7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */,
+				7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */,
+				7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */,
+				7866B1F81F835BD800287840 /* RecipeIngredientView.swift */,
+			);
+			path = "Root View";
+			sourceTree = "<group>";
+		};
+		78B850D52789C9F8003D1E4F /* Effects View */ = {
+			isa = PBXGroup;
+			children = (
+				780837C51F82628F00357BF9 /* EffectsViewController.swift */,
+				780837C61F82628F00357BF9 /* EffectsViewController.xib */,
+				780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */,
+				780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */,
+			);
+			path = "Effects View";
+			sourceTree = "<group>";
+		};
+		78B850D62789CA07003D1E4F /* Ingredients View */ = {
+			isa = PBXGroup;
+			children = (
+				78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */,
+				78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */,
+				780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */,
+				780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */,
+			);
+			path = "Ingredients View";
 			sourceTree = "<group>";
 		};
 		78EEE2401F81C9230036FAA2 = {
 			isa = PBXGroup;
 			children = (
 				78EEE24B1F81C9230036FAA2 /* Brotherhood Alchemist */,
+				7824A108278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
 				78EEE24A1F81C9230036FAA2 /* Products */,
-				CDF929A294AC95A64C1538FD /* Pods */,
-				145928C504DA6EE0567E4051 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */,
+				7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,23 +166,11 @@
 		78EEE24B1F81C9230036FAA2 /* Brotherhood Alchemist */ = {
 			isa = PBXGroup;
 			children = (
-				780837BC1F8255BA00357BF9 /* Swift Extensions */,
 				78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */,
-				780837C31F8259F200357BF9 /* SwiftyGradientView.swift */,
-				78EEE24E1F81C9230036FAA2 /* RootViewController.swift */,
-				7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */,
-				7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */,
-				7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */,
-				7866B1F81F835BD800287840 /* RecipeIngredientView.swift */,
-				78EEE2501F81C9230036FAA2 /* Main.storyboard */,
-				780837C51F82628F00357BF9 /* EffectsViewController.swift */,
-				780837C61F82628F00357BF9 /* EffectsViewController.xib */,
-				780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */,
-				780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */,
-				78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */,
-				78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */,
-				780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */,
-				780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */,
+				78B850D02789C74D003D1E4F /* SceneDelegate.swift */,
+				78B850D22789C8A7003D1E4F /* Root View */,
+				78B850D52789C9F8003D1E4F /* Effects View */,
+				78B850D62789CA07003D1E4F /* Ingredients View */,
 				780837BB1F8200DF00357BF9 /* Database */,
 				78EEE2531F81C9230036FAA2 /* Assets.xcassets */,
 				78EEE2551F81C9230036FAA2 /* LaunchScreen.storyboard */,
@@ -167,29 +179,33 @@
 			path = "Brotherhood Alchemist";
 			sourceTree = "<group>";
 		};
-		CDF929A294AC95A64C1538FD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				592CFD707884EEA2FCB93598 /* Pods-Brotherhood Alchemist.debug.xcconfig */,
-				50B22F19621B3CF270FC4703 /* Pods-Brotherhood Alchemist.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7824A106278A9DBC001BABC5 /* Brotherhood AlchemistTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7824A10B278A9DBC001BABC5 /* Build configuration list for PBXNativeTarget "Brotherhood AlchemistTests" */;
+			buildPhases = (
+				7824A103278A9DBC001BABC5 /* Sources */,
+				7824A104278A9DBC001BABC5 /* Frameworks */,
+				7824A105278A9DBC001BABC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Brotherhood AlchemistTests";
+			productName = "Brotherhood AlchemistTests";
+			productReference = 7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		78EEE2481F81C9230036FAA2 /* Brotherhood Alchemist */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78EEE25B1F81C9230036FAA2 /* Build configuration list for PBXNativeTarget "Brotherhood Alchemist" */;
 			buildPhases = (
-				96FB04EBBF311C46C04AE06E /* [CP] Check Pods Manifest.lock */,
 				78EEE2451F81C9230036FAA2 /* Sources */,
 				78EEE2461F81C9230036FAA2 /* Frameworks */,
 				78EEE2471F81C9230036FAA2 /* Resources */,
-				F3CD8907790D851246C502D0 /* [CP] Embed Pods Frameworks */,
-				F66D7EE6E63F634B1F5EB004 /* [CP] Copy Pods Resources */,
-				78EEE25E1F81CCDA0036FAA2 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -206,10 +222,13 @@
 		78EEE2411F81C9230036FAA2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = Soft.io;
+				ORGANIZATIONNAME = "Dave Poirier";
 				TargetAttributes = {
+					7824A106278A9DBC001BABC5 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					78EEE2481F81C9230036FAA2 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -217,7 +236,7 @@
 				};
 			};
 			buildConfigurationList = 78EEE2441F81C9230036FAA2 /* Build configuration list for PBXProject "Brotherhood Alchemist" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -230,11 +249,19 @@
 			projectRoot = "";
 			targets = (
 				78EEE2481F81C9230036FAA2 /* Brotherhood Alchemist */,
+				7824A106278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7824A105278A9DBC001BABC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78EEE2471F81C9230036FAA2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,83 +273,20 @@
 				780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */,
 				78EEE2541F81C9230036FAA2 /* Assets.xcassets in Resources */,
 				7866B1F71F83594600287840 /* MatchingRecipeTableViewCell.xib in Resources */,
-				78EEE2521F81C9230036FAA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		78EEE25E1F81CCDA0036FAA2 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint";
-		};
-		96FB04EBBF311C46C04AE06E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Brotherhood Alchemist-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3CD8907790D851246C502D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/iRate/iRate.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iRate.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F66D7EE6E63F634B1F5EB004 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brotherhood Alchemist/Pods-Brotherhood Alchemist-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
+		7824A103278A9DBC001BABC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7824A10A278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78EEE2451F81C9230036FAA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,21 +295,19 @@
 				78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */,
 				78E8F08A1F832FE100B07C92 /* EffectTracker.swift in Sources */,
 				780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */,
+				78B850D42789C8BD003D1E4F /* RootView.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
-				780837C11F8255BA00357BF9 /* DispatchOnce.swift in Sources */,
 				78E8F07C1F82FABE00B07C92 /* IngredientGenerator.swift in Sources */,
 				78E8F07E1F82FB2000B07C92 /* EffectGenerator.swift in Sources */,
 				780837B41F81F11000357BF9 /* Ingredient.swift in Sources */,
 				7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */,
 				78E8F0801F82FE0D00B07C92 /* IngredientTracker.swift in Sources */,
-				780837C01F8255BA00357BF9 /* StringCapitalizeFirstLetter.swift in Sources */,
 				780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */,
 				780837B61F81F13700357BF9 /* Effect.swift in Sources */,
 				7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */,
 				78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */,
-				780837C21F8255BA00357BF9 /* UIColorHex.swift in Sources */,
 				78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */,
-				780837C41F8259F200357BF9 /* SwiftyGradientView.swift in Sources */,
+				78B850D12789C74D003D1E4F /* SceneDelegate.swift in Sources */,
 				7866B1F91F835BD800287840 /* RecipeIngredientView.swift in Sources */,
 				780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */,
 			);
@@ -354,14 +316,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		78EEE2501F81C9230036FAA2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78EEE2511F81C9230036FAA2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		78EEE2551F81C9230036FAA2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -373,6 +327,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7824A10C278A9DBC001BABC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-AlchemistTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7824A10D278A9DBC001BABC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-AlchemistTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		78EEE2591F81C9230036FAA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -421,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -472,23 +473,27 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		78EEE25C1F81C9230036FAA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 592CFD707884EEA2FCB93598 /* Pods-Brotherhood Alchemist.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WKB9M744MQ;
 				INFOPLIST_FILE = "Brotherhood Alchemist/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -498,13 +503,16 @@
 		};
 		78EEE25D1F81C9230036FAA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B22F19621B3CF270FC4703 /* Pods-Brotherhood Alchemist.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WKB9M744MQ;
 				INFOPLIST_FILE = "Brotherhood Alchemist/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -515,6 +523,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7824A10B278A9DBC001BABC5 /* Build configuration list for PBXNativeTarget "Brotherhood AlchemistTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7824A10C278A9DBC001BABC5 /* Debug */,
+				7824A10D278A9DBC001BABC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		78EEE2441F81C9230036FAA2 /* Build configuration list for PBXProject "Brotherhood Alchemist" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
