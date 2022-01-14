@@ -8,33 +8,33 @@
 
 import UIKit
 
-class EffectTracker: NSObject {
+final class EffectTracker: NSObject {
 
-    static var active: [Effect.EffectType] = []
-    static let updatedNotification: NSNotification.Name = NSNotification.Name(rawValue: "EffectTracker.Active.Updated")
-    static var notificationTimer: Timer!
+    var active: [Effect.EffectType] = []
+    let updatedNotification: NSNotification.Name = NSNotification.Name(rawValue: UUID().uuidString)
+    var notificationTimer: Timer!
 
-    class func markActive(effect: Effect.EffectType) {
+    func markActive(effect: Effect) {
         if active.contains(effect) == false {
             active.append(effect)
             postUpdateNotification()
         }
     }
 
-    class func markInactive(effect: Effect.EffectType) {
+    func markInactive(effect: Effect.EffectType) {
         guard let effectIndex = active.index(of: effect) else { return }
         active.remove(at: effectIndex)
         postUpdateNotification()
     }
 
-    class func markAllInactive() {
+    func markAllInactive() {
         if active.count > 0 {
             active.removeAll()
             postUpdateNotification()
         }
     }
 
-    class func markAllActive() {
+    func markAllActive() {
         if active.count < Effect.all.count {
             var updatedList: [Effect.EffectType] = []
             for effect in Effect.all {

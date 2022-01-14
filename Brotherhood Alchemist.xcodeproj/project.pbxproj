@@ -16,6 +16,10 @@
 		780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */; };
 		780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */; };
 		7824A10A278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A109278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift */; };
+		7824A111279126BC001BABC5 /* DefaultEffects.json in Resources */ = {isa = PBXBuildFile; fileRef = 7824A110279126BC001BABC5 /* DefaultEffects.json */; };
+		7824A113279126C8001BABC5 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
+		7824A115279127FD001BABC5 /* EffectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A114279127FD001BABC5 /* EffectsTests.swift */; };
+		7824A11627912BDB001BABC5 /* DefaultEffects.json in Resources */ = {isa = PBXBuildFile; fileRef = 7824A110279126BC001BABC5 /* DefaultEffects.json */; };
 		7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */; };
 		7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */; };
 		7866B1F71F83594600287840 /* MatchingRecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */; };
@@ -47,6 +51,8 @@
 		780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectEnabledTableViewCell.xib; sourceTree = "<group>"; };
 		7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brotherhood AlchemistTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7824A109278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brotherhood_AlchemistTests.swift; sourceTree = "<group>"; };
+		7824A110279126BC001BABC5 /* DefaultEffects.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DefaultEffects.json; sourceTree = "<group>"; };
+		7824A114279127FD001BABC5 /* EffectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTests.swift; sourceTree = "<group>"; };
 		7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingRecipeDataSource.swift; sourceTree = "<group>"; };
 		7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingRecipeTableViewCell.swift; sourceTree = "<group>"; };
 		7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingRecipeTableViewCell.xib; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 				78E8F07B1F82FABE00B07C92 /* IngredientGenerator.swift */,
 				78E8F07F1F82FE0D00B07C92 /* IngredientTracker.swift */,
 				780837B51F81F13700357BF9 /* Effect.swift */,
+				7824A110279126BC001BABC5 /* DefaultEffects.json */,
 				78E8F07D1F82FB2000B07C92 /* EffectGenerator.swift */,
 				78E8F0891F832FE100B07C92 /* EffectTracker.swift */,
 				78E8F08B1F833B0000B07C92 /* Concoction.swift */,
@@ -106,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				7824A109278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift */,
+				7824A114279127FD001BABC5 /* EffectsTests.swift */,
 			);
 			path = "Brotherhood AlchemistTests";
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7824A11627912BDB001BABC5 /* DefaultEffects.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7824A111279126BC001BABC5 /* DefaultEffects.json in Resources */,
 				780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */,
 				78EEE2571F81C9230036FAA2 /* LaunchScreen.storyboard in Resources */,
 				780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */,
@@ -283,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7824A115279127FD001BABC5 /* EffectsTests.swift in Sources */,
+				7824A113279126C8001BABC5 /* Effect.swift in Sources */,
 				7824A10A278A9DBC001BABC5 /* Brotherhood_AlchemistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
