@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ConcoctionGenerator: NSObject {
+struct ConcoctionGenerator {
 
-    class func execute() {
+    func execute() {
 
         for index1 in 0..<Ingredient.all.count {
             let ingredient1 = Ingredient.all[index1]
@@ -60,7 +60,7 @@ class ConcoctionGenerator: NSObject {
         return commonEffects
     }
 
-    private class func estimateTotalValue(_ effects: [Effect.EffectType] ) -> Int {
+    private class func estimateTotalValue(_ effects: [Effect] ) -> Int {
         var estimatedValue: Int = 0
 
         for effectType in effects {
@@ -70,14 +70,9 @@ class ConcoctionGenerator: NSObject {
         return estimatedValue
     }
 
-    private class func uniqueEffects(set1: [Effect.EffectType], set2: [Effect.EffectType], set3: [Effect.EffectType]) -> [Effect.EffectType] {
-        var uniqueEffects: [Effect.EffectType] = set1
-        for effect in set2 where uniqueEffects.contains(effect) == false {
-            uniqueEffects.append(effect)
-        }
-        for effect in set3 where uniqueEffects.contains(effect) == false {
-            uniqueEffects.append(effect)
-        }
-        return uniqueEffects
+    private class func uniqueEffects(set1: [Effect], set2: [Effect], set3: [Effect]) -> [Effect] {
+         Array(Set(set1)
+            .union(Set<Effect>(set2))
+            .union(Set<Effect>(set3)))
     }
 }

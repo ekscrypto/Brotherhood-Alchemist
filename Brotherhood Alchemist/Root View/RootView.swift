@@ -13,6 +13,7 @@ class RootView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .systemBackground
+        self.widthAnchor
     }
     
     required init?(coder: NSCoder) {
