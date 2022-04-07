@@ -7,20 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		780837B41F81F11000357BF9 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B31F81F11000357BF9 /* Ingredient.swift */; };
-		780837B61F81F13700357BF9 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
 		780837B91F8200D500357BF9 /* IngredientAvailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B71F8200D500357BF9 /* IngredientAvailableTableViewCell.swift */; };
 		780837BA1F8200D500357BF9 /* IngredientAvailableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837B81F8200D500357BF9 /* IngredientAvailableTableViewCell.xib */; };
 		780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C51F82628F00357BF9 /* EffectsViewController.swift */; };
 		780837C81F82628F00357BF9 /* EffectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837C61F82628F00357BF9 /* EffectsViewController.xib */; };
 		780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837C91F82634400357BF9 /* EffectEnabledTableViewCell.swift */; };
 		780837CC1F82634400357BF9 /* EffectEnabledTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780837CA1F82634400357BF9 /* EffectEnabledTableViewCell.xib */; };
-		7824A113279126C8001BABC5 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
 		7824A115279127FD001BABC5 /* EffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A114279127FD001BABC5 /* EffectTests.swift */; };
-		7824A11D27990601001BABC5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B31F81F11000357BF9 /* Ingredient.swift */; };
 		7824A12127990874001BABC5 /* IngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A12027990874001BABC5 /* IngredientTests.swift */; };
-		7824A123279908B6001BABC5 /* ConstrainedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A122279908B6001BABC5 /* ConstrainedName.swift */; };
-		7824A124279908C4001BABC5 /* ConstrainedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A122279908B6001BABC5 /* ConstrainedName.swift */; };
 		7824A1262799099E001BABC5 /* ConstrainedNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A1252799099E001BABC5 /* ConstrainedNameTests.swift */; };
 		7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F21F83530400287840 /* MatchingRecipeDataSource.swift */; };
 		7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */; };
@@ -37,6 +31,19 @@
 		787334F527DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F427DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift */; };
 		787334F727DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F627DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift */; };
 		787334F927DEC8F7009120C5 /* ConcoctionFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F827DEC8F7009120C5 /* ConcoctionFinderTests.swift */; };
+		78B24DDF27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DDE27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift */; };
+		78B24DE127FE73650053BD75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DE027FE73650053BD75 /* ContentView.swift */; };
+		78B24DE327FE73660053BD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B24DE227FE73660053BD75 /* Assets.xcassets */; };
+		78B24DE627FE73660053BD75 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B24DE527FE73660053BD75 /* Preview Assets.xcassets */; };
+		78B24DEB27FE74700053BD75 /* DefaultIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DD227FE703D0053BD75 /* DefaultIngredients.swift */; };
+		78B24DEC27FE74700053BD75 /* ConstrainedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7824A122279908B6001BABC5 /* ConstrainedName.swift */; };
+		78B24DED27FE74700053BD75 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B51F81F13700357BF9 /* Effect.swift */; };
+		78B24DEE27FE74700053BD75 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780837B31F81F11000357BF9 /* Ingredient.swift */; };
+		78B24DEF27FE74700053BD75 /* DefaultEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DD527FE710A0053BD75 /* DefaultEffects.swift */; };
+		78B24DF127FE74B80053BD75 /* EffectsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DF027FE74B80053BD75 /* EffectsList.swift */; };
+		78B24DF427FE7EB70053BD75 /* TextFieldClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DF327FE7EB70053BD75 /* TextFieldClearButton.swift */; };
+		78B24DF627FE90180053BD75 /* EffectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DF527FE90180053BD75 /* EffectDetails.swift */; };
+		78B24DF827FE98710053BD75 /* EffectsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DF727FE98710053BD75 /* EffectsListViewModel.swift */; };
 		78B850D12789C74D003D1E4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D02789C74D003D1E4F /* SceneDelegate.swift */; };
 		78B850D42789C8BD003D1E4F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D32789C8BD003D1E4F /* RootView.swift */; };
 		78E8F08C1F833B0000B07C92 /* Concoction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08B1F833B0000B07C92 /* Concoction.swift */; };
@@ -76,6 +83,17 @@
 		787334F427DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionEffectsFilterTests.swift; sourceTree = "<group>"; };
 		787334F627DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionIngredientsFilterTests.swift; sourceTree = "<group>"; };
 		787334F827DEC8F7009120C5 /* ConcoctionFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionFinderTests.swift; sourceTree = "<group>"; };
+		78B24DD227FE703D0053BD75 /* DefaultIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIngredients.swift; sourceTree = "<group>"; };
+		78B24DD527FE710A0053BD75 /* DefaultEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEffects.swift; sourceTree = "<group>"; };
+		78B24DDC27FE73650053BD75 /* Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alchemist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B24DDE27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brotherhoold_Alchemist_SwiftUIApp.swift; sourceTree = "<group>"; };
+		78B24DE027FE73650053BD75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		78B24DE227FE73660053BD75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		78B24DE527FE73660053BD75 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		78B24DF027FE74B80053BD75 /* EffectsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsList.swift; sourceTree = "<group>"; };
+		78B24DF327FE7EB70053BD75 /* TextFieldClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldClearButton.swift; sourceTree = "<group>"; };
+		78B24DF527FE90180053BD75 /* EffectDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectDetails.swift; sourceTree = "<group>"; };
+		78B24DF727FE98710053BD75 /* EffectsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsListViewModel.swift; sourceTree = "<group>"; };
 		78B850D02789C74D003D1E4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		78B850D32789C8BD003D1E4F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		78E8F08B1F833B0000B07C92 /* Concoction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concoction.swift; sourceTree = "<group>"; };
@@ -99,6 +117,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78B24DD927FE73650053BD75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		78EEE2461F81C9230036FAA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,9 +137,6 @@
 		780837BB1F8200DF00357BF9 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				7824A122279908B6001BABC5 /* ConstrainedName.swift */,
-				780837B51F81F13700357BF9 /* Effect.swift */,
-				780837B31F81F11000357BF9 /* Ingredient.swift */,
 				78E8F08B1F833B0000B07C92 /* Concoction.swift */,
 				787334EB27DE7758009120C5 /* ConcoctionFilters.swift */,
 				787334EE27DE7A24009120C5 /* ConcoctionFinder.swift */,
@@ -137,6 +159,42 @@
 				7824A12027990874001BABC5 /* IngredientTests.swift */,
 			);
 			path = "Brotherhood AlchemistTests";
+			sourceTree = "<group>";
+		};
+		78B24DDD27FE73650053BD75 /* Brotherhoold Alchemist SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				78B24DDE27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift */,
+				78B24DE027FE73650053BD75 /* ContentView.swift */,
+				78B24DF027FE74B80053BD75 /* EffectsList.swift */,
+				78B24DF727FE98710053BD75 /* EffectsListViewModel.swift */,
+				78B24DF527FE90180053BD75 /* EffectDetails.swift */,
+				78B24DF327FE7EB70053BD75 /* TextFieldClearButton.swift */,
+				78B24DF227FE74C20053BD75 /* Database */,
+				78B24DE227FE73660053BD75 /* Assets.xcassets */,
+				78B24DE427FE73660053BD75 /* Preview Content */,
+			);
+			path = "Brotherhoold Alchemist SwiftUI";
+			sourceTree = "<group>";
+		};
+		78B24DE427FE73660053BD75 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				78B24DE527FE73660053BD75 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		78B24DF227FE74C20053BD75 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				7824A122279908B6001BABC5 /* ConstrainedName.swift */,
+				78B24DD227FE703D0053BD75 /* DefaultIngredients.swift */,
+				78B24DD527FE710A0053BD75 /* DefaultEffects.swift */,
+				780837B51F81F13700357BF9 /* Effect.swift */,
+				780837B31F81F11000357BF9 /* Ingredient.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		78B850D22789C8A7003D1E4F /* Root View */ = {
@@ -179,6 +237,7 @@
 			children = (
 				78EEE24B1F81C9230036FAA2 /* Brotherhood Alchemist */,
 				7824A108278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
+				78B24DDD27FE73650053BD75 /* Brotherhoold Alchemist SwiftUI */,
 				78EEE24A1F81C9230036FAA2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -188,6 +247,7 @@
 			children = (
 				78EEE2491F81C9230036FAA2 /* Brotherhood Alchemist.app */,
 				7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */,
+				78B24DDC27FE73650053BD75 /* Alchemist.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,6 +288,23 @@
 			productReference = 7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		78B24DDB27FE73650053BD75 /* Brotherhoold Alchemist SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78B24DE727FE73660053BD75 /* Build configuration list for PBXNativeTarget "Brotherhoold Alchemist SwiftUI" */;
+			buildPhases = (
+				78B24DD827FE73650053BD75 /* Sources */,
+				78B24DD927FE73650053BD75 /* Frameworks */,
+				78B24DDA27FE73650053BD75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Brotherhoold Alchemist SwiftUI";
+			productName = "Brotherhoold Alchemist SwiftUI";
+			productReference = 78B24DDC27FE73650053BD75 /* Alchemist.app */;
+			productType = "com.apple.product-type.application";
+		};
 		78EEE2481F81C9230036FAA2 /* Brotherhood Alchemist */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78EEE25B1F81C9230036FAA2 /* Build configuration list for PBXNativeTarget "Brotherhood Alchemist" */;
@@ -251,12 +328,15 @@
 		78EEE2411F81C9230036FAA2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 0900;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = "Dave Poirier";
 				TargetAttributes = {
 					7824A106278A9DBC001BABC5 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					78B24DDB27FE73650053BD75 = {
+						CreatedOnToolsVersion = 13.3;
 					};
 					78EEE2481F81C9230036FAA2 = {
 						CreatedOnToolsVersion = 9.0;
@@ -279,6 +359,7 @@
 			targets = (
 				78EEE2481F81C9230036FAA2 /* Brotherhood Alchemist */,
 				7824A106278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
+				78B24DDB27FE73650053BD75 /* Brotherhoold Alchemist SwiftUI */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +369,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B24DDA27FE73650053BD75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78B24DE627FE73660053BD75 /* Preview Assets.xcassets in Resources */,
+				78B24DE327FE73660053BD75 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,9 +414,24 @@
 				7824A1262799099E001BABC5 /* ConstrainedNameTests.swift in Sources */,
 				787334F727DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift in Sources */,
 				787334ED27DE77A9009120C5 /* ConcoctionFilters.swift in Sources */,
-				7824A124279908C4001BABC5 /* ConstrainedName.swift in Sources */,
-				7824A11D27990601001BABC5 /* Ingredient.swift in Sources */,
-				7824A113279126C8001BABC5 /* Effect.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B24DD827FE73650053BD75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78B24DF127FE74B80053BD75 /* EffectsList.swift in Sources */,
+				78B24DED27FE74700053BD75 /* Effect.swift in Sources */,
+				78B24DEB27FE74700053BD75 /* DefaultIngredients.swift in Sources */,
+				78B24DEE27FE74700053BD75 /* Ingredient.swift in Sources */,
+				78B24DF827FE98710053BD75 /* EffectsListViewModel.swift in Sources */,
+				78B24DF427FE7EB70053BD75 /* TextFieldClearButton.swift in Sources */,
+				78B24DE127FE73650053BD75 /* ContentView.swift in Sources */,
+				78B24DEF27FE74700053BD75 /* DefaultEffects.swift in Sources */,
+				78B24DF627FE90180053BD75 /* EffectDetails.swift in Sources */,
+				78B24DDF27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift in Sources */,
+				78B24DEC27FE74700053BD75 /* ConstrainedName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,16 +443,13 @@
 				78FED2AE279B632F002D6DED /* Grimoire.swift in Sources */,
 				78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */,
 				780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */,
-				7824A123279908B6001BABC5 /* ConstrainedName.swift in Sources */,
 				787334EC27DE7758009120C5 /* ConcoctionFilters.swift in Sources */,
 				78B850D42789C8BD003D1E4F /* RootView.swift in Sources */,
 				787334F227DE7AD2009120C5 /* EffectsValueCalculator.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
-				780837B41F81F11000357BF9 /* Ingredient.swift in Sources */,
 				7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */,
 				787334EF27DE7A24009120C5 /* ConcoctionFinder.swift in Sources */,
 				780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */,
-				780837B61F81F13700357BF9 /* Effect.swift in Sources */,
 				7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */,
 				78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */,
 				78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */,
@@ -418,6 +520,73 @@
 			};
 			name = Release;
 		};
+		78B24DE827FE73660053BD75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 202204062119;
+				DEVELOPMENT_ASSET_PATHS = "\"Brotherhoold Alchemist SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
+				PRODUCT_NAME = Alchemist;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		78B24DE927FE73660053BD75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 202204062119;
+				DEVELOPMENT_ASSET_PATHS = "\"Brotherhoold Alchemist SwiftUI/Preview Content\"";
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
+				PRODUCT_NAME = Alchemist;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		78EEE2591F81C9230036FAA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -432,6 +601,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -439,8 +609,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -489,6 +661,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -496,8 +669,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -572,6 +747,15 @@
 			buildConfigurations = (
 				7824A10C278A9DBC001BABC5 /* Debug */,
 				7824A10D278A9DBC001BABC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78B24DE727FE73660053BD75 /* Build configuration list for PBXNativeTarget "Brotherhoold Alchemist SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78B24DE827FE73660053BD75 /* Debug */,
+				78B24DE927FE73660053BD75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

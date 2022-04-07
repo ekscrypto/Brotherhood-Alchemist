@@ -11,32 +11,32 @@ import XCTest
 class ConcoctionIngredientsFilterTests: XCTestCase {
     
     private let damageHealth: Effect = Effect(
-        id: Effect.DefaultEffectId.damageHealth.rawValue,
-        name: ConstrainedName(rawValue: "Damage Health")!,
+        id: DefaultEffectId.damageHealth.rawValue,
+        name: "Damage Health",
         value: Effect.Value(rawValue: 1)!,
         isPositive: false)
     private let damageStamina: Effect = Effect(
-        id: Effect.DefaultEffectId.damageStamina.rawValue,
-        name: ConstrainedName(rawValue: "Damage Stamina")!,
+        id: DefaultEffectId.damageStamina.rawValue,
+        name: "Damage Stamina",
         value: Effect.Value(rawValue: 3)!,
         isPositive: false)
     private let invisility: Effect = Effect(
-        id: Effect.DefaultEffectId.invisibility.rawValue,
-        name: ConstrainedName(rawValue: "Invisibility")!,
+        id: DefaultEffectId.invisibility.rawValue,
+        name: "Invisibility",
         value: Effect.Value(rawValue: 5)!,
         isPositive: false)
     private let ashCreepCluster: Ingredient = Ingredient(
         id: 3,
-        name: ConstrainedName(rawValue: "Ash Creep Cluster")!,
-        effects: Effect.DefaultEffectId.values([.damageStamina, .invisibility, .resistFire, .fortifyDestruction]))!
+        name: "Ash Creep Cluster",
+        effects: DefaultEffectId.values([.damageStamina, .invisibility, .resistFire, .fortifyDestruction]))!
     private let crimsonNirnroot: Ingredient = Ingredient(
         id: 26,
-        name: ConstrainedName(rawValue: "Crimson Nirnroot")!,
-        effects: Effect.DefaultEffectId.values([.damageHealth, .invisibility, .damageStamina, .resistMagic]))!
+        name: "Crimson Nirnroot",
+        effects: DefaultEffectId.values([.damageHealth, .invisibility, .damageStamina, .resistMagic]))!
     private let deathBell: Ingredient = Ingredient(
         id: 29,
-        name: ConstrainedName(rawValue: "Deathbell")!,
-        effects: Effect.DefaultEffectId.values([.damageHealth, .ravageStamina, .slow, .weaknessToPoison]))!
+        name: "Deathbell",
+        effects: DefaultEffectId.values([.damageHealth, .ravageStamina, .slow, .weaknessToPoison]))!
     
     func testFilterOnly_singleIngredient_expectsEmpty() {
         let concoction: Concoction = Concoction(

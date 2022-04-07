@@ -11,7 +11,7 @@ import XCTest
 class IngredientTests: XCTestCase {
     
     func testInit_emptyEffects_allowed() {
-        XCTAssertNotNil(Ingredient(id: 1, name: ConstrainedName(rawValue: "Tulip")!, effects: []))
+        XCTAssertNotNil(Ingredient(id: 1, name: "Tulip", effects: []))
     }
     
     func testMaximumEffects() {
@@ -19,20 +19,20 @@ class IngredientTests: XCTestCase {
     }
     
     func testInit_maximumEffects_allowed() {
-        XCTAssertNotNil(Ingredient(id: 1, name: ConstrainedName(rawValue: "Bones")!, effects: [1,2,3,4]))
+        XCTAssertNotNil(Ingredient(id: 1, name: "Bones", effects: [1,2,3,4]))
     }
     
     func testInit_repeatingEffets_rejected() {
-        XCTAssertNil(Ingredient(id: 1, name: ConstrainedName(rawValue: "Mother")!, effects: [1,2,1,300]))
+        XCTAssertNil(Ingredient(id: 1, name: "Mother", effects: [1,2,1,300]))
     }
     
     func testInit_tooManyEffects_rejected() {
-        XCTAssertNil(Ingredient(id: 1, name: ConstrainedName(rawValue: "Giant Toe")!, effects: [8,9,10,18,300]))
+        XCTAssertNil(Ingredient(id: 1, name: "Giant Toe", effects: [8,9,10,18,300]))
     }
     
     func testUniqueId() {
         var foundIds: [Ingredient.Id] = []
-        Ingredient.defaultIngredients.forEach({
+        DefaultIngredients.all.forEach({
             XCTAssertFalse(foundIds.contains($0.id), "More than one ingredient has id \($0.id)")
             foundIds.append($0.id)
         })
@@ -40,7 +40,7 @@ class IngredientTests: XCTestCase {
     
     func testUniqueNames() {
         var foundNames: [String] = []
-        Ingredient.defaultIngredients.forEach({
+        DefaultIngredients.all.forEach({
             XCTAssertFalse(foundNames.contains($0.name.rawValue), "More than one ingredient has name \($0.name.rawValue)")
             foundNames.append($0.name.rawValue)
         })

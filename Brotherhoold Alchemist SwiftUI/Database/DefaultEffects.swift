@@ -1,143 +1,77 @@
 //
-//  Effect.swift
+//  DefaultEffects.swift
 //  Brotherhood Alchemist
 //
-//  Created by Dave Poirier on 2017-10-01.
-//  Copyright © 2017-2022 Dave Poirier. All rights reserved.
+//  Created by Dave Poirier on 2022-04-06.
+//  Copyright © 2022 Dave Poirier. All rights reserved.
 //
 
 import Foundation
 
-struct Effect: Equatable, Codable, Hashable {
-    static func == (lhs: Effect, rhs: Effect) -> Bool {
-        lhs.id == rhs.id
+enum DefaultEffectId: Effect.Id {
+    case cureDisease
+    case damageHealth
+    case damageMagicka
+    case damageMagickaRegen
+    case damageStamina
+    case damageStaminaRegen
+    case fear
+    case fortifyAlteration
+    case fortifyBarter
+    case fortifyBlock
+    case fortifyCarryWeight
+    case fortifyConjuration
+    case fortifyDestruction
+    case fortifyEnchanting
+    case fortifyHealth
+    case fortifyHeavyArmor
+    case fortifyIllusion
+    case fortifyLightArmor
+    case fortifyLockpicking
+    case fortifyMagicka
+    case fortifyMarksman
+    case fortifyOneHanded
+    case fortifyPickpocket
+    case fortifyRestoration
+    case fortifySmithing
+    case fortifySneak
+    case fortifyStamina
+    case fortifyTwoHanded
+    case frenzy
+    case invisibility
+    case lingeringDamageHealth
+    case lingeringDamageMagicka
+    case lingeringDamageStamina
+    case paralysis
+    case ravageHealth
+    case ravageMagicka
+    case ravageStamina
+    case regenerateHealth
+    case regenerateMagicka
+    case regenerateStamina
+    case resistFire
+    case resistFrost
+    case resistMagic
+    case resistPoison
+    case resistShock
+    case restoreHealth
+    case restoreMagicka
+    case restoreStamina
+    case slow
+    case waterbreathing
+    case weaknessToFire
+    case weaknessToFrost
+    case weaknessToMagic
+    case weaknessToPoison
+    case weaknessToShock
+    
+    static func values(_ values: [DefaultEffectId]) -> [Effect.Id] {
+        values.map { $0.rawValue }
     }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
-    }
-    
-    let id: Id
-    let name: ConstrainedName
-    let value: Value
-    let isPositive: Bool
-    
-    init(id: Id, name: ConstrainedName, value: Value, isPositive: Bool) {
-        self.id = id
-        self.name = name
-        self.value = value
-        self.isPositive = isPositive
-    }
-    
-    struct Id: Codable, Equatable, RawRepresentable, Hashable, ExpressibleByIntegerLiteral {
-        init(integerLiteral value: UInt) {
-            self.rawValue = value
-        }
-        
-        init(rawValue: UInt) {
-            self.rawValue = rawValue
-        }
-        
-        typealias IntegerLiteralType = UInt
-        
-        let rawValue: UInt
-    }
-    
-    struct Value: Codable, Equatable, RawRepresentable {
-        typealias RawValue = UInt
-        let rawValue: UInt
-        
-        enum Errors: Error {
-            case outOfBounds
-        }
-        
-        static let maximumValue: UInt = 50_000
+}
 
-        init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            let value = try container.decode(UInt.self)
-            self.rawValue = try Value.evaluated(value)
-        }
-        
-        init?(rawValue: UInt) {
-            guard let value = try? Value.evaluated(rawValue) else {
-                return nil
-            }
-            self.rawValue = value
-        }
-        
-        @discardableResult
-        static func evaluated(_ value: UInt) throws -> UInt {
-            guard (1...Self.maximumValue).contains(value) else {
-                throw Errors.outOfBounds
-            }
-            return value
-        }
-    }
-    
-    enum DefaultEffectId: Effect.Id {
-        case cureDisease
-        case damageHealth
-        case damageMagicka
-        case damageMagickaRegen
-        case damageStamina
-        case damageStaminaRegen
-        case fear
-        case fortifyAlteration
-        case fortifyBarter
-        case fortifyBlock
-        case fortifyCarryWeight
-        case fortifyConjuration
-        case fortifyDestruction
-        case fortifyEnchanting
-        case fortifyHealth
-        case fortifyHeavyArmor
-        case fortifyIllusion
-        case fortifyLightArmor
-        case fortifyLockpicking
-        case fortifyMagicka
-        case fortifyMarksman
-        case fortifyOneHanded
-        case fortifyPickpocket
-        case fortifyRestoration
-        case fortifySmithing
-        case fortifySneak
-        case fortifyStamina
-        case fortifyTwoHanded
-        case frenzy
-        case invisibility
-        case lingeringDamageHealth
-        case lingeringDamageMagicka
-        case lingeringDamageStamina
-        case paralysis
-        case ravageHealth
-        case ravageMagicka
-        case ravageStamina
-        case regenerateHealth
-        case regenerateMagicka
-        case regenerateStamina
-        case resistFire
-        case resistFrost
-        case resistMagic
-        case resistPoison
-        case resistShock
-        case restoreHealth
-        case restoreMagicka
-        case restoreStamina
-        case slow
-        case waterbreathing
-        case weaknessToFire
-        case weaknessToFrost
-        case weaknessToMagic
-        case weaknessToPoison
-        case weaknessToShock
-        
-        static func values(_ values: [DefaultEffectId]) -> [Effect.Id] {
-            values.map { $0.rawValue }
-        }
-    }
-
-    static let defaultEffects: [Effect] = [
+enum DefaultEffects {
+    static let all: [Effect] = [
         Effect(id: DefaultEffectId.cureDisease.rawValue,
                name: ConstrainedName(rawValue: "Cure Disease")!,
                value: Effect.Value(rawValue: 21)!,

@@ -23,62 +23,62 @@ class ConcoctionFinderTests: XCTestCase {
     ]
 
     private let damageHealth: Effect = Effect(
-        id: Effect.DefaultEffectId.damageHealth.rawValue,
-        name: ConstrainedName(rawValue: "Damage Health")!,
+        id: DefaultEffectId.damageHealth.rawValue,
+        name: "Damage Health",
         value: Effect.Value(rawValue: 1)!,
         isPositive: false)
     private let damageStamina: Effect = Effect(
-        id: Effect.DefaultEffectId.damageStamina.rawValue,
-        name: ConstrainedName(rawValue: "Damage Stamina")!,
+        id: DefaultEffectId.damageStamina.rawValue,
+        name: "Damage Stamina",
         value: Effect.Value(rawValue: 3)!,
         isPositive: false)
     private let invisility: Effect = Effect(
-        id: Effect.DefaultEffectId.invisibility.rawValue,
-        name: ConstrainedName(rawValue: "Invisibility")!,
+        id: DefaultEffectId.invisibility.rawValue,
+        name: "Invisibility",
         value: Effect.Value(rawValue: 5)!,
         isPositive: false)
     private let resistFire: Effect = Effect(
-        id: Effect.DefaultEffectId.resistFire.rawValue,
-        name: ConstrainedName(rawValue: "Resist Fire")!,
+        id: DefaultEffectId.resistFire.rawValue,
+        name: "Resist Fire",
         value: Effect.Value(rawValue: 7)!,
         isPositive: true)
     private let fortifyDestruction: Effect = Effect(
-        id: Effect.DefaultEffectId.fortifyDestruction.rawValue,
-        name: ConstrainedName(rawValue: "Fortify Destruction")!,
+        id: DefaultEffectId.fortifyDestruction.rawValue,
+        name: "Fortify Destruction",
         value: Effect.Value(rawValue: 2)!,
         isPositive: true)
     private let resistMagic: Effect = Effect(
-        id: Effect.DefaultEffectId.resistMagic.rawValue,
-        name: ConstrainedName(rawValue: "Resist Magic")!,
+        id: DefaultEffectId.resistMagic.rawValue,
+        name: "Resist Magic",
         value: Effect.Value(rawValue: 8)!,
         isPositive: true)
     private let weaknessToPoison: Effect = Effect(
-        id: Effect.DefaultEffectId.weaknessToPoison.rawValue,
-        name: ConstrainedName(rawValue: "Weakness to Poison")!,
+        id: DefaultEffectId.weaknessToPoison.rawValue,
+        name: "Weakness to Poison",
         value: Effect.Value(rawValue: 10)!,
         isPositive: false)
     private let slow: Effect = Effect(
-        id: Effect.DefaultEffectId.slow.rawValue,
-        name: ConstrainedName(rawValue: "Slow")!,
+        id: DefaultEffectId.slow.rawValue,
+        name: "Slow",
         value: Effect.Value(rawValue: 11)!,
         isPositive: false)
     private let ravageStamina: Effect = Effect(
-        id: Effect.DefaultEffectId.ravageStamina.rawValue,
-        name: ConstrainedName(rawValue: "Ravage Stamina")!,
+        id: DefaultEffectId.ravageStamina.rawValue,
+        name: "Ravage Stamina",
         value: Effect.Value(rawValue: 12)!,
         isPositive: false)
     private let ashCreepCluster: Ingredient = Ingredient(
         id: 3,
-        name: ConstrainedName(rawValue: "Ash Creep Cluster")!,
-        effects: Effect.DefaultEffectId.values([.damageStamina, .invisibility, .resistFire, .fortifyDestruction]))!
+        name: "Ash Creep Cluster",
+        effects: DefaultEffectId.values([.damageStamina, .invisibility, .resistFire, .fortifyDestruction]))!
     private let crimsonNirnroot: Ingredient = Ingredient(
         id: 26,
-        name: ConstrainedName(rawValue: "Crimson Nirnroot")!,
-        effects: Effect.DefaultEffectId.values([.damageHealth, .invisibility, .damageStamina, .resistMagic]))!
+        name: "Crimson Nirnroot",
+        effects: DefaultEffectId.values([.damageHealth, .invisibility, .damageStamina, .resistMagic]))!
     private let deathBell: Ingredient = Ingredient(
         id: 29,
-        name: ConstrainedName(rawValue: "Deathbell")!,
-        effects: Effect.DefaultEffectId.values([.damageHealth, .ravageStamina, .slow, .weaknessToPoison]))!
+        name: "Deathbell",
+        effects: DefaultEffectId.values([.damageHealth, .ravageStamina, .slow, .weaknessToPoison]))!
 
     func testNoIngredient_expectsEmpty() {
         let grimoire = Grimoire(effects: allTestEffects, ingredients: [], valueCalculator: { _, _ in 0 })

@@ -11,10 +11,10 @@ import XCTest
 class EffectsTests: XCTestCase {
 
     func testEffectCodable() throws {
-        XCTAssertGreaterThan(Effect.defaultEffects.count, 0, "Some default effects should be defined")
-        let encodedEffects = try JSONEncoder().encode(Effect.defaultEffects)
+        XCTAssertGreaterThan(DefaultEffects.all.count, 0, "Some default effects should be defined")
+        let encodedEffects = try JSONEncoder().encode(DefaultEffects.all)
         let restoredEffects = try JSONDecoder().decode([Effect].self, from: encodedEffects)
-        XCTAssertEqual(Effect.defaultEffects, restoredEffects, "Values should not have been modified from encoding/decoding")
+        XCTAssertEqual(DefaultEffects.all, restoredEffects, "Values should not have been modified from encoding/decoding")
     }
     
     func testEffectValue_zero_rejected() {
@@ -35,7 +35,7 @@ class EffectsTests: XCTestCase {
     
     func testUniqueId() {
         var foundIds: [Effect.Id] = []
-        Effect.defaultEffects.forEach({
+        DefaultEffects.all.forEach({
             XCTAssertFalse(foundIds.contains($0.id), "More than one effect has id \($0.id)")
             foundIds.append($0.id)
         })
@@ -43,7 +43,7 @@ class EffectsTests: XCTestCase {
     
     func testUniqueNames() {
         var foundNames: [String] = []
-        Effect.defaultEffects.forEach({
+        DefaultEffects.all.forEach({
             XCTAssertFalse(foundNames.contains($0.name.rawValue), "More than one effect has name \($0.name.rawValue)")
             foundNames.append($0.name.rawValue)
         })

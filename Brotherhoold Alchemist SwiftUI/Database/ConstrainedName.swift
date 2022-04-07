@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct ConstrainedName: Codable, Equatable, RawRepresentable {
+struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStringLiteral {
+    typealias StringLiteralType = String
+    
     typealias RawValue = String
     let rawValue: String
 
@@ -25,6 +27,13 @@ struct ConstrainedName: Codable, Equatable, RawRepresentable {
         self.rawValue = try Self.evaluated(string)
     }
     
+    init(stringLiteral: String) {
+        guard let value = try? Self.evaluated(stringLiteral) else {
+            fatalError()
+        }
+        self.rawValue = value
+    }
+
     init?(rawValue: String) {
         guard let value = try? Self.evaluated(rawValue) else {
             return nil
@@ -39,5 +48,9 @@ struct ConstrainedName: Codable, Equatable, RawRepresentable {
             throw Errors.outOFBounds
         }
         return trimmed
+    }
+    
+    static prefix func ~(_ name: ConstrainedName) -> String {
+        name.rawValue
     }
 }
