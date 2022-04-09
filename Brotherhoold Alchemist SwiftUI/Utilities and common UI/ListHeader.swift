@@ -26,6 +26,14 @@ struct ListHeader: View {
         .frame(maxWidth: .infinity)
         .frame(height: 28)
         .background(Color(UIColor.systemBackground))
+        .onChange(of: expanded) { nowExpanded in
+            if nowExpanded, expandButtonText == "MORE" {
+                expandButtonText = "LESS"
+            }
+            if nowExpanded == false, expandButtonText == "LESS" {
+                expandButtonText = "MORE"
+            }
+        }
     }
 
     // MARK: -

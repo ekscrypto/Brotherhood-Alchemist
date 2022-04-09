@@ -12,6 +12,7 @@ struct IngredientDetails: View {
     let ingredient: Ingredient
     let effects: [Effect]
     let expanded: Bool
+    let onSeekEffect: (Effect) -> Void
     @Binding var selectionState: SelectionState
 
     var body: some View {
@@ -39,8 +40,26 @@ struct IngredientDetails: View {
     
     private var additionalInfo: some View {
         VStack {
-            ForEach(effects) { effect in
-                Text(~effect.name)
+            
+            if effects.count == 0 {
+                
+                Text("This ingredient has no effects defined!")
+                    .foregroundColor(Color(UIColor.systemRed))
+                
+            } else {
+                
+                Text("Effects:")
+                    .font(Font.system(.caption))
+                    .foregroundColor(Color("selectionText"))
+                
+                ForEach(effects) { effect in
+                    Button(action: {
+                        onSeekEffect(effect)
+                    }) {
+                        Text(~effect.name)
+                    }
+                }
+                
             }
         }
         .padding(.bottom)
@@ -77,6 +96,7 @@ struct IngredientDetails_Previews: PreviewProvider {
             ingredient: DefaultIngredients.all.first!,
             effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: false,
+            onSeekEffect: { _ in /* ignored */ },
             selectionState: Binding(
                 get: { .cantHave },
                 set: { _ in /* do nothing */ }))
@@ -88,6 +108,7 @@ struct IngredientDetails_Previews: PreviewProvider {
             ingredient: DefaultIngredients.all.first!,
             effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: false,
+            onSeekEffect: { _ in /* ignored */ },
             selectionState: Binding(
                 get: { .cantHave },
                 set: { _ in /* do nothing */ }))
@@ -99,6 +120,7 @@ struct IngredientDetails_Previews: PreviewProvider {
             ingredient: DefaultIngredients.all.first!,
             effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: false,
+            onSeekEffect: { _ in /* ignored */ },
             selectionState: Binding(
                 get: { .mayHave },
                 set: { _ in /* do nothing */ }))
@@ -110,6 +132,7 @@ struct IngredientDetails_Previews: PreviewProvider {
             ingredient: DefaultIngredients.all.first!,
             effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: false,
+            onSeekEffect: { _ in /* ignored */ },
             selectionState: Binding(
                 get: { .mayHave },
                 set: { _ in /* do nothing */ }))
@@ -121,6 +144,7 @@ struct IngredientDetails_Previews: PreviewProvider {
             ingredient: DefaultIngredients.all.first!,
             effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: true,
+            onSeekEffect: { _ in /* ignored */ },
             selectionState: Binding(
                 get: { .mustHave },
                 set: { _ in /* do nothing */ }))
@@ -132,6 +156,7 @@ struct IngredientDetails_Previews: PreviewProvider {
             ingredient: DefaultIngredients.all.first!,
             effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: true,
+            onSeekEffect: { _ in /* ignored */ },
             selectionState: Binding(
                 get: { .mustHave },
                 set: { _ in /* do nothing */ }))

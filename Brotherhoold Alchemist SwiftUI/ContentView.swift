@@ -20,9 +20,10 @@ struct ContentView: View {
             onTabChange()
         }
     }
+    @State private var seekedEffect: Effect?
+    @State private var seekedIngredient: Ingredient?
     @State private var shownTab: Tab = .recipes
     @State private var viewWidth: CGFloat = .zero
-    
     
     private var listBottomPadding: CGFloat {
         listHeight - tabbarOrigin
@@ -32,7 +33,10 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             IngredientsList(
                 viewModel: viewModel,
-                listBottomPadding: listBottomPadding)
+                listBottomPadding: listBottomPadding,
+                onSeekEffect: { onSeekEffect($0) },
+                seekedIngredient: seekedIngredient)
+            .id("IngredientList")
             .overlay(HeightCoordinator(via: $listHeight))
             .offset(x: tabOffset(for: .ingredients))
             
@@ -40,17 +44,22 @@ struct ContentView: View {
                 Text("Recipes")
                 Spacer()
             }
+            .id("Recipes")
             .offset(x: tabOffset(for: .recipes))
 
             EffectsList(
                 viewModel: viewModel,
-                listBottomPadding: listBottomPadding)
+                listBottomPadding: listBottomPadding,
+                onSeekIngredient: { onSeekIngredient($0) },
+                seekedEffect: seekedEffect)
+            .id("EffectsList")
             .offset(x: tabOffset(for: .effects))
 
             Tabs(selectedTab: Binding(
                 get: { selectedTab},
                 set: { selectedTab = $0 })
             )
+            .id("Tabs")
             .overlay(TabsOriginCoordinator(via: $tabbarOrigin))
         }
         .overlay(MinWidthCoordinator(via: $viewWidth))
@@ -70,6 +79,22 @@ struct ContentView: View {
             withAnimation {
                 shownTab = selectedTab
             }
+        }
+    }
+    
+    private func onSeekEffect(_ effect: Effect) {
+        seekedEffect = effect
+        selectedTab = .effects
+        DispatchQueue.main.async {
+            seekedEffect = nil
+        }
+    }
+    
+    private func onSeekIngredient(_ ingredient: Ingredient) {
+        seekedIngredient = ingredient
+        selectedTab = .ingredients
+        DispatchQueue.main.async {
+            seekedIngredient = nil
         }
     }
 }

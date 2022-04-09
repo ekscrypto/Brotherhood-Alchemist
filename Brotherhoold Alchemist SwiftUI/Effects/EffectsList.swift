@@ -16,6 +16,8 @@ struct EffectsList: View {
     @State private var showResetModal: Bool = false
     
     let listBottomPadding: CGFloat
+    let onSeekIngredient: (Ingredient) -> Void
+    let seekedEffect: Effect?
 
     private var filteredEffects: [Effect] {
         viewModel.state.effects.filter(byName: filter)
@@ -32,7 +34,8 @@ struct EffectsList: View {
                     showResetModal: $showResetModal,
                     title: "Effects")
                 
-                filterControl
+                FilterControl(filter: $filter)
+                
                 listOfEffects
             }
             .blur(radius: showResetModal ? 4 : 0)
@@ -51,25 +54,27 @@ struct EffectsList: View {
     private func effectInfo(_ effect: Effect) -> some View {
         EffectDetails(
             effect: effect,
-            ingredients: viewModel.ingredients(for: effect),
+            ingredients: expanded ? viewModel.ingredients(for: effect) : [],
             expanded: expanded,
+            onSeekIngredient: onSeekIngredient,
             selectionState: viewModel.selection(for: effect))
     }
     
-    private var filterControl: some View {
-        TextField("Filter…", text: $filter)
-            .padding(.leading)
-            .modifier(TextFieldClearButton(text: $filter))
-            .frame(height: 28)
-            .background(Color(UIColor.systemBackground))
-    }
-
     private var listOfEffects: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(filteredEffects) { effect in
-                    effectInfo(effect)
+        ScrollView(showsIndicators: false) {
+            ScrollViewReader { scrollView in
+                LazyVStack {
+                    ForEach(filteredEffects) { effect in
+                        effectInfo(effect)
+                            .id(effect.id)
+                    }
                 }
+                .onChange(of: seekedEffect, perform: { newValue in
+                    if let desiredEffect = newValue {
+                        filter = ~desiredEffect.name
+                        expanded = true
+                    }
+                })
             }
             
             Color.clear
@@ -81,6 +86,10 @@ struct EffectsList: View {
 struct EffectsList_Previews: PreviewProvider {
     
     static var previews: some View {
-        EffectsList(viewModel: ViewModel(), listBottomPadding: 0)
+        EffectsList(
+            viewModel: ViewModel(),
+            listBottomPadding: 0,
+            onSeekIngredient: { _ in /* ignored */ },
+            seekedEffect: nil)
     }
 }

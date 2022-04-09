@@ -32,10 +32,6 @@ class ViewModel: ObservableObject {
         state = StateTransitions.resetIngredients(to: selectionState, state: state)
     }
     
-    func select(_ selectionState: SelectionState, for ingredientId: Ingredient.Id) {
-        state = StateTransitions.select(selectionState, for: ingredientId, state: state)
-    }
-    
     func selection(for effect: Effect) -> Binding<SelectionState> {
         return Binding(get: { [unowned self] in
             self.state.effectsSelection[effect.id] ?? .mayHave
