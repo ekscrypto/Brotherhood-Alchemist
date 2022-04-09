@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "cant-have.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

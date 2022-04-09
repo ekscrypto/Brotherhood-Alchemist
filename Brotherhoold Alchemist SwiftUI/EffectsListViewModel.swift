@@ -40,6 +40,14 @@ class EffectsListViewModel: ObservableObject {
                 set: { _ in }))
     }
     
+    func disableAllEffects() {
+        self.state = Self.disableAllEffects(state: state)
+    }
+    
+    func enableAllEffects() {
+        self.state = Self.enableAllEffects(sourcing: DefaultEffects.all, state: state)
+    }
+    
     private func onEffectHeaderTap(_ effect: Effect) {
         self.state = Self.expandOrCollapse(effect, state: state)
     }
@@ -50,6 +58,18 @@ class EffectsListViewModel: ObservableObject {
     
 
     // MARK: - State Manipulators
+    static func disableAllEffects(state: State) -> State {
+        var newState = state
+        newState.enabledEffects.removeAll()
+        return newState
+    }
+    
+    static func enableAllEffects(sourcing allEffects: [Effect], state: State) -> State {
+        var newState = state
+        newState.enabledEffects = Set(allEffects.map({ $0.id }))
+        return newState
+    }
+
     static func expandOrCollapse(_ effect: Effect, state: State) -> State {
         var newState = state
         if state.expandedEffect == effect.id {
