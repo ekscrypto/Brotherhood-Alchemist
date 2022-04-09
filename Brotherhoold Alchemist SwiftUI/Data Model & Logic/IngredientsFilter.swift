@@ -10,11 +10,15 @@ import Foundation
 
 extension Array where Element == Ingredient {
     func filter(byName filter: String) -> [Ingredient] {
-        let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if trimmedFilter.isEmpty {
             return self
         }
-        return self.filter({ (~$0.name).contains(trimmedFilter) })
+        if trimmedFilter.hasPrefix("=") {
+            let expectedName = String(trimmedFilter.dropFirst())
+            return self.filter({ (~$0.name).lowercased() == expectedName })
+        }
+        return self.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
     }
     
     func with(effect: Effect) -> [Ingredient] {

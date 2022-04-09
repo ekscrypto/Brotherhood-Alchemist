@@ -71,7 +71,7 @@ struct EffectsList: View {
                 }
                 .onChange(of: seekedEffect, perform: { newValue in
                     if let desiredEffect = newValue {
-                        filter = ~desiredEffect.name
+                        filter = "=\(~desiredEffect.name)"
                         expanded = true
                     }
                 })

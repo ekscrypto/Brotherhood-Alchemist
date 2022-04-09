@@ -78,7 +78,7 @@ struct IngredientsList: View {
                 }
                 .onChange(of: seekedIngredient) { newValue in
                     if let desiredIngredient = newValue {
-                        filter = ~desiredIngredient.name
+                        filter = "=\(~desiredIngredient.name)"
                         expanded = true
                     }
                 }
