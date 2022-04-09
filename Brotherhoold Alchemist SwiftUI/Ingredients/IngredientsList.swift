@@ -130,7 +130,7 @@ struct IngredientsList: View {
                 .font(.system(.callout))
                 .frame(minWidth: controlButtonsWidth,
                        maxHeight: .infinity)
-                .overlay(DetermineWidth())
+                .overlay(MinWidthCoordinator(via: $controlButtonsWidth))
                 .padding([.leading, .trailing])
                 .background(Color("itemBackground"))
         }
@@ -146,7 +146,7 @@ struct IngredientsList: View {
                 .font(.system(.callout))
                 .frame(minWidth: controlButtonsWidth,
                        maxHeight: .infinity)
-                .overlay(DetermineWidth())
+                .overlay(MinWidthCoordinator(via: $controlButtonsWidth))
                 .padding([.leading, .trailing])
                 .background(Color("itemBackground"))
         }
@@ -160,9 +160,6 @@ struct IngredientsList: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 28)
-        .onPreferenceChange(DetermineWidth.Key.self) {
-            controlButtonsWidth = $0
-        }
     }
     
     private var listOfIngredients: some View {

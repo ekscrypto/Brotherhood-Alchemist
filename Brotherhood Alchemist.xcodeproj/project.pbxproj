@@ -51,7 +51,6 @@
 		78B24E042800B91D0053BD75 /* BorderedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E032800B91D0053BD75 /* BorderedText.swift */; };
 		78B24E082800C6270053BD75 /* SelectionControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E072800C6270053BD75 /* SelectionControls.swift */; };
 		78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E092800D38A0053BD75 /* IngredientDetails.swift */; };
-		78B24E0C280108A60053BD75 /* DetermineWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E0B280108A60053BD75 /* DetermineWidth.swift */; };
 		78B850D12789C74D003D1E4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D02789C74D003D1E4F /* SceneDelegate.swift */; };
 		78B850D42789C8BD003D1E4F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D32789C8BD003D1E4F /* RootView.swift */; };
 		78E8F08C1F833B0000B07C92 /* Concoction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08B1F833B0000B07C92 /* Concoction.swift */; };
@@ -64,6 +63,7 @@
 		78EEE2621F81CF100036FAA2 /* IngredientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */; };
 		78FED2AE279B632F002D6DED /* Grimoire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FED2AD279B632F002D6DED /* Grimoire.swift */; };
 		78FED2AF279B632F002D6DED /* Grimoire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FED2AD279B632F002D6DED /* Grimoire.swift */; };
+		A9DF11672801BA6C0039BE4C /* MinWidthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,7 +109,6 @@
 		78B24E032800B91D0053BD75 /* BorderedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedText.swift; sourceTree = "<group>"; };
 		78B24E072800C6270053BD75 /* SelectionControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionControls.swift; sourceTree = "<group>"; };
 		78B24E092800D38A0053BD75 /* IngredientDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetails.swift; sourceTree = "<group>"; };
-		78B24E0B280108A60053BD75 /* DetermineWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetermineWidth.swift; sourceTree = "<group>"; };
 		78B850D02789C74D003D1E4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		78B850D32789C8BD003D1E4F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		78E8F08B1F833B0000B07C92 /* Concoction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concoction.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		78EEE25F1F81CF100036FAA2 /* IngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 		78EEE2601F81CF100036FAA2 /* IngredientsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientsViewController.xib; sourceTree = "<group>"; };
 		78FED2AD279B632F002D6DED /* Grimoire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grimoire.swift; sourceTree = "<group>"; };
+		A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinWidthCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,16 +183,9 @@
 				78B24DDE27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift */,
 				78B24E032800B91D0053BD75 /* BorderedText.swift */,
 				78B24DE027FE73650053BD75 /* ContentView.swift */,
-				78B24E0B280108A60053BD75 /* DetermineWidth.swift */,
-				78B24DF527FE90180053BD75 /* EffectDetails.swift */,
-				78B24DF027FE74B80053BD75 /* EffectsList.swift */,
-				78B24DF727FE98710053BD75 /* EffectsListViewModel.swift */,
-				78B24E092800D38A0053BD75 /* IngredientDetails.swift */,
-				78B24DF927FFCB010053BD75 /* IngredientsList.swift */,
-				78B24DFB27FFCC0A0053BD75 /* IngredientsListViewModel.swift */,
-				78B24E072800C6270053BD75 /* SelectionControls.swift */,
-				78B24DF327FE7EB70053BD75 /* TextFieldClearButton.swift */,
-				78B24DF227FE74C20053BD75 /* Database */,
+				A9DF11642801B5AA0039BE4C /* Effects */,
+				A9DF11632801B5900039BE4C /* Ingredients */,
+				A9DF11652801B5D10039BE4C /* Utilities and common UI */,
 				78B24DE227FE73660053BD75 /* Assets.xcassets */,
 				78B24DE427FE73660053BD75 /* Preview Content */,
 			);
@@ -205,20 +198,6 @@
 				78B24DE527FE73660053BD75 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		78B24DF227FE74C20053BD75 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				7824A122279908B6001BABC5 /* ConstrainedName.swift */,
-				78B24DD527FE710A0053BD75 /* DefaultEffects.swift */,
-				78B24DD227FE703D0053BD75 /* DefaultIngredients.swift */,
-				780837B51F81F13700357BF9 /* Effect.swift */,
-				78B24E0127FFD3690053BD75 /* IngredientEffectsAdapter.swift */,
-				780837B31F81F11000357BF9 /* Ingredient.swift */,
-				78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		78B850D22789C8A7003D1E4F /* Root View */ = {
@@ -290,6 +269,43 @@
 				78EEE2581F81C9230036FAA2 /* Info.plist */,
 			);
 			path = "Brotherhood Alchemist";
+			sourceTree = "<group>";
+		};
+		A9DF11632801B5900039BE4C /* Ingredients */ = {
+			isa = PBXGroup;
+			children = (
+				78B24DD227FE703D0053BD75 /* DefaultIngredients.swift */,
+				780837B31F81F11000357BF9 /* Ingredient.swift */,
+				78B24E092800D38A0053BD75 /* IngredientDetails.swift */,
+				78B24E0127FFD3690053BD75 /* IngredientEffectsAdapter.swift */,
+				78B24DF927FFCB010053BD75 /* IngredientsList.swift */,
+				78B24DFB27FFCC0A0053BD75 /* IngredientsListViewModel.swift */,
+			);
+			path = Ingredients;
+			sourceTree = "<group>";
+		};
+		A9DF11642801B5AA0039BE4C /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				78B24DD527FE710A0053BD75 /* DefaultEffects.swift */,
+				780837B51F81F13700357BF9 /* Effect.swift */,
+				78B24DF527FE90180053BD75 /* EffectDetails.swift */,
+				78B24DF027FE74B80053BD75 /* EffectsList.swift */,
+				78B24DF727FE98710053BD75 /* EffectsListViewModel.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
+		A9DF11652801B5D10039BE4C /* Utilities and common UI */ = {
+			isa = PBXGroup;
+			children = (
+				7824A122279908B6001BABC5 /* ConstrainedName.swift */,
+				A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */,
+				78B24E072800C6270053BD75 /* SelectionControls.swift */,
+				78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */,
+				78B24DF327FE7EB70053BD75 /* TextFieldClearButton.swift */,
+			);
+			path = "Utilities and common UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9DF11672801BA6C0039BE4C /* MinWidthCoordinator.swift in Sources */,
 				78B24E042800B91D0053BD75 /* BorderedText.swift in Sources */,
 				78B24DFA27FFCB010053BD75 /* IngredientsList.swift in Sources */,
 				78B24DF127FE74B80053BD75 /* EffectsList.swift in Sources */,
@@ -456,7 +473,6 @@
 				78B24DF827FE98710053BD75 /* EffectsListViewModel.swift in Sources */,
 				78B24DF427FE7EB70053BD75 /* TextFieldClearButton.swift in Sources */,
 				78B24DE127FE73650053BD75 /* ContentView.swift in Sources */,
-				78B24E0C280108A60053BD75 /* DetermineWidth.swift in Sources */,
 				78B24DEF27FE74700053BD75 /* DefaultEffects.swift in Sources */,
 				78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */,
 				78B24DF627FE90180053BD75 /* EffectDetails.swift in Sources */,
