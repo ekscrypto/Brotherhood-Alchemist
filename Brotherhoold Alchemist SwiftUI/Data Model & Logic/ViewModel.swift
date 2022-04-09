@@ -15,23 +15,8 @@ class ViewModel: ObservableObject {
         effectsSelection: [:],
         ingredients: DefaultIngredients.all,
         ingredientsSelection: [:])
-    @Published var ingredientsFilter: String = "" {
-        didSet { onIngredientsFilterUpdate() }
-    }
-    @Published var effectsFilter: String = "" {
-        didSet { onEffectsFilterUpdate() }
-    }
-    
-    private func onEffectsFilterUpdate() {
-        state = StateTransitions.filter(effectsFilter, sourcing: DefaultEffects.all, state: state)
-    }
-    
-    private func onIngredientsFilterUpdate() {
-        state = StateTransitions.filter(ingredientsFilter, sourcing: DefaultIngredients.all, state: state)
-    }
     
     func selection(for ingredient: Ingredient) -> Binding<SelectionState> {
-        print("> Binding for \(~ingredient.name)")
         return Binding(get: { [unowned self] in
             self.state.ingredientsSelection[ingredient.id] ?? .mayHave
         }, set: { [unowned self] selection in
@@ -40,11 +25,11 @@ class ViewModel: ObservableObject {
     }
     
     func effects(for ingredient: Ingredient) -> [Effect] {
-        IngredientEffectsAdapter.effects(from: ingredient, sourcing: DefaultEffects.all)
+        IngredientEffectsAdapter.effects(from: ingredient, sourcing: state.effects)
     }
     
-    func resetAll(to selectionState: SelectionState) {
-        state = StateTransitions.resetIngredients(to: selectionState, sourcing: DefaultIngredients.all, state: state)
+    func resetIngredients(to selectionState: SelectionState) {
+        state = StateTransitions.resetIngredients(to: selectionState, state: state)
     }
     
     func select(_ selectionState: SelectionState, for ingredientId: Ingredient.Id) {

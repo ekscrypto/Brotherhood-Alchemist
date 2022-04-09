@@ -14,51 +14,46 @@ protocol FilterItem {
 
 class StateTransitions {
 
-    static func filter(_ filter: String, sourcing allEffects: [Effect], state: ModelState) -> ModelState {
+    static func resetEffects(to selectionState: SelectionState, state: ModelState) -> ModelState {
         var newState = state
-        let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmedFilter.isEmpty {
-            newState.effects = allEffects
-        } else {
-            newState.effects = allEffects.filter({ (~$0.name).contains(filter) })
-        }
-        return newState
-    }
-
-    static func filter(_ filter: String, sourcing allIngredients: [Ingredient], state: ModelState) -> ModelState {
-        var newState = state
-        let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmedFilter.isEmpty {
-            newState.ingredients = allIngredients
-        } else {
-            newState.ingredients = allIngredients.filter({ (~$0.name).contains(filter) })
-        }
-        return newState
-    }
-
-    static func resetEffects(to selectionState: SelectionState, sourcing allEffects: [Effect], state: ModelState) -> ModelState {
-        var newState = state
-        allEffects.forEach { effect in
+        state.effects.forEach { effect in
             newState.effectsSelection[effect.id] = selectionState
         }
         return newState
     }
     
-    static func resetIngredients(to selectionState: SelectionState, sourcing allIngredients: [Ingredient], state: ModelState) -> ModelState {
+    static func resetIngredients(
+        to selectionState: SelectionState,
+        state: ModelState
+    ) -> ModelState {
         var newState = state
-        allIngredients.forEach { ingredient in
+        state.ingredients.forEach { ingredient in
             newState.ingredientsSelection[ingredient.id] = selectionState
         }
         return newState
     }
     
-    static func select(_ selectionState: SelectionState, for effectId: Effect.Id, state: ModelState) -> ModelState {
+    static func select(
+        _ selectionState: SelectionState,
+        for effectId: Effect.Id,
+        state: ModelState
+    ) -> ModelState {
+        guard state.effects.contains(where: { $0.id == effectId }) else {
+            return state
+        }
         var newState = state
         newState.effectsSelection[effectId] = selectionState
         return newState
     }
 
-    static func select(_ selectionState: SelectionState, for ingredientId: Ingredient.Id, state: ModelState) -> ModelState {
+    static func select(
+        _ selectionState: SelectionState,
+        for ingredientId: Ingredient.Id,
+        state: ModelState
+    ) -> ModelState {
+        guard state.ingredients.contains(where: { $0.id == ingredientId}) else {
+            return state
+        }
         var newState = state
         newState.ingredientsSelection[ingredientId] = selectionState
         return newState

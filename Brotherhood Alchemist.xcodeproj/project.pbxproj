@@ -69,6 +69,8 @@
 		A9DF11732801C8750039BE4C /* SelectionIndicatorMay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */; };
 		A9DF11752801C8A20039BE4C /* SelectionIndicatorMust.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11742801C8A20039BE4C /* SelectionIndicatorMust.swift */; };
 		A9DF11772801C8E90039BE4C /* SelectionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11762801C8E90039BE4C /* SelectionText.swift */; };
+		A9DF117A2801CD610039BE4C /* IngredientsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11792801CD610039BE4C /* IngredientsFilter.swift */; };
+		A9DF117C2801D0720039BE4C /* ResetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF117B2801D0720039BE4C /* ResetModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +135,8 @@
 		A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicatorMay.swift; sourceTree = "<group>"; };
 		A9DF11742801C8A20039BE4C /* SelectionIndicatorMust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicatorMust.swift; sourceTree = "<group>"; };
 		A9DF11762801C8E90039BE4C /* SelectionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionText.swift; sourceTree = "<group>"; };
+		A9DF11792801CD610039BE4C /* IngredientsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsFilter.swift; sourceTree = "<group>"; };
+		A9DF117B2801D0720039BE4C /* ResetModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +305,7 @@
 			children = (
 				78B24E032800B91D0053BD75 /* BorderedText.swift */,
 				A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */,
+				A9DF117B2801D0720039BE4C /* ResetModal.swift */,
 				78B24E072800C6270053BD75 /* SelectionControls.swift */,
 				A9DF11702801C8380039BE4C /* SelectionIndicatorCant.swift */,
 				A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */,
@@ -315,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				7824A122279908B6001BABC5 /* ConstrainedName.swift */,
+				A9DF11792801CD610039BE4C /* IngredientsFilter.swift */,
 				A9DF116C2801BED20039BE4C /* ModelState.swift */,
 				78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */,
 				A9DF116A2801BEC20039BE4C /* StateTransitions.swift */,
@@ -491,11 +497,13 @@
 				A9DF11692801BD6D0039BE4C /* ViewModel.swift in Sources */,
 				78B24DF427FE7EB70053BD75 /* TextFieldClearButton.swift in Sources */,
 				A9DF11772801C8E90039BE4C /* SelectionText.swift in Sources */,
+				A9DF117A2801CD610039BE4C /* IngredientsFilter.swift in Sources */,
 				78B24DE127FE73650053BD75 /* ContentView.swift in Sources */,
 				78B24DEF27FE74700053BD75 /* DefaultEffects.swift in Sources */,
 				78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */,
 				78B24DF627FE90180053BD75 /* EffectDetails.swift in Sources */,
 				78B24E082800C6270053BD75 /* SelectionControls.swift in Sources */,
+				A9DF117C2801D0720039BE4C /* ResetModal.swift in Sources */,
 				78B24E0027FFD0DA0053BD75 /* SelectionState.swift in Sources */,
 				A9DF11732801C8750039BE4C /* SelectionIndicatorMay.swift in Sources */,
 				78B24DDF27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift in Sources */,

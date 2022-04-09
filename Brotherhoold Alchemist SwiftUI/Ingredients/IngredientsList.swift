@@ -16,96 +16,44 @@ struct IngredientsList: View {
     @State var expandButtonText: String = "MORE"
     @State var controlButtonsWidth: CGFloat = .zero
     @State var showResetModal: Bool = false
+    @State var filter: String = ""
+
+    var filteredIngredients: [Ingredient] {
+        viewModel.state.ingredients.filter(byName: filter)
+    }
 
     var body: some View {
         ZStack {
             VStack(spacing: 1) {
                 VStack(spacing: 0) {
-                    Color("itemBackground")
+                    Color((UIColor.systemBackground))
                         .frame(height: 1)
                     header
-                    Color("itemBackground")
-                        .frame(height: 1)
-                    TextField("Filter…", text: $viewModel.ingredientsFilter)
+                        .background(Color(UIColor.systemBackground))
+                    
+                    TextField("Filter…", text: $filter)
                         .padding(.leading)
-                        .modifier(TextFieldClearButton(text: $viewModel.ingredientsFilter))
+                        .modifier(TextFieldClearButton(text: $filter))
                         .frame(height: 28)
+                        .background(Color(UIColor.systemBackground))
                 }
+
                 ScrollView(showsIndicators: false) {
                     listOfIngredients
                 }
+                .background(Color(UIColor.systemBackground))
             }
             .blur(radius: showResetModal ? 4 : 0)
             .allowsHitTesting(!showResetModal)
 
             if showResetModal {
-                resetModal
+                ResetModal(
+                    viewModel: viewModel,
+                    queryText: "Set all ingredients as:",
+                    visibility: $showResetModal)
             }
         }
-    }
-    
-    private var resetCantHaveButton: some View {
-        Button("Can't have", action: {
-            viewModel.resetAll(to: .cantHave)
-            dismissResetModal()
-        })
-        .frame(maxWidth: .infinity)
-        .padding()
         .background(Color("itemBackground"))
-        .cornerRadius(6.0)
-    }
-    
-    private var resetMayHaveButton: some View {
-        Button("May have", action: {
-            viewModel.resetAll(to: .mayHave)
-            dismissResetModal()
-        })
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color("itemBackground"))
-        .cornerRadius(6.0)
-    }
-    
-    private var resetCancelButton: some View {
-        Button("Cancel", action: {
-            dismissResetModal()
-        })
-        .foregroundColor(Color.red)
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color("itemBackground"))
-        .cornerRadius(6.0)
-    }
-    
-    private func dismissResetModal() {
-        DispatchQueue.main.async {
-            withAnimation {
-                showResetModal = false
-            }
-        }
-
-    }
-    
-    private var resetModal: some View {
-        VStack {
-            Spacer()
-
-            VStack {
-                VStack {
-                    Text("Set all ingredients as:")
-                    resetCantHaveButton
-                    resetMayHaveButton
-                    resetCancelButton
-                }
-                .padding()
-            }
-            .frame(maxWidth: 300)
-            .background(Color(UIColor.systemBackground))
-            .cornerRadius(20.0)
-
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     private var ingredientsTitle: some View {
@@ -165,7 +113,7 @@ struct IngredientsList: View {
     
     private var listOfIngredients: some View {
         LazyVStack(spacing: 1) {
-            ForEach(viewModel.state.ingredients) { ingredient in
+            ForEach(filteredIngredients) { ingredient in
                 ingredientInfo(ingredient)
             }
         }
