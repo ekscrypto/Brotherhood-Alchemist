@@ -17,6 +17,14 @@ enum Tab: String, CaseIterable {
 struct Tabs: View {
     @State var buttonsWidth: CGFloat = .zero
     @Binding var selectedTab: Tab
+    @Environment(\.colorScheme) var colorScheme
+    
+    private var shadowColor: Color {
+        if colorScheme == .dark {
+            return Color.white
+        }
+        return Color.black
+    }
 
     var body: some View {
         HStack {
@@ -29,8 +37,7 @@ struct Tabs: View {
             RoundedRectangle(cornerRadius: .infinity)
                 .foregroundColor(Color(UIColor.systemBackground))
         )
-        .fixedSize(horizontal: false, vertical: true)
-        .shadow(radius: 20)
+        .shadow(color: shadowColor, radius: 12.0)
     }
 
     private func selectTab(_ tab: Tab) {
