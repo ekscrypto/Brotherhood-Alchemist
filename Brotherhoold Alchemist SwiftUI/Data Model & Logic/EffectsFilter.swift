@@ -1,23 +1,24 @@
 //
-//  IngredientsFilter.swift
+//  IngredientEffectsAdapter.swift
 //  Brotherhoold Alchemist SwiftUI
 //
-//  Created by Dave Poirier on 2022-04-09.
+//  Created by Dave Poirier on 2022-04-07.
 //  Copyright © 2022 Dave Poirier. All rights reserved.
 //
 
 import Foundation
 
-extension Array where Element == Ingredient {
-    func filter(byName filter: String) -> [Ingredient] {
+extension Array where Element == Effect {
+    func filter(byName filter: String) -> [Effect] {
         let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedFilter.isEmpty {
             return self
         }
         return self.filter({ (~$0.name).contains(trimmedFilter) })
     }
-    
-    func with(effect: Effect) -> [Ingredient] {
-        self.filter({ $0.effects.contains(effect.id) })
+
+    func of(ingredient: Ingredient) -> [Effect] {
+        self.filter({ ingredient.effects.contains($0.id) })
     }
 }
+

@@ -10,60 +10,70 @@ import SwiftUI
 
 struct EffectsList: View {
     
-    @ObservedObject var viewModel: EffectsListViewModel = .init()
+    @ObservedObject var viewModel: ViewModel
+    @State private var expanded: Bool = false
+    @State private var filter: String = ""
+    @State private var showResetModal: Bool = false
+    
+    let listBottomPadding: CGFloat
+
+    private var filteredEffects: [Effect] {
+        viewModel.state.effects.filter(byName: filter)
+    }
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: true) {
-            titleAndSelectors
-            textfield
-            list
-        }
-    }
-    
-    private var titleAndSelectors: some View {
-        GeometryReader { geometry in
-            HStack(spacing: 0) {
-                disableAllControl
-                    .frame(width: 90.0)
-                    .background(Color(UIColor.systemGray4))
-                    .padding(.trailing, 2.0)
+        ZStack {
+            VStack(spacing: 1) {
+                Color((UIColor.systemBackground))
+                    .frame(height: 1)
+                
+                ListHeader(
+                    expanded: $expanded,
+                    showResetModal: $showResetModal,
+                    title: "Effects")
+                
+                filterControl
+                listOfEffects
+            }
+            .blur(radius: showResetModal ? 4 : 0)
+            .allowsHitTesting(!showResetModal)
 
-//                enableAllControl
-//                    .frame(width: 60.0)
-//                    .padding([.leading, .trailing], 3.0)
-//                    .background(Color(UIColor.systemGray2))
-
-                Text("Effects")
-                    .frame(width: geometry.size.width - 92.0)
-                    .background(Color(UIColor.systemGray4))
+            if showResetModal {
+                ResetModal(
+                    queryText: "Set all effects as:",
+                    resetAction: { viewModel.resetEffects(to: $0) },
+                    visibility: $showResetModal)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 24.0)
+        .background(Color("itemBackground"))
     }
     
-    private var disableAllControl: some View {
-        Button(action: {
-            viewModel.disableAllEffects()
-        }) { Text("TOGGLE") }
+    private func effectInfo(_ effect: Effect) -> some View {
+        EffectDetails(
+            effect: effect,
+            ingredients: viewModel.ingredients(for: effect),
+            expanded: expanded,
+            selectionState: viewModel.selection(for: effect))
     }
     
-    private var enableAllControl: some View {
-        Button(action: {
-            viewModel.enableAllEffects()
-        }) { Text("ALL") }
+    private var filterControl: some View {
+        TextField("Filter…", text: $filter)
+            .padding(.leading)
+            .modifier(TextFieldClearButton(text: $filter))
+            .frame(height: 28)
+            .background(Color(UIColor.systemBackground))
     }
-    
-    private var textfield: some View {
-        TextField("Search effect by name…", text: $viewModel.filter)
-            .lineLimit(1)
-            .modifier(TextFieldClearButton(text: $viewModel.filter))
-    }
-    
-    private var list: some View {
-        LazyVStack(alignment: .leading, spacing: 2.0) {
-            ForEach(viewModel.state.effects) { effect in
-                viewModel.effectDetails(effect)
+
+    private var listOfEffects: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(filteredEffects) { effect in
+                    effectInfo(effect)
+                }
             }
+            
+            Color.clear
+                .frame(height: listBottomPadding)
         }
     }
 }
@@ -71,6 +81,6 @@ struct EffectsList: View {
 struct EffectsList_Previews: PreviewProvider {
     
     static var previews: some View {
-        EffectsList()
+        EffectsList(viewModel: ViewModel(), listBottomPadding: 0)
     }
 }

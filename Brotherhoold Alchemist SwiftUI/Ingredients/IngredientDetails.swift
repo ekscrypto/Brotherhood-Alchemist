@@ -74,42 +74,69 @@ struct IngredientDetails: View {
 struct IngredientDetails_Previews: PreviewProvider {
     static var previews: some View {
         IngredientDetails(
-            ingredient: Ingredient(id: 1, name: "Powdered Mammoth Tusk", effects: [])!,
-            effects: IngredientEffectsAdapter.effects(
-                from: DefaultIngredients.all.first!,
-                sourcing: DefaultEffects.all),
+            ingredient: DefaultIngredients.all.first!,
+            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: false,
             selectionState: Binding(
                 get: { .cantHave },
                 set: { _ in /* do nothing */ }))
-        .previewDisplayName("Can't have - collapsed")
+        .previewDisplayName("Can't have - collapsed [Dark]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
         
         IngredientDetails(
-            ingredient: Ingredient(id: 1, name: "Powdered Mammoth Tusk", effects: [])!,
-            effects: IngredientEffectsAdapter.effects(
-                from: DefaultIngredients.all.first!,
-                sourcing: DefaultEffects.all),
+            ingredient: DefaultIngredients.all.first!,
+            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            expanded: false,
+            selectionState: Binding(
+                get: { .cantHave },
+                set: { _ in /* do nothing */ }))
+        .previewDisplayName("Can't have - collapsed [Light]")
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.light)
+        
+        IngredientDetails(
+            ingredient: DefaultIngredients.all.first!,
+            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: false,
             selectionState: Binding(
                 get: { .mayHave },
                 set: { _ in /* do nothing */ }))
-        .previewDisplayName("May have - collapsed")
+        .previewDisplayName("May have - collapsed [Dark]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
+        
+        IngredientDetails(
+            ingredient: DefaultIngredients.all.first!,
+            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            expanded: false,
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* do nothing */ }))
+        .previewDisplayName("May have - collapsed [Light]")
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.light)
 
         IngredientDetails(
-            ingredient: Ingredient(id: 1, name: "Powdered Mammoth Tusk", effects: [])!,
-            effects: IngredientEffectsAdapter.effects(
-                from: DefaultIngredients.all.first!,
-                sourcing: DefaultEffects.all),
+            ingredient: DefaultIngredients.all.first!,
+            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
             expanded: true,
             selectionState: Binding(
                 get: { .mustHave },
                 set: { _ in /* do nothing */ }))
-        .previewDisplayName("Must have - expanded")
+        .previewDisplayName("Must have - expanded [Dark]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
+        
+        IngredientDetails(
+            ingredient: DefaultIngredients.all.first!,
+            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            expanded: true,
+            selectionState: Binding(
+                get: { .mustHave },
+                set: { _ in /* do nothing */ }))
+        .previewDisplayName("Must have - expanded [Light]")
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.light)
     }
 }

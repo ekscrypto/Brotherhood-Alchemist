@@ -9,78 +9,77 @@
 import SwiftUI
 
 struct EffectDetails: View {
-    
     let effect: Effect
-    let onTapHeader: () -> Void
-    let onTapShowIngredients: () -> Void
- 
-    @Binding var enabled: Bool
-    @Binding var showExpandedInfo: Bool
-    @Binding var knownMatchingIngredients: [Ingredient]?
-    
-    private var matchingIngredientsCount: String {
-        if let knownIngredients = knownMatchingIngredients {
-            return "\(knownIngredients.count)"
-        }
-        return "…"
-    }
-    
+    let ingredients: [Ingredient]
+    let expanded: Bool
+    @Binding var selectionState: SelectionState
+
     var body: some View {
         VStack {
-            
-            nameAndToggle
-            
-            if showExpandedInfo {
-                expandedInfo
-            }
-        }
-    }
-    
-    private var nameAndToggle: some View {
-        HStack {
-            Toggle("", isOn: $enabled)
-            
             Button(action: {
-                withAnimation {
-                    onTapHeader()
+                rotateSelection()
+            }) {
+                HStack(spacing: 1) {
+                    selectionIndicator
+                    SelectionText(state: selectionState)
+                        .frame(width: 40)
+                    Text(~effect.name)
+                        .font(.system(.headline))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(Color("itemForeground"))
                 }
-            }) {
-                Text(~effect.name)
-                    .padding(.leading, 4)
-                Spacer()
             }
-            .foregroundColor(effect.isPositive ? Color.green : Color.red)
-            .layoutPriority(.infinity)
+            
+            if expanded {
+                additionalInfo
+            }
+        }
+        .background(Color("itemBackground"))
+    }
+    
+    private var additionalInfo: some View {
+        Text("Addtional info")
+//        VStack {
+//            ForEach(effects) { effect in
+//                Text(~effect.name)
+//            }
+//        }
+//        .padding(.bottom)
+    }
+    
+    private func rotateSelection() {
+        switch selectionState {
+        case .cantHave:
+            selectionState = .mayHave
+        case .mayHave:
+            selectionState = .mustHave
+        case .mustHave:
+            selectionState = .cantHave
         }
     }
     
-    private var expandedInfo: some View {
+    private var selectionIndicator: some View {
         VStack {
-            Text("Positive Effect: \(String(effect.isPositive))")
-            Button(action: {
-                onTapShowIngredients()
-            }) {
-                Text("Ingredients with this effect: \(matchingIngredientsCount)")
+            switch selectionState {
+            case .cantHave:
+                SelectionIndicatorCant()
+            case .mayHave:
+                SelectionIndicatorMay()
+            case .mustHave:
+                SelectionIndicatorMust()
             }
         }
-        .padding()
     }
-                   
-
 }
 
 struct EffectDetails_Previews: PreviewProvider {
     static var previews: some View {
         EffectDetails(
-            effect: Effect(
-                id: 1,
-                name: "Tree Root",
-                value: 75,
-                isPositive: true),
-            onTapHeader: { },
-            onTapShowIngredients: { },
-            enabled: Binding(get: { true }, set: { _ in }),
-            showExpandedInfo: Binding(get: { true }, set: { _ in }),
-            knownMatchingIngredients: Binding(get: { nil }, set: { _ in }))
+            effect: DefaultEffects.all.first!,
+            ingredients: DefaultIngredients.all.with(effect: DefaultEffects.all.first!),
+            expanded: false,
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* ignored */ }))
     }
 }

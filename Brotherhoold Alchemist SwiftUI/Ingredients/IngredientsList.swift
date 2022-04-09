@@ -17,55 +17,38 @@ struct IngredientsList: View {
     @State var controlButtonsWidth: CGFloat = .zero
     @State var showResetModal: Bool = false
     @State var filter: String = ""
+    
+    let listBottomPadding: CGFloat
 
-    var filteredIngredients: [Ingredient] {
+    private var filteredIngredients: [Ingredient] {
         viewModel.state.ingredients.filter(byName: filter)
     }
 
+    // MARK: -
     var body: some View {
         ZStack {
             VStack(spacing: 1) {
-                VStack(spacing: 0) {
-                    Color((UIColor.systemBackground))
-                        .frame(height: 1)
-                    header
-                        .background(Color(UIColor.systemBackground))
-                    
-                    TextField("Filter…", text: $filter)
-                        .padding(.leading)
-                        .modifier(TextFieldClearButton(text: $filter))
-                        .frame(height: 28)
-                        .background(Color(UIColor.systemBackground))
-                }
-
-                ScrollView(showsIndicators: false) {
-                    listOfIngredients
-                }
-                .background(Color(UIColor.systemBackground))
+                Color((UIColor.systemBackground))
+                    .frame(height: 1)
+                
+                header
+                filterControl
+                listOfIngredients
             }
             .blur(radius: showResetModal ? 4 : 0)
             .allowsHitTesting(!showResetModal)
 
             if showResetModal {
                 ResetModal(
-                    viewModel: viewModel,
                     queryText: "Set all ingredients as:",
+                    resetAction: { viewModel.resetIngredients(to: $0) },
                     visibility: $showResetModal)
             }
         }
         .background(Color("itemBackground"))
     }
     
-    private var ingredientsTitle: some View {
-        Text("Ingredients")
-            .font(.system(.headline))
-            .frame(maxWidth: .infinity,
-                   maxHeight: .infinity,
-                   alignment: .leading)
-            .padding(.leading)
-            .background(Color("itemBackground"))
-    }
-    
+    // MARK: -
     private var expandButton: some View {
         Button(action: {
             expandButtonText = expanded ? "MORE" : "LESS"
@@ -85,6 +68,57 @@ struct IngredientsList: View {
         }
     }
     
+    private var filterControl: some View {
+        TextField("Filter…", text: $filter)
+            .padding(.leading)
+            .modifier(TextFieldClearButton(text: $filter))
+            .frame(height: 28)
+            .background(Color(UIColor.systemBackground))
+    }
+    
+    private var header: some View {
+        HStack(spacing: 1) {
+            ingredientsTitle
+            expandButton
+            resetButton
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 28)
+        .background(Color(UIColor.systemBackground))
+    }
+    
+    private func ingredientInfo(_ ingredient: Ingredient) -> some View {
+        IngredientDetails(
+            ingredient: ingredient,
+            effects: viewModel.effects(for: ingredient),
+            expanded: expanded,
+            selectionState: viewModel.selection(for: ingredient))
+    }
+    
+    private var ingredientsTitle: some View {
+        Text("Ingredients")
+            .font(.system(.headline))
+            .frame(maxWidth: .infinity,
+                   maxHeight: .infinity,
+                   alignment: .leading)
+            .padding(.leading)
+            .background(Color("itemBackground"))
+    }
+    
+    private var listOfIngredients: some View {
+        ScrollView(showsIndicators: false) {
+            LazyVStack(spacing: 1) {
+                ForEach(filteredIngredients) { ingredient in
+                    ingredientInfo(ingredient)
+                }
+            }
+            
+            Color.clear
+                .frame(height: listBottomPadding)
+        }
+        .background(Color(UIColor.systemBackground))
+    }
+    
     private var resetButton: some View {
         Button(action: {
             withAnimation {
@@ -100,42 +134,20 @@ struct IngredientsList: View {
                 .background(Color("itemBackground"))
         }
     }
-    
-    private var header: some View {
-        HStack(spacing: 1) {
-            ingredientsTitle
-            expandButton
-            resetButton
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: 28)
-    }
-    
-    private var listOfIngredients: some View {
-        LazyVStack(spacing: 1) {
-            ForEach(filteredIngredients) { ingredient in
-                ingredientInfo(ingredient)
-            }
-        }
-    }
-    
-    private func ingredientInfo(_ ingredient: Ingredient) -> some View {
-        IngredientDetails(
-            ingredient: ingredient,
-            effects: viewModel.effects(for: ingredient),
-            expanded: expanded,
-            selectionState: viewModel.selection(for: ingredient))
-    }
 }
 
 struct IngredientsList_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientsList(viewModel: ViewModel())
+        IngredientsList(
+            viewModel: ViewModel(),
+            listBottomPadding: 0)
             .preferredColorScheme(.light)
             .previewDisplayName("Light")
             .previewDevice("iPhone 13 Pro")
 
-        IngredientsList(viewModel: ViewModel())
+        IngredientsList(
+            viewModel: ViewModel(),
+            listBottomPadding: 0)
             .preferredColorScheme(.dark)
             .previewDisplayName("Dark")
             .previewDevice("iPhone 13 Pro")

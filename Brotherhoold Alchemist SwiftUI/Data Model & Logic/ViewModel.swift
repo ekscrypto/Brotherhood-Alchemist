@@ -16,6 +16,34 @@ class ViewModel: ObservableObject {
         ingredients: DefaultIngredients.all,
         ingredientsSelection: [:])
     
+    func effects(for ingredient: Ingredient) -> [Effect] {
+        state.effects.of(ingredient: ingredient)
+    }
+    
+    func ingredients(for effect: Effect) -> [Ingredient] {
+        state.ingredients.with(effect: effect)
+    }
+    
+    func resetEffects(to selectionState: SelectionState) {
+        state = StateTransitions.resetEffects(to: selectionState, state: state)
+    }
+
+    func resetIngredients(to selectionState: SelectionState) {
+        state = StateTransitions.resetIngredients(to: selectionState, state: state)
+    }
+    
+    func select(_ selectionState: SelectionState, for ingredientId: Ingredient.Id) {
+        state = StateTransitions.select(selectionState, for: ingredientId, state: state)
+    }
+    
+    func selection(for effect: Effect) -> Binding<SelectionState> {
+        return Binding(get: { [unowned self] in
+            self.state.effectsSelection[effect.id] ?? .mayHave
+        }, set: { [unowned self] selection in
+            self.state = StateTransitions.select(selection, for: effect.id, state: state)
+        })
+    }
+    
     func selection(for ingredient: Ingredient) -> Binding<SelectionState> {
         return Binding(get: { [unowned self] in
             self.state.ingredientsSelection[ingredient.id] ?? .mayHave
@@ -24,15 +52,4 @@ class ViewModel: ObservableObject {
         })
     }
     
-    func effects(for ingredient: Ingredient) -> [Effect] {
-        IngredientEffectsAdapter.effects(from: ingredient, sourcing: state.effects)
-    }
-    
-    func resetIngredients(to selectionState: SelectionState) {
-        state = StateTransitions.resetIngredients(to: selectionState, state: state)
-    }
-    
-    func select(_ selectionState: SelectionState, for ingredientId: Ingredient.Id) {
-        state = StateTransitions.select(selectionState, for: ingredientId, state: state)
-    }
 }

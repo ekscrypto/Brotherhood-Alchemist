@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ResetModal: View {
     
-    let viewModel: ViewModel
     let queryText: String
+    let resetAction: (SelectionState) -> Void
     @Binding var visibility: Bool
 
     var body: some View {
@@ -38,7 +38,7 @@ struct ResetModal: View {
     
     private var resetCantHaveButton: some View {
         Button("Can't have", action: {
-            viewModel.resetIngredients(to: .cantHave)
+            resetAction(.cantHave)
             dismissResetModal()
         })
         .frame(maxWidth: .infinity)
@@ -49,7 +49,7 @@ struct ResetModal: View {
     
     private var resetMayHaveButton: some View {
         Button("May have", action: {
-            viewModel.resetIngredients(to: .mayHave)
+            resetAction(.mayHave)
             dismissResetModal()
         })
         .frame(maxWidth: .infinity)
@@ -82,8 +82,8 @@ struct ResetModal: View {
 struct ResetModal_Previews: PreviewProvider {
     static var previews: some View {
         ResetModal(
-            viewModel: ViewModel(),
             queryText: "Set all ingredients as:",
+            resetAction: { _ in /* ignored */ },
             visibility: Binding(
                 get: { true },
                 set: { _ in /* ignored */ }
@@ -93,8 +93,8 @@ struct ResetModal_Previews: PreviewProvider {
         .preferredColorScheme(.light)
 
         ResetModal(
-            viewModel: ViewModel(),
             queryText: "Set all effects as:",
+            resetAction: { _ in /* ignored */ },
             visibility: Binding(
                 get: { true },
                 set: { _ in /* ignored */ }
