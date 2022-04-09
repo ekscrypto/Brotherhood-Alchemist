@@ -21,7 +21,7 @@ struct IngredientDetails: View {
             }) {
                 HStack(spacing: 1) {
                     selectionIndicator
-                    selectionText
+                    SelectionText(state: selectionState)
                         .frame(width: 40)
                     Text(~ingredient.name)
                         .font(.system(.headline))
@@ -37,36 +37,13 @@ struct IngredientDetails: View {
         .background(Color("itemBackground"))
     }
     
-    private var selectionIndicator: some View {
+    private var additionalInfo: some View {
         VStack {
-            switch selectionState {
-            case .cantHave:
-                selectionCant
-            case .mayHave:
-                selectionMay
-            case .mustHave:
-                selectionMust
+            ForEach(effects) { effect in
+                Text(~effect.name)
             }
         }
-    }
-    
-    private var selectionText: some View {
-        let description: String
-        switch selectionState {
-        case .cantHave:
-            description = "can't"
-        case .mayHave:
-            description = "may"
-        case .mustHave:
-            description = "must"
-        }
-        
-        return VStack(spacing: 0) {
-            Text(description)
-            Text("have")
-        }
-        .font(.system(.caption))
-        .foregroundColor(Color("selectionText"))
+        .padding(.bottom)
     }
     
     private func rotateSelection() {
@@ -80,51 +57,17 @@ struct IngredientDetails: View {
         }
     }
     
-    private var selectionCant: some View {
-        RoundedRectangle(cornerRadius: 3.0)
-            .foregroundColor(Color.clear)
-            .frame(width: 24, height: 24)
-            .overlay(
-                RoundedRectangle(cornerRadius: 3.0)
-                    .stroke(Color("selectionBorder"), lineWidth: 2.0)
-            )
-            .padding(6.0)
-    }
-    
-    private var selectionMay: some View {
-        RoundedRectangle(cornerRadius: 3.0)
-            .foregroundColor(Color.clear)
-            .frame(width: 24, height: 24)
-            .overlay(
-                RoundedRectangle(cornerRadius: 3.0)
-                    .stroke(Color("selectionBorder"), lineWidth: 2.0)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 6.0)
-                    .scaleEffect(x: 0.5, y: 0.5, anchor: UnitPoint.center)
-                    .foregroundColor(Color("selectionMust"))
-            )
-            .padding(6.0)
-    }
-    
-    private var additionalInfo: some View {
+    private var selectionIndicator: some View {
         VStack {
-            ForEach(effects) { effect in
-                Text(~effect.name)
+            switch selectionState {
+            case .cantHave:
+                SelectionIndicatorCant()
+            case .mayHave:
+                SelectionIndicatorMay()
+            case .mustHave:
+                SelectionIndicatorMust()
             }
         }
-        .padding(.bottom)
-    }
-    
-    private var selectionMust: some View {
-        RoundedRectangle(cornerRadius: 3.0)
-            .foregroundColor(Color("selectionMust"))
-            .frame(width: 24, height: 24)
-            .overlay(
-                RoundedRectangle(cornerRadius: 3.0)
-                    .stroke(Color("selectionBorder"), lineWidth: 2.0)
-            )
-            .padding(6.0)
     }
 }
 
@@ -139,6 +82,34 @@ struct IngredientDetails_Previews: PreviewProvider {
             selectionState: Binding(
                 get: { .cantHave },
                 set: { _ in /* do nothing */ }))
+        .previewDisplayName("Can't have - collapsed")
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.dark)
+        
+        IngredientDetails(
+            ingredient: Ingredient(id: 1, name: "Powdered Mammoth Tusk", effects: [])!,
+            effects: IngredientEffectsAdapter.effects(
+                from: DefaultIngredients.all.first!,
+                sourcing: DefaultEffects.all),
+            expanded: false,
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* do nothing */ }))
+        .previewDisplayName("May have - collapsed")
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.dark)
+
+        IngredientDetails(
+            ingredient: Ingredient(id: 1, name: "Powdered Mammoth Tusk", effects: [])!,
+            effects: IngredientEffectsAdapter.effects(
+                from: DefaultIngredients.all.first!,
+                sourcing: DefaultEffects.all),
+            expanded: true,
+            selectionState: Binding(
+                get: { .mustHave },
+                set: { _ in /* do nothing */ }))
+        .previewDisplayName("Must have - expanded")
+        .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
     }
 }

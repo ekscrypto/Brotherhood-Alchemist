@@ -10,7 +10,8 @@ import SwiftUI
 
 struct IngredientsList: View {
     
-    @ObservedObject var viewModel: IngredientsListViewModel = .init()
+    @ObservedObject var viewModel: ViewModel
+    
     @State var expanded: Bool = false
     @State var expandButtonText: String = "MORE"
     @State var controlButtonsWidth: CGFloat = .zero
@@ -25,9 +26,9 @@ struct IngredientsList: View {
                     header
                     Color("itemBackground")
                         .frame(height: 1)
-                    TextField("Filter…", text: $viewModel.filter)
+                    TextField("Filter…", text: $viewModel.ingredientsFilter)
                         .padding(.leading)
-                        .modifier(TextFieldClearButton(text: $viewModel.filter))
+                        .modifier(TextFieldClearButton(text: $viewModel.ingredientsFilter))
                         .frame(height: 28)
                 }
                 ScrollView(showsIndicators: false) {
@@ -181,6 +182,6 @@ struct IngredientsList: View {
 
 struct IngredientsList_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientsList()
+        IngredientsList(viewModel: ViewModel())
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Effect: Equatable, Codable, Hashable, Identifiable {
+struct Effect: Equatable, Codable, Hashable, Identifiable, FilterItem {
     static func == (lhs: Effect, rhs: Effect) -> Bool {
         lhs.id == rhs.id
     }

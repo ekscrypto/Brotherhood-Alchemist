@@ -18,7 +18,7 @@ class EffectsListViewModel: ObservableObject {
     
     @Published var state: State = .init()
     @Published var filter: String = "" {
-        didSet { state = Self.filterEffects(filter, sourcing: DefaultEffects.all, state: state) }
+        didSet { /*state = Self.filterEffects(filter, sourcing: DefaultEffects.all, state: state) */}
     }
     
     func effectDetails(_ effect: Effect) -> EffectDetails {
@@ -41,63 +41,18 @@ class EffectsListViewModel: ObservableObject {
     }
     
     func disableAllEffects() {
-        self.state = Self.disableAllEffects(state: state)
+//        self.state = Self.disableAllEffects(state: state)
     }
     
     func enableAllEffects() {
-        self.state = Self.enableAllEffects(sourcing: DefaultEffects.all, state: state)
+//        self.state = Self.enableAllEffects(sourcing: DefaultEffects.all, state: state)
     }
     
     private func onEffectHeaderTap(_ effect: Effect) {
-        self.state = Self.expandOrCollapse(effect, state: state)
+//        self.state = Self.expandOrCollapse(effect, state: state)
     }
     
     private func onEffectEnabled(_ effect: Effect, enabled: Bool) {
-        state = Self.toggle(effect: effect, enabled: enabled, state: state)
-    }
-    
-
-    // MARK: - State Manipulators
-    static func disableAllEffects(state: State) -> State {
-        var newState = state
-        newState.enabledEffects.removeAll()
-        return newState
-    }
-    
-    static func enableAllEffects(sourcing allEffects: [Effect], state: State) -> State {
-        var newState = state
-        newState.enabledEffects = Set(allEffects.map({ $0.id }))
-        return newState
-    }
-
-    static func expandOrCollapse(_ effect: Effect, state: State) -> State {
-        var newState = state
-        if state.expandedEffect == effect.id {
-            newState.expandedEffect = nil
-        } else {
-            newState.expandedEffect = effect.id
-        }
-        return newState
-    }
-    
-    static func filterEffects(_ filter: String, sourcing allEffects: [Effect], state: State) -> State {
-        var newState: State = state
-        let trimmedFilter: String = filter.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmedFilter.isEmpty {
-            newState.effects = allEffects
-        } else {
-            newState.effects = allEffects.filter({ (~$0.name).contains( trimmedFilter )})
-        }
-        return newState
-    }
-    
-    static func toggle(effect: Effect, enabled: Bool, state: State) -> State {
-        var newState = state
-        if enabled {
-            newState.enabledEffects.insert(effect.id)
-        } else {
-            newState.enabledEffects.remove(effect.id)
-        }
-        return newState
+//        state = Self.toggle(effect: effect, enabled: enabled, state: state)
     }
 }

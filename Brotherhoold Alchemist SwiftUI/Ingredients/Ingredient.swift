@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Ingredient: Equatable, Codable, Identifiable {
+struct Ingredient: Equatable, Codable, Identifiable, FilterItem {
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
         lhs.id == rhs.id
     }

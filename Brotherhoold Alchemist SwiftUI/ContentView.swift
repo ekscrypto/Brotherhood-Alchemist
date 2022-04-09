@@ -10,9 +10,13 @@ import SwiftUI
 
 struct ContentView: View {
     
+    let viewModel: ViewModel = .init()
+    
     var body: some View {
-//        EffectsList()
-        IngredientsList()
+        ZStack {
+            //        EffectsList()
+            IngredientsList(viewModel: viewModel)
+        }
     }
 }
 
