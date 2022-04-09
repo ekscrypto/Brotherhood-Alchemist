@@ -131,5 +131,13 @@ struct IngredientsList: View {
 struct IngredientsList_Previews: PreviewProvider {
     static var previews: some View {
         IngredientsList(viewModel: ViewModel())
+            .preferredColorScheme(.light)
+            .previewDisplayName("Light")
+            .previewDevice("iPhone 13 Pro")
+
+        IngredientsList(viewModel: ViewModel())
+            .preferredColorScheme(.dark)
+            .previewDisplayName("Dark")
+            .previewDevice("iPhone 13 Pro")
     }
 }

@@ -47,7 +47,6 @@
 		78B24E0027FFD0DA0053BD75 /* SelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */; };
 		78B24E0227FFD3690053BD75 /* IngredientEffectsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E0127FFD3690053BD75 /* IngredientEffectsAdapter.swift */; };
 		78B24E042800B91D0053BD75 /* BorderedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E032800B91D0053BD75 /* BorderedText.swift */; };
-		78B24E082800C6270053BD75 /* SelectionControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E072800C6270053BD75 /* SelectionControls.swift */; };
 		78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E092800D38A0053BD75 /* IngredientDetails.swift */; };
 		78B850D12789C74D003D1E4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D02789C74D003D1E4F /* SceneDelegate.swift */; };
 		78B850D42789C8BD003D1E4F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D32789C8BD003D1E4F /* RootView.swift */; };
@@ -112,7 +111,6 @@
 		78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionState.swift; sourceTree = "<group>"; };
 		78B24E0127FFD3690053BD75 /* IngredientEffectsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEffectsAdapter.swift; sourceTree = "<group>"; };
 		78B24E032800B91D0053BD75 /* BorderedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedText.swift; sourceTree = "<group>"; };
-		78B24E072800C6270053BD75 /* SelectionControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionControls.swift; sourceTree = "<group>"; };
 		78B24E092800D38A0053BD75 /* IngredientDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetails.swift; sourceTree = "<group>"; };
 		78B850D02789C74D003D1E4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		78B850D32789C8BD003D1E4F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 				78B24E032800B91D0053BD75 /* BorderedText.swift */,
 				A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */,
 				A9DF117B2801D0720039BE4C /* ResetModal.swift */,
-				78B24E072800C6270053BD75 /* SelectionControls.swift */,
 				A9DF11702801C8380039BE4C /* SelectionIndicatorCant.swift */,
 				A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */,
 				A9DF11742801C8A20039BE4C /* SelectionIndicatorMust.swift */,
@@ -502,7 +499,6 @@
 				78B24DEF27FE74700053BD75 /* DefaultEffects.swift in Sources */,
 				78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */,
 				78B24DF627FE90180053BD75 /* EffectDetails.swift in Sources */,
-				78B24E082800C6270053BD75 /* SelectionControls.swift in Sources */,
 				A9DF117C2801D0720039BE4C /* ResetModal.swift in Sources */,
 				78B24E0027FFD0DA0053BD75 /* SelectionState.swift in Sources */,
 				A9DF11732801C8750039BE4C /* SelectionIndicatorMay.swift in Sources */,

@@ -88,5 +88,19 @@ struct ResetModal_Previews: PreviewProvider {
                 get: { true },
                 set: { _ in /* ignored */ }
             ))
+        .previewDevice("iPhone 13 Pro")
+        .previewDisplayName("Light")
+        .preferredColorScheme(.light)
+
+        ResetModal(
+            viewModel: ViewModel(),
+            queryText: "Set all effects as:",
+            visibility: Binding(
+                get: { true },
+                set: { _ in /* ignored */ }
+            ))
+        .previewDevice("iPhone 13 Pro")
+        .previewDisplayName("Dark")
+        .preferredColorScheme(.dark)
     }
 }
