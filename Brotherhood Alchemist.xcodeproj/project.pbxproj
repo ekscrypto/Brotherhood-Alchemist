@@ -76,6 +76,7 @@
 		A9DF11902802567A0039BE4C /* SelectionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF118F2802567A0039BE4C /* SelectionIndicator.swift */; };
 		A9DF1192280273080039BE4C /* UpdateConcoctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1191280273080039BE4C /* UpdateConcoctions.swift */; };
 		A9DF1194280277B10039BE4C /* FindConcoctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1193280277B10039BE4C /* FindConcoctions.swift */; };
+		A9DF11972803128F0039BE4C /* RecipesListOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11962803128F0039BE4C /* RecipesListOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		A9DF118F2802567A0039BE4C /* SelectionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicator.swift; sourceTree = "<group>"; };
 		A9DF1191280273080039BE4C /* UpdateConcoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConcoctions.swift; sourceTree = "<group>"; };
 		A9DF1193280277B10039BE4C /* FindConcoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindConcoctions.swift; sourceTree = "<group>"; };
+		A9DF11962803128F0039BE4C /* RecipesListOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +355,7 @@
 			children = (
 				A9DF118B280247080039BE4C /* RecipesList.swift */,
 				A9DF118D280249610039BE4C /* RecipeDetails.swift */,
+				A9DF11962803128F0039BE4C /* RecipesListOptions.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				78B24E0227FFD3690053BD75 /* EffectsFilter.swift in Sources */,
 				A9DF1189280246300039BE4C /* EffectsValueCalculator.swift in Sources */,
 				78B24DED27FE74700053BD75 /* Effect.swift in Sources */,
+				A9DF11972803128F0039BE4C /* RecipesListOptions.swift in Sources */,
 				A9DF116B2801BEC20039BE4C /* StateTransitions.swift in Sources */,
 				A9DF11822801E1280039BE4C /* Tabs.swift in Sources */,
 				78B24DEB27FE74700053BD75 /* DefaultIngredients.swift in Sources */,

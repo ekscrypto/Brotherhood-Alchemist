@@ -15,25 +15,27 @@ struct RecipesList: View {
     let onSeekEffect: (Effect) -> Void
     let onSeekIngredient: (Ingredient) -> Void
     
-    enum SortBy {
-        case value
-        case ingredientsFewerFirst
-        case effectsMostFirst
+    @State var showOptions: Bool = false
+    
+    enum SortBy: String, CaseIterable {
+        case value =  "value ↓, ingredients ↑"
+        case ingredientsFewerFirst = "ingredients ↑, effects ↓"
+        case effectsMostFirst = "effects ↓, ingredients ↑"
     }
     @State var sortBy: SortBy = .value
     
-    enum IngredientsLimit {
-        case two
-        case three
-        case noPreference
+    enum IngredientsLimit: String, CaseIterable {
+        case two = "two ingredients only"
+        case three = "three ingredients only"
+        case noPreference = "no preference"
     }
     @State var ingredientLimit: IngredientsLimit = .noPreference
     
-    enum EffectsLimit {
-        case positive
-        case negative
-        case oneOrTheOther
-        case noPreference
+    enum EffectsLimit: String, CaseIterable {
+        case positive = "positive effects only"
+        case negative = "negative effects only"
+        case oneOrTheOther = "either, not both"
+        case noPreference = "no preference"
     }
     @State var effectsLimit: EffectsLimit = .noPreference
     
@@ -72,7 +74,7 @@ struct RecipesList: View {
             return effectsFilteredConcoctions
         }
     }
-
+    
     private var sortedConcoctions: [Concoction] {
         let concoctions = ingreditsLimitedConcoctions
         switch sortBy {
@@ -84,7 +86,7 @@ struct RecipesList: View {
                 
                 return $0.ingredients.count < $1.ingredients.count
             })
-
+            
         case .ingredientsFewerFirst:
             return concoctions.sorted(by: {
                 if $0.ingredients.count != $1.ingredients.count {
@@ -113,80 +115,69 @@ struct RecipesList: View {
                 })
         }
     }
-
+    
+    // MARK: -
     var body: some View {
-        VStack {
-            header
-            
-            if viewModel.state.updatingConcoctions {
-                VStack {
-                    Text("Updating…")
-                        .padding()
-                    Spacer()
-                }
-            } else {
+        ZStack {
+            VStack {
+                header
                 
-                if viewModel.state.selectedConcoctions.count == 0 {
+                if viewModel.state.updatingConcoctions {
                     VStack {
-                        Text("No match :(")
+                        Text("Updating…")
                             .padding()
                         Spacer()
                     }
                 } else {
-                    listOfRecipes
+                    
+                    if viewModel.state.selectedConcoctions.count == 0 {
+                        VStack {
+                            Text("No match :(")
+                                .padding()
+                            Spacer()
+                        }
+                    } else {
+                        listOfRecipes
+                    }
                 }
+            }
+            .blur(radius: showOptions ? 4 : 0)
+            .allowsHitTesting(!showOptions)
+            
+            if showOptions {
+                RecipesListOptions(
+                    effectsLimit: $effectsLimit,
+                    ingredientsLimit: $ingredientLimit,
+                    sortBy: $sortBy,
+                    showOptions: $showOptions)
             }
         }
     }
     
-    private var effectsLimitText: String {
-        switch effectsLimit {
-        case .positive:
-            return "positive only"
-        case .negative:
-            return "negative only"
-        case .oneOrTheOther:
-            return "either, not both"
-        case .noPreference:
-            return "no preference"
-        }
-    }
+    // MARK: -
     
-    private var ingredientsLimitText: String {
-        switch ingredientLimit {
-        case .two:
-            return "2 ingredients only"
-        case .three:
-            return "3 ingredients only"
-        case .noPreference:
-            return "no preference"
-        }
-    }
-    
-    private var sortOptionText: String {
-        switch sortBy {
-        case .value:
-            return "Value ↓, Ingredients ↑"
-        case .ingredientsFewerFirst:
-            return "Ingredients ↑, Effects ↓"
-        case .effectsMostFirst:
-            return "Effects ↓, Ingredients ↑"
-        }
+    private func concoctionInfo(_ concoction: Concoction) -> some View {
+        RecipeDetails(
+            concoction: concoction,
+            effects: viewModel.effects(for: concoction),
+            ingredients: viewModel.ingredients(for: concoction),
+            onSeekEffect: onSeekEffect,
+            onSeekIngredient: onSeekIngredient)
     }
     
     private var header: some View {
         HStack {
             VStack(alignment: .leading, spacing: 1.0) {
-                Text("Sort options ↑↓: \(sortOptionText)")
-                Text("Effects filter ⧩: \(effectsLimitText)")
-                Text("Ingredients filter ⧩: \(ingredientsLimitText)")
+                Text("Sort options ↑↓: \(sortBy.rawValue)")
+                Text("Effects filter ⧩: \(effectsLimit.rawValue)")
+                Text("Ingredients filter ⧩: \(ingredientLimit.rawValue)")
             }
             .font(Font.system(.caption))
             .foregroundColor(Color("itemForeground"))
             .padding([.leading, .trailing])
             
             Button(action: {
-                print("edit options")
+                showOptions = true
             }) {
                 Image(systemName: "square.and.pencil")
             }
@@ -206,15 +197,6 @@ struct RecipesList: View {
                     .frame(height: listBottomPadding)
             }
         }
-    }
-    
-    private func concoctionInfo(_ concoction: Concoction) -> some View {
-        RecipeDetails(
-            concoction: concoction,
-            effects: viewModel.effects(for: concoction),
-            ingredients: viewModel.ingredients(for: concoction),
-            onSeekEffect: onSeekEffect,
-            onSeekIngredient: onSeekIngredient)
     }
 }
 
