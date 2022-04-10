@@ -84,9 +84,16 @@ class ConcoctionFinder {
         }
         
         return Concoction(
-            effects: ingredients1And2CommonEffects,
-            ingredients: [ingredient1.id, ingredient2.id],
+            effects: ingredients1And2CommonEffects.map { effect(from: effects, id: $0) },
+            ingredients: [ingredient1, ingredient2],
             estimatedValue: valueCalculator(ingredients1And2CommonEffects, effects))
+    }
+    
+    static func effect(from effects: [Effect], id effectId: Effect.Id) -> Effect {
+        for effect in effects where effect.id == effectId {
+            return effect
+        }
+        fatalError()
     }
     
     static func mix(
@@ -122,8 +129,8 @@ class ConcoctionFinder {
         
         let commonEffects: [Effect.Id] = ingredients1And2CommonEffects + ingredients1And3CommonEffects + ingredients2And3CommonEffects
         return Concoction(
-            effects: commonEffects,
-            ingredients: [ingredient1.id, ingredient2.id, ingredient3.id],
+            effects: commonEffects.map({ effect(from: effects, id: $0) }),
+            ingredients: [ingredient1, ingredient2, ingredient3],
             estimatedValue: valueCalculator(commonEffects, effects))
     }
 

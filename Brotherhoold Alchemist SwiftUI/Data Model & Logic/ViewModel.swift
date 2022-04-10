@@ -62,7 +62,7 @@ class ViewModel: ObservableObject {
     
     func effects(for concoction: Concoction) -> [Effect: SelectionState] {
         var concoctionEffects: [Effect: SelectionState] = [:]
-        for effect in state.effects.filter(byId: concoction.effects) {
+        for effect in concoction.effects {
             concoctionEffects[effect] = state.effectsSelection[effect.id] ?? .mayHave
         }
         return concoctionEffects
@@ -74,7 +74,7 @@ class ViewModel: ObservableObject {
     
     func ingredients(for concoction: Concoction) -> [Ingredient: SelectionState] {
         var concoctionIngredients: [Ingredient: SelectionState] = [:]
-        for ingredient in state.ingredients.filter(byId: concoction.ingredients) {
+        for ingredient in concoction.ingredients {
             concoctionIngredients[ingredient] = state.ingredientsSelection[ingredient.id] ?? .mayHave
         }
         return concoctionIngredients

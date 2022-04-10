@@ -137,9 +137,17 @@ struct RecipeDetails_Previews: PreviewProvider {
         RecipeDetails(
             concoction: Concoction(
                 effects: [
-                    8, 9, 11, 12, 13
+                    PreviewIngredients.fear,
+                    PreviewIngredients.paralysis,
+                    PreviewIngredients.resistMagic,
+                    PreviewIngredients.fortifyCarryWeight,
+                    PreviewIngredients.restoreStamina
                 ],
-                ingredients: [1,2,3],
+                ingredients: [
+                    PreviewIngredients.gleamblossom,
+                    PreviewIngredients.netchJelly,
+                    PreviewIngredients.wispWrappings
+                ],
                 estimatedValue: 689),
             effects: [
                 PreviewIngredients.fear: .mayHave,

@@ -37,7 +37,7 @@ struct RecipesList: View {
         case oneOrTheOther = "either, not both"
         case noPreference = "no preference"
     }
-    @State var effectsLimit: EffectsLimit = .noPreference
+    @State var effectsLimit: EffectsLimit = .oneOrTheOther
     
     private var effectsFilteredConcoctions: [Concoction] {
         if effectsLimit == .noPreference {
@@ -46,7 +46,7 @@ struct RecipesList: View {
         
         return viewModel.state.selectedConcoctions
             .filter({ concoction in
-                let effects = viewModel.effects(for: concoction).keys
+                let effects = concoction.effects
                 switch effectsLimit {
                 case .positive:
                     return effects.allSatisfy({ $0.isPositive })

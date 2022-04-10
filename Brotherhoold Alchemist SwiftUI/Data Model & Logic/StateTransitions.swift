@@ -101,10 +101,10 @@ class StateTransitions {
         for concoction in state.concoctions {
             if isCancelled() { return state }
             
-            guard mustHaveIngredients.allSatisfy({ concoction.ingredients.contains($0) }),
-                  mustHaveEffects.allSatisfy({ concoction.effects.contains($0) }),
-                  cantHaveIngredients.allSatisfy({ concoction.ingredients.contains($0) == false }),
-                  cantHaveEffects.allSatisfy({ concoction.effects.contains($0) == false })
+            guard mustHaveIngredients.allSatisfy({ ingredientId in concoction.ingredients.contains(where: { $0.id == ingredientId }) }),
+                  mustHaveEffects.allSatisfy({ effectId in concoction.effects.contains(where: { $0.id == effectId}) }),
+                  cantHaveIngredients.allSatisfy({ ingredientId in concoction.ingredients.contains(where: { $0.id == ingredientId}) == false }),
+                  cantHaveEffects.allSatisfy({ effectId in concoction.effects.contains(where: { $0.id == effectId}) == false })
             else {
                 continue
             }

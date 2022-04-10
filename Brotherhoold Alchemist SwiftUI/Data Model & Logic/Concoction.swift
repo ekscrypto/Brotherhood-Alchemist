@@ -10,7 +10,7 @@ import UIKit
 
 struct Concoction: Identifiable {
     let id: UUID = .init()
-    let effects: [Effect.Id]
-    let ingredients: [Ingredient.Id]
+    let effects: [Effect]
+    let ingredients: [Ingredient]
     let estimatedValue: UInt
 }
