@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct RecipesListOptions: View {
+    let listBottomPadding: CGFloat
     @Binding var effectsLimit: RecipesList.EffectsLimit
     @Binding var ingredientsLimit: RecipesList.IngredientsLimit
     @Binding var sortBy: RecipesList.SortBy
@@ -106,16 +107,24 @@ struct RecipesListOptions: View {
                             }
                         }
                     }
-                    Spacer()
-                }
-                Button(action: {
-                    showOptions = false
-                }) {
-                    Text("Close")
+                    GroupBox("All set?") {
+                        Button(action: {
+                            showOptions = false
+                        }) {
+                            Text("Close")
+                                .frame(maxWidth: .infinity)
+                        }
+                    }
                 }
             }
             .padding()
             .frame(maxWidth: 300)
+            
+            Spacer()
+            
+            Color.clear
+                .frame(height: listBottomPadding)
+
         }
     }
 }
@@ -123,6 +132,7 @@ struct RecipesListOptions: View {
 struct RecipesListOptions_Previews: PreviewProvider {
     static var previews: some View {
         RecipesListOptions(
+            listBottomPadding: 0,
             effectsLimit: Binding(
                 get: { .positive },
                 set: { _ in /* ignored */ }),

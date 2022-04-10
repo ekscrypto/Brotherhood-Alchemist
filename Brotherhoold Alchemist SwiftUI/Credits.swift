@@ -38,6 +38,13 @@ struct Credits: View {
             
             Text("Or reach out via dave@encoded.life")
                 .font(Font.system(.subheadline))
+            
+            Text("This app does not contain ads.  I do this out of love for Skyrim and software development in general.  I hope you enjoy using this app and don't die too often in-game.\n\nThis app does not record your activity and I only get anonymous analytics Apple provides at your discretion.\n\nDeveloped entirely using Swift & SwiftUI.")
+                .lineLimit(.max)
+                .font(Font.system(.caption))
+                .foregroundColor(Color("selectionText"))
+                .padding(.top, 30.0)
+                .padding([.leading, .trailing])
         }
         .padding(.top, 40.0)
         .padding(.bottom, 20.0)

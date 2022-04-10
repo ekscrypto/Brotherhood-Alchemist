@@ -124,8 +124,12 @@ struct RecipesList: View {
                 
                 if viewModel.state.updatingConcoctions {
                     VStack {
-                        Text("Updating…")
-                            .padding()
+                        Text("Brewing…")
+                            .padding(.top, 80)
+                            .padding(.bottom)
+                        Text("Attempting not to blow up my fingers")
+                            .font(Font.system(.caption))
+                            .foregroundColor(Color("selectionText"))
                         Spacer()
                     }
                 } else {
@@ -146,6 +150,7 @@ struct RecipesList: View {
             
             if showOptions {
                 RecipesListOptions(
+                    listBottomPadding: listBottomPadding,
                     effectsLimit: $effectsLimit,
                     ingredientsLimit: $ingredientLimit,
                     sortBy: $sortBy,

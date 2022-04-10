@@ -72,7 +72,7 @@ struct RecipeDetails: View {
                 summaryOfEffect(effect)
             }
             .foregroundColor(Color(UIColor.systemBlue))
-            .frame(height: 28)
+            .frame(height: 32)
             .padding([.leading, .trailing])
             .background(
                 RoundedRectangle(cornerRadius: 6.0)
@@ -89,6 +89,7 @@ struct RecipeDetails: View {
             SelectionIndicator(state: state)
                 .saturation(0.0)
             SelectionText(state: state)
+                .scaleEffect(0.8)
                 .frame(width: 40)
             Text(~effect.name)
                 .frame(maxWidth: .infinity,
@@ -105,7 +106,7 @@ struct RecipeDetails: View {
                 summaryOfIngredient(ingredient)
             }
             .foregroundColor(Color(UIColor.systemBlue))
-            .frame(height: 28)
+            .frame(height: 32)
             .padding([.leading, .trailing])
             .background(
                 RoundedRectangle(cornerRadius: 6.0)
@@ -122,6 +123,7 @@ struct RecipeDetails: View {
             SelectionIndicator(state: state)
                 .saturation(0.0)
             SelectionText(state: state)
+                .scaleEffect(0.8)
                 .frame(width: 40)
             Text(~ingredient.name)
                 .frame(maxWidth: .infinity,
