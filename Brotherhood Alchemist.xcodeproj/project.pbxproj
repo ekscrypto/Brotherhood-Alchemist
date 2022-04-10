@@ -77,6 +77,7 @@
 		A9DF1192280273080039BE4C /* UpdateConcoctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1191280273080039BE4C /* UpdateConcoctions.swift */; };
 		A9DF1194280277B10039BE4C /* FindConcoctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1193280277B10039BE4C /* FindConcoctions.swift */; };
 		A9DF11972803128F0039BE4C /* RecipesListOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11962803128F0039BE4C /* RecipesListOptions.swift */; };
+		A9DF119928031C830039BE4C /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF119828031C830039BE4C /* Credits.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,8 @@
 		A9DF1191280273080039BE4C /* UpdateConcoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConcoctions.swift; sourceTree = "<group>"; };
 		A9DF1193280277B10039BE4C /* FindConcoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindConcoctions.swift; sourceTree = "<group>"; };
 		A9DF11962803128F0039BE4C /* RecipesListOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListOptions.swift; sourceTree = "<group>"; };
+		A9DF119828031C830039BE4C /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		A9DF119A2803209F0039BE4C /* Brotherhoold Alchemist SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Brotherhoold Alchemist SwiftUI.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,10 +209,12 @@
 		78B24DDD27FE73650053BD75 /* Brotherhoold Alchemist SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				A9DF119A2803209F0039BE4C /* Brotherhoold Alchemist SwiftUI.entitlements */,
 				78B24DE227FE73660053BD75 /* Assets.xcassets */,
 				78B24DDE27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift */,
 				78B24DE027FE73650053BD75 /* ContentView.swift */,
 				A9DF11812801E1280039BE4C /* Tabs.swift */,
+				A9DF119828031C830039BE4C /* Credits.swift */,
 				A9DF11782801CB950039BE4C /* Data Model & Logic */,
 				A9DF11642801B5AA0039BE4C /* Effects */,
 				A9DF11632801B5900039BE4C /* Ingredients */,
@@ -556,6 +561,7 @@
 				A9DF1184280203E10039BE4C /* ListHeader.swift in Sources */,
 				A9DF118E280249610039BE4C /* RecipeDetails.swift in Sources */,
 				A9DF11902802567A0039BE4C /* SelectionIndicator.swift in Sources */,
+				A9DF119928031C830039BE4C /* Credits.swift in Sources */,
 				A9DF117E2801DD430039BE4C /* TabsOriginCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +655,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Brotherhoold Alchemist SwiftUI/Brotherhoold Alchemist SwiftUI.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 202204062119;
 				DEVELOPMENT_TEAM = WKB9M744MQ;
@@ -659,7 +666,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -669,6 +676,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = Alchemist;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -682,6 +690,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Brotherhoold Alchemist SwiftUI/Brotherhoold Alchemist SwiftUI.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 202204062119;
 				DEVELOPMENT_TEAM = WKB9M744MQ;
@@ -692,7 +701,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -701,6 +710,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = Alchemist;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

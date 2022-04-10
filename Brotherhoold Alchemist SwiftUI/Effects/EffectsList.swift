@@ -77,6 +77,10 @@ struct EffectsList: View {
                 })
             }
             
+            if filter.isEmpty {
+                Credits()
+            }
+            
             Color.clear
                 .frame(height: listBottomPadding)
         }
