@@ -83,10 +83,6 @@ struct IngredientsList: View {
                     }
                 }
                 
-                if filter.isEmpty {
-                    Credits()
-                }
-                
                 Color.clear
                     .frame(height: listBottomPadding)
             }

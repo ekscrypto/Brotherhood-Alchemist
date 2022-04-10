@@ -29,7 +29,49 @@ struct ContentView: View {
         listHeight - tabbarOrigin
     }
     
+    private var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
     var body: some View {
+        if isPad {
+            iPadLayout
+        } else {
+            iPhoneLayout
+        }
+    }
+    
+    private var iPadLayout: some View {
+        ZStack(alignment: .bottom) {
+            HStack {
+                IngredientsList(
+                    viewModel: viewModel,
+                    listBottomPadding: 0,
+                    onSeekEffect: { onSeekEffect($0) },
+                    seekedIngredient: seekedIngredient)
+                .id("IngredientList")
+                .overlay(HeightCoordinator(via: $listHeight))
+                
+                RecipesList(
+                    viewModel: viewModel,
+                    listBottomPadding: 0,
+                    onSeekEffect: onSeekEffect,
+                    onSeekIngredient: onSeekIngredient)
+                .id("Recipes")
+                .frame(minWidth: 300, idealWidth: max(360, viewWidth * 0.4), maxWidth: 500.0)
+
+                EffectsList(
+                    viewModel: viewModel,
+                    listBottomPadding: 0,
+                    onSeekIngredient: { onSeekIngredient($0) },
+                    seekedEffect: seekedEffect)
+                .id("EffectsList")
+            }
+        }
+        .overlay(MinWidthCoordinator(via: $viewWidth))
+    }
+
+    private var iPhoneLayout: some View {
         ZStack(alignment: .bottom) {
             IngredientsList(
                 viewModel: viewModel,
@@ -88,6 +130,9 @@ struct ContentView: View {
         selectedTab = .effects
         DispatchQueue.main.async {
             seekedEffect = nil
+            if isPad {
+                selectedTab = .recipes
+            }
         }
     }
     
@@ -96,6 +141,9 @@ struct ContentView: View {
         selectedTab = .ingredients
         DispatchQueue.main.async {
             seekedIngredient = nil
+            if isPad {
+                selectedTab = .recipes
+            }
         }
     }
 }
@@ -103,5 +151,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDevice("iPhone 13 Pro")
+        
+        ContentView()
+            .previewDevice("iPad Air (5th generation)")
     }
 }
