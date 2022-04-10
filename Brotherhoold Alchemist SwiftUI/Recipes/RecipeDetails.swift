@@ -129,72 +129,101 @@ struct RecipeDetails: View {
     
 }
 
-//struct RecipeDetails_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RecipeDetails(
-//            concoction: Concoction(
-//                effects: [
-//                    DefaultEffectId.fear.rawValue,
-//                    DefaultEffectId.paralysis.rawValue,
-//                    DefaultEffectId.fortifyCarryWeight.rawValue,
-//                    DefaultEffectId.resistMagic.rawValue,
-//                    DefaultEffectId.restoreStamina.rawValue
-//                ],
-//                ingredients: [1,2,3],
-//                estimatedValue: 689),
-//            effects: DefaultEffects.all.filter(
-//                byId: [
-//                    DefaultEffectId.fear.rawValue,
-//                    DefaultEffectId.paralysis.rawValue,
-//                    DefaultEffectId.fortifyCarryWeight.rawValue,
-//                    DefaultEffectId.resistMagic.rawValue,
-//                    DefaultEffectId.restoreStamina.rawValue
-//                ]),
-//            ingredients: [
-//                PreviewIngredients.gleamblossom,
-//                PreviewIngredients.netchJelly,
-//                PreviewIngredients.wispWrappings
-//            ],
-//            onSeekEffect: { _ in /* ignored */ },
-//            onSeekIngredient: { _ in /* ignored */ })
-//    }
-//
-//}
-//
-//fileprivate class PreviewIngredients {
-//    static var gleamblossom: Ingredient {
-//        Ingredient(
-//            id: 1,
-//            name: "Gleamblossom",
-//            effects: [
-//                DefaultEffectId.fear.rawValue,
-//                DefaultEffectId.paralysis.rawValue,
-//                DefaultEffectId.regenerateHealth.rawValue,
-//                DefaultEffectId.resistMagic.rawValue
-//                ])!
-//    }
-//
-//    static var netchJelly: Ingredient {
-//        Ingredient(
-//            id: 2,
-//            name: "Netch Jelly",
-//            effects: [
-//                DefaultEffectId.fear.rawValue,
-//                DefaultEffectId.fortifyCarryWeight.rawValue,
-//                DefaultEffectId.paralysis.rawValue,
-//                DefaultEffectId.restoreStamina.rawValue
-//            ])!
-//    }
-//
-//    static var wispWrappings: Ingredient {
-//        Ingredient(
-//            id: 3,
-//            name: "Wisp Wrappings",
-//            effects: [
-//                DefaultEffectId.fortifyCarryWeight.rawValue,
-//                DefaultEffectId.fortifyDestruction.rawValue,
-//                DefaultEffectId.resistMagic.rawValue,
-//                DefaultEffectId.restoreStamina.rawValue
-//            ])!
-//    }
-//}
+struct RecipeDetails_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipeDetails(
+            concoction: Concoction(
+                effects: [
+                    8, 9, 11, 12, 13
+                ],
+                ingredients: [1,2,3],
+                estimatedValue: 689),
+            effects: [
+                PreviewIngredients.fear: .mayHave,
+                PreviewIngredients.paralysis: .mustHave,
+                PreviewIngredients.resistMagic: .mayHave,
+                PreviewIngredients.fortifyCarryWeight: .mayHave,
+                PreviewIngredients.restoreStamina: .mayHave
+            ],
+            ingredients: [
+                PreviewIngredients.gleamblossom: .mayHave,
+                PreviewIngredients.netchJelly: .mustHave,
+                PreviewIngredients.wispWrappings: .mayHave
+            ],
+            onSeekEffect: { _ in /* ignored */ },
+            onSeekIngredient: { _ in /* ignored */ })
+    }
+
+}
+
+fileprivate class PreviewIngredients {
+    static var fear: Effect {
+        Effect(
+            id: 8,
+            name: "Fear",
+            value: 28,
+            isPositive: false)
+    }
+    static var paralysis: Effect {
+        Effect(
+            id: 9,
+            name: "Paralysis",
+            value: 120,
+            isPositive: false)
+    }
+    static var regenerateHealth: Effect {
+        Effect(
+            id: 10,
+            name: "Regenerate Health",
+            value: 40,
+            isPositive: true)
+    }
+    static var resistMagic: Effect {
+        Effect(
+            id: 11,
+            name: "Resist Magic",
+            value: 20,
+            isPositive: true)
+    }
+    static var fortifyCarryWeight: Effect {
+        Effect(
+            id: 12,
+            name: "Fortify Carry Weight",
+            value: 200,
+            isPositive: true)
+    }
+    static var restoreStamina: Effect {
+        Effect(
+            id: 13,
+            name: "Restore Stamina",
+            value: 23,
+            isPositive: true)
+    }
+    static var fortifyDestruction: Effect {
+        Effect(
+            id: 14,
+            name: "Fortify Destruction",
+            value: 45,
+            isPositive: true)
+    }
+    static var gleamblossom: Ingredient {
+        Ingredient(
+            id: 1,
+            name: "Gleamblossom",
+            effects: [8, 9, 10, 11])!
+    }
+
+    static var netchJelly: Ingredient {
+        Ingredient(
+            id: 2,
+            name: "Netch Jelly",
+            effects: [8, 12, 9, 13])!
+    }
+
+    static var wispWrappings: Ingredient {
+        Ingredient(
+            id: 3,
+            name: "Wisp Wrappings",
+            effects: [12, 14, 11, 13])!
+    }
+}
