@@ -36,8 +36,8 @@ struct Tabs: View {
         .background(
             RoundedRectangle(cornerRadius: .infinity)
                 .foregroundColor(Color(UIColor.systemBackground))
+                .shadow(color: shadowColor, radius: 12.0)
         )
-        .shadow(color: shadowColor, radius: 12.0)
     }
 
     private func selectTab(_ tab: Tab) {

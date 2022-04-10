@@ -42,8 +42,11 @@ struct RecipeDetails: View {
                 Text("Estimated value:")
                     .font(Font.system(.caption))
                     .foregroundColor(Color("selectionText"))
-                Text("$\(concoction.estimatedValue)")
-                    .font(Font.system(.title))
+                Text("\(concoction.estimatedValue)")
+                    .font(Font.system(.headline))
+                Text("septims")
+                    .font(Font.system(.caption))
+                    .foregroundColor(Color("selectionText"))
             }
             .padding([.leading, .trailing])
             .padding(.bottom, 3.0)

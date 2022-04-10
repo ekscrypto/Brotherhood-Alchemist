@@ -91,5 +91,13 @@ struct EffectsList_Previews: PreviewProvider {
             listBottomPadding: 0,
             onSeekIngredient: { _ in /* ignored */ },
             seekedEffect: nil)
+        .preferredColorScheme(.light)
+
+        EffectsList(
+            viewModel: ViewModel(),
+            listBottomPadding: 0,
+            onSeekIngredient: { _ in /* ignored */ },
+            seekedEffect: nil)
+        .preferredColorScheme(.dark)
     }
 }

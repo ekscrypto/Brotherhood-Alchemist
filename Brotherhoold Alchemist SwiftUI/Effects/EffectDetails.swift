@@ -50,30 +50,34 @@ struct EffectDetails: View {
         VStack {
             Text(positiveOrNegativeText)
                 .font(Font.system(.caption))
+            Text("Base value: \(effect.value.rawValue) septims")
+                .font(Font.system(.caption))
                 .padding(.bottom)
 
             if ingredients.count == 0 {
-                
                 Text("This effect is not part of any ingredient!")
                     .foregroundColor(Color(UIColor.systemRed))
-                
             } else {
-                
-                Text("Found in \(ingredients.count) ingredient(s):")
-                    .font(Font.system(.caption))
-                    .foregroundColor(Color("selectionText"))
-
-                ForEach(ingredients) { ingredient in
-                    Button(action: {
-                        onSeekIngredient(ingredient)
-                    }) {
-                        Text(~ingredient.name)
-                    }
-                }
-                
+                ingredientsList
             }
         }
         .padding(.bottom)
+    }
+    
+    private var ingredientsList: some View {
+        VStack {
+            Text("Found in \(ingredients.count) ingredient(s):")
+                .font(Font.system(.caption))
+                .foregroundColor(Color("selectionText"))
+            
+            ForEach(ingredients) { ingredient in
+                Button(action: {
+                    onSeekIngredient(ingredient)
+                }) {
+                    Text(~ingredient.name)
+                }
+            }
+        }
     }
     
     private func rotateSelection() {
@@ -98,5 +102,57 @@ struct EffectDetails_Previews: PreviewProvider {
             selectionState: Binding(
                 get: { .mayHave },
                 set: { _ in /* ignored */ }))
+        .previewLayout(.sizeThatFits)
+
+        EffectDetails(
+            effect: DefaultEffects.all.first!,
+            ingredients: DefaultIngredients.all.with(effect: DefaultEffects.all.first!),
+            expanded: true,
+            onSeekIngredient: { _ in /* ignored */ },
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* ignored */ }))
+        .previewLayout(.sizeThatFits)
+
+        EffectDetails(
+            effect: DefaultEffects.all.first!,
+            ingredients: DefaultIngredients.all.with(effect: DefaultEffects.all.first!),
+            expanded: true,
+            onSeekIngredient: { _ in /* ignored */ },
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* ignored */ }))
+        .preferredColorScheme(.dark)
+        .previewLayout(.sizeThatFits)
+
+        EffectDetails(
+            effect: Self.emptyEffect,
+            ingredients: [],
+            expanded: true,
+            onSeekIngredient: { _ in /* ignored */ },
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* ignored */ }))
+        .preferredColorScheme(.light)
+        .previewLayout(.sizeThatFits)
+
+        EffectDetails(
+            effect: Self.emptyEffect,
+            ingredients: [],
+            expanded: true,
+            onSeekIngredient: { _ in /* ignored */ },
+            selectionState: Binding(
+                get: { .mayHave },
+                set: { _ in /* ignored */ }))
+        .preferredColorScheme(.dark)
+        .previewLayout(.sizeThatFits)
+    }
+    
+    static var emptyEffect: Effect {
+        Effect(
+            id: 29,
+            name: "Empty Effect",
+            value: 9,
+            isPositive: false)
     }
 }

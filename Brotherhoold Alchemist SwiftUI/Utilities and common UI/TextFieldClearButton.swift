@@ -23,6 +23,7 @@ struct TextFieldClearButton: ViewModifier {
                             .foregroundColor(Color(UIColor.opaqueSeparator))
                     }
                 )
+                .padding(.trailing)
             }
         }
     }
