@@ -58,4 +58,59 @@ class StateTransitions {
         newState.ingredientsSelection[ingredientId] = selectionState
         return newState
     }
+    
+    static func updateSelectedConcoctions(
+        _ state: ModelState,
+        isCancelled: () -> Bool
+    ) -> ModelState {
+        var newState = state
+        
+        var mustHaveIngredients: [Ingredient.Id] = []
+        var cantHaveIngredients: [Ingredient.Id] = []
+        
+        for keyValuePair in state.ingredientsSelection {
+            switch keyValuePair.value {
+            case .cantHave:
+                cantHaveIngredients.append(keyValuePair.key)
+            case .mayHave:
+                continue
+            case .mustHave:
+                mustHaveIngredients.append(keyValuePair.key)
+            }
+        }
+        
+        if isCancelled() { return state }
+        
+        var mustHaveEffects: [Effect.Id] = []
+        var cantHaveEffects: [Effect.Id] = []
+        
+        for keyValuePair in state.effectsSelection {
+            switch keyValuePair.value {
+            case .cantHave:
+                cantHaveEffects.append(keyValuePair.key)
+            case .mayHave:
+                continue
+            case .mustHave:
+                mustHaveEffects.append(keyValuePair.key)
+            }
+        }
+        
+        if isCancelled() { return state }
+        
+        var matchingConcoctions: [Concoction] = []
+        for concoction in state.concoctions {
+            if isCancelled() { return state }
+            
+            guard mustHaveIngredients.allSatisfy({ concoction.ingredients.contains($0) }),
+                  mustHaveEffects.allSatisfy({ concoction.effects.contains($0) }),
+                  cantHaveIngredients.allSatisfy({ concoction.ingredients.contains($0) == false }),
+                  cantHaveEffects.allSatisfy({ concoction.effects.contains($0) == false })
+            else {
+                continue
+            }
+            matchingConcoctions.append(concoction)
+        }
+        newState.selectedConcoctions = matchingConcoctions
+        return newState
+    }
 }

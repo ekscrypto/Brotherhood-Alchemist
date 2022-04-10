@@ -20,6 +20,10 @@ extension Array where Element == Effect {
         }
         return self.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
     }
+    
+    func filter(byId effectIds: [Effect.Id]) -> [Effect] {
+        self.filter({ effectIds.contains($0.id) })
+    }
 
     func of(ingredient: Ingredient) -> [Effect] {
         self.filter({ ingredient.effects.contains($0.id) })

@@ -20,14 +20,9 @@
 		7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F41F83594600287840 /* MatchingRecipeTableViewCell.swift */; };
 		7866B1F71F83594600287840 /* MatchingRecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7866B1F51F83594600287840 /* MatchingRecipeTableViewCell.xib */; };
 		7866B1F91F835BD800287840 /* RecipeIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7866B1F81F835BD800287840 /* RecipeIngredientView.swift */; };
-		787334E827DE2C90009120C5 /* Concoction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08B1F833B0000B07C92 /* Concoction.swift */; };
 		787334EA27DE445F009120C5 /* GrimoireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334E927DE445F009120C5 /* GrimoireTests.swift */; };
 		787334EC27DE7758009120C5 /* ConcoctionFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334EB27DE7758009120C5 /* ConcoctionFilters.swift */; };
 		787334ED27DE77A9009120C5 /* ConcoctionFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334EB27DE7758009120C5 /* ConcoctionFilters.swift */; };
-		787334EF27DE7A24009120C5 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334EE27DE7A24009120C5 /* ConcoctionFinder.swift */; };
-		787334F027DE7A24009120C5 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334EE27DE7A24009120C5 /* ConcoctionFinder.swift */; };
-		787334F227DE7AD2009120C5 /* EffectsValueCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F127DE7AD2009120C5 /* EffectsValueCalculator.swift */; };
-		787334F327DE7AD2009120C5 /* EffectsValueCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F127DE7AD2009120C5 /* EffectsValueCalculator.swift */; };
 		787334F527DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F427DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift */; };
 		787334F727DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F627DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift */; };
 		787334F927DEC8F7009120C5 /* ConcoctionFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F827DEC8F7009120C5 /* ConcoctionFinderTests.swift */; };
@@ -49,7 +44,6 @@
 		78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B24E092800D38A0053BD75 /* IngredientDetails.swift */; };
 		78B850D12789C74D003D1E4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D02789C74D003D1E4F /* SceneDelegate.swift */; };
 		78B850D42789C8BD003D1E4F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B850D32789C8BD003D1E4F /* RootView.swift */; };
-		78E8F08C1F833B0000B07C92 /* Concoction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08B1F833B0000B07C92 /* Concoction.swift */; };
 		78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08D1F833BC000B07C92 /* ConcoctionGenerator.swift */; };
 		78EEE24D1F81C9230036FAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24C1F81C9230036FAA2 /* AppDelegate.swift */; };
 		78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEE24E1F81C9230036FAA2 /* RootViewController.swift */; };
@@ -74,6 +68,14 @@
 		A9DF11822801E1280039BE4C /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11812801E1280039BE4C /* Tabs.swift */; };
 		A9DF1184280203E10039BE4C /* ListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1183280203E10039BE4C /* ListHeader.swift */; };
 		A9DF1186280206570039BE4C /* FilterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1185280206570039BE4C /* FilterControl.swift */; };
+		A9DF11872802449D0039BE4C /* Concoction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8F08B1F833B0000B07C92 /* Concoction.swift */; };
+		A9DF1188280244A30039BE4C /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334EE27DE7A24009120C5 /* ConcoctionFinder.swift */; };
+		A9DF1189280246300039BE4C /* EffectsValueCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787334F127DE7AD2009120C5 /* EffectsValueCalculator.swift */; };
+		A9DF118C280247080039BE4C /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF118B280247080039BE4C /* RecipesList.swift */; };
+		A9DF118E280249610039BE4C /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF118D280249610039BE4C /* RecipeDetails.swift */; };
+		A9DF11902802567A0039BE4C /* SelectionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF118F2802567A0039BE4C /* SelectionIndicator.swift */; };
+		A9DF1192280273080039BE4C /* UpdateConcoctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1191280273080039BE4C /* UpdateConcoctions.swift */; };
+		A9DF1194280277B10039BE4C /* FindConcoctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF1193280277B10039BE4C /* FindConcoctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +145,11 @@
 		A9DF11812801E1280039BE4C /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		A9DF1183280203E10039BE4C /* ListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeader.swift; sourceTree = "<group>"; };
 		A9DF1185280206570039BE4C /* FilterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterControl.swift; sourceTree = "<group>"; };
+		A9DF118B280247080039BE4C /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
+		A9DF118D280249610039BE4C /* RecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
+		A9DF118F2802567A0039BE4C /* SelectionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicator.swift; sourceTree = "<group>"; };
+		A9DF1191280273080039BE4C /* UpdateConcoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConcoctions.swift; sourceTree = "<group>"; };
+		A9DF1193280277B10039BE4C /* FindConcoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindConcoctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,10 +180,7 @@
 		780837BB1F8200DF00357BF9 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				78E8F08B1F833B0000B07C92 /* Concoction.swift */,
 				787334EB27DE7758009120C5 /* ConcoctionFilters.swift */,
-				787334EE27DE7A24009120C5 /* ConcoctionFinder.swift */,
-				787334F127DE7AD2009120C5 /* EffectsValueCalculator.swift */,
 				78FED2AD279B632F002D6DED /* Grimoire.swift */,
 				78E8F08D1F833BC000B07C92 /* ConcoctionGenerator.swift */,
 			);
@@ -207,6 +211,7 @@
 				A9DF11782801CB950039BE4C /* Data Model & Logic */,
 				A9DF11642801B5AA0039BE4C /* Effects */,
 				A9DF11632801B5900039BE4C /* Ingredients */,
+				A9DF118A280246F40039BE4C /* Recipes */,
 				A9DF11652801B5D10039BE4C /* Utilities and common UI */,
 			);
 			path = "Brotherhoold Alchemist SwiftUI";
@@ -314,6 +319,7 @@
 				A9DF1183280203E10039BE4C /* ListHeader.swift */,
 				A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */,
 				A9DF117B2801D0720039BE4C /* ResetModal.swift */,
+				A9DF118F2802567A0039BE4C /* SelectionIndicator.swift */,
 				A9DF11702801C8380039BE4C /* SelectionIndicatorCant.swift */,
 				A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */,
 				A9DF11742801C8A20039BE4C /* SelectionIndicatorMust.swift */,
@@ -327,15 +333,37 @@
 		A9DF11782801CB950039BE4C /* Data Model & Logic */ = {
 			isa = PBXGroup;
 			children = (
+				78E8F08B1F833B0000B07C92 /* Concoction.swift */,
+				787334EE27DE7A24009120C5 /* ConcoctionFinder.swift */,
 				7824A122279908B6001BABC5 /* ConstrainedName.swift */,
 				78B24E0127FFD3690053BD75 /* EffectsFilter.swift */,
+				787334F127DE7AD2009120C5 /* EffectsValueCalculator.swift */,
 				A9DF11792801CD610039BE4C /* IngredientsFilter.swift */,
 				A9DF116C2801BED20039BE4C /* ModelState.swift */,
 				78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */,
 				A9DF116A2801BEC20039BE4C /* StateTransitions.swift */,
+				A9DF1195280277BC0039BE4C /* Operations */,
 				A9DF11682801BD6D0039BE4C /* ViewModel.swift */,
 			);
 			path = "Data Model & Logic";
+			sourceTree = "<group>";
+		};
+		A9DF118A280246F40039BE4C /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				A9DF118B280247080039BE4C /* RecipesList.swift */,
+				A9DF118D280249610039BE4C /* RecipeDetails.swift */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		A9DF1195280277BC0039BE4C /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				A9DF1193280277B10039BE4C /* FindConcoctions.swift */,
+				A9DF1191280273080039BE4C /* UpdateConcoctions.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,13 +501,10 @@
 			files = (
 				78FED2AF279B632F002D6DED /* Grimoire.swift in Sources */,
 				7824A12127990874001BABC5 /* IngredientTests.swift in Sources */,
-				787334F327DE7AD2009120C5 /* EffectsValueCalculator.swift in Sources */,
-				787334E827DE2C90009120C5 /* Concoction.swift in Sources */,
 				787334F527DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift in Sources */,
 				787334EA27DE445F009120C5 /* GrimoireTests.swift in Sources */,
 				7824A115279127FD001BABC5 /* EffectTests.swift in Sources */,
 				787334F927DEC8F7009120C5 /* ConcoctionFinderTests.swift in Sources */,
-				787334F027DE7A24009120C5 /* ConcoctionFinder.swift in Sources */,
 				7824A1262799099E001BABC5 /* ConstrainedNameTests.swift in Sources */,
 				787334F727DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift in Sources */,
 				787334ED27DE77A9009120C5 /* ConcoctionFilters.swift in Sources */,
@@ -495,8 +520,10 @@
 				78B24DFA27FFCB010053BD75 /* IngredientsList.swift in Sources */,
 				A9DF11752801C8A20039BE4C /* SelectionIndicatorMust.swift in Sources */,
 				A9DF116D2801BED20039BE4C /* ModelState.swift in Sources */,
+				A9DF11872802449D0039BE4C /* Concoction.swift in Sources */,
 				78B24DF127FE74B80053BD75 /* EffectsList.swift in Sources */,
 				78B24E0227FFD3690053BD75 /* EffectsFilter.swift in Sources */,
+				A9DF1189280246300039BE4C /* EffectsValueCalculator.swift in Sources */,
 				78B24DED27FE74700053BD75 /* Effect.swift in Sources */,
 				A9DF116B2801BEC20039BE4C /* StateTransitions.swift in Sources */,
 				A9DF11822801E1280039BE4C /* Tabs.swift in Sources */,
@@ -505,20 +532,26 @@
 				78B24DEE27FE74700053BD75 /* Ingredient.swift in Sources */,
 				A9DF11712801C8380039BE4C /* SelectionIndicatorCant.swift in Sources */,
 				A9DF11692801BD6D0039BE4C /* ViewModel.swift in Sources */,
+				A9DF1192280273080039BE4C /* UpdateConcoctions.swift in Sources */,
 				78B24DF427FE7EB70053BD75 /* TextFieldClearButton.swift in Sources */,
 				A9DF11802801E0370039BE4C /* HeightCoordinator.swift in Sources */,
 				A9DF11772801C8E90039BE4C /* SelectionText.swift in Sources */,
+				A9DF1194280277B10039BE4C /* FindConcoctions.swift in Sources */,
 				A9DF117A2801CD610039BE4C /* IngredientsFilter.swift in Sources */,
 				78B24DE127FE73650053BD75 /* ContentView.swift in Sources */,
 				78B24DEF27FE74700053BD75 /* DefaultEffects.swift in Sources */,
 				78B24E0A2800D38A0053BD75 /* IngredientDetails.swift in Sources */,
 				78B24DF627FE90180053BD75 /* EffectDetails.swift in Sources */,
+				A9DF1188280244A30039BE4C /* ConcoctionFinder.swift in Sources */,
 				A9DF117C2801D0720039BE4C /* ResetModal.swift in Sources */,
+				A9DF118C280247080039BE4C /* RecipesList.swift in Sources */,
 				78B24E0027FFD0DA0053BD75 /* SelectionState.swift in Sources */,
 				A9DF11732801C8750039BE4C /* SelectionIndicatorMay.swift in Sources */,
 				78B24DDF27FE73650053BD75 /* Brotherhoold_Alchemist_SwiftUIApp.swift in Sources */,
 				78B24DEC27FE74700053BD75 /* ConstrainedName.swift in Sources */,
 				A9DF1184280203E10039BE4C /* ListHeader.swift in Sources */,
+				A9DF118E280249610039BE4C /* RecipeDetails.swift in Sources */,
+				A9DF11902802567A0039BE4C /* SelectionIndicator.swift in Sources */,
 				A9DF117E2801DD430039BE4C /* TabsOriginCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,16 +560,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78E8F08C1F833B0000B07C92 /* Concoction.swift in Sources */,
 				78FED2AE279B632F002D6DED /* Grimoire.swift in Sources */,
 				78EEE2611F81CF100036FAA2 /* IngredientsViewController.swift in Sources */,
 				780837CB1F82634400357BF9 /* EffectEnabledTableViewCell.swift in Sources */,
 				787334EC27DE7758009120C5 /* ConcoctionFilters.swift in Sources */,
 				78B850D42789C8BD003D1E4F /* RootView.swift in Sources */,
-				787334F227DE7AD2009120C5 /* EffectsValueCalculator.swift in Sources */,
 				78EEE24F1F81C9230036FAA2 /* RootViewController.swift in Sources */,
 				7866B1F31F83530400287840 /* MatchingRecipeDataSource.swift in Sources */,
-				787334EF27DE7A24009120C5 /* ConcoctionFinder.swift in Sources */,
 				780837C71F82628F00357BF9 /* EffectsViewController.swift in Sources */,
 				7866B1F61F83594600287840 /* MatchingRecipeTableViewCell.swift in Sources */,
 				78E8F08E1F833BC000B07C92 /* ConcoctionGenerator.swift in Sources */,

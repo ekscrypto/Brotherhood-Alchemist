@@ -8,7 +8,8 @@
 
 import UIKit
 
-struct Concoction {
+struct Concoction: Identifiable {
+    let id: UUID = .init()
     let effects: [Effect.Id]
     let ingredients: [Ingredient.Id]
     let estimatedValue: UInt

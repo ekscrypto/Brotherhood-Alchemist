@@ -8,9 +8,13 @@
 
 import UIKit
 
-struct Ingredient: Equatable, Codable, Identifiable, FilterItem {
+struct Ingredient: Equatable, Codable, Hashable, Identifiable, FilterItem {
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
         lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
     
     struct Id: Codable, Equatable, RawRepresentable, Hashable, ExpressibleByIntegerLiteral {

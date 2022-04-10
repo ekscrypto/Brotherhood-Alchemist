@@ -40,10 +40,11 @@ struct ContentView: View {
             .overlay(HeightCoordinator(via: $listHeight))
             .offset(x: tabOffset(for: .ingredients))
             
-            VStack {
-                Text("Recipes")
-                Spacer()
-            }
+            RecipesList(
+                viewModel: viewModel,
+                listBottomPadding: listBottomPadding,
+                onSeekEffect: onSeekEffect,
+                onSeekIngredient: onSeekIngredient)
             .id("Recipes")
             .offset(x: tabOffset(for: .recipes))
 

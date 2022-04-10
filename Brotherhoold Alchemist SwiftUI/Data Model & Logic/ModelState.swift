@@ -9,8 +9,11 @@
 import Foundation
 
 struct ModelState {
+    var concoctions: [Concoction]
     var effects: [Effect]
     var effectsSelection: [Effect.Id: SelectionState]
     var ingredients: [Ingredient]
     var ingredientsSelection: [Ingredient.Id: SelectionState]
+    var selectedConcoctions: [Concoction]
+    var updatingConcoctions: Bool
 }

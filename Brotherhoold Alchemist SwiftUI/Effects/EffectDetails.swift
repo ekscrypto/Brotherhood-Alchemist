@@ -21,7 +21,7 @@ struct EffectDetails: View {
                 rotateSelection()
             }) {
                 HStack(spacing: 1) {
-                    selectionIndicator
+                    SelectionIndicator(state: selectionState)
                     SelectionText(state: selectionState)
                         .frame(width: 40)
                     Text(~effect.name)
@@ -84,19 +84,6 @@ struct EffectDetails: View {
             selectionState = .mustHave
         case .mustHave:
             selectionState = .cantHave
-        }
-    }
-    
-    private var selectionIndicator: some View {
-        VStack {
-            switch selectionState {
-            case .cantHave:
-                SelectionIndicatorCant()
-            case .mayHave:
-                SelectionIndicatorMay()
-            case .mustHave:
-                SelectionIndicatorMust()
-            }
         }
     }
 }
