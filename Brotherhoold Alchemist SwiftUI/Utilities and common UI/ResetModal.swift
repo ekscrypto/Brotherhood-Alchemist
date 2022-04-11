@@ -37,21 +37,28 @@ struct ResetModal: View {
     }
     
     private var resetCantHaveButton: some View {
-        Button("Can't have", action: {
+        Button(action: {
             resetAction(.cantHave)
             dismissResetModal()
-        })
-        .frame(maxWidth: .infinity)
+        }) {
+            Text("Can't have")
+                .frame(maxWidth: .infinity)
+                .frame(height: 32)
+        }
         .padding()
         .background(Color("itemBackground"))
         .cornerRadius(6.0)
     }
     
     private var resetMayHaveButton: some View {
-        Button("May have", action: {
+        Button(action: {
             resetAction(.mayHave)
             dismissResetModal()
-        })
+        }) {
+            Text("May have")
+                .frame(maxWidth: .infinity)
+                .frame(height: 32)
+        }
         .frame(maxWidth: .infinity)
         .padding()
         .background(Color("itemBackground"))
@@ -59,9 +66,13 @@ struct ResetModal: View {
     }
     
     private var resetCancelButton: some View {
-        Button("Cancel", action: {
+        Button(action: {
             dismissResetModal()
-        })
+        }) {
+            Text("Cancel")
+                .frame(maxWidth: .infinity)
+                .frame(height: 32)
+        }
         .foregroundColor(Color.red)
         .frame(maxWidth: .infinity)
         .padding()
