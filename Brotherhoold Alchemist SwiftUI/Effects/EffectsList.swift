@@ -17,17 +17,15 @@ struct EffectsList: View {
     @State private var expanded: Bool = false
     @State private var filter: String = ""
     @State private var showResetModal: Bool = false
-    @ObservedObject var seekedEffect: ViewModel.SeekedEffect
 
     init(viewModel providedViewModel: ViewModel,
          listBottomPadding desiredBottomPadding: CGFloat) {
         viewModel = providedViewModel
         listBottomPadding = desiredBottomPadding
-        seekedEffect = viewModel.seekedEffect
     }
     
     private var filteredEffects: [Effect] {
-        viewModel.state.effects.filter(byName: filter)
+        viewModel.effects.filter(byName: filter)
     }
     
     var body: some View {
@@ -51,26 +49,24 @@ struct EffectsList: View {
             if showResetModal {
                 ResetModal(
                     queryText: "Set all effects as:",
-                    resetAction: { viewModel.resetEffects(to: $0) },
+                    resetAction: { _ in /* viewModel.resetEffects(to: $0)*/ },
                     visibility: $showResetModal)
             }
         }
         .background(Color("itemBackground"))
-        .onReceive(seekedEffect.$value, perform: { effectOrNil in
+        .onReceive(viewModel.$seekedEffect, perform: { effectOrNil in
             guard let effect = effectOrNil else { return }
             filter = "=\(~effect.name)"
             expanded = true
-            seekedEffect.value = nil
         })
     }
     
     private func effectInfo(_ effect: Effect) -> some View {
         EffectDetails(
             effect: effect,
-            ingredients: expanded ? viewModel.ingredients(for: effect) : [],
+            ingredients: expanded ? viewModel.ingredients.with(effect: effect) : [],
             expanded: expanded,
-            onSeekIngredient: { viewModel.seekedIngredient.value = $0 },
-            selectionState: viewModel.selection(for: effect))
+            onSeekIngredient: { viewModel.seekedIngredient = $0 })
     }
     
     private var listOfEffects: some View {

@@ -19,20 +19,12 @@ struct ContentView: View {
     @State var selectedTab: Tab = .recipes
     @State private var viewWidth: CGFloat = .zero
     
-    @ObservedObject var seekedEffect: ViewModel.SeekedEffect
-    @ObservedObject var seekedIngredient: ViewModel.SeekedIngredient
-
     private var listBottomPadding: CGFloat {
         listHeight - tabbarOrigin
     }
     
     private var isPad: Bool {
         UIDevice.current.userInterfaceIdiom == .pad
-    }
-    
-    init() {
-        seekedEffect = viewModel.seekedEffect
-        seekedIngredient = viewModel.seekedIngredient
     }
     
     func onTabRequest(_ tab: Tab) {
@@ -104,8 +96,8 @@ struct ContentView: View {
             .overlay(TabsOriginCoordinator(via: $tabbarOrigin))
         }
         .overlay(MinWidthCoordinator(via: $viewWidth))
-        .onReceive(seekedEffect.$value, perform: { _ in onTabRequest(.effects) })
-        .onReceive(seekedIngredient.$value, perform: { _ in onTabRequest(.ingredients) })
+        .onReceive(viewModel.$seekedEffect, perform: { _ in onTabRequest(.effects) })
+        .onReceive(viewModel.$seekedIngredient, perform: { _ in onTabRequest(.ingredients) })
     }
     
     private func tabOffset(for tab: Tab) -> CGFloat {

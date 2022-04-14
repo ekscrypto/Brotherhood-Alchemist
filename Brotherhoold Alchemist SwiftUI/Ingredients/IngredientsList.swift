@@ -18,18 +18,16 @@ struct IngredientsList: View {
     @State var controlButtonsWidth: CGFloat = .zero
     @State var showResetModal: Bool = false
     @State var filter: String = ""
+    @State var ingredients: [Ingredient] = []
     
-    @ObservedObject var seekedIngredient: ViewModel.SeekedIngredient
-
     private var filteredIngredients: [Ingredient] {
-        viewModel.state.ingredients.filter(byName: filter)
+        viewModel.ingredients.filter(byName: filter)
     }
     
     init(viewModel providedViewModel: ViewModel,
          listBottomPadding desiredBottomPadding: CGFloat) {
         viewModel = providedViewModel
         listBottomPadding = desiredBottomPadding
-        seekedIngredient = viewModel.seekedIngredient
     }
     
     // MARK: -
@@ -54,12 +52,15 @@ struct IngredientsList: View {
             if showResetModal {
                 ResetModal(
                     queryText: "Set all ingredients as:",
-                    resetAction: { viewModel.resetIngredients(to: $0) },
+                    resetAction: { _ in /*viewModel.resetIngredients(to: $0)*/ },
                     visibility: $showResetModal)
             }
         }
         .background(Color("itemBackground"))
-        .onReceive(seekedIngredient.$value, perform: { ingredientOrNil in
+        .onReceive(viewModel.$ingredients, perform: { updatedIngredients in
+            ingredients = updatedIngredients
+        })
+        .onReceive(viewModel.$seekedIngredient, perform: { ingredientOrNil in
             guard let ingredient = ingredientOrNil else { return }
             filter = "=\(~ingredient.name)"
             expanded = true
@@ -71,10 +72,8 @@ struct IngredientsList: View {
     private func ingredientInfo(_ ingredient: Ingredient) -> some View {
         IngredientDetails(
             ingredient: ingredient,
-            effects: expanded ? viewModel.effects(for: ingredient) : [],
             expanded: expanded,
-            onSeekEffect: { viewModel.seekedEffect.value = $0 },
-            selectionState: viewModel.selection(for: ingredient))
+            onSeekEffect: { viewModel.seekedEffect = $0 })
     }
     
     private var listOfIngredients: some View {

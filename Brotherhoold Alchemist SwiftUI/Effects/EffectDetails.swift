@@ -13,7 +13,6 @@ struct EffectDetails: View {
     let ingredients: [Ingredient]
     let expanded: Bool
     let onSeekIngredient: (Ingredient) -> Void
-    @Binding var selectionState: SelectionState
 
     var body: some View {
         VStack {
@@ -21,8 +20,8 @@ struct EffectDetails: View {
                 rotateSelection()
             }) {
                 HStack(spacing: 1) {
-                    SelectionIndicator(state: selectionState)
-                    SelectionText(state: selectionState)
+                    SelectionIndicator(state: effect.selection.state)
+                    SelectionText(state: effect.selection.state)
                         .frame(width: 40)
                     Text(~effect.name)
                         .font(.system(.headline))
@@ -81,13 +80,13 @@ struct EffectDetails: View {
     }
     
     private func rotateSelection() {
-        switch selectionState {
+        switch effect.selection.state {
         case .cantHave:
-            selectionState = .mayHave
+            effect.selection.state = .mayHave
         case .mayHave:
-            selectionState = .mustHave
+            effect.selection.state = .mustHave
         case .mustHave:
-            selectionState = .cantHave
+            effect.selection.state = .cantHave
         }
     }
 }
@@ -95,33 +94,24 @@ struct EffectDetails: View {
 struct EffectDetails_Previews: PreviewProvider {
     static var previews: some View {
         EffectDetails(
-            effect: DefaultEffects.all.first!,
-            ingredients: DefaultIngredients.all.with(effect: DefaultEffects.all.first!),
+            effect: ~DefaultEffects.fear,
+            ingredients: DefaultIngredients.all.with(effect: ~DefaultEffects.fear),
             expanded: false,
-            onSeekIngredient: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* ignored */ }))
+            onSeekIngredient: { _ in /* ignored */ })
         .previewLayout(.sizeThatFits)
 
         EffectDetails(
-            effect: DefaultEffects.all.first!,
-            ingredients: DefaultIngredients.all.with(effect: DefaultEffects.all.first!),
+            effect: ~DefaultEffects.paralysis,
+            ingredients: DefaultIngredients.all.with(effect: ~DefaultEffects.paralysis),
             expanded: true,
-            onSeekIngredient: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* ignored */ }))
+            onSeekIngredient: { _ in /* ignored */ })
         .previewLayout(.sizeThatFits)
 
         EffectDetails(
-            effect: DefaultEffects.all.first!,
-            ingredients: DefaultIngredients.all.with(effect: DefaultEffects.all.first!),
+            effect: ~DefaultEffects.fortifySneak,
+            ingredients: DefaultIngredients.all.with(effect: ~DefaultEffects.fortifySneak),
             expanded: true,
-            onSeekIngredient: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* ignored */ }))
+            onSeekIngredient: { _ in /* ignored */ })
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)
 
@@ -129,10 +119,7 @@ struct EffectDetails_Previews: PreviewProvider {
             effect: Self.emptyEffect,
             ingredients: [],
             expanded: true,
-            onSeekIngredient: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* ignored */ }))
+            onSeekIngredient: { _ in /* ignored */ })
         .preferredColorScheme(.light)
         .previewLayout(.sizeThatFits)
 
@@ -140,17 +127,13 @@ struct EffectDetails_Previews: PreviewProvider {
             effect: Self.emptyEffect,
             ingredients: [],
             expanded: true,
-            onSeekIngredient: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* ignored */ }))
+            onSeekIngredient: { _ in /* ignored */ })
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)
     }
     
     static var emptyEffect: Effect {
         Effect(
-            id: 29,
             name: "Empty Effect",
             value: 9,
             isPositive: false)

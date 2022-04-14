@@ -55,8 +55,6 @@
 		78FED2AF279B632F002D6DED /* Grimoire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FED2AD279B632F002D6DED /* Grimoire.swift */; };
 		A9DF11672801BA6C0039BE4C /* MinWidthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */; };
 		A9DF11692801BD6D0039BE4C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11682801BD6D0039BE4C /* ViewModel.swift */; };
-		A9DF116B2801BEC20039BE4C /* StateTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF116A2801BEC20039BE4C /* StateTransitions.swift */; };
-		A9DF116D2801BED20039BE4C /* ModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF116C2801BED20039BE4C /* ModelState.swift */; };
 		A9DF11712801C8380039BE4C /* SelectionIndicatorCant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11702801C8380039BE4C /* SelectionIndicatorCant.swift */; };
 		A9DF11732801C8750039BE4C /* SelectionIndicatorMay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */; };
 		A9DF11752801C8A20039BE4C /* SelectionIndicatorMust.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11742801C8A20039BE4C /* SelectionIndicatorMust.swift */; };
@@ -134,8 +132,6 @@
 		78FED2AD279B632F002D6DED /* Grimoire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grimoire.swift; sourceTree = "<group>"; };
 		A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinWidthCoordinator.swift; sourceTree = "<group>"; };
 		A9DF11682801BD6D0039BE4C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		A9DF116A2801BEC20039BE4C /* StateTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTransitions.swift; sourceTree = "<group>"; };
-		A9DF116C2801BED20039BE4C /* ModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelState.swift; sourceTree = "<group>"; };
 		A9DF11702801C8380039BE4C /* SelectionIndicatorCant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicatorCant.swift; sourceTree = "<group>"; };
 		A9DF11722801C8750039BE4C /* SelectionIndicatorMay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicatorMay.swift; sourceTree = "<group>"; };
 		A9DF11742801C8A20039BE4C /* SelectionIndicatorMust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicatorMust.swift; sourceTree = "<group>"; };
@@ -346,9 +342,7 @@
 				78B24E0127FFD3690053BD75 /* EffectsFilter.swift */,
 				787334F127DE7AD2009120C5 /* EffectsValueCalculator.swift */,
 				A9DF11792801CD610039BE4C /* IngredientsFilter.swift */,
-				A9DF116C2801BED20039BE4C /* ModelState.swift */,
 				78B24DFF27FFD0DA0053BD75 /* SelectionState.swift */,
-				A9DF116A2801BEC20039BE4C /* StateTransitions.swift */,
 				A9DF1195280277BC0039BE4C /* Operations */,
 				A9DF11682801BD6D0039BE4C /* ViewModel.swift */,
 			);
@@ -527,14 +521,12 @@
 				78B24E042800B91D0053BD75 /* BorderedText.swift in Sources */,
 				78B24DFA27FFCB010053BD75 /* IngredientsList.swift in Sources */,
 				A9DF11752801C8A20039BE4C /* SelectionIndicatorMust.swift in Sources */,
-				A9DF116D2801BED20039BE4C /* ModelState.swift in Sources */,
 				A9DF11872802449D0039BE4C /* Concoction.swift in Sources */,
 				78B24DF127FE74B80053BD75 /* EffectsList.swift in Sources */,
 				78B24E0227FFD3690053BD75 /* EffectsFilter.swift in Sources */,
 				A9DF1189280246300039BE4C /* EffectsValueCalculator.swift in Sources */,
 				78B24DED27FE74700053BD75 /* Effect.swift in Sources */,
 				A9DF11972803128F0039BE4C /* RecipesListOptions.swift in Sources */,
-				A9DF116B2801BEC20039BE4C /* StateTransitions.swift in Sources */,
 				A9DF11822801E1280039BE4C /* Tabs.swift in Sources */,
 				78B24DEB27FE74700053BD75 /* DefaultIngredients.swift in Sources */,
 				A9DF1186280206570039BE4C /* FilterControl.swift in Sources */,

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SelectionText: View {
-    let state: SelectionState
+    let state: SelectionState.State
     
     private var description: String {
         switch state {

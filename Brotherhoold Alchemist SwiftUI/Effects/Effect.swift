@@ -8,26 +8,56 @@
 
 import Foundation
 
-struct Effect: Equatable, Codable, Hashable, Identifiable, FilterItem {
+struct Effect: Equatable, Codable, Hashable, Identifiable, ExpressibleByStringLiteral {
+    var id: String { ~name }
+
     static func == (lhs: Effect, rhs: Effect) -> Bool {
-        lhs.id == rhs.id
+        ~lhs.name == ~rhs.name &&
+        lhs.value == rhs.value &&
+        lhs.isPositive == rhs.isPositive
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+        hasher.combine(~name)
     }
     
-    let id: Id
     let name: ConstrainedName
     let value: Value
     let isPositive: Bool
+    let selection: SelectionState = .init()
     
-    init(id: Id, name: ConstrainedName, value: Value, isPositive: Bool) {
-        self.id = id
+    init(name: ConstrainedName, value: Value, isPositive: Bool) {
         self.name = name
         self.value = value
         self.isPositive = isPositive
     }
+    
+    init(stringLiteral: String) {
+        let literalComponents = stringLiteral.components(separatedBy: ":")
+        guard literalComponents.count == 3,
+              let decodedName = ConstrainedName(rawValue: literalComponents[0]),
+              let decodedValue = Value(rawValue: UInt(literalComponents[1]) ?? .max)
+        else {
+              fatalError()
+        }
+        
+        name = decodedName
+        value = decodedValue
+        isPositive = literalComponents[2] == "p"
+    }
+    
+    enum CodingKeys: CodingKey {
+        case name
+        case value
+        case isPositive
+    }
+    
+//    func encode(to encoder: Encoder) throws {
+//        let container = encoder.container(keyedBy: CodingKeys.self)
+//        container.encode(isPositive, forKey: .isPositive)
+//        container.encode(name, forKey: .name)
+//        container.encode(<#T##value: Bool##Bool#>, forKey: <#T##KeyedEncodingContainer<CodingKeys>.Key#>)
+//    }
     
     struct Id: Codable, Equatable, RawRepresentable, Hashable, ExpressibleByIntegerLiteral {
         init(integerLiteral value: UInt) {

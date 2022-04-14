@@ -9,6 +9,7 @@
 import Foundation
 
 extension Array where Element == Effect {
+    
     func filter(byName filter: String) -> [Effect] {
         let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if trimmedFilter.isEmpty {
@@ -19,14 +20,6 @@ extension Array where Element == Effect {
             return self.filter({ (~$0.name).lowercased() == expectedName })
         }
         return self.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
-    }
-    
-    func filter(byId effectIds: [Effect.Id]) -> [Effect] {
-        self.filter({ effectIds.contains($0.id) })
-    }
-
-    func of(ingredient: Ingredient) -> [Effect] {
-        self.filter({ ingredient.effects.contains($0.id) })
     }
 }
 

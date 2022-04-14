@@ -38,10 +38,10 @@ struct RecipesList: View {
     
     private var effectsFilteredConcoctions: [Concoction] {
         if effectsLimit == .noPreference {
-            return viewModel.state.selectedConcoctions
+            return viewModel.concoctions
         }
         
-        return viewModel.state.selectedConcoctions
+        return viewModel.concoctions
             .filter({ concoction in
                 let effects = concoction.effects
                 switch effectsLimit {
@@ -119,7 +119,7 @@ struct RecipesList: View {
             VStack {
                 header
                 
-                if viewModel.state.updatingConcoctions {
+                if viewModel.updatingConctions {
                     VStack {
                         Text("Brewing…")
                             .padding(.top, 80)
@@ -131,7 +131,7 @@ struct RecipesList: View {
                     }
                 } else {
                     
-                    if viewModel.state.selectedConcoctions.count == 0 {
+                    if viewModel.concoctions.count == 0 {
                         VStack {
                             Text("No match :(")
                                 .padding()
@@ -161,10 +161,8 @@ struct RecipesList: View {
     private func concoctionInfo(_ concoction: Concoction) -> some View {
         RecipeDetails(
             concoction: concoction,
-            effects: viewModel.effects(for: concoction),
-            ingredients: viewModel.ingredients(for: concoction),
-            onSeekEffect: { viewModel.seekedEffect.value = $0 },
-            onSeekIngredient: { _ in /* ignored */ })
+            onSeekEffect: { viewModel.seekedEffect = $0 },
+            onSeekIngredient: { viewModel.seekedIngredient = $0 })
     }
     
     private var header: some View {

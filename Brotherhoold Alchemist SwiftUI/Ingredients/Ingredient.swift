@@ -8,13 +8,16 @@
 
 import UIKit
 
-struct Ingredient: Equatable, Codable, Hashable, Identifiable, FilterItem {
+struct Ingredient: Equatable, Hashable, Identifiable {
+    var id: String { ~name }
+    
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
-        lhs.id == rhs.id
+        ~lhs.name == ~rhs.name &&
+        lhs.effects == rhs.effects
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+        hasher.combine(~self.name)
     }
     
     struct Id: Codable, Equatable, RawRepresentable, Hashable, ExpressibleByIntegerLiteral {
@@ -31,10 +34,9 @@ struct Ingredient: Equatable, Codable, Hashable, Identifiable, FilterItem {
         let rawValue: UInt
     }
     
-    let id: Id
     let name: ConstrainedName
-    let effects: [Effect.Id]
-    var isAvailable: Bool = true
+    let effects: [Effect]
+    let selection: SelectionState = .init()
     
     enum Errors: Error {
         case tooManyEffects
@@ -42,8 +44,7 @@ struct Ingredient: Equatable, Codable, Hashable, Identifiable, FilterItem {
     }
     static let maximumEffects: Int = 4
     
-    init?(id: Id, name: ConstrainedName, effects: [Effect.Id] ) {
-        self.id = id
+    init?(name: ConstrainedName, effects: [Effect] ) {
         self.name = name
         guard let uniqueEffects = try? Self.uniqueEffectsWithinBounds(effects) else {
             return nil
@@ -51,17 +52,8 @@ struct Ingredient: Equatable, Codable, Hashable, Identifiable, FilterItem {
         self.effects = uniqueEffects
     }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Self.CodingKeys)
-        self.id = try container.decode(Id.self, forKey: .id)
-        self.name = try container.decode(ConstrainedName.self, forKey: .name)
-        let decodedEffects = try container.decode([Effect.Id].self, forKey: .effects)
-        self.effects = try Self.uniqueEffectsWithinBounds(decodedEffects)
-        self.isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-    }
-    
     @discardableResult
-    static func uniqueEffectsWithinBounds(_ effects: [Effect.Id]) throws -> [Effect.Id] {
+    static func uniqueEffectsWithinBounds(_ effects: [Effect]) throws -> [Effect] {
         guard effects.count <= Self.maximumEffects else {
             throw Errors.tooManyEffects
         }

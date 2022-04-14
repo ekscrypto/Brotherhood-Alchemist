@@ -10,10 +10,8 @@ import SwiftUI
 
 struct IngredientDetails: View {
     let ingredient: Ingredient
-    let effects: [Effect]
     let expanded: Bool
     let onSeekEffect: (Effect) -> Void
-    @Binding var selectionState: SelectionState
 
     var body: some View {
         VStack {
@@ -21,8 +19,8 @@ struct IngredientDetails: View {
                 rotateSelection()
             }) {
                 HStack(spacing: 1) {
-                    selectionIndicator
-                    SelectionText(state: selectionState)
+                    SelectionIndicator(state: ingredient.selection.state)
+                    SelectionText(state: ingredient.selection.state)
                         .frame(width: 40)
                     Text(~ingredient.name)
                         .font(.system(.headline))
@@ -41,7 +39,7 @@ struct IngredientDetails: View {
     private var additionalInfo: some View {
         VStack {
             
-            if effects.count == 0 {
+            if ingredient.effects.count == 0 {
                 
                 Text("This ingredient has no effects defined!")
                     .foregroundColor(Color(UIColor.systemRed))
@@ -52,7 +50,7 @@ struct IngredientDetails: View {
                     .font(Font.system(.caption))
                     .foregroundColor(Color("selectionText"))
                 
-                ForEach(effects) { effect in
+                ForEach(ingredient.effects) { effect in
                     Button(action: {
                         onSeekEffect(effect)
                     }) {
@@ -66,26 +64,13 @@ struct IngredientDetails: View {
     }
     
     private func rotateSelection() {
-        switch selectionState {
+        switch ingredient.selection.state {
         case .cantHave:
-            selectionState = .mayHave
+            ingredient.selection.state = .mayHave
         case .mayHave:
-            selectionState = .mustHave
+            ingredient.selection.state = .mustHave
         case .mustHave:
-            selectionState = .cantHave
-        }
-    }
-    
-    private var selectionIndicator: some View {
-        VStack {
-            switch selectionState {
-            case .cantHave:
-                SelectionIndicatorCant()
-            case .mayHave:
-                SelectionIndicatorMay()
-            case .mustHave:
-                SelectionIndicatorMust()
-            }
+            ingredient.selection.state = .cantHave
         }
     }
 }
@@ -93,73 +78,49 @@ struct IngredientDetails: View {
 struct IngredientDetails_Previews: PreviewProvider {
     static var previews: some View {
         IngredientDetails(
-            ingredient: DefaultIngredients.all.first!,
-            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            ingredient: DefaultIngredients.abeceanLongfin,
             expanded: false,
-            onSeekEffect: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .cantHave },
-                set: { _ in /* do nothing */ }))
+            onSeekEffect: { _ in /* ignored */ })
         .previewDisplayName("Can't have - collapsed [Dark]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
         
         IngredientDetails(
-            ingredient: DefaultIngredients.all.first!,
-            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            ingredient: DefaultIngredients.nirnroot,
             expanded: false,
-            onSeekEffect: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .cantHave },
-                set: { _ in /* do nothing */ }))
+            onSeekEffect: { _ in /* ignored */ })
         .previewDisplayName("Can't have - collapsed [Light]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.light)
         
         IngredientDetails(
-            ingredient: DefaultIngredients.all.first!,
-            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            ingredient: DefaultIngredients.wispWrappings,
             expanded: false,
-            onSeekEffect: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* do nothing */ }))
+            onSeekEffect: { _ in /* ignored */ })
         .previewDisplayName("May have - collapsed [Dark]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
         
         IngredientDetails(
-            ingredient: DefaultIngredients.all.first!,
-            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            ingredient: DefaultIngredients.taproot,
             expanded: false,
-            onSeekEffect: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mayHave },
-                set: { _ in /* do nothing */ }))
+            onSeekEffect: { _ in /* ignored */ })
         .previewDisplayName("May have - collapsed [Light]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.light)
 
         IngredientDetails(
-            ingredient: DefaultIngredients.all.first!,
-            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            ingredient: DefaultIngredients.ectoplasm,
             expanded: true,
-            onSeekEffect: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mustHave },
-                set: { _ in /* do nothing */ }))
+            onSeekEffect: { _ in /* ignored */ })
         .previewDisplayName("Must have - expanded [Dark]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.dark)
         
         IngredientDetails(
-            ingredient: DefaultIngredients.all.first!,
-            effects: DefaultEffects.all.of(ingredient: DefaultIngredients.all.first!),
+            ingredient: DefaultIngredients.falmerEar,
             expanded: true,
-            onSeekEffect: { _ in /* ignored */ },
-            selectionState: Binding(
-                get: { .mustHave },
-                set: { _ in /* do nothing */ }))
+            onSeekEffect: { _ in /* ignored */ })
         .previewDisplayName("Must have - expanded [Light]")
         .previewLayout(.sizeThatFits)
         .preferredColorScheme(.light)

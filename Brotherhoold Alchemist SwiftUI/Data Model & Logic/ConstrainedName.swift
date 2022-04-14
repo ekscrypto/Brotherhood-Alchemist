@@ -16,6 +16,7 @@ struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStrin
 
     enum Errors: Error {
         case outOFBounds
+        case invalidCharacters
     }
     static let minimumLength: Int = 1
     static let maximumLength: Int = 48
@@ -31,14 +32,14 @@ struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStrin
         guard let value = try? Self.evaluated(stringLiteral) else {
             fatalError()
         }
-        self.rawValue = value
+        rawValue = value
     }
 
-    init?(rawValue: String) {
-        guard let value = try? Self.evaluated(rawValue) else {
+    init?(rawValue providedRawValue: String) {
+        guard let value = try? Self.evaluated(providedRawValue) else {
             return nil
         }
-        self.rawValue = value
+        rawValue = value
     }
     
     @discardableResult
@@ -46,6 +47,14 @@ struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStrin
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard (Self.minimumLength...Self.maximumLength).contains(trimmed.count) else {
             throw Errors.outOFBounds
+        }
+        let allowedCharacters: CharacterSet = .alphanumerics
+            .union(CharacterSet(charactersIn: "-'"))
+            .union(.whitespaces)
+            .subtracting(CharacterSet(charactersIn: "\t"))
+            .inverted
+        guard trimmed.components(separatedBy: allowedCharacters).count == 1 else {
+            throw Errors.invalidCharacters
         }
         return trimmed
     }
