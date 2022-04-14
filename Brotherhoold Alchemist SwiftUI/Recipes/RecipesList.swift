@@ -9,11 +9,8 @@
 import SwiftUI
 
 struct RecipesList: View {
-    @ObservedObject var viewModel: ViewModel
-    
+    let viewModel: ViewModel
     let listBottomPadding: CGFloat
-    let onSeekEffect: (Effect) -> Void
-    let onSeekIngredient: (Ingredient) -> Void
     
     @State var showOptions: Bool = false
     
@@ -166,8 +163,8 @@ struct RecipesList: View {
             concoction: concoction,
             effects: viewModel.effects(for: concoction),
             ingredients: viewModel.ingredients(for: concoction),
-            onSeekEffect: onSeekEffect,
-            onSeekIngredient: onSeekIngredient)
+            onSeekEffect: { viewModel.seekedEffect.value = $0 },
+            onSeekIngredient: { _ in /* ignored */ })
     }
     
     private var header: some View {
@@ -209,8 +206,6 @@ struct RecipesList_Previews: PreviewProvider {
     static var previews: some View {
         RecipesList(
             viewModel: ViewModel(),
-            listBottomPadding: 0,
-            onSeekEffect: { _ in /* ignored */ },
-            onSeekIngredient: { _ in /* ignored */ })
+            listBottomPadding: 0)
     }
 }

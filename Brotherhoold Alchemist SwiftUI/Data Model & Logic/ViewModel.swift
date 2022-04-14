@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import Combine
 
 class ViewModel: ObservableObject {
     
-    @Published var state: ModelState = .init(
+    var state: ModelState = .init(
         concoctions: [],
         effects: DefaultEffects.all,
         effectsSelection: [:],
@@ -20,10 +21,21 @@ class ViewModel: ObservableObject {
         updatingConcoctions: true
     )
     
+    class SeekedEffect: ObservableObject {
+        @Published var value: Effect?
+    }
+    
+    class SeekedIngredient: ObservableObject {
+        @Published var value: Ingredient?
+    }
+    
     init() {
         findAllConcoctions()
     }
-    
+
+    let seekedEffect: SeekedEffect = .init()
+    let seekedIngredient: SeekedIngredient = .init()
+
     private func findAllConcoctions() {
         transientOperation?.cancel()
         let findOperation = FindConcoctions(

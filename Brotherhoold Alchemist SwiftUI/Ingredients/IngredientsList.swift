@@ -10,22 +10,28 @@ import SwiftUI
 
 struct IngredientsList: View {
     
-    @ObservedObject var viewModel: ViewModel
-    
+    let viewModel: ViewModel
+    let listBottomPadding: CGFloat
+
     @State var expanded: Bool = false
     @State var expandButtonText: String = "MORE"
     @State var controlButtonsWidth: CGFloat = .zero
     @State var showResetModal: Bool = false
     @State var filter: String = ""
     
-    let listBottomPadding: CGFloat
-    let onSeekEffect: (Effect) -> Void
-    let seekedIngredient: Ingredient?
+    @ObservedObject var seekedIngredient: ViewModel.SeekedIngredient
 
     private var filteredIngredients: [Ingredient] {
         viewModel.state.ingredients.filter(byName: filter)
     }
-
+    
+    init(viewModel providedViewModel: ViewModel,
+         listBottomPadding desiredBottomPadding: CGFloat) {
+        viewModel = providedViewModel
+        listBottomPadding = desiredBottomPadding
+        seekedIngredient = viewModel.seekedIngredient
+    }
+    
     // MARK: -
     var body: some View {
         ZStack {
@@ -53,6 +59,11 @@ struct IngredientsList: View {
             }
         }
         .background(Color("itemBackground"))
+        .onReceive(seekedIngredient.$value, perform: { ingredientOrNil in
+            guard let ingredient = ingredientOrNil else { return }
+            filter = "=\(~ingredient.name)"
+            expanded = true
+        })
     }
     
     // MARK: -
@@ -62,7 +73,7 @@ struct IngredientsList: View {
             ingredient: ingredient,
             effects: expanded ? viewModel.effects(for: ingredient) : [],
             expanded: expanded,
-            onSeekEffect: onSeekEffect,
+            onSeekEffect: { viewModel.seekedEffect.value = $0 },
             selectionState: viewModel.selection(for: ingredient))
     }
     
@@ -74,12 +85,6 @@ struct IngredientsList: View {
                     ForEach(filteredIngredients) { ingredient in
                         ingredientInfo(ingredient)
                             .id(ingredient.id)
-                    }
-                }
-                .onChange(of: seekedIngredient) { newValue in
-                    if let desiredIngredient = newValue {
-                        filter = "=\(~desiredIngredient.name)"
-                        expanded = true
                     }
                 }
                 
@@ -95,18 +100,14 @@ struct IngredientsList_Previews: PreviewProvider {
     static var previews: some View {
         IngredientsList(
             viewModel: ViewModel(),
-            listBottomPadding: 0,
-            onSeekEffect: { _ in /* ignored */ },
-            seekedIngredient: nil)
+            listBottomPadding: 0)
             .preferredColorScheme(.light)
             .previewDisplayName("Light")
             .previewDevice("iPhone 13 Pro")
 
         IngredientsList(
             viewModel: ViewModel(),
-            listBottomPadding: 0,
-            onSeekEffect: { _ in /* ignored */ },
-            seekedIngredient: nil)
+            listBottomPadding: 0)
             .preferredColorScheme(.dark)
             .previewDisplayName("Dark")
             .previewDevice("iPhone 13 Pro")

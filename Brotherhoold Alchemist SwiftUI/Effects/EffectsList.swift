@@ -7,18 +7,25 @@
 //
 
 import SwiftUI
+import Combine
 
 struct EffectsList: View {
     
-    @ObservedObject var viewModel: ViewModel
+    let viewModel: ViewModel
+    let listBottomPadding: CGFloat
+
     @State private var expanded: Bool = false
     @State private var filter: String = ""
     @State private var showResetModal: Bool = false
-    
-    let listBottomPadding: CGFloat
-    let onSeekIngredient: (Ingredient) -> Void
-    let seekedEffect: Effect?
+    @ObservedObject var seekedEffect: ViewModel.SeekedEffect
 
+    init(viewModel providedViewModel: ViewModel,
+         listBottomPadding desiredBottomPadding: CGFloat) {
+        viewModel = providedViewModel
+        listBottomPadding = desiredBottomPadding
+        seekedEffect = viewModel.seekedEffect
+    }
+    
     private var filteredEffects: [Effect] {
         viewModel.state.effects.filter(byName: filter)
     }
@@ -49,6 +56,12 @@ struct EffectsList: View {
             }
         }
         .background(Color("itemBackground"))
+        .onReceive(seekedEffect.$value, perform: { effectOrNil in
+            guard let effect = effectOrNil else { return }
+            filter = "=\(~effect.name)"
+            expanded = true
+            seekedEffect.value = nil
+        })
     }
     
     private func effectInfo(_ effect: Effect) -> some View {
@@ -56,7 +69,7 @@ struct EffectsList: View {
             effect: effect,
             ingredients: expanded ? viewModel.ingredients(for: effect) : [],
             expanded: expanded,
-            onSeekIngredient: onSeekIngredient,
+            onSeekIngredient: { viewModel.seekedIngredient.value = $0 },
             selectionState: viewModel.selection(for: effect))
     }
     
@@ -69,12 +82,6 @@ struct EffectsList: View {
                             .id(effect.id)
                     }
                 }
-                .onChange(of: seekedEffect, perform: { newValue in
-                    if let desiredEffect = newValue {
-                        filter = "=\(~desiredEffect.name)"
-                        expanded = true
-                    }
-                })
             }
             
             if filter.isEmpty {
@@ -92,16 +99,12 @@ struct EffectsList_Previews: PreviewProvider {
     static var previews: some View {
         EffectsList(
             viewModel: ViewModel(),
-            listBottomPadding: 0,
-            onSeekIngredient: { _ in /* ignored */ },
-            seekedEffect: nil)
+            listBottomPadding: 0)
         .preferredColorScheme(.light)
 
         EffectsList(
             viewModel: ViewModel(),
-            listBottomPadding: 0,
-            onSeekIngredient: { _ in /* ignored */ },
-            seekedEffect: nil)
+            listBottomPadding: 0)
         .preferredColorScheme(.dark)
     }
 }
