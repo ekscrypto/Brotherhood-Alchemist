@@ -11,7 +11,7 @@ import SwiftUI
 struct ResetModal: View {
     
     let queryText: String
-    let resetAction: (SelectionState.State) -> Void
+    let resetAction: (SelectionState) -> Void
     @Binding var visibility: Bool
 
     var body: some View {

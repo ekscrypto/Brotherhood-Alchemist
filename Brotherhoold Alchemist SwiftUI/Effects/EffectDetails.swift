@@ -13,15 +13,29 @@ struct EffectDetails: View {
     let ingredients: [Ingredient]
     let expanded: Bool
     let onSeekIngredient: (Ingredient) -> Void
+    
+    @State var selection: SelectionState
+    
+    init(effect providedEffect: Effect,
+         ingredients providedIngredients: [Ingredient],
+         expanded displayExpanded: Bool,
+         onSeekIngredient providedOnSeekIngredient: @escaping (Ingredient) -> Void) {
+        effect = providedEffect
+        ingredients = providedIngredients
+        expanded = displayExpanded
+        onSeekIngredient = providedOnSeekIngredient
+        selection = effect.selection
+    }
 
     var body: some View {
-        VStack {
+        Self._printChanges()
+        return VStack {
             Button(action: {
                 rotateSelection()
             }) {
                 HStack(spacing: 1) {
-                    SelectionIndicator(state: effect.selection.state)
-                    SelectionText(state: effect.selection.state)
+                    SelectionIndicator(state: selection)
+                    SelectionText(state: selection)
                         .frame(width: 40)
                     Text(~effect.name)
                         .font(.system(.headline))
@@ -35,6 +49,9 @@ struct EffectDetails: View {
             }
         }
         .background(Color("itemBackground"))
+        .onReceive(effect.$selection) { updatedSelection in
+            selection = updatedSelection
+        }
     }
     
     private var positiveOrNegativeText: String {
@@ -80,13 +97,13 @@ struct EffectDetails: View {
     }
     
     private func rotateSelection() {
-        switch effect.selection.state {
+        switch effect.selection {
         case .cantHave:
-            effect.selection.state = .mayHave
+            effect.selection = .mayHave
         case .mayHave:
-            effect.selection.state = .mustHave
+            effect.selection = .mustHave
         case .mustHave:
-            effect.selection.state = .cantHave
+            effect.selection = .cantHave
         }
     }
 }

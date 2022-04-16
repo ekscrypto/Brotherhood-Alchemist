@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SelectionIndicator: View {
-    let state: SelectionState.State
+    let state: SelectionState
     
     var body: some View {
         VStack {

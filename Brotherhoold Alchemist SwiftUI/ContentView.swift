@@ -44,7 +44,8 @@ struct ContentView: View {
     }
     
     private var iPadLayout: some View {
-        ZStack(alignment: .bottom) {
+        Self._printChanges()
+        return ZStack(alignment: .bottom) {
             HStack {
                 IngredientsList(
                     viewModel: viewModel,
@@ -68,7 +69,8 @@ struct ContentView: View {
     }
 
     private var iPhoneLayout: some View {
-        ZStack(alignment: .bottom) {
+        Self._printChanges()
+        return ZStack(alignment: .bottom) {
             IngredientsList(
                 viewModel: viewModel,
                 listBottomPadding: listBottomPadding)

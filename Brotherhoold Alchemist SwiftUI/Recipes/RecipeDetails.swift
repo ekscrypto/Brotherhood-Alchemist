@@ -75,9 +75,9 @@ struct RecipeDetails: View {
     
     private func summaryOfEffect(_ effect: Effect) -> some View {
         HStack {
-            SelectionIndicator(state: effect.selection.state)
+            SelectionIndicator(state: effect.selection)
                 .saturation(0.0)
-            SelectionText(state: effect.selection.state)
+            SelectionText(state: effect.selection)
                 .scaleEffect(0.8)
                 .frame(width: 40)
             Text(~effect.name)
@@ -108,9 +108,9 @@ struct RecipeDetails: View {
     
     private func summaryOfIngredient(_ ingredient: Ingredient) -> some View {
         HStack {
-            SelectionIndicator(state: ingredient.selection.state)
+            SelectionIndicator(state: ingredient.selection)
                 .saturation(0.0)
-            SelectionText(state: ingredient.selection.state)
+            SelectionText(state: ingredient.selection)
                 .scaleEffect(0.8)
                 .frame(width: 40)
             Text(~ingredient.name)

@@ -8,23 +8,21 @@
 
 import Foundation
 
-struct Effect: Equatable, Codable, Hashable, Identifiable, ExpressibleByStringLiteral {
-    var id: String { ~name }
+class Effect: Equatable, Hashable, Identifiable, ExpressibleByStringLiteral {
+    let id: UUID = .init()
 
     static func == (lhs: Effect, rhs: Effect) -> Bool {
-        ~lhs.name == ~rhs.name &&
-        lhs.value == rhs.value &&
-        lhs.isPositive == rhs.isPositive
+        lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(~name)
+        hasher.combine(id)
     }
     
-    let name: ConstrainedName
-    let value: Value
-    let isPositive: Bool
-    let selection: SelectionState = .init()
+    @Published private(set) var name: ConstrainedName
+    @Published private(set) var value: Value
+    @Published private(set) var isPositive: Bool
+    @Published var selection: SelectionState = .mayHave
     
     init(name: ConstrainedName, value: Value, isPositive: Bool) {
         self.name = name
@@ -32,7 +30,7 @@ struct Effect: Equatable, Codable, Hashable, Identifiable, ExpressibleByStringLi
         self.isPositive = isPositive
     }
     
-    init(stringLiteral: String) {
+    required init(stringLiteral: String) {
         let literalComponents = stringLiteral.components(separatedBy: ":")
         guard literalComponents.count == 3,
               let decodedName = ConstrainedName(rawValue: literalComponents[0]),
@@ -46,17 +44,24 @@ struct Effect: Equatable, Codable, Hashable, Identifiable, ExpressibleByStringLi
         isPositive = literalComponents[2] == "p"
     }
     
-    enum CodingKeys: CodingKey {
-        case name
-        case value
-        case isPositive
-    }
-    
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        isPositive = try container.decode(Bool.self, forKey: .isPositive)
+//        value = try container.decode(Value.self, forKey: .value)
+//        name = try container.decode(ConstrainedName.self, forKey: .name)
+//    }
+//    
+//    enum CodingKeys: CodingKey {
+//        case name
+//        case value
+//        case isPositive
+//    }
+//    
 //    func encode(to encoder: Encoder) throws {
-//        let container = encoder.container(keyedBy: CodingKeys.self)
-//        container.encode(isPositive, forKey: .isPositive)
-//        container.encode(name, forKey: .name)
-//        container.encode(<#T##value: Bool##Bool#>, forKey: <#T##KeyedEncodingContainer<CodingKeys>.Key#>)
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(isPositive, forKey: .isPositive)
+//        try container.encode(name, forKey: .name)
+//        try container.encode(value, forKey: .value)
 //    }
     
     struct Id: Codable, Equatable, RawRepresentable, Hashable, ExpressibleByIntegerLiteral {

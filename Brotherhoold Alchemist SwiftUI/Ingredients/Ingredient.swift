@@ -8,16 +8,15 @@
 
 import UIKit
 
-struct Ingredient: Equatable, Hashable, Identifiable {
-    var id: String { ~name }
+class Ingredient: Equatable, Hashable, Identifiable {
+    let id: UUID = .init()
     
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
-        ~lhs.name == ~rhs.name &&
-        lhs.effects == rhs.effects
+        lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(~self.name)
+        hasher.combine(id)
     }
     
     struct Id: Codable, Equatable, RawRepresentable, Hashable, ExpressibleByIntegerLiteral {
@@ -34,15 +33,21 @@ struct Ingredient: Equatable, Hashable, Identifiable {
         let rawValue: UInt
     }
     
-    let name: ConstrainedName
-    let effects: [Effect]
-    let selection: SelectionState = .init()
-    
+    @Published private(set) var effects: [Effect]
+    @Published private(set) var name: ConstrainedName
+    @Published var selection: SelectionState = .mayHave
+
     enum Errors: Error {
         case tooManyEffects
         case repeatingEffects
     }
     static let maximumEffects: Int = 4
+    
+//    enum CodingKeys: CodingKey {
+//        case effects
+//        case name
+//        case selection
+//    }
     
     init?(name: ConstrainedName, effects: [Effect] ) {
         self.name = name
@@ -51,6 +56,12 @@ struct Ingredient: Equatable, Hashable, Identifiable {
         }
         self.effects = uniqueEffects
     }
+    
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        name = try container.decode(ConstrainedName.self, forKey: .name)
+//        effects = try container.decode([Effect].self, forKey: .effects)
+//    }
     
     @discardableResult
     static func uniqueEffectsWithinBounds(_ effects: [Effect]) throws -> [Effect] {

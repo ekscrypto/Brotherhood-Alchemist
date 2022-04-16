@@ -32,7 +32,8 @@ struct IngredientsList: View {
     
     // MARK: -
     var body: some View {
-        ZStack {
+        Self._printChanges()
+        return ZStack {
             VStack(spacing: 1) {
                 Color((UIColor.systemBackground))
                     .frame(height: 1)

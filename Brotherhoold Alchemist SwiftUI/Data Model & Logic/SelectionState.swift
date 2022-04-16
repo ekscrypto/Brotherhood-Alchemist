@@ -8,13 +8,8 @@
 
 import Foundation
 
-class SelectionState: ObservableObject {
-    
-    enum State {
-        case cantHave
-        case mayHave
-        case mustHave
-    }
-    
-    @Published var state: State = .mayHave
+enum SelectionState {
+    case cantHave
+    case mayHave
+    case mustHave
 }

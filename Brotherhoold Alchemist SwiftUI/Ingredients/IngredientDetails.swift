@@ -13,14 +13,30 @@ struct IngredientDetails: View {
     let expanded: Bool
     let onSeekEffect: (Effect) -> Void
 
+    @State var name: String
+    @State var effects: [Effect]
+    @State var selection: SelectionState
+
+    init(ingredient providedIngredient: Ingredient,
+         expanded displayExpanded: Bool,
+         onSeekEffect providedOnSeekAction: @escaping (Effect) -> Void) {
+        ingredient = providedIngredient
+        expanded = displayExpanded
+        onSeekEffect = providedOnSeekAction
+        selection = ingredient.selection
+        name = ~ingredient.name
+        effects = ingredient.effects
+    }
+    
     var body: some View {
-        VStack {
+        Self._printChanges()
+        return VStack {
             Button(action: {
                 rotateSelection()
             }) {
                 HStack(spacing: 1) {
-                    SelectionIndicator(state: ingredient.selection.state)
-                    SelectionText(state: ingredient.selection.state)
+                    SelectionIndicator(state: selection)
+                    SelectionText(state: selection)
                         .frame(width: 40)
                     Text(~ingredient.name)
                         .font(.system(.headline))
@@ -34,12 +50,21 @@ struct IngredientDetails: View {
             }
         }
         .background(Color("itemBackground"))
+        .onReceive(ingredient.$selection) { updatedSelection in
+            selection = updatedSelection
+        }
+        .onReceive(ingredient.$name) { updatedName in
+            name = ~updatedName
+        }
+        .onReceive(ingredient.$effects) { updatedEffects in
+            effects = updatedEffects
+        }
     }
     
     private var additionalInfo: some View {
         VStack {
             
-            if ingredient.effects.count == 0 {
+            if effects.count == 0 {
                 
                 Text("This ingredient has no effects defined!")
                     .foregroundColor(Color(UIColor.systemRed))
@@ -50,7 +75,7 @@ struct IngredientDetails: View {
                     .font(Font.system(.caption))
                     .foregroundColor(Color("selectionText"))
                 
-                ForEach(ingredient.effects) { effect in
+                ForEach(effects) { effect in
                     Button(action: {
                         onSeekEffect(effect)
                     }) {
@@ -64,13 +89,13 @@ struct IngredientDetails: View {
     }
     
     private func rotateSelection() {
-        switch ingredient.selection.state {
+        switch ingredient.selection {
         case .cantHave:
-            ingredient.selection.state = .mayHave
+            ingredient.selection = .mayHave
         case .mayHave:
-            ingredient.selection.state = .mustHave
+            ingredient.selection = .mustHave
         case .mustHave:
-            ingredient.selection.state = .cantHave
+            ingredient.selection = .cantHave
         }
     }
 }
