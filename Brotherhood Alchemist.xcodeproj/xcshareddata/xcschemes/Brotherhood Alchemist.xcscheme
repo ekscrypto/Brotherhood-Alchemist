@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "78EEE2481F81C9230036FAA2"
+               BlueprintIdentifier = "A9B524C0280E495300F4ABCA"
                BuildableName = "Brotherhood Alchemist.app"
                BlueprintName = "Brotherhood Alchemist"
                ReferencedContainer = "container:Brotherhood Alchemist.xcodeproj">
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7824A106278A9DBC001BABC5"
+               BuildableName = "Brotherhood AlchemistTests.xctest"
+               BlueprintName = "Brotherhood AlchemistTests"
+               ReferencedContainer = "container:Brotherhood Alchemist.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -44,7 +54,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "78EEE2481F81C9230036FAA2"
+            BlueprintIdentifier = "A9B524C0280E495300F4ABCA"
             BuildableName = "Brotherhood Alchemist.app"
             BlueprintName = "Brotherhood Alchemist"
             ReferencedContainer = "container:Brotherhood Alchemist.xcodeproj">
@@ -61,7 +71,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "78EEE2481F81C9230036FAA2"
+            BlueprintIdentifier = "A9B524C0280E495300F4ABCA"
             BuildableName = "Brotherhood Alchemist.app"
             BlueprintName = "Brotherhood Alchemist"
             ReferencedContainer = "container:Brotherhood Alchemist.xcodeproj">

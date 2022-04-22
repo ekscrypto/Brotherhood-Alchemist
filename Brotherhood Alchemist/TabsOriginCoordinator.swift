@@ -23,6 +23,6 @@ struct TabsOriginCoordinator: View {
                 via = origin
             }
         }
-        return .clear
+        return Color.clear
     }
 }

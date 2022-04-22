@@ -1,5 +1,5 @@
 //
-//  TabsOriginCoordinator.swift
+//  HeightCoordinator.swift
 //  Brotherhoold Alchemist SwiftUI
 //
 //  Created by Dave Poirier on 2022-04-09.
@@ -8,21 +8,21 @@
 
 import SwiftUI
 
-struct TabsOriginCoordinator: View {
+struct HeightCoordinator: View {
     @Binding var via: CGFloat
     
     var body: some View {
         GeometryReader { proxy in
-            propagateOrigin(proxy.frame(in: .global).origin.y - proxy.size.height)
+            propagateHeight(proxy.size.height)
         }
     }
     
-    private func propagateOrigin(_ origin: CGFloat) -> Color {
+    private func propagateHeight(_ valueToPropagate: CGFloat) -> Color {
         DispatchQueue.main.async {
-            if origin != via {
-                via = origin
+            if valueToPropagate != via {
+                via = valueToPropagate
             }
         }
-        return .clear
+        return Color.clear
     }
 }

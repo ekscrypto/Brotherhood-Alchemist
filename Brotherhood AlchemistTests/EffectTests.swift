@@ -1,5 +1,5 @@
 //
-//  EffectsTests.swift
+//  EffectTests.swift
 //  Brotherhood AlchemistTests
 //
 //  Created by Dave Poirier on 2022-01-13.
@@ -8,13 +8,14 @@
 
 import XCTest
 
-class EffectsTests: XCTestCase {
+class EffectTests: XCTestCase {
 
     func testEffectCodable() throws {
-        XCTAssertGreaterThan(DefaultEffects.all.count, 0, "Some default effects should be defined")
-        let encodedEffects = try JSONEncoder().encode(DefaultEffects.all)
+        let allEffects: [Effect] = DefaultEffects.allCases.map { ~$0 }
+        XCTAssertGreaterThan(DefaultEffects.allCases.count, 0, "Some default effects should be defined")
+        let encodedEffects = try JSONEncoder().encode(allEffects)
         let restoredEffects = try JSONDecoder().decode([Effect].self, from: encodedEffects)
-        XCTAssertEqual(DefaultEffects.all, restoredEffects, "Values should not have been modified from encoding/decoding")
+        XCTAssertEqual(allEffects, restoredEffects, "Values should not have been modified from encoding/decoding")
     }
     
     func testEffectValue_zero_rejected() {
@@ -33,19 +34,36 @@ class EffectsTests: XCTestCase {
         XCTAssertNil(Effect.Value(rawValue: 50_001), "Expected values higher than 50,000 to be rejected")
     }
     
-    func testUniqueId() {
-        var foundIds: [Effect.Id] = []
-        DefaultEffects.all.forEach({
-            XCTAssertFalse(foundIds.contains($0.id), "More than one effect has id \($0.id)")
-            foundIds.append($0.id)
-        })
+    func testDecoding() {
+        let rawValue = "\"Loving Embrace:49999:p\""
+        let rawData: Data = rawValue.data(using: .utf8)!
+        do {
+            let effect = try JSONDecoder().decode(Effect.self, from: rawData)
+            XCTAssertEqual(effect.value.rawValue, 49_999)
+            XCTAssertEqual(effect.name.rawValue, "Loving Embrace")
+            XCTAssertTrue(effect.isPositive)
+        } catch {
+            XCTFail("Decoding failed: \(error)")
+        }
     }
     
-    func testUniqueNames() {
-        var foundNames: [String] = []
-        DefaultEffects.all.forEach({
-            XCTAssertFalse(foundNames.contains($0.name.rawValue), "More than one effect has name \($0.name.rawValue)")
-            foundNames.append($0.name.rawValue)
+    func testEncoding() {
+        let effect = Effect(name: "Warmth", value: 1, isPositive: false)
+        do {
+            let rawData = try JSONEncoder().encode(effect)
+            let rawValue = String(data: rawData, encoding: .utf8)
+            XCTAssertEqual("\"Warmth:1:n\"", rawValue)
+        } catch {
+            XCTFail("Encoding failed: \(error)")
+        }
+    }
+    
+    func testDefaultEffectsUniqueNames() {
+        var foundIds: [ConstrainedName] = []
+        DefaultEffects.allCases.forEach({
+            let effect: Effect = ~$0
+            XCTAssertFalse(foundIds.contains(effect.name), "More than one effect has name \(effect.name)")
+            foundIds.append(effect.name)
         })
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TabsOriginCoordinator.swift
+//  MinWidthCoordinator.swift
 //  Brotherhoold Alchemist SwiftUI
 //
 //  Created by Dave Poirier on 2022-04-09.
@@ -8,21 +8,22 @@
 
 import SwiftUI
 
-struct TabsOriginCoordinator: View {
+struct MinWidthCoordinator: View {
     @Binding var via: CGFloat
     
     var body: some View {
         GeometryReader { proxy in
-            propagateOrigin(proxy.frame(in: .global).origin.y - proxy.size.height)
+            checkMinimumWidth(proxy.size.width)
         }
     }
     
-    private func propagateOrigin(_ origin: CGFloat) -> Color {
+    private func checkMinimumWidth(_ width: CGFloat) -> Color {
         DispatchQueue.main.async {
-            if origin != via {
-                via = origin
+            if width > via {
+                via = width
             }
         }
-        return .clear
+        return Color.clear
     }
 }
+
