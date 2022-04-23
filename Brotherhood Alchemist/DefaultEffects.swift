@@ -9,63 +9,228 @@
 import Foundation
 
 struct DefaultEffects {
-    static let cureDisease: Effect.DTO = "Cure Disease:21:p"
-    static let damageHealth: Effect.DTO = "Damage Health:3:n"
-    static let damageMagicka: Effect.DTO = "Damage Magicka:52:n"
-    static let damageMagickaRegen: Effect.DTO = "Damage Magicka Regen:265:n"
-    static let damageStamina: Effect.DTO = "Damage Stamina:32:n"
-    static let damageStaminaRegen: Effect.DTO = "Damage Stamina Regen:159:n"
-    static let fear: Effect.DTO = "Fear:120:p"
-    static let fortifyAlteration: Effect.DTO = "Fortify Alteration:47:p"
-    static let fortifyBarter: Effect.DTO = "Fortify Barter:48:p"
-    static let fortifyBlock: Effect.DTO = "Fortify Block:118:p"
-    static let fortifyCarryWeight: Effect.DTO = "Fortify Carry Weight:208:p"
-    static let fortifyConjuration: Effect.DTO = "Fortify Conjuration:75:p"
-    static let fortifyDestruction: Effect.DTO = "Fortify Destruction:151:p"
-    static let fortifyEnchanting: Effect.DTO = "Fortify Enchanting:14:p"
-    static let fortifyHealth: Effect.DTO = "Fortify Health:82:p"
-    static let fortifyHeavyArmor: Effect.DTO = "Fortify Heavy Armor:82:p"
-    static let fortifyIllusion: Effect.DTO = "Fortify Illusion:94:p"
-    static let fortifyLightArmor: Effect.DTO = "Fortify Light Armor:55:p"
-    static let fortifyLockpicking: Effect.DTO = "Fortify Lockpicking:25:p"
-    static let fortifyMagicka: Effect.DTO = "Fortify Magicka:71:p"
-    static let fortifyMarksman: Effect.DTO = "Fortify Marksman:118:p"
-    static let fortifyOneHanded: Effect.DTO = "Fortify One-Handed:118:p"
-    static let fortifyPickpocket: Effect.DTO = "Fortify Pickpocket:118:p"
-    static let fortifyRestoration: Effect.DTO = "Fortify Restoration:118:p"
-    static let fortifySmithing: Effect.DTO = "Fortify Smithing:82:p"
-    static let fortifySneak: Effect.DTO = "Fortify Sneak:118:p"
-    static let fortifyStamina: Effect.DTO = "Fortify Stamina:71:p"
-    static let fortifyTwoHanded: Effect.DTO = "Fortify Two-Handed:118:p"
-    static let frenzy: Effect.DTO = "Frenzy:107:n"
-    static let invisibility: Effect.DTO = "Invisibility:261:p"
-    static let lingeringDamageHealth: Effect.DTO = "Lingering Damage Health:86:n"
-    static let lingeringDamageMagicka: Effect.DTO = "Lingering Damage Magicka:71:n"
-    static let lingeringDamageStamina: Effect.DTO = "Lingering Damage Stamina:12:n"
-    static let paralysis: Effect.DTO = "Paralysis:285:n"
-    static let ravageHealth: Effect.DTO = "Ravage Health:6:n"
-    static let ravageMagicka: Effect.DTO = "Ravage Magicka:15:n"
-    static let ravageStamina: Effect.DTO = "Ravage Stamina:24:n"
-    static let regenerateHealth: Effect.DTO = "Regenerate Health:177:p"
-    static let regenerateMagicka: Effect.DTO = "Regenerate Magicka:177:p"
-    static let regenerateStamina: Effect.DTO = "Regenerate Stamina:177:p"
-    static let resistFire: Effect.DTO = "Resist Fire:86:p"
-    static let resistFrost: Effect.DTO = "Resist Frost:86:p"
-    static let resistMagic: Effect.DTO = "Resist Magic:51:p"
-    static let resistPoison: Effect.DTO = "Resist Poison:118:p"
-    static let resistShock: Effect.DTO = "Resist Shock:86:p"
-    static let restoreHealth: Effect.DTO = "Restore Health:21:p"
-    static let restoreMagicka: Effect.DTO = "Restore Magicka:25:p"
-    static let restoreStamina: Effect.DTO = "Restore Stamina:25:p"
-    static let slow: Effect.DTO = "Slow:247:n"
-    static let waterbreathing: Effect.DTO = "Waterbreathing:100:p"
-    static let weaknessToFire: Effect.DTO = "Weakness To Fire:48:n"
-    static let weaknessToFrost: Effect.DTO = "Weakness To Frost:40:n"
-    static let weaknessToMagic: Effect.DTO = "Weakness To Magic:51:n"
-    static let weaknessToPoison: Effect.DTO = "Weakness To Poison:51:n"
-    static let weaknessToShock: Effect.DTO = "Weakness To Shock:56:n"
+    static let cureDisease: Effect.ExportDTO = .init(
+        name: "Cure Disease",
+        value: 21,
+        isPositive: true)
+    static let damageHealth: Effect.ExportDTO = .init(
+        name: "Damage Health",
+        value: 3,
+        isPositive: false)
+    static let damageMagicka: Effect.ExportDTO = .init(
+        name: "Damage Magicka",
+        value: 52,
+        isPositive: false)
+    static let damageMagickaRegen: Effect.ExportDTO = .init(
+        name: "Damage Magicka Regen",
+        value: 265,
+        isPositive: false)
+    static let damageStamina: Effect.ExportDTO = .init(
+        name: "Damage Stamina",
+        value: 32,
+        isPositive: false)
+    static let damageStaminaRegen: Effect.ExportDTO = .init(
+        name: "Damage Stamina Regen",
+        value: 159,
+        isPositive: false)
+    static let fear: Effect.ExportDTO = .init(
+        name: "Fear",
+        value: 120,
+        isPositive: false)
+    static let fortifyAlteration: Effect.ExportDTO = .init(
+        name: "Fortify Alteration",
+        value: 47,
+        isPositive: true)
+    static let fortifyBarter: Effect.ExportDTO = .init(
+        name: "Fortify Barter",
+        value: 48,
+        isPositive: true)
+    static let fortifyBlock: Effect.ExportDTO = .init(
+        name: "Fortify Block",
+        value: 118,
+        isPositive: true)
+    static let fortifyCarryWeight: Effect.ExportDTO = .init(
+        name: "Fortify Carry Weight",
+        value: 208,
+        isPositive: true)
+    static let fortifyConjuration: Effect.ExportDTO = .init(
+        name: "Fortify Conjuration",
+        value: 75,
+        isPositive: true)
+    static let fortifyDestruction: Effect.ExportDTO = .init(
+        name: "Fortify Destruction",
+        value: 151,
+        isPositive: true)
+    static let fortifyEnchanting: Effect.ExportDTO = .init(
+        name: "Fortify Enchanting",
+        value: 14,
+        isPositive: true)
+    static let fortifyHealth: Effect.ExportDTO = .init(
+        name: "Fortify Health",
+        value: 82,
+        isPositive: true)
+    static let fortifyHeavyArmor: Effect.ExportDTO = .init(
+        name: "Fortify Heavy Armor",
+        value: 82,
+        isPositive: true)
+    static let fortifyIllusion: Effect.ExportDTO = .init(
+        name: "Fortify Illusion",
+        value: 94,
+        isPositive: true)
+    static let fortifyLightArmor: Effect.ExportDTO = .init(
+        name: "Fortify Light Armor",
+        value: 55,
+        isPositive: true)
+    static let fortifyLockpicking: Effect.ExportDTO = .init(
+        name: "Fortify Lockpicking",
+        value: 25,
+        isPositive: true)
+    static let fortifyMagicka: Effect.ExportDTO = .init(
+        name: "Fortify Magicka",
+        value: 71,
+        isPositive: true)
+    static let fortifyMarksman: Effect.ExportDTO = .init(
+        name: "Fortify Marksman",
+        value: 118,
+        isPositive: true)
+    static let fortifyOneHanded: Effect.ExportDTO = .init(
+        name: "Fortify One-Handed",
+        value: 118,
+        isPositive: true)
+    static let fortifyPickpocket: Effect.ExportDTO = .init(
+        name: "Fortify Pickpocket",
+        value: 118,
+        isPositive: true)
+    static let fortifyRestoration: Effect.ExportDTO = .init(
+        name: "Fortify Restoration",
+        value: 118,
+        isPositive: true)
+    static let fortifySmithing: Effect.ExportDTO = .init(
+        name: "Fortify Smithing",
+        value: 82,
+        isPositive: true)
+    static let fortifySneak: Effect.ExportDTO = .init(
+        name: "Fortify Sneak",
+        value: 118,
+        isPositive: true)
+    static let fortifyStamina: Effect.ExportDTO = .init(
+        name: "Fortify Stamina",
+        value: 71,
+        isPositive: true)
+    static let fortifyTwoHanded: Effect.ExportDTO = .init(
+        name: "Fortify Two-Handed",
+        value: 118,
+        isPositive: true)
+    static let frenzy: Effect.ExportDTO = .init(
+        name: "Frenzy",
+        value: 107,
+        isPositive: false)
+    static let invisibility: Effect.ExportDTO = .init(
+        name: "Invisibility",
+        value: 261,
+        isPositive: true)
+    static let lingeringDamageHealth: Effect.ExportDTO = .init(
+        name: "Lingering Damage Health",
+        value: 86,
+        isPositive: false)
+    static let lingeringDamageMagicka: Effect.ExportDTO = .init(
+        name: "Lingering Damage Magicka",
+        value: 71,
+        isPositive: false)
+    static let lingeringDamageStamina: Effect.ExportDTO = .init(
+        name: "Lingering Damage Stamina",
+        value: 12,
+        isPositive: false)
+    static let paralysis: Effect.ExportDTO = .init(
+        name: "Paralysis",
+        value: 285,
+        isPositive: false)
+    static let ravageHealth: Effect.ExportDTO = .init(
+        name: "Ravage Health",
+        value: 6,
+        isPositive: false)
+    static let ravageMagicka: Effect.ExportDTO = .init(
+        name: "Ravage Magicka",
+        value: 15,
+        isPositive: false)
+    static let ravageStamina: Effect.ExportDTO = .init(
+        name: "Ravage Stamina",
+        value: 24,
+        isPositive: false)
+    static let regenerateHealth: Effect.ExportDTO = .init(
+        name: "Regenerate Health",
+        value: 177,
+        isPositive: true)
+    static let regenerateMagicka: Effect.ExportDTO = .init(
+        name: "Regenerate Magicka",
+        value: 177,
+        isPositive: true)
+    static let regenerateStamina: Effect.ExportDTO = .init(
+        name: "Regenerate Stamina",
+        value: 177,
+        isPositive: true)
+    static let resistFire: Effect.ExportDTO = .init(
+        name: "Resist Fire",
+        value: 86,
+        isPositive: true)
+    static let resistFrost: Effect.ExportDTO = .init(
+        name: "Resist Frost",
+        value: 86,
+        isPositive: true)
+    static let resistMagic: Effect.ExportDTO = .init(
+        name: "Resist Magic",
+        value: 51,
+        isPositive: true)
+    static let resistPoison: Effect.ExportDTO = .init(
+        name: "Resist Poison",
+        value: 118,
+        isPositive: true)
+    static let resistShock: Effect.ExportDTO = .init(
+        name: "Resist Shock",
+        value: 86,
+        isPositive: true)
+    static let restoreHealth: Effect.ExportDTO = .init(
+        name: "Restore Health",
+        value: 21,
+        isPositive: true)
+    static let restoreMagicka: Effect.ExportDTO = .init(
+        name: "Restore Magicka",
+        value: 25,
+        isPositive: true)
+    static let restoreStamina: Effect.ExportDTO = .init(
+        name: "Restore Stamina",
+        value: 25,
+        isPositive: true)
+    static let slow: Effect.ExportDTO = .init(
+        name: "Slow",
+        value: 247,
+        isPositive: false)
+    static let waterbreathing: Effect.ExportDTO = .init(
+        name: "Waterbreathing",
+        value: 100,
+        isPositive: true)
+    static let weaknessToFire: Effect.ExportDTO = .init(
+        name: "Weakness To Fire",
+        value: 48,
+        isPositive: false)
+    static let weaknessToFrost: Effect.ExportDTO = .init(
+        name: "Weakness To Frost",
+        value: 40,
+        isPositive: false)
+    static let weaknessToMagic: Effect.ExportDTO = .init(
+        name: "Weakness To Magic",
+        value: 51,
+        isPositive: false)
+    static let weaknessToPoison: Effect.ExportDTO = .init(
+        name: "Weakness To Poison",
+        value: 51,
+        isPositive: false)
+    static let weaknessToShock: Effect.ExportDTO = .init(
+        name: "Weakness To Shock",
+        value: 56,
+        isPositive: false)
     
-    static let all: [Effect.DTO] = [
+    static let all: [Effect.ExportDTO] = [
         DefaultEffects.cureDisease,
         DefaultEffects.damageHealth,
         DefaultEffects.damageMagicka,

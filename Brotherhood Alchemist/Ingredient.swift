@@ -12,33 +12,24 @@ import UIKit
 class Ingredient: Identifiable {
     
     let id: UUID = .init()
-    let accessLock: NSLock = .init()
-    @Published private(set) var effects: [Effect]
-    @Published private(set) var name: ConstrainedName
-    @Published private(set) var selection: SelectionState = .mayHave
+    @Published var effects: [Effect]
+    @Published var name: ConstrainedName
+    @Published var selection: SelectionState = .mayHave
     
-    struct DTO: Codable {
+    struct ExportDTO: Codable {
         let name: ConstrainedName
         let effects: [ConstrainedName]
     }
-    
-    enum Errors: Error {
-        case tooManyEffects
-        case repeatingEffects
-    }
-    static let maximumEffects: Int = 4
-    
-    enum CodingKeys: CodingKey {
-        case effects
-        case name
-    }
-    
-    var dto: DTO {
+    var exportDto: ExportDTO {
         .init(name: name, effects: effects.map { $0.name })
     }
-        
-    init?(dto: DTO, effects validatedEffects: [Effect]) {
-        name = dto.name
+
+    init(
+        name providedName: ConstrainedName,
+        effects validatedEffects: [Effect]
+    ) {
+        name = providedName
         effects = validatedEffects
     }
 }
+

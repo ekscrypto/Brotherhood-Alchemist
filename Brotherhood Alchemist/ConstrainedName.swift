@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStringLiteral {
+struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStringLiteral, Hashable {
     typealias StringLiteralType = String
     
     typealias RawValue = String
@@ -40,6 +40,10 @@ struct ConstrainedName: Codable, Equatable, RawRepresentable, ExpressibleByStrin
             return nil
         }
         rawValue = value
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
     }
     
     @discardableResult
