@@ -104,7 +104,6 @@
 		A9585F342813419400E78F47 /* EffectsFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsFilter.swift; sourceTree = "<group>"; };
 		A9585F362813427600E78F47 /* Credits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		A9585F3A281344F000E78F47 /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
-		A9585F3D2813635700E78F47 /* Registries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registries.swift; sourceTree = "<group>"; };
 		A9585F4028136D7400E78F47 /* RecipesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		A9585F4128136D7400E78F47 /* RecipesListOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesListOptions.swift; sourceTree = "<group>"; };
 		A9585F4228136D7400E78F47 /* RecipeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
@@ -274,7 +273,6 @@
 				A9585F4228136D7400E78F47 /* RecipeDetails.swift */,
 				A9585F4028136D7400E78F47 /* RecipesList.swift */,
 				A9585F4128136D7400E78F47 /* RecipesListOptions.swift */,
-				A9585F3D2813635700E78F47 /* Registries.swift */,
 				A9585F8328141D9800E78F47 /* Registry.swift */,
 				A9B524FD280E50E600F4ABCA /* ResetModal.swift */,
 				A9585F282813300800E78F47 /* SeekedEffect.swift */,

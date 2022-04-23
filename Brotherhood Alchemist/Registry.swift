@@ -11,8 +11,8 @@ import Combine
 
 @MainActor
 class Registry {
-    @Published private(set) var effects: [Effect] = []
-    @Published private(set) var ingredients: [Ingredient] = []
+    @Published fileprivate(set) var effects: [Effect] = []
+    @Published fileprivate(set) var ingredients: [Ingredient] = []
     
     static let active: Registry = .init()
     
@@ -33,6 +33,110 @@ class Registry {
     ) {
         effects = providedEffects
         ingredients = providedIngredients
+    }
+}
+
+@MainActor
+class Effect: Identifiable {
+    
+    let id: UUID = .init()
+    @Published private(set) var name: ConstrainedName
+    @Published var value: EffectValue
+    @Published var isPositive: Bool
+    @Published var selection: SelectionState = .mayHave
+    @Published fileprivate(set) var ingredients: [Ingredient] = []
+    
+    struct ExportDTO: Codable {
+        let name: ConstrainedName
+        let value: EffectValue
+        let isPositive: Bool
+    }
+
+    var exportDto: ExportDTO {
+        .init(name: name, value: value, isPositive: isPositive)
+    }
+    
+    init(
+        name providedName: ConstrainedName,
+        value providedValue: EffectValue,
+        isPositive providedIsPositive: Bool
+    ) {
+        name = providedName
+        value = providedValue
+        isPositive = providedIsPositive
+    }
+}
+
+@MainActor
+class Ingredient: Identifiable {
+    
+    let id: UUID = .init()
+    @Published fileprivate(set) var effects: [Effect]
+    @Published fileprivate(set) var name: ConstrainedName
+    @Published var selection: SelectionState = .mayHave
+    
+    struct ExportDTO: Codable {
+        let name: ConstrainedName
+        let effects: [ConstrainedName]
+    }
+    var exportDto: ExportDTO {
+        .init(name: name, effects: effects.map { $0.name })
+    }
+
+    init(
+        name providedName: ConstrainedName,
+        effects validatedEffects: [Effect]
+    ) {
+        name = providedName
+        effects = validatedEffects
+    }
+}
+
+@MainActor
+class AddIngredientCoordinator {
+    enum Errors: Error {
+        case duplicateName
+        case tooManyEffects
+        case duplicateEffect
+        case unknownEffect
+    }
+
+    func add(
+        name: ConstrainedName,
+        effects: [Effect],
+        to registry: Registry
+    ) throws -> Ingredient {
+        let existingIngredientsNames: Set<String> = Set(registry.ingredients.map { (~$0.name).lowercased() })
+        let lowerecasedName = (~name).lowercased()
+        guard false == existingIngredientsNames.contains(lowerecasedName) else {
+            throw Errors.duplicateName
+        }
+
+        guard effects.count <= 4 else {
+            throw Errors.tooManyEffects
+        }
+        
+        let uniqueEffects: Set<UUID> = Set(effects.map { $0.id })
+        guard uniqueEffects.count == effects.count else {
+            throw Errors.duplicateEffect
+        }
+
+        guard effects.allSatisfy({ desiredEffect in
+            registry.effects.contains(where: { $0.id == desiredEffect.id })
+        }) else {
+            throw Errors.unknownEffect
+        }
+        
+        let sortedEffects: [Effect] = effects.sorted(by: { ~$0.name < ~$1.name })
+        
+        let ingredient: Ingredient = .init(name: name, effects: sortedEffects)
+        effects.forEach { effect in
+            effect.ingredients.append(ingredient)
+            effect.ingredients.sort(by: { ~$0.name < ~$1.name })
+        }
+        registry.ingredients.append(ingredient)
+        registry.ingredients.sort(by: { ~$0.name < ~$1.name })
+        return ingredient
     }
 }
 
