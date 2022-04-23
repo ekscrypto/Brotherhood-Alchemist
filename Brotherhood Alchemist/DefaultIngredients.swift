@@ -9,785 +9,786 @@
 import Foundation
 
 struct DefaultIngredients {
-    static let abeceanLongfin = Ingredient(
+    static let abeceanLongfin = Ingredient.DTO(
         name: "Abecean Longfin",
         effects: [
-            ~DefaultEffects.weaknessToFrost,
-            ~DefaultEffects.fortifySneak,
-            ~DefaultEffects.weaknessToPoison,
-            ~DefaultEffects.fortifyRestoration])!
-    static let ancestorMothWing = Ingredient(
+            DefaultEffects.weaknessToFrost.name,
+            DefaultEffects.fortifySneak.name,
+            DefaultEffects.weaknessToPoison.name,
+            DefaultEffects.fortifyRestoration.name])
+    static let ancestorMothWing = Ingredient.DTO(
         name: "Ancestor Moth Wing",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.fortifyEnchanting])!
-    static let ashCreepCluster = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.fortifyEnchanting.name])
+    static let ashCreepCluster = Ingredient.DTO(
         name: "Ash Creep Cluster",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.invisibility,
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.fortifyDestruction])!
-    static let ashHopperJelly = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.invisibility.name,
+            DefaultEffects.resistFire.name,
+            DefaultEffects.fortifyDestruction.name])
+    static let ashHopperJelly = Ingredient.DTO(
         name: "Ash Hopper Jelly",
         effects: [
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fortifyLightArmor,
-            ~DefaultEffects.resistShock,
-            ~DefaultEffects.weaknessToFrost])!
-    static let ashenGrassPod = Ingredient(
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fortifyLightArmor.name,
+            DefaultEffects.resistShock.name,
+            DefaultEffects.weaknessToFrost.name])
+    static let ashenGrassPod = Ingredient.DTO(
         name: "Ashen Grass Pod",
         effects: [
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.weaknessToShock,
-            ~DefaultEffects.fortifyLockpicking,
-            ~DefaultEffects.fortifySneak])!
-    static let bearClaws = Ingredient(
+            DefaultEffects.resistFire.name,
+            DefaultEffects.weaknessToShock.name,
+            DefaultEffects.fortifyLockpicking.name,
+            DefaultEffects.fortifySneak.name])
+    static let bearClaws = Ingredient.DTO(
         name: "Bear Claws",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.fortifyOneHanded,
-            ~DefaultEffects.damageMagickaRegen])!
-    static let bee = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.fortifyOneHanded.name,
+            DefaultEffects.damageMagickaRegen.name])
+    static let bee = Ingredient.DTO(
         name: "Bee",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.ravageStamina,
-            ~DefaultEffects.regenerateStamina,
-            ~DefaultEffects.weaknessToShock])!
-    static let beehiveHusk = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.ravageStamina.name,
+            DefaultEffects.regenerateStamina.name,
+            DefaultEffects.weaknessToShock.name])
+    static let beehiveHusk = Ingredient.DTO(
         name: "Beehive Husk",
         effects: [
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyLightArmor,
-            ~DefaultEffects.fortifySneak,
-            ~DefaultEffects.fortifyDestruction])!
-    static let beritsAshes = Ingredient(
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyLightArmor.name,
+            DefaultEffects.fortifySneak.name,
+            DefaultEffects.fortifyDestruction.name])
+    static let beritsAshes = Ingredient.DTO(
         name: "Berit's Ashes",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.ravageStamina])!
-    static let bleedingCrown = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.resistFire.name,
+            DefaultEffects.ravageStamina.name])
+    static let bleedingCrown = Ingredient.DTO(
         name: "Bleeding Crown",
         effects: [
-            ~DefaultEffects.weaknessToFire,
-            ~DefaultEffects.fortifyBlock,
-            ~DefaultEffects.weaknessToPoison,
-            ~DefaultEffects.resistMagic])!
-    static let blisterwort = Ingredient(
+            DefaultEffects.weaknessToFire.name,
+            DefaultEffects.fortifyBlock.name,
+            DefaultEffects.weaknessToPoison.name,
+            DefaultEffects.resistMagic.name])
+    static let blisterwort = Ingredient.DTO(
         name: "Blisterwort",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.frenzy,
-            ~DefaultEffects.fortifySmithing])!
-    static let blueButterflyWing = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.frenzy.name,
+            DefaultEffects.fortifySmithing.name])
+    static let blueButterflyWing = Ingredient.DTO(
         name: "Blue Butterfly Wing",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.fortifyEnchanting])!
-    static let blueDartwing = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.fortifyEnchanting.name])
+    static let blueDartwing = Ingredient.DTO(
         name: "Blue Dartwing",
         effects: [
-            ~DefaultEffects.resistShock,
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fortifyPickpocket,
-            ~DefaultEffects.fear])!
-    static let blueMountainFlower = Ingredient(
+            DefaultEffects.resistShock.name,
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fortifyPickpocket.name,
+            DefaultEffects.fear.name])
+    static let blueMountainFlower = Ingredient.DTO(
         name: "Blue Mountain Flower",
         effects: [
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.damageMagickaRegen])!
-    static let boarTusk = Ingredient(
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.damageMagickaRegen.name])
+    static let boarTusk = Ingredient.DTO(
         name: "Boar Tusk",
         effects: [
-            ~DefaultEffects.fortifyStamina,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.fortifyBlock,
-            ~DefaultEffects.frenzy])!
-    static let boneMeal = Ingredient(
+            DefaultEffects.fortifyStamina.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.fortifyBlock.name,
+            DefaultEffects.frenzy.name])
+    static let boneMeal = Ingredient.DTO(
         name: "Bone Meal",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.ravageStamina])!
-    static let briarHeart = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.resistFire.name,
+            DefaultEffects.ravageStamina.name])
+    static let briarHeart = Ingredient.DTO(
         name: "Briar Heart",
         effects: [
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.fortifyBlock,
-            ~DefaultEffects.paralysis,
-            ~DefaultEffects.fortifyMagicka])!
-    static let burntSprigganWood = Ingredient(
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.fortifyBlock.name,
+            DefaultEffects.paralysis.name,
+            DefaultEffects.fortifyMagicka.name])
+    static let burntSprigganWood = Ingredient.DTO(
         name: "Burnt Spriggan Wood",
         effects: [
-            ~DefaultEffects.weaknessToFire,
-            ~DefaultEffects.fortifyAlteration,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.slow])!
-    static let butterflyWing = Ingredient(
+            DefaultEffects.weaknessToFire.name,
+            DefaultEffects.fortifyAlteration.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.slow.name])
+    static let butterflyWing = Ingredient.DTO(
         name: "Butterfly Wing",
         effects: [
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.lingeringDamageStamina,
-            ~DefaultEffects.fortifyBarter,
-            ~DefaultEffects.damageMagicka])!
-    static let canisRoot = Ingredient(
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.lingeringDamageStamina.name,
+            DefaultEffects.fortifyBarter.name,
+            DefaultEffects.damageMagicka.name])
+    static let canisRoot = Ingredient.DTO(
         name: "Canis Root",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fortifyMarksman,
-            ~DefaultEffects.fortifyOneHanded,
-            ~DefaultEffects.paralysis])!
-    static let charredSkeeverHide = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fortifyMarksman.name,
+            DefaultEffects.fortifyOneHanded.name,
+            DefaultEffects.paralysis.name])
+    static let charredSkeeverHide = Ingredient.DTO(
         name: "Charred Skeever Hide",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.cureDisease,
-            ~DefaultEffects.restoreHealth])!
-    static let chaurusEggs = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.cureDisease.name,
+            DefaultEffects.restoreHealth.name])
+    static let chaurusEggs = Ingredient.DTO(
         name: "Chaurus Eggs",
         effects: [
-            ~DefaultEffects.weaknessToPoison,
-            ~DefaultEffects.fortifyStamina,
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.invisibility])!
-    static let chaurusHunterAntennae = Ingredient(
+            DefaultEffects.weaknessToPoison.name,
+            DefaultEffects.fortifyStamina.name,
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.invisibility.name])
+    static let chaurusHunterAntennae = Ingredient.DTO(
         name: "Chaurus Hunter Antennae",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.fortifyEnchanting])!
-    static let chickensEgg = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.fortifyEnchanting.name])
+    static let chickensEgg = Ingredient.DTO(
         name: "Chicken's Egg",
         effects: [
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.waterbreathing,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.lingeringDamageStamina])!
-    static let creepCluster = Ingredient(
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.waterbreathing.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.lingeringDamageStamina.name])
+    static let creepCluster = Ingredient.DTO(
         name: "Creep Cluster",
         effects: [
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.damageStaminaRegen,
-            ~DefaultEffects.weaknessToMagic])!
-    static let crimsonNirnroot = Ingredient(
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.damageStaminaRegen.name,
+            DefaultEffects.weaknessToMagic.name])
+    static let crimsonNirnroot = Ingredient.DTO(
         name: "Crimson Nirnroot",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.invisibility,
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.resistMagic])!
-    static let cyrodilicSpadetail = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.invisibility.name,
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.resistMagic.name])
+    static let cyrodilicSpadetail = Ingredient.DTO(
         name: "Cyrodilic Spadetail",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fear,
-            ~DefaultEffects.fortifyRestoration,
-            ~DefaultEffects.ravageHealth])!
-    static let daedraHeart = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fear.name,
+            DefaultEffects.fortifyRestoration.name,
+            DefaultEffects.ravageHealth.name])
+    static let daedraHeart = Ingredient.DTO(
         name: "Daedra Heart",
         effects: [
-            ~DefaultEffects.damageStaminaRegen,
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fear])!
-    static let deathbell = Ingredient(
+            DefaultEffects.damageStaminaRegen.name,
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fear.name])
+    static let deathbell = Ingredient.DTO(
         name: "Deathbell",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.ravageStamina,
-            ~DefaultEffects.slow,
-            ~DefaultEffects.weaknessToPoison])!
-    static let dragonsTongue = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.ravageStamina.name,
+            DefaultEffects.slow.name,
+            DefaultEffects.weaknessToPoison.name])
+    static let dragonsTongue = Ingredient.DTO(
         name: "Dragon's Tongue",
         effects: [
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.fortifyBarter,
-            ~DefaultEffects.fortifyIllusion,
-            ~DefaultEffects.fortifyTwoHanded])!
-    static let dwarvenOil = Ingredient(
+            DefaultEffects.resistFire.name,
+            DefaultEffects.fortifyBarter.name,
+            DefaultEffects.fortifyIllusion.name,
+            DefaultEffects.fortifyTwoHanded.name])
+    static let dwarvenOil = Ingredient.DTO(
         name: "Dwarven Oil",
         effects: [
-            ~DefaultEffects.weaknessToMagic,
-            ~DefaultEffects.regenerateMagicka,
-            ~DefaultEffects.fortifyIllusion,
-            ~DefaultEffects.restoreMagicka])!
-    static let ectoplasm = Ingredient(
+            DefaultEffects.weaknessToMagic.name,
+            DefaultEffects.regenerateMagicka.name,
+            DefaultEffects.fortifyIllusion.name,
+            DefaultEffects.restoreMagicka.name])
+    static let ectoplasm = Ingredient.DTO(
         name: "Ectoplasm",
         effects: [
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.fortifyDestruction,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.damageHealth])!
-    static let elvesEar = Ingredient(
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.fortifyDestruction.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.damageHealth.name])
+    static let elvesEar = Ingredient.DTO(
         name: "Elves Ear",
         effects: [
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.weaknessToFrost,
-            ~DefaultEffects.fortifyMarksman,
-            ~DefaultEffects.resistFire])!
-    static let emperorParasolMoss = Ingredient(
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.weaknessToFrost.name,
+            DefaultEffects.fortifyMarksman.name,
+            DefaultEffects.resistFire.name])
+    static let emperorParasolMoss = Ingredient.DTO(
         name: "Emperor Parasol Moss",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.regenerateHealth,
-            ~DefaultEffects.fortifyTwoHanded])!
-    static let eyeOfSabreCat = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.regenerateHealth.name,
+            DefaultEffects.fortifyTwoHanded.name])
+    static let eyeOfSabreCat = Ingredient.DTO(
         name: "Eye Of Sabre Cat",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.ravageHealth,
-            ~DefaultEffects.restoreHealth])!
-    static let falmerEar = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.ravageHealth.name,
+            DefaultEffects.restoreHealth.name])
+    static let falmerEar = Ingredient.DTO(
         name: "Falmer Ear",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.frenzy,
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyLockpicking])!
-    static let felsaadTernFeathers = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.frenzy.name,
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyLockpicking.name])
+    static let felsaadTernFeathers = Ingredient.DTO(
         name: "Felsaad Tern Feathers",
         effects: [
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fortifyLightArmor,
-            ~DefaultEffects.cureDisease,
-            ~DefaultEffects.resistMagic])!
-    static let fireSalts = Ingredient(
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fortifyLightArmor.name,
+            DefaultEffects.cureDisease.name,
+            DefaultEffects.resistMagic.name])
+    static let fireSalts = Ingredient.DTO(
         name: "Fire Salts",
         effects: [
-            ~DefaultEffects.weaknessToFrost,
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.regenerateMagicka])!
-    static let flyAmanita = Ingredient(
+            DefaultEffects.weaknessToFrost.name,
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.resistFire.name,
+            DefaultEffects.regenerateMagicka.name])
+    static let flyAmanita = Ingredient.DTO(
         name: "Fly Amanita",
         effects: [
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.frenzy,
-            ~DefaultEffects.fortifyTwoHanded,
-            ~DefaultEffects.regenerateStamina])!
-    static let frostMirriam = Ingredient(
+            DefaultEffects.resistFire.name,
+            DefaultEffects.frenzy.name,
+            DefaultEffects.fortifyTwoHanded.name,
+            DefaultEffects.regenerateStamina.name])
+    static let frostMirriam = Ingredient.DTO(
         name: "Frost Mirriam",
         effects: [
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.fortifySneak,
-            ~DefaultEffects.ravageMagicka,
-            ~DefaultEffects.damageStaminaRegen])!
-    static let frostSalts = Ingredient(
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.fortifySneak.name,
+            DefaultEffects.ravageMagicka.name,
+            DefaultEffects.damageStaminaRegen.name])
+    static let frostSalts = Ingredient.DTO(
         name: "Frost Salts",
         effects: [
-            ~DefaultEffects.weaknessToFire,
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.fortifyConjuration])!
-    static let garlic = Ingredient(
+            DefaultEffects.weaknessToFire.name,
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.fortifyConjuration.name])
+    static let garlic = Ingredient.DTO(
         name: "Garlic",
         effects: [
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyStamina,
-            ~DefaultEffects.regenerateMagicka,
-            ~DefaultEffects.regenerateHealth])!
-    static let giantLichen = Ingredient(
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyStamina.name,
+            DefaultEffects.regenerateMagicka.name,
+            DefaultEffects.regenerateHealth.name])
+    static let giantLichen = Ingredient.DTO(
         name: "Giant Lichen",
         effects: [
-            ~DefaultEffects.ravageHealth,
-            ~DefaultEffects.weaknessToPoison,
-            ~DefaultEffects.weaknessToShock,
-            ~DefaultEffects.restoreMagicka])!
-    static let giantsToe = Ingredient(
+            DefaultEffects.ravageHealth.name,
+            DefaultEffects.weaknessToPoison.name,
+            DefaultEffects.weaknessToShock.name,
+            DefaultEffects.restoreMagicka.name])
+    static let giantsToe = Ingredient.DTO(
         name: "Giant's Toe",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.damageStaminaRegen])!
-    static let gleamblossom = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.damageStaminaRegen.name])
+    static let gleamblossom = Ingredient.DTO(
         name: "Gleamblossom",
         effects: [
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.fear,
-            ~DefaultEffects.regenerateHealth,
-            ~DefaultEffects.paralysis])!
-    static let glowDust = Ingredient(
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.fear.name,
+            DefaultEffects.regenerateHealth.name,
+            DefaultEffects.paralysis.name])
+    static let glowDust = Ingredient.DTO(
         name: "Glow Dust",
         effects: [
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.fortifyDestruction,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.resistShock])!
-    static let glowingMushroom = Ingredient(
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.fortifyDestruction.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.resistShock.name])
+    static let glowingMushroom = Ingredient.DTO(
         name: "Glowing Mushroom",
         effects: [
-            ~DefaultEffects.resistShock,
-            ~DefaultEffects.fortifyDestruction,
-            ~DefaultEffects.fortifySmithing,
-            ~DefaultEffects.fortifyHealth])!
-    static let grassPod = Ingredient(
+            DefaultEffects.resistShock.name,
+            DefaultEffects.fortifyDestruction.name,
+            DefaultEffects.fortifySmithing.name,
+            DefaultEffects.fortifyHealth.name])
+    static let grassPod = Ingredient.DTO(
         name: "Grass Pod",
         effects: [
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.ravageMagicka,
-            ~DefaultEffects.fortifyAlteration,
-            ~DefaultEffects.restoreMagicka])!
-    static let hagravenClaw = Ingredient(
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.ravageMagicka.name,
+            DefaultEffects.fortifyAlteration.name,
+            DefaultEffects.restoreMagicka.name])
+    static let hagravenClaw = Ingredient.DTO(
         name: "Hagraven Claw",
         effects: [
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.lingeringDamageMagicka,
-            ~DefaultEffects.fortifyEnchanting,
-            ~DefaultEffects.fortifyBarter])!
-    static let hagravenFeathers = Ingredient(
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.lingeringDamageMagicka.name,
+            DefaultEffects.fortifyEnchanting.name,
+            DefaultEffects.fortifyBarter.name])
+    static let hagravenFeathers = Ingredient.DTO(
         name: "Hagraven Feathers",
         effects: [
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.frenzy,
-            ~DefaultEffects.fortifyConjuration,
-            ~DefaultEffects.weaknessToShock])!
-    static let hangingMoss = Ingredient(
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.frenzy.name,
+            DefaultEffects.fortifyConjuration.name,
+            DefaultEffects.weaknessToShock.name])
+    static let hangingMoss = Ingredient.DTO(
         name: "Hanging Moss",
         effects: [
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.fortifyOneHanded])!
-    static let hawkBeak = Ingredient(
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.fortifyOneHanded.name])
+    static let hawkBeak = Ingredient.DTO(
         name: "Hawk Beak",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.resistShock])!
-    static let hawkFeathers = Ingredient(
-        //id: 53,
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.resistShock.name])
+    static let hawkFeathers = Ingredient.DTO(
+        //id: 53.name,
         name: "Hawk Feathers",
         effects: [
-            ~DefaultEffects.cureDisease,
-            ~DefaultEffects.fortifyLightArmor,
-            ~DefaultEffects.fortifyOneHanded,
-            ~DefaultEffects.fortifySneak])!
-    static let hawksEgg = Ingredient(
-        //id: 54,
+            DefaultEffects.cureDisease.name,
+            DefaultEffects.fortifyLightArmor.name,
+            DefaultEffects.fortifyOneHanded.name,
+            DefaultEffects.fortifySneak.name])
+    static let hawksEgg = Ingredient.DTO(
+        //id: 54.name,
         name: "Hawk's Egg",
         effects: [
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.waterbreathing,
-            ~DefaultEffects.lingeringDamageStamina])!
-    static let histcarp = Ingredient(
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.waterbreathing.name,
+            DefaultEffects.lingeringDamageStamina.name])
+    static let histcarp = Ingredient.DTO(
         name: "Histcarp",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.damageStaminaRegen,
-            ~DefaultEffects.waterbreathing])!
-    static let honeycomb = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.damageStaminaRegen.name,
+            DefaultEffects.waterbreathing.name])
+    static let honeycomb = Ingredient.DTO(
         name: "Honeycomb",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyBlock,
-            ~DefaultEffects.fortifyLightArmor,
-            ~DefaultEffects.ravageStamina])!
-    static let humanFlesh = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyBlock.name,
+            DefaultEffects.fortifyLightArmor.name,
+            DefaultEffects.ravageStamina.name])
+    static let humanFlesh = Ingredient.DTO(
         name: "Human Flesh",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.paralysis,
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.fortifySneak])!
-    static let humanHeart = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.paralysis.name,
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.fortifySneak.name])
+    static let humanHeart = Ingredient.DTO(
         name: "Human Heart",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.frenzy])!
-    static let iceWraithTeeth = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.frenzy.name])
+    static let iceWraithTeeth = Ingredient.DTO(
         name: "Ice Wraith Teeth",
         effects: [
-            ~DefaultEffects.weaknessToFrost,
-            ~DefaultEffects.fortifyHeavyArmor,
-            ~DefaultEffects.invisibility,
-            ~DefaultEffects.weaknessToFire])!
-    static let impStool = Ingredient(
+            DefaultEffects.weaknessToFrost.name,
+            DefaultEffects.fortifyHeavyArmor.name,
+            DefaultEffects.invisibility.name,
+            DefaultEffects.weaknessToFire.name])
+    static let impStool = Ingredient.DTO(
         name: "Imp Stool",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.paralysis,
-            ~DefaultEffects.lingeringDamageHealth,
-            ~DefaultEffects.restoreHealth])!
-    static let jarrinRoot = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.paralysis.name,
+            DefaultEffects.lingeringDamageHealth.name,
+            DefaultEffects.restoreHealth.name])
+    static let jarrinRoot = Ingredient.DTO(
         name: "Jarrin Root",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.damageMagickaRegen])!
-    static let jazbayGrapes = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.damageMagickaRegen.name])
+    static let jazbayGrapes = Ingredient.DTO(
         name: "Jazbay Grapes",
         effects: [
-            ~DefaultEffects.weaknessToMagic,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.regenerateMagicka,
-            ~DefaultEffects.ravageHealth])!
-    static let juniperBerries = Ingredient(
+            DefaultEffects.weaknessToMagic.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.regenerateMagicka.name,
+            DefaultEffects.ravageHealth.name])
+    static let juniperBerries = Ingredient.DTO(
         name: "Juniper Berries",
         effects: [
-            ~DefaultEffects.weaknessToFire,
-            ~DefaultEffects.regenerateHealth,
-            ~DefaultEffects.fortifyMarksman,
-            ~DefaultEffects.damageStaminaRegen])!
-    static let largeAntlers = Ingredient(
+            DefaultEffects.weaknessToFire.name,
+            DefaultEffects.regenerateHealth.name,
+            DefaultEffects.fortifyMarksman.name,
+            DefaultEffects.damageStaminaRegen.name])
+    static let largeAntlers = Ingredient.DTO(
         name: "Large Antlers",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyStamina,
-            ~DefaultEffects.slow,
-            ~DefaultEffects.damageStaminaRegen])!
-    static let lavender = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyStamina.name,
+            DefaultEffects.slow.name,
+            DefaultEffects.damageStaminaRegen.name])
+    static let lavender = Ingredient.DTO(
         name: "Lavender",
         effects: [
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.fortifyStamina,
-            ~DefaultEffects.ravageMagicka,
-            ~DefaultEffects.fortifyConjuration])!
-    static let lunaMothWing = Ingredient(
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.fortifyStamina.name,
+            DefaultEffects.ravageMagicka.name,
+            DefaultEffects.fortifyConjuration.name])
+    static let lunaMothWing = Ingredient.DTO(
         name: "Luna Moth Wing",
         effects: [
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.fortifyLightArmor,
-            ~DefaultEffects.regenerateHealth,
-            ~DefaultEffects.invisibility])!
-    static let moonSugar = Ingredient(
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.fortifyLightArmor.name,
+            DefaultEffects.regenerateHealth.name,
+            DefaultEffects.invisibility.name])
+    static let moonSugar = Ingredient.DTO(
         name: "Moon Sugar",
         effects: [
-            ~DefaultEffects.weaknessToFire,
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.regenerateMagicka])!
-    static let moraTapinella = Ingredient(
+            DefaultEffects.weaknessToFire.name,
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.regenerateMagicka.name])
+    static let moraTapinella = Ingredient.DTO(
         name: "Mora Tapinella",
         effects: [
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.lingeringDamageHealth,
-            ~DefaultEffects.regenerateStamina,
-            ~DefaultEffects.fortifyIllusion])!
-    static let mudcrabChitin = Ingredient(
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.lingeringDamageHealth.name,
+            DefaultEffects.regenerateStamina.name,
+            DefaultEffects.fortifyIllusion.name])
+    static let mudcrabChitin = Ingredient.DTO(
         name: "Mudcrab Chitin",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.cureDisease,
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.resistFire])!
-    static let namirasRot = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.cureDisease.name,
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.resistFire.name])
+    static let namirasRot = Ingredient.DTO(
         name: "Namira's Rot",
         effects: [
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.fear,
-            ~DefaultEffects.fortifyLockpicking,
-            ~DefaultEffects.regenerateHealth])!
-    static let netchJelly = Ingredient(
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.fear.name,
+            DefaultEffects.fortifyLockpicking.name,
+            DefaultEffects.regenerateHealth.name])
+    static let netchJelly = Ingredient.DTO(
         name: "Netch Jelly",
         effects: [
-            ~DefaultEffects.paralysis,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fear])!
-    static let nightshade = Ingredient(
+            DefaultEffects.paralysis.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fear.name])
+    static let nightshade = Ingredient.DTO(
         name: "Nightshade",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.lingeringDamageStamina,
-            ~DefaultEffects.fortifyDestruction])!
-    static let nirnroot = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.lingeringDamageStamina.name,
+            DefaultEffects.fortifyDestruction.name])
+    static let nirnroot = Ingredient.DTO(
         name: "Nirnroot",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.invisibility,
-            ~DefaultEffects.resistMagic])!
-    static let nordicBarnacle = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.invisibility.name,
+            DefaultEffects.resistMagic.name])
+    static let nordicBarnacle = Ingredient.DTO(
         name: "Nordic Barnacle",
         effects: [
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.waterbreathing,
-            ~DefaultEffects.regenerateHealth,
-            ~DefaultEffects.fortifyPickpocket])!
-    static let orangeDartwing = Ingredient(
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.waterbreathing.name,
+            DefaultEffects.regenerateHealth.name,
+            DefaultEffects.fortifyPickpocket.name])
+    static let orangeDartwing = Ingredient.DTO(
         name: "Orange Dartwing",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.ravageMagicka,
-            ~DefaultEffects.fortifyPickpocket,
-            ~DefaultEffects.lingeringDamageHealth])!
-    static let pearl = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.ravageMagicka.name,
+            DefaultEffects.fortifyPickpocket.name,
+            DefaultEffects.lingeringDamageHealth.name])
+    static let pearl = Ingredient.DTO(
         name: "Pearl",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.fortifyBlock,
-            ~DefaultEffects.resistShock])!
-    static let pineThrushEgg = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.fortifyBlock.name,
+            DefaultEffects.resistShock.name])
+    static let pineThrushEgg = Ingredient.DTO(
         name: "Pine Thrush Egg",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyLockpicking,
-            ~DefaultEffects.weaknessToPoison,
-            ~DefaultEffects.resistShock])!
-    static let poisonBloom = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyLockpicking.name,
+            DefaultEffects.weaknessToPoison.name,
+            DefaultEffects.resistShock.name])
+    static let poisonBloom = Ingredient.DTO(
         name: "Poison Bloom",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.slow,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.fear])!
-    static let powderedMammothTusk = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.slow.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.fear.name])
+    static let powderedMammothTusk = Ingredient.DTO(
         name: "Powdered Mammoth Tusk",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.weaknessToFire,
-            ~DefaultEffects.fortifySneak,
-            ~DefaultEffects.fear])!
-    static let purpleMountainFlower = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.weaknessToFire.name,
+            DefaultEffects.fortifySneak.name,
+            DefaultEffects.fear.name])
+    static let purpleMountainFlower = Ingredient.DTO(
         name: "Purple Mountain Flower",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifySneak,
-            ~DefaultEffects.lingeringDamageMagicka,
-            ~DefaultEffects.resistFrost])!
-    static let redMountainFlower = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifySneak.name,
+            DefaultEffects.lingeringDamageMagicka.name,
+            DefaultEffects.resistFrost.name])
+    static let redMountainFlower = Ingredient.DTO(
         name: "Red Mountain Flower",
         effects: [
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.ravageMagicka,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.damageHealth])!
-    static let riverBetty = Ingredient(
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.ravageMagicka.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.damageHealth.name])
+    static let riverBetty = Ingredient.DTO(
         name: "River Betty",
         effects: [
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.fortifyAlteration,
-            ~DefaultEffects.slow,
-            ~DefaultEffects.fortifyCarryWeight])!
-    static let rockWarblerEgg = Ingredient(
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.fortifyAlteration.name,
+            DefaultEffects.slow.name,
+            DefaultEffects.fortifyCarryWeight.name])
+    static let rockWarblerEgg = Ingredient.DTO(
         name: "Rock Warbler Egg",
         effects: [
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fortifyOneHanded,
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.weaknessToMagic])!
-    static let sabreCatTooth = Ingredient(
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fortifyOneHanded.name,
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.weaknessToMagic.name])
+    static let sabreCatTooth = Ingredient.DTO(
         name: "Sabre Cat Tooth",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyHeavyArmor,
-            ~DefaultEffects.fortifySmithing,
-            ~DefaultEffects.weaknessToPoison])!
-    static let salmonRoe = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyHeavyArmor.name,
+            DefaultEffects.fortifySmithing.name,
+            DefaultEffects.weaknessToPoison.name])
+    static let salmonRoe = Ingredient.DTO(
         name: "Salmon Roe",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.waterbreathing,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.regenerateMagicka])!
-    static let saltPile = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.waterbreathing.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.regenerateMagicka.name])
+    static let saltPile = Ingredient.DTO(
         name: "Salt Pile",
         effects: [
-            ~DefaultEffects.weaknessToMagic,
-            ~DefaultEffects.fortifyRestoration,
-            ~DefaultEffects.slow,
-            ~DefaultEffects.regenerateMagicka])!
-    static let scalyPholiota = Ingredient(
+            DefaultEffects.weaknessToMagic.name,
+            DefaultEffects.fortifyRestoration.name,
+            DefaultEffects.slow.name,
+            DefaultEffects.regenerateMagicka.name])
+    static let scalyPholiota = Ingredient.DTO(
         name: "Scaly Pholiota",
         effects: [
-            ~DefaultEffects.weaknessToMagic,
-            ~DefaultEffects.fortifyIllusion,
-            ~DefaultEffects.regenerateStamina,
-            ~DefaultEffects.fortifyCarryWeight])!
-    static let scathecraw = Ingredient(
+            DefaultEffects.weaknessToMagic.name,
+            DefaultEffects.fortifyIllusion.name,
+            DefaultEffects.regenerateStamina.name,
+            DefaultEffects.fortifyCarryWeight.name])
+    static let scathecraw = Ingredient.DTO(
         name: "Scathecraw",
         effects: [
-            ~DefaultEffects.ravageHealth,
-            ~DefaultEffects.ravageStamina,
-            ~DefaultEffects.ravageMagicka,
-            ~DefaultEffects.lingeringDamageHealth])!
-    static let silversidePerch = Ingredient(
+            DefaultEffects.ravageHealth.name,
+            DefaultEffects.ravageStamina.name,
+            DefaultEffects.ravageMagicka.name,
+            DefaultEffects.lingeringDamageHealth.name])
+    static let silversidePerch = Ingredient.DTO(
         name: "Silverside Perch",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.damageStaminaRegen,
-            ~DefaultEffects.ravageHealth,
-            ~DefaultEffects.resistFrost])!
-    static let skeeverTail = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.damageStaminaRegen.name,
+            DefaultEffects.ravageHealth.name,
+            DefaultEffects.resistFrost.name])
+    static let skeeverTail = Ingredient.DTO(
         name: "Skeever Tail",
         effects: [
-            ~DefaultEffects.damageStaminaRegen,
-            ~DefaultEffects.ravageHealth,
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.fortifyLightArmor])!
-    static let slaughterfishEgg = Ingredient(
+            DefaultEffects.damageStaminaRegen.name,
+            DefaultEffects.ravageHealth.name,
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.fortifyLightArmor.name])
+    static let slaughterfishEgg = Ingredient.DTO(
         name: "Slaughterfish Egg",
         effects: [
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyPickpocket,
-            ~DefaultEffects.lingeringDamageHealth,
-            ~DefaultEffects.fortifyStamina])!
-    static let slaughterfishScales = Ingredient(
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyPickpocket.name,
+            DefaultEffects.lingeringDamageHealth.name,
+            DefaultEffects.fortifyStamina.name])
+    static let slaughterfishScales = Ingredient.DTO(
         name: "Slaughterfish Scales",
         effects: [
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.lingeringDamageHealth,
-            ~DefaultEffects.fortifyHeavyArmor,
-            ~DefaultEffects.fortifyBlock])!
-    static let smallAntlers = Ingredient(
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.lingeringDamageHealth.name,
+            DefaultEffects.fortifyHeavyArmor.name,
+            DefaultEffects.fortifyBlock.name])
+    static let smallAntlers = Ingredient.DTO(
         name: "Small Antlers",
         effects: [
-            ~DefaultEffects.weaknessToPoison,
-            ~DefaultEffects.fortifyRestoration,
-            ~DefaultEffects.lingeringDamageStamina,
-            ~DefaultEffects.damageHealth])!
-    static let smallPearl = Ingredient(
+            DefaultEffects.weaknessToPoison.name,
+            DefaultEffects.fortifyRestoration.name,
+            DefaultEffects.lingeringDamageStamina.name,
+            DefaultEffects.damageHealth.name])
+    static let smallPearl = Ingredient.DTO(
         name: "Small Pearl",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyOneHanded,
-            ~DefaultEffects.fortifyRestoration,
-            ~DefaultEffects.resistFrost])!
-    static let snowberries = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyOneHanded.name,
+            DefaultEffects.fortifyRestoration.name,
+            DefaultEffects.resistFrost.name])
+    static let snowberries = Ingredient.DTO(
         name: "Snowberries",
         effects: [
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.fortifyEnchanting,
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.resistShock])!
-    static let spawnAsh = Ingredient(
+            DefaultEffects.resistFire.name,
+            DefaultEffects.fortifyEnchanting.name,
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.resistShock.name])
+    static let spawnAsh = Ingredient.DTO(
         name: "Spawn Ash",
         effects: [
-            ~DefaultEffects.ravageStamina,
-            ~DefaultEffects.resistFire,
-            ~DefaultEffects.fortifyEnchanting,
-            ~DefaultEffects.ravageMagicka])!
-    static let spiderEgg = Ingredient(
+            DefaultEffects.ravageStamina.name,
+            DefaultEffects.resistFire.name,
+            DefaultEffects.fortifyEnchanting.name,
+            DefaultEffects.ravageMagicka.name])
+    static let spiderEgg = Ingredient.DTO(
         name: "Spider Egg",
         effects: [
-            ~DefaultEffects.damageStamina,
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.fortifyLockpicking,
-            ~DefaultEffects.fortifyMarksman])!
-    static let sprigganSap = Ingredient(
+            DefaultEffects.damageStamina.name,
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.fortifyLockpicking.name,
+            DefaultEffects.fortifyMarksman.name])
+    static let sprigganSap = Ingredient.DTO(
         name: "Spriggan Sap",
         effects: [
-            ~DefaultEffects.damageMagickaRegen,
-            ~DefaultEffects.fortifyEnchanting,
-            ~DefaultEffects.fortifySmithing,
-            ~DefaultEffects.fortifyAlteration])!
-    static let swampFungalPod = Ingredient(
+            DefaultEffects.damageMagickaRegen.name,
+            DefaultEffects.fortifyEnchanting.name,
+            DefaultEffects.fortifySmithing.name,
+            DefaultEffects.fortifyAlteration.name])
+    static let swampFungalPod = Ingredient.DTO(
         name: "Swamp Fungal Pod",
         effects: [
-            ~DefaultEffects.resistShock,
-            ~DefaultEffects.lingeringDamageMagicka,
-            ~DefaultEffects.paralysis,
-            ~DefaultEffects.restoreHealth])!
-    static let taproot = Ingredient(
+            DefaultEffects.resistShock.name,
+            DefaultEffects.lingeringDamageMagicka.name,
+            DefaultEffects.paralysis.name,
+            DefaultEffects.restoreHealth.name])
+    static let taproot = Ingredient.DTO(
         name: "Taproot",
         effects: [
-            ~DefaultEffects.weaknessToMagic,
-            ~DefaultEffects.fortifyIllusion,
-            ~DefaultEffects.regenerateMagicka,
-            ~DefaultEffects.restoreMagicka])!
-    static let thistleBranch = Ingredient(
+            DefaultEffects.weaknessToMagic.name,
+            DefaultEffects.fortifyIllusion.name,
+            DefaultEffects.regenerateMagicka.name,
+            DefaultEffects.restoreMagicka.name])
+    static let thistleBranch = Ingredient.DTO(
         name: "Thistle Branch",
         effects: [
-            ~DefaultEffects.resistFrost,
-            ~DefaultEffects.ravageStamina,
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyHeavyArmor])!
-    static let torchbugThorax = Ingredient(
+            DefaultEffects.resistFrost.name,
+            DefaultEffects.ravageStamina.name,
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyHeavyArmor.name])
+    static let torchbugThorax = Ingredient.DTO(
         name: "Torchbug Thorax",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.lingeringDamageMagicka,
-            ~DefaultEffects.weaknessToMagic,
-            ~DefaultEffects.fortifyStamina])!
-    static let tramaRoot = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.lingeringDamageMagicka.name,
+            DefaultEffects.weaknessToMagic.name,
+            DefaultEffects.fortifyStamina.name])
+    static let tramaRoot = Ingredient.DTO(
         name: "Trama Root",
         effects: [
-            ~DefaultEffects.weaknessToShock,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.damageMagicka,
-            ~DefaultEffects.slow])!
-    static let trollFat = Ingredient(
+            DefaultEffects.weaknessToShock.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.damageMagicka.name,
+            DefaultEffects.slow.name])
+    static let trollFat = Ingredient.DTO(
         name: "Troll Fat",
         effects: [
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyTwoHanded,
-            ~DefaultEffects.frenzy,
-            ~DefaultEffects.damageHealth])!
-    static let tundraCotton = Ingredient(
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyTwoHanded.name,
+            DefaultEffects.frenzy.name,
+            DefaultEffects.damageHealth.name])
+    static let tundraCotton = Ingredient.DTO(
         name: "Tundra Cotton",
         effects: [
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.fortifyMagicka,
-            ~DefaultEffects.fortifyBlock,
-            ~DefaultEffects.fortifyBarter])!
-    static let vampireDust = Ingredient(
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.fortifyMagicka.name,
+            DefaultEffects.fortifyBlock.name,
+            DefaultEffects.fortifyBarter.name])
+    static let vampireDust = Ingredient.DTO(
         name: "Vampire Dust",
         effects: [
-            ~DefaultEffects.invisibility,
-            ~DefaultEffects.regenerateHealth,
-            ~DefaultEffects.restoreMagicka, ~DefaultEffects.cureDisease])!
-    static let voidSalts = Ingredient(
+            DefaultEffects.invisibility.name,
+            DefaultEffects.regenerateHealth.name,
+            DefaultEffects.restoreMagicka.name, DefaultEffects.cureDisease.name])
+    static let voidSalts = Ingredient.DTO(
         name: "Void Salts",
         effects: [
-            ~DefaultEffects.weaknessToShock,
-            ~DefaultEffects.resistMagic,
-            ~DefaultEffects.damageHealth,
-            ~DefaultEffects.fortifyMagicka])!
-    static let wheat = Ingredient(
+            DefaultEffects.weaknessToShock.name,
+            DefaultEffects.resistMagic.name,
+            DefaultEffects.damageHealth.name,
+            DefaultEffects.fortifyMagicka.name])
+    static let wheat = Ingredient.DTO(
         name: "Wheat",
         effects: [
-            ~DefaultEffects.restoreHealth,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.damageStaminaRegen,
-            ~DefaultEffects.lingeringDamageMagicka])!
-    static let whiteCap = Ingredient(
+            DefaultEffects.restoreHealth.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.damageStaminaRegen.name,
+            DefaultEffects.lingeringDamageMagicka.name])
+    static let whiteCap = Ingredient.DTO(
         name: "White Cap",
         effects: [
-            ~DefaultEffects.weaknessToFrost,
-            ~DefaultEffects.fortifyHeavyArmor,
-            ~DefaultEffects.restoreMagicka,
-            ~DefaultEffects.ravageMagicka])!
-    static let wispWrappings = Ingredient(
+            DefaultEffects.weaknessToFrost.name,
+            DefaultEffects.fortifyHeavyArmor.name,
+            DefaultEffects.restoreMagicka.name,
+            DefaultEffects.ravageMagicka.name])
+    static let wispWrappings = Ingredient.DTO(
         name: "Wisp Wrappings",
         effects: [
-            ~DefaultEffects.restoreStamina,
-            ~DefaultEffects.fortifyDestruction,
-            ~DefaultEffects.fortifyCarryWeight,
-            ~DefaultEffects.resistMagic])!
-    static let yellowMountainFlower = Ingredient(
+            DefaultEffects.restoreStamina.name,
+            DefaultEffects.fortifyDestruction.name,
+            DefaultEffects.fortifyCarryWeight.name,
+            DefaultEffects.resistMagic.name])
+    static let yellowMountainFlower = Ingredient.DTO(
         name: "Yellow Mountain Flower",
         effects: [
-            ~DefaultEffects.resistPoison,
-            ~DefaultEffects.fortifyRestoration,
-            ~DefaultEffects.fortifyHealth,
-            ~DefaultEffects.damageStaminaRegen])!
-    static let all: [Ingredient] = [
+            DefaultEffects.resistPoison.name,
+            DefaultEffects.fortifyRestoration.name,
+            DefaultEffects.fortifyHealth.name,
+            DefaultEffects.damageStaminaRegen.name])
+    
+    static let all: [Ingredient.DTO] = [
         DefaultIngredients.abeceanLongfin,
         DefaultIngredients.ancestorMothWing,
         DefaultIngredients.ashCreepCluster,

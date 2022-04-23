@@ -8,95 +8,56 @@
 
 import Foundation
 
-class Effect: Identifiable, Equatable, ExpressibleByStringLiteral, RawRepresentable, Codable {
-    var rawValue: String {
-        "\(name.rawValue):\(value.rawValue):\(isPositive ? "p" : "n")"
-    }
+@MainActor
+class Effect: Identifiable {
     
     let id: UUID = .init()
-    typealias RawValue = String
 
-    @Published var name: ConstrainedName
-    @Published var value: Value
-    @Published var isPositive: Bool
-    @Published var selection: SelectionState = .mayHave
-    @Published var ingredients: [IngredientRef] = []
+    @Published private(set) var name: ConstrainedName
+    @Published private(set) var value: Value
+    @Published private(set) var isPositive: Bool
+    @Published private(set) var selection: SelectionState = .mayHave
+    @Published private(set) var ingredients: [Ingredient] = []
     
-    class IngredientRef {
-        weak var ref: Ingredient?
-        
-        init(_ ingredient: Ingredient) {
-            ref = ingredient
-        }
-    }
-    
-    init(name providedName: ConstrainedName,
-         value providedValue: Value,
-         isPositive providedIsPositive: Bool) {
-        name = providedName
-        value = providedValue
-        isPositive = providedIsPositive
-    }
-    
-    func removeIngredientsNilRefs() {
-        ingredients.removeAll(where: { $0.ref == nil })
-    }
-    
-    struct LiteralComponents {
+    struct DTO: Codable, ExpressibleByStringLiteral {
         let name: ConstrainedName
         let value: Value
         let isPositive: Bool
-    }
-    static func decoded(literal stringLiteral: String) -> LiteralComponents? {
-        let literalComponents = stringLiteral.components(separatedBy: ":")
-        guard literalComponents.count == 3,
-              let decodedName = ConstrainedName(rawValue: literalComponents[0]),
-              let decodedValue = Value(rawValue: UInt(literalComponents[1]) ?? .max)
-        else {
-              return nil
+        
+        init(
+            name providedName: ConstrainedName,
+            value providedValue: Value,
+            isPositive providedIsPositive: Bool
+        ) {
+            name = providedName
+            value = providedValue
+            isPositive = providedIsPositive
         }
-        return LiteralComponents(
-            name: decodedName,
-            value: decodedValue,
-            isPositive: literalComponents[2] == "p")
-    }
-    
-    required init?(rawValue providedRawValue: String) {
-        guard let literalComponents = Self.decoded(literal: providedRawValue) else {
-            return nil
+        
+        init(stringLiteral: StringLiteralType) {
+            let components = stringLiteral.components(separatedBy: ":")
+            guard components.count == 3,
+                  let providedName: ConstrainedName = .init(rawValue: components[0]),
+                  let rawValue: UInt = .init(components[1]),
+                  let providedValue = Value(rawValue: rawValue),
+                  ["p","n"].contains(components[2])
+            else {
+                fatalError()
+            }
+            name = providedName
+            value = providedValue
+            isPositive = components[2] == "p"
         }
+    }
 
-        name = literalComponents.name
-        value = literalComponents.value
-        isPositive = literalComponents.isPositive
+    var dto: DTO {
+        .init(name: name, value: value, isPositive: isPositive)
     }
     
-    required init(stringLiteral: String) {
-        guard let literalComponents = Self.decoded(literal: stringLiteral) else {
-            fatalError()
-        }
-        
-        name = literalComponents.name
-        value = literalComponents.value
-        isPositive = literalComponents.isPositive
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let stringLiteral = try container.decode(String.self)
-        
-        guard let literalComponents = Self.decoded(literal: stringLiteral) else {
-            fatalError()
-        }
-        
-        name = literalComponents.name
-        value = literalComponents.value
-        isPositive = literalComponents.isPositive
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(rawValue)
+    init(dto: DTO) {
+        name = dto.name
+        value = dto.value
+        isPositive = dto.isPositive
     }
         
     struct Value: Codable, Equatable, RawRepresentable, ExpressibleByIntegerLiteral {
@@ -107,7 +68,8 @@ class Effect: Identifiable, Equatable, ExpressibleByStringLiteral, RawRepresenta
             case outOfBounds
         }
         
-        static let maximumValue: UInt = 50_000
+        static let minimim: UInt = 1
+        static let maximum: UInt = 50_000
         
         init(integerLiteral: UInt) {
             guard let value = try? Value.evaluated(integerLiteral) else {
@@ -131,7 +93,7 @@ class Effect: Identifiable, Equatable, ExpressibleByStringLiteral, RawRepresenta
         
         @discardableResult
         static func evaluated(_ value: UInt) throws -> UInt {
-            guard (1...Self.maximumValue).contains(value) else {
+            guard Self.minimim <= value, value <= Self.maximum else {
                 throw Errors.outOfBounds
             }
             return value

@@ -8,71 +8,135 @@
 
 import Foundation
 
-class Ingredients {
-
-    static var registry: Ingredients = .init()
-    private let registryUrl: URL
+@MainActor
+final class Ingredients {
+    @Published private(set) var all: [Ingredient] = []
     
-    init(filePath: String = "Ingredients.registry", performLoad: Bool = true) {
-        registryUrl = Self.registryUrl(path: filePath)
-        if performLoad {
-            loadRegistry()
-        }
+    static let active: Ingredients = .init()
+    
+    fileprivate func finishLoading(with loadedIngredients: [Ingredient]) {
+        all = loadedIngredients
     }
     
-    static func registryUrl(path filePath: String) -> URL {
+    func remove(ingredient: Ingredient) {
+        all.removeAll(where: { $0.id == ingredient.id })
+    }
+    
+    enum Errors: Error {
+        case nameAlreadyExists
+    }
+    
+    func add(ingredient: Ingredient) throws {
+        let ingredientName: String = ~ingredient.name
+        guard all.allSatisfy({ ~$0.name != ingredientName }) else {
+            throw Errors.nameAlreadyExists
+        }
+        all.append(ingredient)
+        all.sort(by: { ~$0.name < ~$1.name })
+    }
+}
+
+@MainActor
+class IngredientsSnapshot {
+    
+    func capture(registry ingredients: Ingredients) -> [Ingredient.DTO] {
+        ingredients.all.map { $0.dto }
+    }
+    
+    struct IngredientEffectsMap {
+        let dto: Ingredient.DTO
+        let effects: [Effect]
+    }
+    
+    func instantiate(ingredients: [IngredientEffectsMap]) -> [Ingredient] {
+        ingredients.compactMap { Ingredient(dto: $0.dto, effects: $0.effects) }
+    }
+    
+    enum Errors: Error {
+        case unknownEffect
+    }
+    
+    func map(dto: Ingredient.DTO, sourcing effects: [Effect]) throws -> IngredientEffectsMap {
+        var mappedEffects: [Effect] = []
+        for effectName in dto.effects {
+            guard let effect = effects.first(where: { $0.name == effectName }) else {
+                throw Errors.unknownEffect
+            }
+            mappedEffects.append(effect)
+        }
+        return .init(dto: dto, effects: mappedEffects)
+    }
+}
+
+final class StoredIngredients {
+    static func load(into registry: Ingredients, sourcingEffects: Effects) async {
+        
+        let ingredientsToLoad: [Ingredient.DTO]
+        if let ingredientsFromDisk = try? await Self.loadRegistryFromDisk(from: Self.registryUrl) {
+            ingredientsToLoad = ingredientsFromDisk
+        } else {
+            ingredientsToLoad = DefaultIngredients.all
+        }
+
+        do {
+            let snapshotMaps: [IngredientsSnapshot.IngredientEffectsMap] = try await Self.createSnapshotMap(
+                from: ingredientsToLoad,
+                sourcingEffects: <#T##Effects#>)
+        }
+        await registry.finishLoading(with: ingredientsToLoad)
+    }
+    
+    static var registryUrl: URL {
         do {
             let documentDirectory: URL = try FileManager.default.url(
                 for: .documentDirectory,
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true)
-            return documentDirectory.appendingPathComponent(filePath)
+            return documentDirectory.appendingPathComponent("Ingredients.registry")
         } catch {
             fatalError("Unable to acquire .documentDirectory URL: \(error)")
         }
     }
     
-    private func loadRegistry() {
-        if loadRegistryFromDisk() {
-            return
-        }
-        all = DefaultIngredients.all
-    }
-    
-    private func loadRegistryFromDisk() -> Bool {
+    private static func loadRegistryFromDisk(from registryUrl: URL) async throws -> [Ingredient.DTO] {
         do {
             let registryData: Data = try Data(contentsOf: registryUrl)
-            let ingredients: [Ingredient] = try JSONDecoder().decode([Ingredient].self, from: registryData)
-            try ingredients.forEach { try register($0) }
-            return true
+            let ingredientsDto: [Ingredient.DTO] = try JSONDecoder().decode([Ingredient.DTO].self, from: registryData)
+            try UniqueIngredientsValidator.validate(using: ingredientsDto)
+            return ingredientsDto
         } catch {
-            print("Failed to load Ingredients registry from disk: \(error)")
-            return false
+            print("Unable to load Ingredients registry: \(error)")
+            throw error
         }
     }
     
-    func register(_ ingredient: Ingredient) throws {
-        enum Errors: Error {
-            case duplicateName
+    private static func createSnapshotMap(
+        from ingredientsDto: [Ingredient.DTO],
+        sourcingEffects effectsRegistry: Effects
+    ) async throws -> [IngredientsSnapshot.IngredientEffectsMap] {
+        let allEffects: [Effect] = await effectsRegistry.all
+        var maps: [IngredientsSnapshot.IngredientEffectsMap] = []
+        let snapshot: IngredientsSnapshot = await .init()
+        for dto in ingredientsDto {
+            let dtoMap: IngredientsSnapshot.IngredientEffectsMap = try await snapshot.map(
+                dto: dto,
+                sourcing: allEffects)
+            maps.append(dtoMap)
         }
-        
-        guard all.allSatisfy({ $0.name != ingredient.name }) else {
-            throw Errors.duplicateName
-        }
-        
-        all.append(ingredient)
+        return maps
+    }
+}
+
+final class UniqueIngredientsValidator {
+    enum Errors: Error {
+        case duplicatedName
     }
     
-    func saveToDisk() -> Bool {
-        do {
-            let jsonData = try JSONEncoder().encode(all)
-            try jsonData.write(to: registryUrl, options: .completeFileProtectionUntilFirstUserAuthentication)
-            return true
-        } catch {
-            return false
+    static func validate(using dto: [Ingredient.DTO]) throws {
+        let uniqueNames: Set<String> = Set(dto.map { ~$0.name })
+        if uniqueNames.count < dto.count {
+            throw Errors.duplicatedName
         }
     }
-    
-    @Published private(set) var all: [Ingredient] = []
 }
