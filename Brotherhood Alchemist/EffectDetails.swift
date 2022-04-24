@@ -99,11 +99,11 @@ struct EffectDetails: View {
     private func rotateSelection() {
         switch effect.selection {
         case .cantHave:
-            effect.selection = .mayHave
+            Registry.active.select(effect: effect, as: .mayHave)
         case .mayHave:
-            effect.selection = .mustHave
+            Registry.active.select(effect: effect, as: .mustHave)
         case .mustHave:
-            effect.selection = .cantHave
+            Registry.active.select(effect: effect, as: .cantHave)
         }
     }
 }

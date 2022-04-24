@@ -39,11 +39,11 @@ struct IngredientDetails: View {
     private func rotateSelection() {
         switch ingredient.selection {
         case .mayHave:
-            ingredient.selection = .mustHave
+            Registry.active.select(ingredient: ingredient, as: .mustHave)
         case .mustHave:
-            ingredient.selection = .cantHave
+            Registry.active.select(ingredient: ingredient, as: .cantHave)
         case .cantHave:
-            ingredient.selection = .mayHave
+            Registry.active.select(ingredient: ingredient, as: .mayHave)
         }
     }
     

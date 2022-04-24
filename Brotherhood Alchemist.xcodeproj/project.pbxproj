@@ -60,6 +60,13 @@
 		A9585FCC2814C10100E78F47 /* DefaultEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524D9280E4AB500F4ABCA /* DefaultEffects.swift */; };
 		A9585FCD2814C10C00E78F47 /* ConstrainedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524E3280E4B5700F4ABCA /* ConstrainedName.swift */; };
 		A9585FCE2814C11800E78F47 /* SelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524F5280E4DF400F4ABCA /* SelectionState.swift */; };
+		A9585FCF2814D5A100E78F47 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */; };
+		A9585FD12814E7A900E78F47 /* ConcoctionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */; };
+		A9585FD22814EC0D00E78F47 /* RecipesListOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4128136D7400E78F47 /* RecipesListOptions.swift */; };
+		A9585FD32814EC3600E78F47 /* ConcoctionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */; };
+		A9585FD42814EC3900E78F47 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */; };
+		A9585FD52814ED2900E78F47 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4028136D7400E78F47 /* RecipesList.swift */; };
+		A9585FD62814EE9E00E78F47 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4228136D7400E78F47 /* RecipeDetails.swift */; };
 		A9B524C8280E495400F4ABCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B524C7280E495400F4ABCA /* Assets.xcassets */; };
 		A9DF11672801BA6C0039BE4C /* MinWidthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */; };
 		A9DF11692801BD6D0039BE4C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11682801BD6D0039BE4C /* ViewModel.swift */; };
@@ -118,17 +125,16 @@
 		A9585F2A2813303200E78F47 /* SeekedIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekedIngredient.swift; sourceTree = "<group>"; };
 		A9585F2C2813309200E78F47 /* EffectDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectDetails.swift; sourceTree = "<group>"; };
 		A9585F2D2813309200E78F47 /* EffectsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsList.swift; sourceTree = "<group>"; };
-		A9585F342813419400E78F47 /* EffectsFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsFilter.swift; sourceTree = "<group>"; };
 		A9585F362813427600E78F47 /* Credits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		A9585F4028136D7400E78F47 /* RecipesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		A9585F4128136D7400E78F47 /* RecipesListOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesListOptions.swift; sourceTree = "<group>"; };
 		A9585F4228136D7400E78F47 /* RecipeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
 		A9585F4628136DF900E78F47 /* Concoction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concoction.swift; sourceTree = "<group>"; };
 		A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcoctionFinder.swift; sourceTree = "<group>"; };
-		A9585F4A28136EAE00E78F47 /* Concoctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concoctions.swift; sourceTree = "<group>"; };
 		A9585F8328141D9800E78F47 /* Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registry.swift; sourceTree = "<group>"; };
 		A9585F85281428E000E78F47 /* EffectValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectValue.swift; sourceTree = "<group>"; };
 		A9585F8828143EBB00E78F47 /* RegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryTests.swift; sourceTree = "<group>"; };
+		A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionFilter.swift; sourceTree = "<group>"; };
 		A9B524C1280E495300F4ABCA /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brotherhood_AlchemistApp.swift; sourceTree = "<group>"; };
 		A9B524C7280E495400F4ABCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,7 +158,6 @@
 		A9B524F5280E4DF400F4ABCA /* SelectionState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionState.swift; sourceTree = "<group>"; };
 		A9B524F7280E4EC600F4ABCA /* Tabs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		A9B524F9280E4EDC00F4ABCA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		A9B524FB280E4F8D00F4ABCA /* IngredientsFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsFilter.swift; sourceTree = "<group>"; };
 		A9B524FD280E50E600F4ABCA /* ResetModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetModal.swift; sourceTree = "<group>"; };
 		A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinWidthCoordinator.swift; sourceTree = "<group>"; };
 		A9DF11682801BD6D0039BE4C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -261,20 +266,18 @@
 				A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */,
 				A9585F4628136DF900E78F47 /* Concoction.swift */,
 				A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */,
-				A9585F4A28136EAE00E78F47 /* Concoctions.swift */,
+				A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */,
 				A9B524E3280E4B5700F4ABCA /* ConstrainedName.swift */,
 				A9B524E5280E4C8800F4ABCA /* ContentView.swift */,
 				A9585F362813427600E78F47 /* Credits.swift */,
 				A9B524D9280E4AB500F4ABCA /* DefaultEffects.swift */,
 				A9B524DC280E4AB500F4ABCA /* DefaultIngredients.swift */,
 				A9585F2C2813309200E78F47 /* EffectDetails.swift */,
-				A9585F342813419400E78F47 /* EffectsFilter.swift */,
 				A9585F2D2813309200E78F47 /* EffectsList.swift */,
 				A9585F85281428E000E78F47 /* EffectValue.swift */,
 				A9B524E8280E4CF200F4ABCA /* FilterControl.swift */,
 				A9B524E9280E4CF200F4ABCA /* HeightCoordinator.swift */,
 				A9B524D7280E4A1B00F4ABCA /* IngredientDetails.swift */,
-				A9B524FB280E4F8D00F4ABCA /* IngredientsFilter.swift */,
 				A9B524DB280E4AB500F4ABCA /* IngredientsList.swift */,
 				A9B524EA280E4CF200F4ABCA /* ListHeader.swift */,
 				A9B524EB280E4CF200F4ABCA /* MinWidthCoordinator.swift */,
@@ -508,6 +511,8 @@
 				A9585F8928143EBB00E78F47 /* RegistryTests.swift in Sources */,
 				A9585FCA2814C0F600E78F47 /* EffectValue.swift in Sources */,
 				A9585FCD2814C10C00E78F47 /* ConstrainedName.swift in Sources */,
+				A9585FD42814EC3900E78F47 /* ConcoctionFinder.swift in Sources */,
+				A9585FD32814EC3600E78F47 /* ConcoctionFilter.swift in Sources */,
 				A9585FCE2814C11800E78F47 /* SelectionState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +572,7 @@
 				A9585F932814C0E700E78F47 /* IngredientDetails.swift in Sources */,
 				A9585F9A2814C0E700E78F47 /* MinWidthCoordinator.swift in Sources */,
 				A9585F902814C0E700E78F47 /* IngredientsList.swift in Sources */,
+				A9585FD12814E7A900E78F47 /* ConcoctionFilter.swift in Sources */,
 				A9585F982814C0E700E78F47 /* SelectionIndicatorMust.swift in Sources */,
 				A9585F9F2814C0E700E78F47 /* ListHeader.swift in Sources */,
 				A9585FA92814C0E700E78F47 /* TextFieldClearButton.swift in Sources */,
@@ -575,6 +581,7 @@
 				A9585FA42814C0E700E78F47 /* TabsOriginCoordinator.swift in Sources */,
 				A9585F8428141D9800E78F47 /* Registry.swift in Sources */,
 				A9585F8B2814C0E700E78F47 /* EffectDetails.swift in Sources */,
+				A9585FD22814EC0D00E78F47 /* RecipesListOptions.swift in Sources */,
 				A9585F942814C0E700E78F47 /* FilterControl.swift in Sources */,
 				A9585F922814C0E700E78F47 /* SeekedIngredient.swift in Sources */,
 				A9585FA62814C0E700E78F47 /* SelectionText.swift in Sources */,
@@ -584,12 +591,15 @@
 				A9585FA82814C0E700E78F47 /* Brotherhood_AlchemistApp.swift in Sources */,
 				A9585F912814C0E700E78F47 /* SelectionIndicator.swift in Sources */,
 				A9585F782813960300E78F47 /* DefaultEffects.swift in Sources */,
+				A9585FCF2814D5A100E78F47 /* ConcoctionFinder.swift in Sources */,
 				A9585F962814C0E700E78F47 /* SeekedEffect.swift in Sources */,
+				A9585FD52814ED2900E78F47 /* RecipesList.swift in Sources */,
 				A9585F7A2813963200E78F47 /* SelectionState.swift in Sources */,
 				A9585FA52814C0E700E78F47 /* Tabs.swift in Sources */,
 				A9585FA22814C0E700E78F47 /* ResetModal.swift in Sources */,
 				A9585F8D2814C0E700E78F47 /* Tab.swift in Sources */,
 				A9585F86281428E000E78F47 /* EffectValue.swift in Sources */,
+				A9585FD62814EE9E00E78F47 /* RecipeDetails.swift in Sources */,
 				A9585F742813959E00E78F47 /* ConstrainedName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,9 @@
 
 import SwiftUI
 
+@MainActor
 struct RecipeDetails: View {
     let concoction: Concoction
-
     let seekedEffect: SeekedEffect
     let seekedIngredient: SeekedIngredient
     
@@ -57,7 +57,7 @@ struct RecipeDetails: View {
     private var listOfEffects: some View {
         ForEach(sortedEffects) { effect in
             Button(action: {
-                onSeekEffect(effect)
+                seekedEffect.effect = effect
             }) {
                 summaryOfEffect(effect)
             }
@@ -90,7 +90,7 @@ struct RecipeDetails: View {
     private var listOfIngredients: some View {
         ForEach(sortedIngredients) { ingredient in
             Button(action: {
-                onSeekIngredient(ingredient)
+                seekedIngredient.ingredient = ingredient
             }) {
                 summaryOfIngredient(ingredient)
             }
@@ -126,20 +126,20 @@ struct RecipeDetails_Previews: PreviewProvider {
         RecipeDetails(
             concoction: Concoction(
                 effects: [
-                    ~DefaultEffects.fear,
-                    ~DefaultEffects.paralysis,
-                    ~DefaultEffects.resistMagic,
-                    ~DefaultEffects.fortifyCarryWeight,
-                    ~DefaultEffects.restoreStamina
+                    Effect(name: "Fear", value: 1, isPositive: false),
+                    Effect(name: "Paralysis", value: 1, isPositive: false),
+                    Effect(name: "Resist Magic", value: 1, isPositive: true),
+                    Effect(name: "Fortify Carry Weight", value: 1, isPositive: true),
+                    Effect(name: "Restore Stamina", value: 1, isPositive: true)
                 ],
                 ingredients: [
-                    DefaultIngredients.gleamblossom,
-                    DefaultIngredients.netchJelly,
-                    DefaultIngredients.wispWrappings
+                    Ingredient(name: "Gleamblossom", effects: []),
+                    Ingredient(name: "Netch Jelly", effects: []),
+                    Ingredient(name: "Wisp Wrappings", effects: [])
                 ],
                 estimatedValue: 689),
-            onSeekEffect: { _ in /* ignored */ },
-            onSeekIngredient: { _ in /* ignored */ })
+            seekedEffect: .init(),
+            seekedIngredient: .init())
     }
 
 }

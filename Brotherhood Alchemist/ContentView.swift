@@ -81,11 +81,12 @@ struct ContentView: View {
                 .id("IngredientList")
                 .overlay(HeightCoordinator(via: $listHeight))
 
-//                RecipesList(
-//                    viewModel: viewModel,
-//                    listBottomPadding: 0)
-//                .id("Recipes")
-//                .frame(minWidth: 300, idealWidth: max(360, viewWidth * 0.4), maxWidth: 500.0)
+                RecipesList(
+                    listBottomPadding: 0,
+                    seekedEffect: seekedEffect,
+                    seekedIngredient: seekedIngredient)
+                .id("Recipes")
+                .frame(minWidth: 300, idealWidth: max(360, viewWidth * 0.4), maxWidth: 500.0)
 
                 EffectsList(
                     listBottomPadding: 0,
@@ -107,12 +108,13 @@ struct ContentView: View {
             .overlay(HeightCoordinator(via: $listHeight))
             .offset(x: tabOffset(for: .ingredients))
 
-//            RecipesList(
-//                viewModel: viewModel,
-//                listBottomPadding: listBottomPadding)
-//            .id("Recipes")
-//            .offset(x: tabOffset(for: .recipes))
-//
+            RecipesList(
+                listBottomPadding: listBottomPadding,
+                seekedEffect: seekedEffect,
+                seekedIngredient: seekedIngredient)
+            .id("Recipes")
+            .offset(x: tabOffset(for: .recipes))
+
             EffectsList(
                 listBottomPadding: listBottomPadding,
                 seekedEffect: seekedEffect,
@@ -128,11 +130,15 @@ struct ContentView: View {
             .overlay(TabsOriginCoordinator(via: $tabbarOrigin))
         }
         .overlay(MinWidthCoordinator(via: $viewWidth))
-        .onReceive(seekedEffect.$effect) { _ in
-            selectedTab = .effects
+        .onReceive(seekedEffect.$effect) { effectOrNil in
+            if effectOrNil != nil {
+                selectedTab = .effects
+            }
         }
-        .onReceive(seekedIngredient.$ingredient) { _ in
-            selectedTab = .ingredients
+        .onReceive(seekedIngredient.$ingredient) { ingredientOrNil in
+            if ingredientOrNil != nil {
+                selectedTab = .ingredients
+            }
         }
     }
 

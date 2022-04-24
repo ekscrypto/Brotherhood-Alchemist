@@ -8,11 +8,14 @@
 
 import SwiftUI
 
+@MainActor
 struct RecipesList: View {
 
     let listBottomPadding: CGFloat
+    let seekedEffect: SeekedEffect
+    let seekedIngredient: SeekedIngredient
 
-    @State var concoctions: [Concoction]
+    @State var concoctions: [Concoction] = []
     @State var showOptions: Bool = false
     
     enum SortBy: String, CaseIterable {
@@ -36,13 +39,24 @@ struct RecipesList: View {
         case noPreference = "no preference"
     }
     @State var effectsLimit: EffectsLimit = .oneOrTheOther
+    @State var isBrewing: Bool = true
+    
+    private func updateConcoctions() {
+        concoctions = sortedConcoctions
+    }
     
     private var effectsFilteredConcoctions: [Concoction] {
+        guard case let .identified(identifiedConcoctions) = Registry.active.matchingConcoctions else {
+            isBrewing = true
+            return []
+        }
+        isBrewing = false
+        
         if effectsLimit == .noPreference {
-            return viewModel.concoctions
+            return identifiedConcoctions
         }
         
-        return viewModel.concoctions
+        return identifiedConcoctions
             .filter({ concoction in
                 let effects = concoction.effects
                 switch effectsLimit {
@@ -120,7 +134,7 @@ struct RecipesList: View {
             VStack {
                 header
                 
-                if viewModel.updatingConctions {
+                if isBrewing {
                     VStack {
                         Text("Brewing…")
                             .padding(.top, 80)
@@ -132,7 +146,7 @@ struct RecipesList: View {
                     }
                 } else {
                     
-                    if viewModel.concoctions.count == 0 {
+                    if concoctions.count == 0 {
                         VStack {
                             Text("No match :(")
                                 .padding()
@@ -155,6 +169,20 @@ struct RecipesList: View {
                     showOptions: $showOptions)
             }
         }
+        .onReceive(Registry.active.$matchingConcoctions) { _ in
+            DispatchQueue.main.async {
+                updateConcoctions()
+            }
+        }
+        .onChange(of: effectsLimit) { _ in
+            updateConcoctions()
+        }
+        .onChange(of: ingredientLimit) { _ in
+            updateConcoctions()
+        }
+        .onChange(of: sortBy) { newValue in
+            updateConcoctions()
+        }
     }
     
     // MARK: -
@@ -162,8 +190,8 @@ struct RecipesList: View {
     private func concoctionInfo(_ concoction: Concoction) -> some View {
         RecipeDetails(
             concoction: concoction,
-            onSeekEffect: { viewModel.seekedEffect = $0 },
-            onSeekIngredient: { viewModel.seekedIngredient = $0 })
+            seekedEffect: seekedEffect,
+            seekedIngredient: seekedIngredient)
     }
     
     private var header: some View {
@@ -204,7 +232,8 @@ struct RecipesList: View {
 struct RecipesList_Previews: PreviewProvider {
     static var previews: some View {
         RecipesList(
-            viewModel: ViewModel(),
-            listBottomPadding: 0)
+            listBottomPadding: 0,
+            seekedEffect: .init(),
+            seekedIngredient: .init())
     }
 }

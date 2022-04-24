@@ -11,10 +11,20 @@ import Combine
 
 @MainActor
 class Registry {
+    enum Concoctions {
+        case brewing
+        case identified([Concoction])
+    }
     @Published fileprivate(set) var effects: [Effect] = []
     @Published fileprivate(set) var ingredients: [Ingredient] = []
+    @Published fileprivate(set) var concoctions: Concoctions = .brewing
+    @Published fileprivate(set) var matchingConcoctions: Concoctions = .brewing
     
+    private var concoctionsFilterBlueprints: [ConcoctionFilterBlueprint] = []
     static let active: Registry = .init()
+    
+    private let concoctionFinder: ConcoctionFinder = .init()
+    private let concoctionFilter: ConcoctionFilter = .init()
     
     fileprivate struct ExportDTO: Codable {
         let effects: [Effect.ExportDTO]
@@ -33,7 +43,92 @@ class Registry {
     ) {
         effects = providedEffects.sorted(by: { ~$0.name < ~$1.name })
         ingredients = providedIngredients.sorted(by: { ~$0.name < ~$1.name })
+        identifyPossibleConcoctions()
     }
+    
+    // MARK: - Concoctions
+    fileprivate func identifyPossibleConcoctions() {
+        let blueprints = BlueprintExtractor().ingredients(from: self)
+        concoctionsFilterBlueprints = []
+        concoctions = .brewing
+        matchingConcoctions = .brewing
+        Task.detached(priority: .background) { [self] in
+            let concoctionBlueprints = await concoctionFinder.all(from: blueprints)
+            await self.materialize(blueprints: concoctionBlueprints)
+        }
+    }
+    
+    private func materialize(blueprints: [ConcoctionBlueprint]) {
+        let identifiedConcoctions: [Concoction] = blueprints.compactMap { blueprint in
+            let concoctionEffects: [Effect] = blueprint.effects.compactMap { blueprintEffect in
+                effects.first(where: { $0.id == blueprintEffect })
+            }
+            let concoctionIngredients: [Ingredient] = blueprint.ingredients.compactMap { blueprintIngredient in
+                ingredients.first(where: { $0.id == blueprintIngredient })
+            }
+            guard concoctionEffects.count == blueprint.effects.count,
+                  concoctionIngredients.count == blueprint.ingredients.count
+            else {
+                return nil
+            }
+            return Concoction(
+                effects: concoctionEffects.sorted(by: { ~$0.name < ~$1.name }),
+                ingredients: concoctionIngredients.sorted(by: { ~$0.name < ~$1.name }),
+                estimatedValue: concoctionEffects.reduce(0, { partialResult, effect in
+                    partialResult + effect.value.rawValue
+                }))
+        }
+        guard identifiedConcoctions.count == blueprints.count else {
+            return
+        }
+        let filterBlueprints = identifiedConcoctions.map { concoction in
+            ConcoctionFilterBlueprint(
+                id: concoction.id,
+                ingredients: concoction.ingredients.map { $0.id },
+                effects: concoction.effects.map { $0.id },
+                concoction: concoction)
+        }
+        concoctionsFilterBlueprints = filterBlueprints
+        concoctions = .identified(identifiedConcoctions)
+        matchConcoctionsToSelections()
+    }
+    
+    private var matchRevision: Int = 0
+    private func matchConcoctionsToSelections() {
+        if case .brewing = concoctions { return }
+        matchingConcoctions = .brewing
+        let thisMatchRevision = matchRevision + 1
+        matchRevision = thisMatchRevision
+        let ingredientsFilter = ingredients.map { ingredient in
+            IngredientFilterBlueprint(id: ingredient.id, selection: ingredient.selection)
+        }
+        let effectsFilter = effects.map { effect in
+            EffectFilterBlueprint(id: effect.id, selection: effect.selection)
+        }
+        let concoctionBlueprints = concoctionsFilterBlueprints
+        Task.detached(priority: .background) { [self] () -> Void in
+            let filteredConcoctions = await concoctionFilter.filter(
+                concoctionBlueprints,
+                byEffects: effectsFilter,
+                byIngredients: ingredientsFilter)
+            print(">>>> Sent \(concoctionBlueprints.count) blueprints and got \(filteredConcoctions.count) recipes back")
+            await updateMatchingConcoctions(filteredConcoctions, revision: thisMatchRevision)
+        }
+    }
+    
+    private func updateMatchingConcoctions(_ filteredConcoctions: [Concoction], revision: Int) {
+        guard case .identified = concoctions,
+              revision == matchRevision
+        else {
+            print("matching concoctions ignored")
+            return
+        }
+
+        matchingConcoctions = .identified(filteredConcoctions)
+        print("Registry now contains \(filteredConcoctions.count) matching recipes")
+    }
+    
+    // MARK: - Effects
     
     func effects(filteredBy filter: String) -> [Effect] {
         let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -51,8 +146,15 @@ class Registry {
     
     func resetEffects(to selection: SelectionState) {
         effects.forEach { $0.selection = selection }
+        matchConcoctionsToSelections()
     }
     
+    func select(effect: Effect, as selection: SelectionState) {
+        effect.selection = selection
+        matchConcoctionsToSelections()
+    }
+    
+    // MARK: - Ingredients
     func ingredients(filteredBy filter: String) -> [Ingredient] {
         let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if trimmedFilter.isEmpty {
@@ -69,17 +171,26 @@ class Registry {
     
     func resetIngredients(to selection: SelectionState) {
         ingredients.forEach { $0.selection = selection }
+        matchConcoctionsToSelections()
+    }
+    
+    func select(ingredient: Ingredient, as selection: SelectionState) {
+        ingredient.selection = selection
+        matchConcoctionsToSelections()
     }
 }
 
 @MainActor
 class Effect: Identifiable, ObservableObject {
+    static func == (lhs: Effect, rhs: Effect) -> Bool {
+        lhs.id == rhs.id
+    }
     
     let id: UUID = .init()
     @Published private(set) var name: ConstrainedName
     @Published var value: EffectValue
     @Published var isPositive: Bool
-    @Published var selection: SelectionState = .mayHave
+    @Published fileprivate(set) var selection: SelectionState = .mayHave
     @Published fileprivate(set) var ingredients: [Ingredient] = []
     
     struct ExportDTO: Codable {
@@ -109,7 +220,7 @@ class Ingredient: Identifiable, ObservableObject {
     let id: UUID = .init()
     @Published fileprivate(set) var effects: [Effect]
     @Published fileprivate(set) var name: ConstrainedName
-    @Published var selection: SelectionState = .mayHave
+    @Published fileprivate(set) var selection: SelectionState = .mayHave
     
     struct ExportDTO: Codable {
         let name: ConstrainedName
@@ -172,6 +283,7 @@ class AddIngredientCoordinator {
         }
         registry.ingredients.append(ingredient)
         registry.ingredients.sort(by: { ~$0.name < ~$1.name })
+        registry.identifyPossibleConcoctions()
         return ingredient
     }
 }
@@ -184,6 +296,7 @@ class RemoveIngredientCoordinator {
         for effect in allEffects {
             effect.ingredients.removeAll(where: { $0.id == ingredient.id })
         }
+        registry.identifyPossibleConcoctions()
     }
 }
 
