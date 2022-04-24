@@ -67,6 +67,7 @@
 		A9585FD42814EC3900E78F47 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */; };
 		A9585FD52814ED2900E78F47 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4028136D7400E78F47 /* RecipesList.swift */; };
 		A9585FD62814EE9E00E78F47 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4228136D7400E78F47 /* RecipeDetails.swift */; };
+		A9585FD82815147200E78F47 /* OrientationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585FD72815147200E78F47 /* OrientationInfo.swift */; };
 		A9B524C8280E495400F4ABCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B524C7280E495400F4ABCA /* Assets.xcassets */; };
 		A9DF11672801BA6C0039BE4C /* MinWidthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11662801BA6C0039BE4C /* MinWidthCoordinator.swift */; };
 		A9DF11692801BD6D0039BE4C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF11682801BD6D0039BE4C /* ViewModel.swift */; };
@@ -135,6 +136,9 @@
 		A9585F85281428E000E78F47 /* EffectValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectValue.swift; sourceTree = "<group>"; };
 		A9585F8828143EBB00E78F47 /* RegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryTests.swift; sourceTree = "<group>"; };
 		A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionFilter.swift; sourceTree = "<group>"; };
+		A9585FD72815147200E78F47 /* OrientationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationInfo.swift; sourceTree = "<group>"; };
+		A9585FD928151A5F00E78F47 /* Brotherhood Alchemist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Brotherhood Alchemist.entitlements"; sourceTree = "<group>"; };
+		A9585FDA28151A9800E78F47 /* Brotherhood-Alchemist-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Brotherhood-Alchemist-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A9B524C1280E495300F4ABCA /* Brotherhood Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brotherhood Alchemist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brotherhood_AlchemistApp.swift; sourceTree = "<group>"; };
 		A9B524C7280E495400F4ABCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 		A9B524C2280E495300F4ABCA /* Brotherhood Alchemist */ = {
 			isa = PBXGroup;
 			children = (
+				A9585FDA28151A9800E78F47 /* Brotherhood-Alchemist-Info.plist */,
+				A9585FD928151A5F00E78F47 /* Brotherhood Alchemist.entitlements */,
 				A9B524C7280E495400F4ABCA /* Assets.xcassets */,
 				A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */,
 				A9585F4628136DF900E78F47 /* Concoction.swift */,
@@ -281,6 +287,7 @@
 				A9B524DB280E4AB500F4ABCA /* IngredientsList.swift */,
 				A9B524EA280E4CF200F4ABCA /* ListHeader.swift */,
 				A9B524EB280E4CF200F4ABCA /* MinWidthCoordinator.swift */,
+				A9585FD72815147200E78F47 /* OrientationInfo.swift */,
 				A9585F4228136D7400E78F47 /* RecipeDetails.swift */,
 				A9585F4028136D7400E78F47 /* RecipesList.swift */,
 				A9585F4128136D7400E78F47 /* RecipesListOptions.swift */,
@@ -586,6 +593,7 @@
 				A9585F922814C0E700E78F47 /* SeekedIngredient.swift in Sources */,
 				A9585FA62814C0E700E78F47 /* SelectionText.swift in Sources */,
 				A9585FA32814C0E700E78F47 /* SelectionIndicatorMay.swift in Sources */,
+				A9585FD82815147200E78F47 /* OrientationInfo.swift in Sources */,
 				A9585F8F2814C0E700E78F47 /* Credits.swift in Sources */,
 				A9585F952814C0E700E78F47 /* HeightCoordinator.swift in Sources */,
 				A9585FA82814C0E700E78F47 /* Brotherhood_AlchemistApp.swift in Sources */,
@@ -844,27 +852,31 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Brotherhood Alchemist/Brotherhood Alchemist.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202204240138;
 				DEVELOPMENT_ASSET_PATHS = "\"Brotherhood Alchemist/Preview Content\"";
 				DEVELOPMENT_TEAM = WKB9M744MQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Brotherhood-Alchemist-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Alchemist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -878,26 +890,30 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Brotherhood Alchemist/Brotherhood Alchemist.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202204240138;
 				DEVELOPMENT_ASSET_PATHS = "\"Brotherhood Alchemist/Preview Content\"";
 				DEVELOPMENT_TEAM = WKB9M744MQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Brotherhood-Alchemist-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Alchemist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

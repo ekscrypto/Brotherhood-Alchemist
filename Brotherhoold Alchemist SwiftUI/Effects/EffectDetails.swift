@@ -28,8 +28,7 @@ struct EffectDetails: View {
     }
 
     var body: some View {
-        Self._printChanges()
-        return VStack {
+        VStack {
             Button(action: {
                 rotateSelection()
             }) {

@@ -14,6 +14,12 @@ struct RecipeDetails: View {
     let seekedEffect: SeekedEffect
     let seekedIngredient: SeekedIngredient
     
+    @EnvironmentObject var orientationInfo: OrientationInfo
+
+    private var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+
     private var sortedEffects: [Effect] {
         concoction.effects.sorted(by: { ~$0.name < ~$1.name })
     }
@@ -63,7 +69,6 @@ struct RecipeDetails: View {
             }
             .foregroundColor(Color(UIColor.systemBlue))
             .frame(height: 32)
-            .padding([.leading, .trailing])
             .background(
                 RoundedRectangle(cornerRadius: 6.0)
                     .foregroundColor(Color("itemBackground"))
@@ -74,13 +79,14 @@ struct RecipeDetails: View {
     }
     
     private func summaryOfEffect(_ effect: Effect) -> some View {
-        HStack {
+        HStack(spacing: 1) {
             SelectionIndicator(state: effect.selection)
                 .saturation(0.0)
             SelectionText(state: effect.selection)
                 .scaleEffect(0.8)
                 .frame(width: 40)
             Text(~effect.name)
+                .font(.system(isPad ? .caption : .headline))
                 .frame(maxWidth: .infinity,
                        alignment: .leading)
                 .padding(.leading)
@@ -96,7 +102,6 @@ struct RecipeDetails: View {
             }
             .foregroundColor(Color(UIColor.systemBlue))
             .frame(height: 32)
-            .padding([.leading, .trailing])
             .background(
                 RoundedRectangle(cornerRadius: 6.0)
                     .foregroundColor(Color("itemBackground"))
@@ -107,13 +112,14 @@ struct RecipeDetails: View {
     }
     
     private func summaryOfIngredient(_ ingredient: Ingredient) -> some View {
-        HStack {
+        HStack(spacing: 1) {
             SelectionIndicator(state: ingredient.selection)
                 .saturation(0.0)
             SelectionText(state: ingredient.selection)
                 .scaleEffect(0.8)
                 .frame(width: 40)
             Text(~ingredient.name)
+                .font(.system(isPad ? .caption : .headline))
                 .frame(maxWidth: .infinity,
                        alignment: .leading)
                 .padding(.leading)

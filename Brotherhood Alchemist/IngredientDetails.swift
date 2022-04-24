@@ -14,16 +14,19 @@ struct IngredientDetails: View {
     let expanded: Bool
     let seekedEffect: SeekedEffect
     
+    private var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+
     var body: some View {
-        Self._printChanges()
-        return VStack {
+        VStack {
             Button(action: { rotateSelection() }) {
                 HStack(spacing: 1) {
                     SelectionIndicator(state: ingredient.selection)
                     SelectionText(state: ingredient.selection)
                         .frame(width: 40)
                     Text(~ingredient.name)
-                        .font(.system(.headline))
+                        .font(.system(isPad ? .caption : .headline))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color("itemForeground"))
                 }

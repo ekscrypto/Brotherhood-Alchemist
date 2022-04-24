@@ -111,7 +111,6 @@ class Registry {
                 concoctionBlueprints,
                 byEffects: effectsFilter,
                 byIngredients: ingredientsFilter)
-            print(">>>> Sent \(concoctionBlueprints.count) blueprints and got \(filteredConcoctions.count) recipes back")
             await updateMatchingConcoctions(filteredConcoctions, revision: thisMatchRevision)
         }
     }
@@ -120,12 +119,11 @@ class Registry {
         guard case .identified = concoctions,
               revision == matchRevision
         else {
-            print("matching concoctions ignored")
             return
         }
 
         matchingConcoctions = .identified(filteredConcoctions)
-        print("Registry now contains \(filteredConcoctions.count) matching recipes")
+        print(">>>> Registry now has \(filteredConcoctions.count) identified concoctions")
     }
     
     // MARK: - Effects

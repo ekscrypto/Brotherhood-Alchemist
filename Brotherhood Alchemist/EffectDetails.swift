@@ -14,12 +14,10 @@ struct EffectDetails: View {
     let expanded: Bool
     let seekedIngredient: SeekedIngredient
     
-//    @State var isPositive: Bool = false
-//    @State var name: String = ""
-//    @State var ingredients: [Ingredient] = []
-//    @State var value: UInt = 0
-//    @State var selection: SelectionState = .mayHave
-    
+    private var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+
     var body: some View {
         VStack {
             Button(action: {
@@ -30,7 +28,7 @@ struct EffectDetails: View {
                     SelectionText(state: effect.selection)
                         .frame(width: 40)
                     Text(~effect.name)
-                        .font(.system(.headline))
+                        .font(.system(isPad ? .caption : .headline))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color("itemForeground"))
                 }

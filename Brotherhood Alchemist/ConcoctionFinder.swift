@@ -131,29 +131,40 @@ actor ConcoctionFinder {
         let effects2: Set<UUID> = ingredient2.effects
         let effects3: Set<UUID> = ingredient3.effects
         
-        let common1And2: Set<UUID> = effects1.intersection(effects2)
-        let common1And3: Set<UUID> = effects1.intersection(effects3)
+        let common1and2: Set<UUID> = effects1.intersection(effects2)
+        let common1and3: Set<UUID> = effects1.intersection(effects3)
 
-        if common1And2.isEmpty, common1And3.isEmpty {
+        if common1and2.isEmpty, common1and3.isEmpty {
             // ingredient1 has no common effect with any of the other two ingredients
             // this recipe is thus a 2 ingredients recipe only (at best)
             return nil
         }
 
         let common2and3: Set<UUID> = effects2.intersection(effects3)
-        if common1And2.isEmpty, common2and3.isEmpty {
+        if common1and2.isEmpty, common2and3.isEmpty {
             // ingredient2 has no common effect with any of the other two ingredients
             // this recipe is a 2 ingredients only recipe (definite)
             return nil
         }
-
-        if common1And3.isEmpty, common2and3.isEmpty {
+        if common1and3.isEmpty, common2and3.isEmpty {
             // ingredient3 has no common effect with any of the other two ingredients
             // this recipe is a 2 ingredients only recipe (definite)
             return nil
+        }        
+        if common1and2.allSatisfy({ common2and3.contains($0) }), common1and3.allSatisfy({ common2and3.contains($0) }) {
+            // ingredient 1 doesn't bring anything that 2 and 3 already have together
+            return nil
         }
-        
-        let commonEffects: Set<UUID> = common1And3.union(common1And2).union(common2and3)
+        if common1and2.allSatisfy({ common1and3.contains($0) }), common2and3.allSatisfy({ common1and3.contains($0) }) {
+            // ingredient 2 doesn't bring anything that 1 and 3 already have together
+            return nil
+        }
+        if common1and3.allSatisfy({ common1and2.contains($0) }), common2and3.allSatisfy({ common1and2.contains($0) }) {
+            // ingredient 3 doesn't bring anything that 1 and 2 already have together
+            return nil
+        }
+
+        let commonEffects: Set<UUID> = common1and3.union(common1and2).union(common2and3)
         return ConcoctionBlueprint(
             effects: commonEffects,
             ingredients: Set([ingredient1.id, ingredient2.id, ingredient3.id]))
