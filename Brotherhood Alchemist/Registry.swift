@@ -331,7 +331,7 @@ fileprivate class RegistryInstantiator {
             let mappedIngredients: [Ingredient] = ingredients.filter { ingredient in
                 ingredient.effects.contains(where: { $0.id == effect.id })
             }
-            effect.ingredients = mappedIngredients
+            effect.ingredients = mappedIngredients.sorted(by: { ~$0.name < ~$1.name })
         }
     }
     

@@ -217,7 +217,7 @@ struct RecipesList: View {
         ScrollView {
             ScrollViewReader { scrollview in
                 LazyVStack {
-                    ForEach(sortedConcoctions) { concoction in
+                    ForEach(concoctions) { concoction in
                         concoctionInfo(concoction)
                     }
                 }
