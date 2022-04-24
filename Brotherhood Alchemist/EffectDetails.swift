@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-@MainActor
 struct EffectDetails: View {
     @ObservedObject var effect: Effect
     let expanded: Bool
@@ -94,6 +93,7 @@ struct EffectDetails: View {
         }
     }
     
+    @MainActor
     private func rotateSelection() {
         switch effect.selection {
         case .cantHave:

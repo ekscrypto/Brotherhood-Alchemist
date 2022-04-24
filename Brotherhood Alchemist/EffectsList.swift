@@ -9,7 +9,6 @@
 import SwiftUI
 import Combine
 
-@MainActor
 struct EffectsList: View {
     
     let listBottomPadding: CGFloat
@@ -20,11 +19,10 @@ struct EffectsList: View {
     @State private var filter: String = ""
     @State private var showResetModal: Bool = false
     @State private var filteredEffects: [Effect] = []
-    
+
+    @MainActor
     func updateFilteredEffects() {
-        Task {
             filteredEffects = Registry.active.effects(filteredBy: filter)
-        }
     }
 
     var body: some View {
@@ -68,10 +66,11 @@ struct EffectsList: View {
         }
     }
     
+    @MainActor
     private func onReset(_ selection: SelectionState) {
         Registry.active.resetEffects(to: selection)
     }
-    
+
     private func effectInfo(_ effect: Effect) -> some View {
         EffectDetails(
             effect: effect,

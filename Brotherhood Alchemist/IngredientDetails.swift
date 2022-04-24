@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-@MainActor
 struct IngredientDetails: View {
     @ObservedObject var ingredient: Ingredient
     let expanded: Bool
@@ -39,6 +38,7 @@ struct IngredientDetails: View {
         .background(Color("itemBackground"))
     }
     
+    @MainActor
     private func rotateSelection() {
         switch ingredient.selection {
         case .mayHave:

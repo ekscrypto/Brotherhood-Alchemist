@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-@MainActor
 struct IngredientsList: View {
 
     let listBottomPadding: CGFloat
@@ -18,11 +17,12 @@ struct IngredientsList: View {
     @State var controlButtonsWidth: CGFloat = .zero
     @State var expanded: Bool = false
     @State var filter: String = "" {
-        didSet { updateFilteredIngredients() }
+        didSet { Task { await updateFilteredIngredients() }}
     }
     @State var showResetModal: Bool = false
     @State var filteredIngredients: [Ingredient] = []
     
+    @MainActor
     private func updateFilteredIngredients() {
         filteredIngredients =  Registry.active.ingredients(filteredBy: filter)
     }

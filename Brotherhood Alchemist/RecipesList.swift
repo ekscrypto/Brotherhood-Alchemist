@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-@MainActor
 struct RecipesList: View {
 
     let listBottomPadding: CGFloat
@@ -41,10 +40,12 @@ struct RecipesList: View {
     @State var effectsLimit: EffectsLimit = .oneOrTheOther
     @State var isBrewing: Bool = true
     
+    @MainActor
     private func updateConcoctions() {
         concoctions = sortedConcoctions
     }
-    
+
+    @MainActor
     private var effectsFilteredConcoctions: [Concoction] {
         guard case let .identified(identifiedConcoctions) = Registry.active.matchingConcoctions else {
             isBrewing = true
@@ -74,6 +75,7 @@ struct RecipesList: View {
             })
     }
     
+    @MainActor
     private var ingreditsLimitedConcoctions: [Concoction] {
         switch ingredientLimit {
         case .two:
@@ -87,6 +89,7 @@ struct RecipesList: View {
         }
     }
     
+    @MainActor
     private var sortedConcoctions: [Concoction] {
         let concoctions = ingreditsLimitedConcoctions
         switch sortBy {
