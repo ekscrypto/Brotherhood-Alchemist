@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 struct ContentView: View {
     
     let seekedEffect: SeekedEffect = .init()
@@ -21,10 +22,16 @@ struct ContentView: View {
     @State private var viewWidth: CGFloat = .zero
     
     @State var registriesLoaded: Bool = false
-    let registriesLoader: RegistriesLoader = .init()
 
     private var listBottomPadding: CGFloat {
         listHeight - tabbarOrigin
+    }
+    
+    private func loadRegistryOnce() {
+        Task {
+            await RegistryStorage.active.load(into: Registry.active)
+            registriesLoaded = true
+        }
     }
 
     private var isPad: Bool {
@@ -49,8 +56,8 @@ struct ContentView: View {
     
     var loadingRegistriesView: some View {
         Text("Pickpocketing nirnroot…")
-            .onReceive(registriesLoader.$loaded) { loaded in
-                registriesLoaded = loaded
+            .onAppear {
+                loadRegistryOnce()
             }
     }
 

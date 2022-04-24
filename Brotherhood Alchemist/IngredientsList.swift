@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct IngredientsList: View {
 
     let listBottomPadding: CGFloat
@@ -16,12 +17,14 @@ struct IngredientsList: View {
 
     @State var controlButtonsWidth: CGFloat = .zero
     @State var expanded: Bool = false
-    @State var filter: String = ""
-    @State var ingredients: [Ingredient] = Ingredients.registry.all
+    @State var filter: String = "" {
+        didSet { updateFilteredIngredients() }
+    }
     @State var showResetModal: Bool = false
+    @State var filteredIngredients: [Ingredient] = []
     
-    private var filteredIngredients: [Ingredient] {
-        IngredientsFilter(filter: filter, sourceIngredients: ingredients).ingredients
+    private func updateFilteredIngredients() {
+        filteredIngredients =  Registry.active.ingredients(filteredBy: filter)
     }
     
     // MARK: -
@@ -46,13 +49,18 @@ struct IngredientsList: View {
             if showResetModal {
                 ResetModal(
                     queryText: "Set all ingredients as:",
-                    resetAction: onReset,
+                    resetAction: {
+                        Registry.active.resetIngredients(to: $0)
+                    },
                     visibility: $showResetModal)
             }
         }
         .background(Color("itemBackground"))
-        .onReceive(Ingredients.registry.$all) { updatedIngredients in
-            ingredients = updatedIngredients
+        .onChange(of: filter, perform: { _ in
+            updateFilteredIngredients()
+        })
+        .onReceive(Registry.active.$ingredients) { _ in
+            updateFilteredIngredients()
         }
         .onReceive(seekedIngredient.$ingredient) { ingredientOrNil in
             guard let ingredient = ingredientOrNil else { return }
@@ -61,9 +69,9 @@ struct IngredientsList: View {
         }
     }
     
-    private func onReset(_ selection: SelectionState) {
-        ingredients.forEach { $0.selection = selection }
-    }
+//    private func onReset(_ selection: SelectionState) {
+//        Registry.active.resetIngredients(to: selection)
+//    }
     
     // MARK: -
     

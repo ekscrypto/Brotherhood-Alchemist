@@ -31,13 +31,49 @@ class Registry {
         effects providedEffects: [Effect],
         ingredients providedIngredients: [Ingredient]
     ) {
-        effects = providedEffects
-        ingredients = providedIngredients
+        effects = providedEffects.sorted(by: { ~$0.name < ~$1.name })
+        ingredients = providedIngredients.sorted(by: { ~$0.name < ~$1.name })
+    }
+    
+    func effects(filteredBy filter: String) -> [Effect] {
+        let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if trimmedFilter.isEmpty {
+            return effects
+        }
+        
+        if trimmedFilter.hasPrefix("=") {
+            let expectedName = String(trimmedFilter.dropFirst())
+            return effects.filter({ (~$0.name).lowercased() == expectedName })
+        }
+        
+        return effects.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
+    }
+    
+    func resetEffects(to selection: SelectionState) {
+        effects.forEach { $0.selection = selection }
+    }
+    
+    func ingredients(filteredBy filter: String) -> [Ingredient] {
+        let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if trimmedFilter.isEmpty {
+            return ingredients
+        }
+        
+        if trimmedFilter.hasPrefix("=") {
+            let expectedName = String(trimmedFilter.dropFirst())
+            return ingredients.filter({ (~$0.name).lowercased() == expectedName })
+        }
+        
+        return ingredients.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
+    }
+    
+    func resetIngredients(to selection: SelectionState) {
+        ingredients.forEach { $0.selection = selection }
     }
 }
 
 @MainActor
-class Effect: Identifiable {
+class Effect: Identifiable, ObservableObject {
     
     let id: UUID = .init()
     @Published private(set) var name: ConstrainedName
@@ -68,7 +104,7 @@ class Effect: Identifiable {
 }
 
 @MainActor
-class Ingredient: Identifiable {
+class Ingredient: Identifiable, ObservableObject {
     
     let id: UUID = .init()
     @Published fileprivate(set) var effects: [Effect]
@@ -137,6 +173,17 @@ class AddIngredientCoordinator {
         registry.ingredients.append(ingredient)
         registry.ingredients.sort(by: { ~$0.name < ~$1.name })
         return ingredient
+    }
+}
+
+@MainActor
+class RemoveIngredientCoordinator {
+    func remove(_ ingredient: Ingredient, from registry: Registry) {
+        registry.ingredients.removeAll(where: { $0.id == ingredient.id })
+        let allEffects: [Effect] = registry.effects
+        for effect in allEffects {
+            effect.ingredients.removeAll(where: { $0.id == ingredient.id })
+        }
     }
 }
 
@@ -226,7 +273,9 @@ final actor RegistryStorage {
             via: instantiator)
         let ingredients: [Ingredient] = await instantiator.instantiateIngredients(mappedEffectsToIngredient)
         await instantiator.associateIngredientsToEffects(ingredients: ingredients, effects: effects)
-        await registry.load(effects: effects, ingredients: ingredients)
+        await registry.load(
+            effects: effects,
+            ingredients: ingredients)
     }
     
     /// Create a dictionary associating arrays of Effect instances to ingredient names

@@ -9,19 +9,22 @@
 import SwiftUI
 import Combine
 
+@MainActor
 struct EffectsList: View {
     
     let listBottomPadding: CGFloat
     let seekedEffect: SeekedEffect
     let seekedIngredient: SeekedIngredient
 
-    @State var effects: [Effect] = Effects.registry.all
     @State private var expanded: Bool = false
     @State private var filter: String = ""
     @State private var showResetModal: Bool = false
+    @State private var filteredEffects: [Effect] = []
     
-    private var filteredEffects: [Effect] {
-        EffectsFilter(filter: filter, sourceEffects: effects).effects
+    func updateFilteredEffects() {
+        Task {
+            filteredEffects = Registry.active.effects(filteredBy: filter)
+        }
     }
 
     var body: some View {
@@ -45,23 +48,28 @@ struct EffectsList: View {
             if showResetModal {
                 ResetModal(
                     queryText: "Set all effects as:",
-                    resetAction: onReset,
+                    resetAction: {
+                            Registry.active.resetEffects(to: $0)
+                    },
                     visibility: $showResetModal)
             }
         }
         .background(Color("itemBackground"))
+        .onChange(of: filter, perform: { _ in
+            updateFilteredEffects()
+        })
         .onReceive(seekedEffect.$effect, perform: { effectOrNil in
             guard let effect = effectOrNil else { return }
             filter = "=\(~effect.name)"
             expanded = true
         })
-        .onReceive(Effects.registry.$all) { updatedEffects in
-            effects = updatedEffects
+        .onReceive(Registry.active.$effects) { _ in
+            updateFilteredEffects()
         }
     }
     
     private func onReset(_ selection: SelectionState) {
-        effects.forEach { $0.selection = selection }
+        Registry.active.resetEffects(to: selection)
     }
     
     private func effectInfo(_ effect: Effect) -> some View {

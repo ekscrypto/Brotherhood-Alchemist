@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct ResetModal: View {
     
     let queryText: String

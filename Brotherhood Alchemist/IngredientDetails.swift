@@ -8,19 +8,14 @@
 
 import SwiftUI
 
+@MainActor
 struct IngredientDetails: View {
-    let ingredient: Ingredient
+    @ObservedObject var ingredient: Ingredient
     let expanded: Bool
     let seekedEffect: SeekedEffect
     
-    @State var revision: Int = 0
-    
-    private var effects: [Effect] {
-        ingredient.effects.compactMap { $0.ref }
-    }
-
     var body: some View {
-        _ = revision
+        Self._printChanges()
         return VStack {
             Button(action: { rotateSelection() }) {
                 HStack(spacing: 1) {
@@ -39,9 +34,6 @@ struct IngredientDetails: View {
             }
         }
         .background(Color("itemBackground"))
-        .onReceive(ingredient.$selection) { _ in
-            revision += 1
-        }
     }
     
     private func rotateSelection() {
@@ -69,7 +61,7 @@ struct IngredientDetails: View {
                     .font(Font.system(.caption))
                     .foregroundColor(Color("selectionText"))
                 
-                ForEach(effects) { effect in
+                ForEach(ingredient.effects) { effect in
                     Button(action: {
                         seekedEffect.effect = effect
                     }) {
@@ -87,7 +79,7 @@ struct IngredientDetails: View {
 struct IngredientDetails_Previews: PreviewProvider {
     static var previews: some View {
         IngredientDetails(
-            ingredient: DefaultIngredients.abeceanLongfin,
+            ingredient: Ingredient(name: "Abecean Longfin", effects: []),
             expanded: false,
             seekedEffect: .init())
         .previewDevice("iPhone 13 Pro")
@@ -96,7 +88,7 @@ struct IngredientDetails_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
 
         IngredientDetails(
-            ingredient: DefaultIngredients.nirnroot,
+            ingredient: Ingredient(name: "Nirnroot", effects: []),
             expanded: false,
             seekedEffect: .init())
         .previewDevice("iPhone 13 Pro")
@@ -105,7 +97,7 @@ struct IngredientDetails_Previews: PreviewProvider {
         .preferredColorScheme(.light)
 
         IngredientDetails(
-            ingredient: DefaultIngredients.wispWrappings,
+            ingredient: Ingredient(name: "Wisp Wrappings", effects: []),
             expanded: false,
             seekedEffect: .init())
         .previewDevice("iPhone 13 Pro")
@@ -114,7 +106,7 @@ struct IngredientDetails_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
 
         IngredientDetails(
-            ingredient: DefaultIngredients.taproot,
+            ingredient: Ingredient(name: "Taproot", effects: []),
             expanded: false,
             seekedEffect: .init())
         .previewDevice("iPhone 13 Pro")
@@ -123,7 +115,12 @@ struct IngredientDetails_Previews: PreviewProvider {
         .preferredColorScheme(.light)
 
         IngredientDetails(
-            ingredient: DefaultIngredients.ectoplasm,
+            ingredient: Ingredient(name: "Ectoplasm", effects: [
+                Effect(name: "Restore Magicka", value: 1, isPositive: true),
+                Effect(name: "Forify Destruction", value: 1, isPositive: true),
+                Effect(name: "Fortify Magicka", value: 1, isPositive: true),
+                Effect(name: "Damage Health", value: 1, isPositive: false),
+            ]),
             expanded: true,
             seekedEffect: .init())
         .previewDevice("iPhone 13 Pro")
@@ -132,7 +129,12 @@ struct IngredientDetails_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
 
         IngredientDetails(
-            ingredient: DefaultIngredients.falmerEar,
+            ingredient: Ingredient(name: "Falmer Ear", effects: [
+                Effect(name: "Damage Health", value: 1, isPositive: false),
+                Effect(name: "Frenzy", value: 1, isPositive: true),
+                Effect(name: "Resist Poison", value: 1, isPositive: true),
+                Effect(name: "Fortify Lockpicking", value: 1, isPositive: true),
+            ]),
             expanded: true,
             seekedEffect: .init())
         .previewDevice("iPhone 13 Pro")

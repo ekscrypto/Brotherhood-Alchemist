@@ -169,4 +169,28 @@ class RegistryTests: XCTestCase {
             XCTAssertEqual(error as? AddIngredientCoordinator.Errors, .duplicateEffect)
         }
     }
+    
+    func testRemoveIngredient_existingIngredient_removed() async throws {
+        let registry: Registry = await loadedRegistry()
+        let allIngredients: [Ingredient] = await registry.ingredients
+        let removedIngredient: Ingredient = allIngredients.randomElement()!
+        await RemoveIngredientCoordinator().remove(removedIngredient, from: registry)
+        let updatedIngredients: [Ingredient] = await registry.ingredients
+        XCTAssertEqual(updatedIngredients.count + 1, allIngredients.count)
+        XCTAssertTrue(updatedIngredients.allSatisfy({ $0.id != removedIngredient.id }))
+    }
+    
+    func testRemoveSaveReload_removedIngredientNotFound() async throws {
+        let registry: Registry = await loadedRegistry()
+        let allIngredients: [Ingredient] = await registry.ingredients
+        let removedIngredient: Ingredient = allIngredients.randomElement()!
+        await RemoveIngredientCoordinator().remove(removedIngredient, from: registry)
+        try await RegistryStorage.active.save(registry)
+        
+        let newRegistry: Registry = await loadedRegistry()
+        let updatedIngredients: [Ingredient] = await newRegistry.ingredients
+        XCTAssertEqual(updatedIngredients.count + 1, allIngredients.count)
+        XCTAssertTrue(updatedIngredients.allSatisfy({ $0.id != removedIngredient.id }))
+
+    }
 }
