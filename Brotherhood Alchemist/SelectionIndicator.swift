@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct SelectionIndicator: View {
     let state: SelectionState
     

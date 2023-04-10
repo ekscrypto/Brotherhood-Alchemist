@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct EffectDetails: View {
     @ObservedObject var effect: Effect
     let expanded: Bool

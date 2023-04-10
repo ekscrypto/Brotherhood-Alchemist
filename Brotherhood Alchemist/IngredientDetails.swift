@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct IngredientDetails: View {
     @ObservedObject var ingredient: Ingredient
     let expanded: Bool

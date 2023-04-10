@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct SelectionIndicatorMust: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 3.0)

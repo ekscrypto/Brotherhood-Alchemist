@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct MinWidthCoordinator: View {
     @Binding var via: CGFloat
     

@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct TabsOriginCoordinator: View {
     @Binding var via: CGFloat
     

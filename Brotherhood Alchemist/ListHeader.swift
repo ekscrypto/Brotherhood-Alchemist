@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct ListHeader: View {
     @Binding var expanded: Bool
     @Binding var showResetModal: Bool

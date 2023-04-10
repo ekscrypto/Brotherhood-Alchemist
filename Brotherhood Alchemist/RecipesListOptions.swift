@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct RecipesListOptions: View {
     let listBottomPadding: CGFloat
     @Binding var effectsLimit: RecipesList.EffectsLimit

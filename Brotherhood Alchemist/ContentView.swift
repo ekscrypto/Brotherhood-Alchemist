@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 struct ContentView: View {
     
     let seekedEffect: SeekedEffect = .init()

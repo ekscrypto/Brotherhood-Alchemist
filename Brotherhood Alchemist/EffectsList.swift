@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 struct EffectsList: View {
     
     let listBottomPadding: CGFloat
@@ -21,8 +22,8 @@ struct EffectsList: View {
     @State private var filteredEffects: [Effect] = []
 
     @MainActor
-    func updateFilteredEffects() {
-            filteredEffects = Registry.active.effects(filteredBy: filter)
+    func updateFilteredEffects() async {
+        filteredEffects = await Registry.active.effects(filteredBy: filter)
     }
 
     var body: some View {
@@ -54,7 +55,9 @@ struct EffectsList: View {
         }
         .background(Color("itemBackground"))
         .onChange(of: filter, perform: { _ in
-            updateFilteredEffects()
+            Task {
+                await updateFilteredEffects()
+            }
         })
         .onReceive(seekedEffect.$effect, perform: { effectOrNil in
             guard let effect = effectOrNil else { return }
@@ -62,7 +65,9 @@ struct EffectsList: View {
             expanded = true
         })
         .onReceive(Registry.active.$effects) { _ in
-            updateFilteredEffects()
+            Task {
+                await updateFilteredEffects()
+            }
         }
     }
     

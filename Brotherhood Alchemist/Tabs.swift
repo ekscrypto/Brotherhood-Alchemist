@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct Tabs: View {
     @State var buttonsWidth: CGFloat = .zero
     @Binding var selectedTab: Tab

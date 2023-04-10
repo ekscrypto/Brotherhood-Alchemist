@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct TextFieldClearButton: ViewModifier {
     @Binding var text: String
     

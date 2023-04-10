@@ -9,16 +9,15 @@
 import Foundation
 import Combine
 
-@MainActor
 class Registry {
     enum Concoctions {
         case brewing
         case identified([Concoction])
     }
-    @Published fileprivate(set) var effects: [Effect] = []
-    @Published fileprivate(set) var ingredients: [Ingredient] = []
-    @Published fileprivate(set) var concoctions: Concoctions = .brewing
-    @Published fileprivate(set) var matchingConcoctions: Concoctions = .brewing
+    @MainActor @Published fileprivate(set) var effects: [Effect] = []
+    @MainActor @Published fileprivate(set) var ingredients: [Ingredient] = []
+    @MainActor @Published fileprivate(set) var concoctions: Concoctions = .brewing
+    @MainActor @Published fileprivate(set) var matchingConcoctions: Concoctions = .brewing
     
     private var concoctionsFilterBlueprints: [ConcoctionFilterBlueprint] = []
     static let active: Registry = .init()
@@ -31,33 +30,44 @@ class Registry {
         let ingredients: [Ingredient.ExportDTO]
     }
     
-    fileprivate var exportDto: ExportDTO {
+    fileprivate func exportDto() async -> ExportDTO {
         .init(
-            effects: effects.map { $0.exportDto },
-            ingredients: ingredients.map { $0.exportDto })
+            effects: await effects.map { $0.exportDto },
+            ingredients: await ingredients.map { $0.exportDto })
     }
     
     fileprivate func load(
         effects providedEffects: [Effect],
         ingredients providedIngredients: [Ingredient]
     ) {
-        effects = providedEffects.sorted(by: { ~$0.name < ~$1.name })
-        ingredients = providedIngredients.sorted(by: { ~$0.name < ~$1.name })
+        let sortedEffects = providedEffects.sorted(by: { ~$0.name < ~$1.name })
+        let sortedIngredients = providedIngredients.sorted(by: { ~$0.name < ~$1.name })
+        Task {
+            await self.load(
+                sortedEffects: sortedEffects,
+                sortedIngredients: sortedIngredients)
+        }
         identifyPossibleConcoctions()
+    }
+    
+    @MainActor private func load(sortedEffects: [Effect], sortedIngredients: [Ingredient]) {
+        effects = sortedEffects
+        ingredients = sortedIngredients
+        concoctionsFilterBlueprints = []
+        concoctions = .brewing
+        matchingConcoctions = .brewing
     }
     
     // MARK: - Concoctions
     fileprivate func identifyPossibleConcoctions() {
-        let blueprints = BlueprintExtractor().ingredients(from: self)
-        concoctionsFilterBlueprints = []
-        concoctions = .brewing
-        matchingConcoctions = .brewing
         Task.detached(priority: .background) { [self] in
+            let blueprints = await BlueprintExtractor().ingredients(from: self)
             let concoctionBlueprints = await concoctionFinder.all(from: blueprints)
             await self.materialize(blueprints: concoctionBlueprints)
         }
     }
     
+    @MainActor
     private func materialize(blueprints: [ConcoctionBlueprint]) {
         let identifiedConcoctions: [Concoction] = blueprints.compactMap { blueprint in
             let concoctionEffects: [Effect] = blueprint.effects.compactMap { blueprintEffect in
@@ -94,6 +104,8 @@ class Registry {
     }
     
     private var matchRevision: Int = 0
+    
+    @MainActor
     private func matchConcoctionsToSelections() {
         if case .brewing = concoctions { return }
         matchingConcoctions = .brewing
@@ -115,6 +127,7 @@ class Registry {
         }
     }
     
+    @MainActor
     private func updateMatchingConcoctions(_ filteredConcoctions: [Concoction], revision: Int) {
         guard case .identified = concoctions,
               revision == matchRevision
@@ -128,57 +141,63 @@ class Registry {
     
     // MARK: - Effects
     
-    func effects(filteredBy filter: String) -> [Effect] {
+    func effects(filteredBy filter: String) async -> [Effect] {
+        let allEffects = await effects
         let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if trimmedFilter.isEmpty {
-            return effects
+            return allEffects
         }
         
         if trimmedFilter.hasPrefix("=") {
             let expectedName = String(trimmedFilter.dropFirst())
-            return effects.filter({ (~$0.name).lowercased() == expectedName })
+            return allEffects.filter({ (~$0.name).lowercased() == expectedName })
         }
         
-        return effects.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
+        return allEffects.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
     }
     
+    @MainActor
     func resetEffects(to selection: SelectionState) {
         effects.forEach { $0.selection = selection }
         matchConcoctionsToSelections()
     }
     
+    @MainActor
     func select(effect: Effect, as selection: SelectionState) {
         effect.selection = selection
         matchConcoctionsToSelections()
     }
     
     // MARK: - Ingredients
+    @MainActor
     func ingredients(filteredBy filter: String) -> [Ingredient] {
+        let allIngredients = ingredients
         let trimmedFilter = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if trimmedFilter.isEmpty {
-            return ingredients
+            return allIngredients
         }
         
         if trimmedFilter.hasPrefix("=") {
             let expectedName = String(trimmedFilter.dropFirst())
-            return ingredients.filter({ (~$0.name).lowercased() == expectedName })
+            return allIngredients.filter({ (~$0.name).lowercased() == expectedName })
         }
         
-        return ingredients.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
+        return allIngredients.filter({ (~$0.name).lowercased().contains(trimmedFilter) })
     }
     
+    @MainActor
     func resetIngredients(to selection: SelectionState) {
         ingredients.forEach { $0.selection = selection }
         matchConcoctionsToSelections()
     }
     
+    @MainActor
     func select(ingredient: Ingredient, as selection: SelectionState) {
         ingredient.selection = selection
         matchConcoctionsToSelections()
     }
 }
 
-@MainActor
 class Effect: Identifiable, ObservableObject {
     static func == (lhs: Effect, rhs: Effect) -> Bool {
         lhs.id == rhs.id
@@ -212,7 +231,6 @@ class Effect: Identifiable, ObservableObject {
     }
 }
 
-@MainActor
 class Ingredient: Identifiable, ObservableObject {
     
     let id: UUID = .init()
@@ -237,7 +255,6 @@ class Ingredient: Identifiable, ObservableObject {
     }
 }
 
-@MainActor
 class AddIngredientCoordinator {
     enum Errors: Error {
         case duplicateName
@@ -250,8 +267,10 @@ class AddIngredientCoordinator {
         name: ConstrainedName,
         effects: [Effect],
         to registry: Registry
-    ) throws -> Ingredient {
-        let existingIngredientsNames: Set<String> = Set(registry.ingredients.map { (~$0.name).lowercased() })
+    ) async throws -> Ingredient {
+        let allIngredients = await registry.ingredients
+        let allEffects = await registry.effects
+        let existingIngredientsNames: Set<String> = Set(allIngredients.map { (~$0.name).lowercased() })
         let lowerecasedName = (~name).lowercased()
         guard false == existingIngredientsNames.contains(lowerecasedName) else {
             throw Errors.duplicateName
@@ -267,7 +286,7 @@ class AddIngredientCoordinator {
         }
 
         guard effects.allSatisfy({ desiredEffect in
-            registry.effects.contains(where: { $0.id == desiredEffect.id })
+            allEffects.contains(where: { $0.id == desiredEffect.id })
         }) else {
             throw Errors.unknownEffect
         }
@@ -279,15 +298,22 @@ class AddIngredientCoordinator {
             effect.ingredients.append(ingredient)
             effect.ingredients.sort(by: { ~$0.name < ~$1.name })
         }
+        Task {
+            await self.append(ingredient:ingredient, toRegistry: registry)
+        }
+        return ingredient
+    }
+    
+    @MainActor
+    private func append(ingredient: Ingredient, toRegistry registry: Registry) {
         registry.ingredients.append(ingredient)
         registry.ingredients.sort(by: { ~$0.name < ~$1.name })
         registry.identifyPossibleConcoctions()
-        return ingredient
     }
 }
 
-@MainActor
 class RemoveIngredientCoordinator {
+    @MainActor
     func remove(_ ingredient: Ingredient, from registry: Registry) {
         registry.ingredients.removeAll(where: { $0.id == ingredient.id })
         let allEffects: [Effect] = registry.effects
@@ -298,7 +324,6 @@ class RemoveIngredientCoordinator {
     }
 }
 
-@MainActor
 fileprivate class RegistryInstantiator {
     fileprivate func instantiateEffects(
         _ exportedEffects: [Effect.ExportDTO]
@@ -375,16 +400,16 @@ final actor RegistryStorage {
                 ingredients: DefaultIngredients.all)
         }
 
-        let instantiator = await RegistryInstantiator()
-        let effects: [Effect] = await instantiator.instantiateEffects(registryDto.effects)
+        let instantiator = RegistryInstantiator()
+        let effects: [Effect] = instantiator.instantiateEffects(registryDto.effects)
         
         let mappedEffectsToIngredient: [ConstrainedName: [Effect]] = await mapEffectsToIngredientsNames(
             registryDto.ingredients,
             effects: effects,
             via: instantiator)
-        let ingredients: [Ingredient] = await instantiator.instantiateIngredients(mappedEffectsToIngredient)
-        await instantiator.associateIngredientsToEffects(ingredients: ingredients, effects: effects)
-        await registry.load(
+        let ingredients: [Ingredient] = instantiator.instantiateIngredients(mappedEffectsToIngredient)
+        instantiator.associateIngredientsToEffects(ingredients: ingredients, effects: effects)
+        registry.load(
             effects: effects,
             ingredients: ingredients)
     }
@@ -405,7 +430,7 @@ final actor RegistryStorage {
         var map: [ConstrainedName: [Effect]] = [:]
         for ingredient in ingredients {
             let effectNames: [String] = ingredient.effects.map { ~$0 }
-            map[ingredient.name] = await instantiator.effects(matching: effectNames, from: effects)
+            map[ingredient.name] = instantiator.effects(matching: effectNames, from: effects)
         }
         return map
     }
@@ -416,7 +441,7 @@ final actor RegistryStorage {
     func save(
         _ registry: Registry
     ) async throws {
-        let registryDto: Registry.ExportDTO = await registry.exportDto
+        let registryDto: Registry.ExportDTO = await registry.exportDto()
         
         guard exportSeemsValid(registryDto) else {
             throw Errors.invalidState

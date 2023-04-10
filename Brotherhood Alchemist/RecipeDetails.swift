@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct RecipeDetails: View {
     let concoction: Concoction
     let seekedEffect: SeekedEffect

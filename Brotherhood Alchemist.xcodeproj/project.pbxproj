@@ -168,13 +168,13 @@
 		A9B524C2280E495300F4ABCA /* Brotherhood Alchemist */ = {
 			isa = PBXGroup;
 			children = (
-				A9585FDA28151A9800E78F47 /* Brotherhood-Alchemist-Info.plist */,
-				A9585FD928151A5F00E78F47 /* Brotherhood Alchemist.entitlements */,
 				A9B524C7280E495400F4ABCA /* Assets.xcassets */,
+				A9585FD928151A5F00E78F47 /* Brotherhood Alchemist.entitlements */,
 				A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */,
+				A9585FDA28151A9800E78F47 /* Brotherhood-Alchemist-Info.plist */,
 				A9585F4628136DF900E78F47 /* Concoction.swift */,
-				A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */,
 				A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */,
+				A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */,
 				A9B524E3280E4B5700F4ABCA /* ConstrainedName.swift */,
 				A9B524E5280E4C8800F4ABCA /* ContentView.swift */,
 				A9585F362813427600E78F47 /* Credits.swift */,
@@ -271,8 +271,9 @@
 		78EEE2411F81C9230036FAA2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Dave Poirier";
 				TargetAttributes = {
 					7824A106278A9DBC001BABC5 = {
@@ -640,8 +641,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Brotherhood Alchemist/Brotherhood Alchemist.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202204240138;
-				DEVELOPMENT_ASSET_PATHS = "\"Brotherhood Alchemist/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 202304101812;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = WKB9M744MQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -657,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
@@ -678,8 +679,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Brotherhood Alchemist/Brotherhood Alchemist.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202204240138;
-				DEVELOPMENT_ASSET_PATHS = "\"Brotherhood Alchemist/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 202304101812;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = WKB9M744MQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -695,7 +696,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.soft.Brotherhood-Alchemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

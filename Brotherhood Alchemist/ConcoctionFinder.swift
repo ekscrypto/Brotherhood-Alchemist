@@ -18,10 +18,10 @@ struct IngredientBlueprint {
     let effects: Set<UUID>
 }
 
-@MainActor
 class BlueprintExtractor {
-    func ingredients(from registry: Registry) -> [IngredientBlueprint] {
-        registry.ingredients.map { ingredient in
+    func ingredients(from registry: Registry) async -> [IngredientBlueprint] {
+        let allIngredients = await registry.ingredients
+        return allIngredients.map { ingredient in
             IngredientBlueprint(
                 id: ingredient.id,
                 effects: Set(ingredient.effects.map { $0.id }))

@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct Credits: View {
     var body: some View {
         VStack {

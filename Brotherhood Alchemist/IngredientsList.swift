@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct IngredientsList: View {
 
     let listBottomPadding: CGFloat
@@ -17,14 +18,14 @@ struct IngredientsList: View {
     @State var controlButtonsWidth: CGFloat = .zero
     @State var expanded: Bool = false
     @State var filter: String = "" {
-        didSet { Task { await updateFilteredIngredients() }}
+        didSet { updateFilteredIngredients() }
     }
     @State var showResetModal: Bool = false
     @State var filteredIngredients: [Ingredient] = []
     
     @MainActor
     private func updateFilteredIngredients() {
-        filteredIngredients =  Registry.active.ingredients(filteredBy: filter)
+        filteredIngredients = Registry.active.ingredients(filteredBy: filter)
     }
     
     // MARK: -
@@ -59,8 +60,7 @@ struct IngredientsList: View {
         .onChange(of: filter, perform: { _ in
             updateFilteredIngredients()
         })
-        .onReceive(Registry.active.$ingredients) { _ in
-            updateFilteredIngredients()
+        .onReceive(Registry.active.$ingredients) { _ in updateFilteredIngredients()
         }
         .onReceive(seekedIngredient.$ingredient) { ingredientOrNil in
             guard let ingredient = ingredientOrNil else { return }
@@ -102,16 +102,16 @@ struct IngredientsList_Previews: PreviewProvider {
             listBottomPadding: 0,
             seekedEffect: .init(),
             seekedIngredient: .init())
-            .preferredColorScheme(.light)
-            .previewDisplayName("Light")
-            .previewDevice("iPhone 13 Pro")
+//            .preferredColorScheme(.light)
+//            .previewDisplayName("Light")
+//            .previewDevice("iPhone 14")
 
         IngredientsList(
             listBottomPadding: 0,
             seekedEffect: .init(),
             seekedIngredient: .init())
-            .preferredColorScheme(.dark)
-            .previewDisplayName("Dark")
-            .previewDevice("iPhone 13 Pro")
+//            .preferredColorScheme(.dark)
+//            .previewDisplayName("Dark")
+//            .previewDevice("iPhone 14")
     }
 }

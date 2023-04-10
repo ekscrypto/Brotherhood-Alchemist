@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct FilterControl: View {
     @Binding var filter: String
     

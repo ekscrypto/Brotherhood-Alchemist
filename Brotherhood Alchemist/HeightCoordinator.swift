@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 struct HeightCoordinator: View {
     @Binding var via: CGFloat
     
