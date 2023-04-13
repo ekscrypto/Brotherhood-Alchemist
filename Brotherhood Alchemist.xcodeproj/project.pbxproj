@@ -7,13 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78B8216129E4D0B500D3A6EE /* DomainLogic.docc in Sources */ = {isa = PBXBuildFile; fileRef = 78B8216029E4D0B500D3A6EE /* DomainLogic.docc */; };
+		78B8216729E4D0B500D3A6EE /* DomainLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */; };
+		78B8216E29E4D0B500D3A6EE /* DomainLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8216D29E4D0B500D3A6EE /* DomainLogicTests.swift */; };
+		78B8216F29E4D0B500D3A6EE /* DomainLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B8215F29E4D0B500D3A6EE /* DomainLogic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78B8217229E4D0B500D3A6EE /* DomainLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */; };
+		78B8217329E4D0B500D3A6EE /* DomainLogic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78B8217C29E4D0CF00D3A6EE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8217B29E4D0CF00D3A6EE /* AppState.swift */; };
+		78B8217E29E4D14E00D3A6EE /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8217D29E4D14E00D3A6EE /* Ingredient.swift */; };
+		78B8218029E4D1E900D3A6EE /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8217F29E4D1E900D3A6EE /* Effect.swift */; };
+		78B8218229E4D2CF00D3A6EE /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8218129E4D2CF00D3A6EE /* Outcome.swift */; };
+		78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7B29E4D4880079FA06 /* StateMachine.swift */; };
+		78FE5D7E29E4D7CB0079FA06 /* Intent.AddEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */; };
+		78FE5D8629E4EA250079FA06 /* Intent.AddIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */; };
+		78FE5D8829E4ED380079FA06 /* SeptimValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8729E4ED380079FA06 /* SeptimValue.swift */; };
+		78FE5D8A29E4FB4F0079FA06 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8929E4FB4F0079FA06 /* Intent.swift */; };
+		78FE5D8C29E4FCF00079FA06 /* XCTAssert+async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8B29E4FCF00079FA06 /* XCTAssert+async.swift */; };
+		78FE5D8E29E501CC0079FA06 /* Intent.RemoveEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8D29E501CC0079FA06 /* Intent.RemoveEffect.swift */; };
+		78FE5D9029E5047D0079FA06 /* Intent.RemoveIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8F29E5047D0079FA06 /* Intent.RemoveIngredient.swift */; };
+		78FE5D9229E510840079FA06 /* Intent.UpdateEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D9129E510840079FA06 /* Intent.UpdateEffect.swift */; };
+		78FE5D9429E514160079FA06 /* Intent.UpdateIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D9329E514160079FA06 /* Intent.UpdateIngredient.swift */; };
+		78FE5D9A29E872670079FA06 /* Mixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D9929E872670079FA06 /* Mixture.swift */; };
+		78FE5D9E29E8762C0079FA06 /* Intent.MustHaveIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D9D29E8762C0079FA06 /* Intent.MustHaveIngredient.swift */; };
+		78FE5DA029E883920079FA06 /* Intent.CantHaveIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D9F29E883920079FA06 /* Intent.CantHaveIngredient.swift */; };
+		78FE5DA229E8860F0079FA06 /* Intent.MayHaveIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5DA129E8860F0079FA06 /* Intent.MayHaveIngredient.swift */; };
+		78FE5DA429E886CB0079FA06 /* Intent.CantHaveEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5DA329E886CB0079FA06 /* Intent.CantHaveEffect.swift */; };
+		78FE5DA629E887290079FA06 /* Intent.MustHaveEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5DA529E887290079FA06 /* Intent.MustHaveEffect.swift */; };
+		78FE5DA829E887470079FA06 /* Intent.MayHaveEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5DA729E887470079FA06 /* Intent.MayHaveEffect.swift */; };
+		78FE5DAA29E88BD90079FA06 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5DA929E88BD90079FA06 /* PerformanceTests.swift */; };
 		A9585F742813959E00E78F47 /* ConstrainedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524E3280E4B5700F4ABCA /* ConstrainedName.swift */; };
 		A9585F782813960300E78F47 /* DefaultEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524D9280E4AB500F4ABCA /* DefaultEffects.swift */; };
 		A9585F7A2813963200E78F47 /* SelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524F5280E4DF400F4ABCA /* SelectionState.swift */; };
 		A9585F7C2813AA0F00E78F47 /* DefaultIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524DC280E4AB500F4ABCA /* DefaultIngredients.swift */; };
 		A9585F8428141D9800E78F47 /* Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F8328141D9800E78F47 /* Registry.swift */; };
 		A9585F86281428E000E78F47 /* EffectValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F85281428E000E78F47 /* EffectValue.swift */; };
-		A9585F8928143EBB00E78F47 /* RegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F8828143EBB00E78F47 /* RegistryTests.swift */; };
 		A9585F8B2814C0E700E78F47 /* EffectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F2C2813309200E78F47 /* EffectDetails.swift */; };
 		A9585F8D2814C0E700E78F47 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524F9280E4EDC00F4ABCA /* Tab.swift */; };
 		A9585F8F2814C0E700E78F47 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F362813427600E78F47 /* Credits.swift */; };
@@ -38,22 +65,52 @@
 		A9585FA62814C0E700E78F47 /* SelectionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524ED280E4CF200F4ABCA /* SelectionText.swift */; };
 		A9585FA82814C0E700E78F47 /* Brotherhood_AlchemistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */; };
 		A9585FA92814C0E700E78F47 /* TextFieldClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524EC280E4CF200F4ABCA /* TextFieldClearButton.swift */; };
-		A9585FC92814C0F000E78F47 /* Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F8328141D9800E78F47 /* Registry.swift */; };
-		A9585FCA2814C0F600E78F47 /* EffectValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F85281428E000E78F47 /* EffectValue.swift */; };
-		A9585FCB2814C10100E78F47 /* DefaultIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524DC280E4AB500F4ABCA /* DefaultIngredients.swift */; };
-		A9585FCC2814C10100E78F47 /* DefaultEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524D9280E4AB500F4ABCA /* DefaultEffects.swift */; };
-		A9585FCD2814C10C00E78F47 /* ConstrainedName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524E3280E4B5700F4ABCA /* ConstrainedName.swift */; };
-		A9585FCE2814C11800E78F47 /* SelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B524F5280E4DF400F4ABCA /* SelectionState.swift */; };
 		A9585FCF2814D5A100E78F47 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */; };
 		A9585FD12814E7A900E78F47 /* ConcoctionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */; };
 		A9585FD22814EC0D00E78F47 /* RecipesListOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4128136D7400E78F47 /* RecipesListOptions.swift */; };
-		A9585FD32814EC3600E78F47 /* ConcoctionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585FD02814E7A900E78F47 /* ConcoctionFilter.swift */; };
-		A9585FD42814EC3900E78F47 /* ConcoctionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4728136DF900E78F47 /* ConcoctionFinder.swift */; };
 		A9585FD52814ED2900E78F47 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4028136D7400E78F47 /* RecipesList.swift */; };
 		A9585FD62814EE9E00E78F47 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585F4228136D7400E78F47 /* RecipeDetails.swift */; };
 		A9585FD82815147200E78F47 /* OrientationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585FD72815147200E78F47 /* OrientationInfo.swift */; };
 		A9B524C8280E495400F4ABCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9B524C7280E495400F4ABCA /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		78B8216829E4D0B500D3A6EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78EEE2411F81C9230036FAA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78B8215C29E4D0B500D3A6EE;
+			remoteInfo = DomainLogic;
+		};
+		78B8216A29E4D0B500D3A6EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78EEE2411F81C9230036FAA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9B524C0280E495300F4ABCA;
+			remoteInfo = "Brotherhood Alchemist";
+		};
+		78B8217029E4D0B500D3A6EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78EEE2411F81C9230036FAA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78B8215C29E4D0B500D3A6EE;
+			remoteInfo = DomainLogic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78B8217729E4D0B500D3A6EE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78B8217329E4D0B500D3A6EE /* DomainLogic.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brotherhood AlchemistTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +121,33 @@
 		787334F627DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionIngredientsFilterTests.swift; sourceTree = "<group>"; };
 		787334F827DEC8F7009120C5 /* ConcoctionFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionFinderTests.swift; sourceTree = "<group>"; };
 		78B24DDC27FE73650053BD75 /* Alchemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alchemist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B8215F29E4D0B500D3A6EE /* DomainLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainLogic.h; sourceTree = "<group>"; };
+		78B8216029E4D0B500D3A6EE /* DomainLogic.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DomainLogic.docc; sourceTree = "<group>"; };
+		78B8216629E4D0B500D3A6EE /* DomainLogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B8216D29E4D0B500D3A6EE /* DomainLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainLogicTests.swift; sourceTree = "<group>"; };
+		78B8217B29E4D0CF00D3A6EE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		78B8217D29E4D14E00D3A6EE /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		78B8217F29E4D1E900D3A6EE /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		78B8218129E4D2CF00D3A6EE /* Outcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
+		78FE5D7B29E4D4880079FA06 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddEffect.swift; sourceTree = "<group>"; };
+		78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddIngredient.swift; sourceTree = "<group>"; };
+		78FE5D8729E4ED380079FA06 /* SeptimValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeptimValue.swift; sourceTree = "<group>"; };
+		78FE5D8929E4FB4F0079FA06 /* Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
+		78FE5D8B29E4FCF00079FA06 /* XCTAssert+async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTAssert+async.swift"; sourceTree = "<group>"; };
+		78FE5D8D29E501CC0079FA06 /* Intent.RemoveEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.RemoveEffect.swift; sourceTree = "<group>"; };
+		78FE5D8F29E5047D0079FA06 /* Intent.RemoveIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.RemoveIngredient.swift; sourceTree = "<group>"; };
+		78FE5D9129E510840079FA06 /* Intent.UpdateEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.UpdateEffect.swift; sourceTree = "<group>"; };
+		78FE5D9329E514160079FA06 /* Intent.UpdateIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.UpdateIngredient.swift; sourceTree = "<group>"; };
+		78FE5D9929E872670079FA06 /* Mixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixture.swift; sourceTree = "<group>"; };
+		78FE5D9D29E8762C0079FA06 /* Intent.MustHaveIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.MustHaveIngredient.swift; sourceTree = "<group>"; };
+		78FE5D9F29E883920079FA06 /* Intent.CantHaveIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.CantHaveIngredient.swift; sourceTree = "<group>"; };
+		78FE5DA129E8860F0079FA06 /* Intent.MayHaveIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.MayHaveIngredient.swift; sourceTree = "<group>"; };
+		78FE5DA329E886CB0079FA06 /* Intent.CantHaveEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.CantHaveEffect.swift; sourceTree = "<group>"; };
+		78FE5DA529E887290079FA06 /* Intent.MustHaveEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.MustHaveEffect.swift; sourceTree = "<group>"; };
+		78FE5DA729E887470079FA06 /* Intent.MayHaveEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.MayHaveEffect.swift; sourceTree = "<group>"; };
+		78FE5DA929E88BD90079FA06 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		A9585F282813300800E78F47 /* SeekedEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekedEffect.swift; sourceTree = "<group>"; };
 		A9585F2A2813303200E78F47 /* SeekedIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekedIngredient.swift; sourceTree = "<group>"; };
 		A9585F2C2813309200E78F47 /* EffectDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectDetails.swift; sourceTree = "<group>"; };
@@ -122,10 +206,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78B8215A29E4D0B500D3A6EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B8216329E4D0B500D3A6EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78B8216729E4D0B500D3A6EE /* DomainLogic.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9B524BE280E495300F4ABCA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B8217229E4D0B500D3A6EE /* DomainLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,11 +246,47 @@
 			path = "Brotherhood AlchemistTests";
 			sourceTree = "<group>";
 		};
+		78B8215E29E4D0B500D3A6EE /* DomainLogic */ = {
+			isa = PBXGroup;
+			children = (
+				78FE5D7A29E4D44D0079FA06 /* Data Model */,
+				78B8216029E4D0B500D3A6EE /* DomainLogic.docc */,
+				78B8215F29E4D0B500D3A6EE /* DomainLogic.h */,
+				78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */,
+				78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */,
+				78FE5DA329E886CB0079FA06 /* Intent.CantHaveEffect.swift */,
+				78FE5D9F29E883920079FA06 /* Intent.CantHaveIngredient.swift */,
+				78FE5DA729E887470079FA06 /* Intent.MayHaveEffect.swift */,
+				78FE5DA129E8860F0079FA06 /* Intent.MayHaveIngredient.swift */,
+				78FE5DA529E887290079FA06 /* Intent.MustHaveEffect.swift */,
+				78FE5D9D29E8762C0079FA06 /* Intent.MustHaveIngredient.swift */,
+				78FE5D8D29E501CC0079FA06 /* Intent.RemoveEffect.swift */,
+				78FE5D8F29E5047D0079FA06 /* Intent.RemoveIngredient.swift */,
+				78FE5D8929E4FB4F0079FA06 /* Intent.swift */,
+				78FE5D9129E510840079FA06 /* Intent.UpdateEffect.swift */,
+				78FE5D9329E514160079FA06 /* Intent.UpdateIngredient.swift */,
+				78FE5D7B29E4D4880079FA06 /* StateMachine.swift */,
+			);
+			path = DomainLogic;
+			sourceTree = "<group>";
+		};
+		78B8216C29E4D0B500D3A6EE /* DomainLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				78B8216D29E4D0B500D3A6EE /* DomainLogicTests.swift */,
+				78FE5DA929E88BD90079FA06 /* PerformanceTests.swift */,
+				78FE5D8B29E4FCF00079FA06 /* XCTAssert+async.swift */,
+			);
+			path = DomainLogicTests;
+			sourceTree = "<group>";
+		};
 		78EEE2401F81C9230036FAA2 = {
 			isa = PBXGroup;
 			children = (
 				A9B524C2280E495300F4ABCA /* Brotherhood Alchemist */,
 				7824A108278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
+				78B8215E29E4D0B500D3A6EE /* DomainLogic */,
+				78B8216C29E4D0B500D3A6EE /* DomainLogicTests */,
 				78EEE24A1F81C9230036FAA2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -161,8 +297,23 @@
 				7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */,
 				78B24DDC27FE73650053BD75 /* Alchemist.app */,
 				A9B524C1280E495300F4ABCA /* Brotherhood Alchemist.app */,
+				78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */,
+				78B8216629E4D0B500D3A6EE /* DomainLogicTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		78FE5D7A29E4D44D0079FA06 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				78B8217B29E4D0CF00D3A6EE /* AppState.swift */,
+				78B8217F29E4D1E900D3A6EE /* Effect.swift */,
+				78B8218129E4D2CF00D3A6EE /* Outcome.swift */,
+				78FE5D8729E4ED380079FA06 /* SeptimValue.swift */,
+				78B8217D29E4D14E00D3A6EE /* Ingredient.swift */,
+				78FE5D9929E872670079FA06 /* Mixture.swift */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 		A9B524C2280E495300F4ABCA /* Brotherhood Alchemist */ = {
@@ -213,6 +364,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		78B8215829E4D0B500D3A6EE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78B8216F29E4D0B500D3A6EE /* DomainLogic.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		7824A106278A9DBC001BABC5 /* Brotherhood AlchemistTests */ = {
 			isa = PBXNativeTarget;
@@ -248,6 +410,43 @@
 			productReference = 78B24DDC27FE73650053BD75 /* Alchemist.app */;
 			productType = "com.apple.product-type.application";
 		};
+		78B8215C29E4D0B500D3A6EE /* DomainLogic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78B8217429E4D0B500D3A6EE /* Build configuration list for PBXNativeTarget "DomainLogic" */;
+			buildPhases = (
+				78B8215829E4D0B500D3A6EE /* Headers */,
+				78B8215929E4D0B500D3A6EE /* Sources */,
+				78B8215A29E4D0B500D3A6EE /* Frameworks */,
+				78B8215B29E4D0B500D3A6EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DomainLogic;
+			productName = DomainLogic;
+			productReference = 78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		78B8216529E4D0B500D3A6EE /* DomainLogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78B8217829E4D0B500D3A6EE /* Build configuration list for PBXNativeTarget "DomainLogicTests" */;
+			buildPhases = (
+				78B8216229E4D0B500D3A6EE /* Sources */,
+				78B8216329E4D0B500D3A6EE /* Frameworks */,
+				78B8216429E4D0B500D3A6EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78B8216929E4D0B500D3A6EE /* PBXTargetDependency */,
+				78B8216B29E4D0B500D3A6EE /* PBXTargetDependency */,
+			);
+			name = DomainLogicTests;
+			productName = DomainLogicTests;
+			productReference = 78B8216629E4D0B500D3A6EE /* DomainLogicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A9B524C0280E495300F4ABCA /* Brotherhood Alchemist */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9B524CC280E495400F4ABCA /* Build configuration list for PBXNativeTarget "Brotherhood Alchemist" */;
@@ -255,10 +454,12 @@
 				A9B524BD280E495300F4ABCA /* Sources */,
 				A9B524BE280E495300F4ABCA /* Frameworks */,
 				A9B524BF280E495300F4ABCA /* Resources */,
+				78B8217729E4D0B500D3A6EE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				78B8217129E4D0B500D3A6EE /* PBXTargetDependency */,
 			);
 			name = "Brotherhood Alchemist";
 			productName = "Brotherhood Alchemist";
@@ -272,7 +473,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Dave Poirier";
 				TargetAttributes = {
@@ -281,6 +482,13 @@
 					};
 					78B24DDB27FE73650053BD75 = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					78B8215C29E4D0B500D3A6EE = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					78B8216529E4D0B500D3A6EE = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = A9B524C0280E495300F4ABCA;
 					};
 					A9B524C0280E495300F4ABCA = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -303,6 +511,8 @@
 				A9B524C0280E495300F4ABCA /* Brotherhood Alchemist */,
 				7824A106278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
 				78B24DDB27FE73650053BD75 /* Brotherhoold Alchemist SwiftUI */,
+				78B8215C29E4D0B500D3A6EE /* DomainLogic */,
+				78B8216529E4D0B500D3A6EE /* DomainLogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -316,6 +526,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		78B24DDA27FE73650053BD75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B8215B29E4D0B500D3A6EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B8216429E4D0B500D3A6EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,15 +561,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9585FCC2814C10100E78F47 /* DefaultEffects.swift in Sources */,
-				A9585FCB2814C10100E78F47 /* DefaultIngredients.swift in Sources */,
-				A9585FC92814C0F000E78F47 /* Registry.swift in Sources */,
-				A9585F8928143EBB00E78F47 /* RegistryTests.swift in Sources */,
-				A9585FCA2814C0F600E78F47 /* EffectValue.swift in Sources */,
-				A9585FCD2814C10C00E78F47 /* ConstrainedName.swift in Sources */,
-				A9585FD42814EC3900E78F47 /* ConcoctionFinder.swift in Sources */,
-				A9585FD32814EC3600E78F47 /* ConcoctionFilter.swift in Sources */,
-				A9585FCE2814C11800E78F47 /* SelectionState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +568,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B8215929E4D0B500D3A6EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78FE5D9E29E8762C0079FA06 /* Intent.MustHaveIngredient.swift in Sources */,
+				78FE5D9429E514160079FA06 /* Intent.UpdateIngredient.swift in Sources */,
+				78FE5D8629E4EA250079FA06 /* Intent.AddIngredient.swift in Sources */,
+				78FE5D8A29E4FB4F0079FA06 /* Intent.swift in Sources */,
+				78B8218029E4D1E900D3A6EE /* Effect.swift in Sources */,
+				78FE5D9229E510840079FA06 /* Intent.UpdateEffect.swift in Sources */,
+				78FE5D9029E5047D0079FA06 /* Intent.RemoveIngredient.swift in Sources */,
+				78FE5DA229E8860F0079FA06 /* Intent.MayHaveIngredient.swift in Sources */,
+				78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */,
+				78FE5DA029E883920079FA06 /* Intent.CantHaveIngredient.swift in Sources */,
+				78FE5D7E29E4D7CB0079FA06 /* Intent.AddEffect.swift in Sources */,
+				78B8218229E4D2CF00D3A6EE /* Outcome.swift in Sources */,
+				78FE5DA629E887290079FA06 /* Intent.MustHaveEffect.swift in Sources */,
+				78FE5D8E29E501CC0079FA06 /* Intent.RemoveEffect.swift in Sources */,
+				78FE5DA429E886CB0079FA06 /* Intent.CantHaveEffect.swift in Sources */,
+				78FE5D8829E4ED380079FA06 /* SeptimValue.swift in Sources */,
+				78B8216129E4D0B500D3A6EE /* DomainLogic.docc in Sources */,
+				78FE5D9A29E872670079FA06 /* Mixture.swift in Sources */,
+				78FE5DA829E887470079FA06 /* Intent.MayHaveEffect.swift in Sources */,
+				78B8217C29E4D0CF00D3A6EE /* AppState.swift in Sources */,
+				78B8217E29E4D14E00D3A6EE /* Ingredient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78B8216229E4D0B500D3A6EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78FE5D8C29E4FCF00079FA06 /* XCTAssert+async.swift in Sources */,
+				78B8216E29E4D0B500D3A6EE /* DomainLogicTests.swift in Sources */,
+				78FE5DAA29E88BD90079FA06 /* PerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +653,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		78B8216929E4D0B500D3A6EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 78B8215C29E4D0B500D3A6EE /* DomainLogic */;
+			targetProxy = 78B8216829E4D0B500D3A6EE /* PBXContainerItemProxy */;
+		};
+		78B8216B29E4D0B500D3A6EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9B524C0280E495300F4ABCA /* Brotherhood Alchemist */;
+			targetProxy = 78B8216A29E4D0B500D3A6EE /* PBXContainerItemProxy */;
+		};
+		78B8217129E4D0B500D3A6EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 78B8215C29E4D0B500D3A6EE /* DomainLogic */;
+			targetProxy = 78B8217029E4D0B500D3A6EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7824A10C278A9DBC001BABC5 /* Debug */ = {
@@ -515,6 +786,126 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		78B8217529E4D0B500D3A6EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Dave Poirier. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = life.encoded.DomainLogic;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		78B8217629E4D0B500D3A6EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Dave Poirier. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = life.encoded.DomainLogic;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		78B8217929E4D0B500D3A6EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = life.encoded.DomainLogicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brotherhood Alchemist.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Brotherhood Alchemist";
+			};
+			name = Debug;
+		};
+		78B8217A29E4D0B500D3A6EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WKB9M744MQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = life.encoded.DomainLogicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brotherhood Alchemist.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Brotherhood Alchemist";
 			};
 			name = Release;
 		};
@@ -635,6 +1026,7 @@
 		A9B524CD280E495400F4ABCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -673,6 +1065,7 @@
 		A9B524CE280E495400F4ABCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -724,6 +1117,24 @@
 			buildConfigurations = (
 				78B24DE827FE73660053BD75 /* Debug */,
 				78B24DE927FE73660053BD75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78B8217429E4D0B500D3A6EE /* Build configuration list for PBXNativeTarget "DomainLogic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78B8217529E4D0B500D3A6EE /* Debug */,
+				78B8217629E4D0B500D3A6EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78B8217829E4D0B500D3A6EE /* Build configuration list for PBXNativeTarget "DomainLogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78B8217929E4D0B500D3A6EE /* Debug */,
+				78B8217A29E4D0B500D3A6EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

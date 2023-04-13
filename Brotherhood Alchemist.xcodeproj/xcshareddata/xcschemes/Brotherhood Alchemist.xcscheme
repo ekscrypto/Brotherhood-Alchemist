@@ -29,12 +29,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7824A106278A9DBC001BABC5"
                BuildableName = "Brotherhood AlchemistTests.xctest"
                BlueprintName = "Brotherhood AlchemistTests"
+               ReferencedContainer = "container:Brotherhood Alchemist.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "78B8216529E4D0B500D3A6EE"
+               BuildableName = "DomainLogicTests.xctest"
+               BlueprintName = "DomainLogicTests"
                ReferencedContainer = "container:Brotherhood Alchemist.xcodeproj">
             </BuildableReference>
          </TestableReference>
