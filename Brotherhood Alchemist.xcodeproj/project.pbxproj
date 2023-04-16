@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		786D9CEE29E99B9D001C9A7C /* Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D9CED29E99B9D001C9A7C /* Difference.swift */; };
+		786D9CF029EA3FFC001C9A7C /* MixtureIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D9CEF29EA3FFC001C9A7C /* MixtureIdentifier.swift */; };
 		78B8216129E4D0B500D3A6EE /* DomainLogic.docc in Sources */ = {isa = PBXBuildFile; fileRef = 78B8216029E4D0B500D3A6EE /* DomainLogic.docc */; };
 		78B8216729E4D0B500D3A6EE /* DomainLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B8215D29E4D0B500D3A6EE /* DomainLogic.framework */; };
 		78B8216E29E4D0B500D3A6EE /* DomainLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8216D29E4D0B500D3A6EE /* DomainLogicTests.swift */; };
@@ -116,6 +118,9 @@
 		7824A107278A9DBC001BABC5 /* Brotherhood AlchemistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brotherhood AlchemistTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7824A114279127FD001BABC5 /* EffectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectTests.swift; sourceTree = "<group>"; };
 		7824A1252799099E001BABC5 /* ConstrainedNameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstrainedNameTests.swift; sourceTree = "<group>"; };
+		786D9CEC29E9884A001C9A7C /* DomainLogic.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DomainLogic.xctestplan; sourceTree = "<group>"; };
+		786D9CED29E99B9D001C9A7C /* Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difference.swift; sourceTree = "<group>"; };
+		786D9CEF29EA3FFC001C9A7C /* MixtureIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtureIdentifier.swift; sourceTree = "<group>"; };
 		787334E927DE445F009120C5 /* GrimoireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrimoireTests.swift; sourceTree = "<group>"; };
 		787334F427DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionEffectsFilterTests.swift; sourceTree = "<group>"; };
 		787334F627DE8945009120C5 /* ConcoctionIngredientsFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionIngredientsFilterTests.swift; sourceTree = "<group>"; };
@@ -262,6 +267,7 @@
 				78FE5D9D29E8762C0079FA06 /* Intent.MustHaveIngredient.swift */,
 				78FE5D8D29E501CC0079FA06 /* Intent.RemoveEffect.swift */,
 				78FE5D8F29E5047D0079FA06 /* Intent.RemoveIngredient.swift */,
+				786D9CEF29EA3FFC001C9A7C /* MixtureIdentifier.swift */,
 				78FE5D8929E4FB4F0079FA06 /* Intent.swift */,
 				78FE5D9129E510840079FA06 /* Intent.UpdateEffect.swift */,
 				78FE5D9329E514160079FA06 /* Intent.UpdateIngredient.swift */,
@@ -276,6 +282,7 @@
 				78B8216D29E4D0B500D3A6EE /* DomainLogicTests.swift */,
 				78FE5DA929E88BD90079FA06 /* PerformanceTests.swift */,
 				78FE5D8B29E4FCF00079FA06 /* XCTAssert+async.swift */,
+				786D9CED29E99B9D001C9A7C /* Difference.swift */,
 			);
 			path = DomainLogicTests;
 			sourceTree = "<group>";
@@ -283,6 +290,7 @@
 		78EEE2401F81C9230036FAA2 = {
 			isa = PBXGroup;
 			children = (
+				786D9CEC29E9884A001C9A7C /* DomainLogic.xctestplan */,
 				A9B524C2280E495300F4ABCA /* Brotherhood Alchemist */,
 				7824A108278A9DBC001BABC5 /* Brotherhood AlchemistTests */,
 				78B8215E29E4D0B500D3A6EE /* DomainLogic */,
@@ -590,6 +598,7 @@
 				78FE5DA629E887290079FA06 /* Intent.MustHaveEffect.swift in Sources */,
 				78FE5D8E29E501CC0079FA06 /* Intent.RemoveEffect.swift in Sources */,
 				78FE5DA429E886CB0079FA06 /* Intent.CantHaveEffect.swift in Sources */,
+				786D9CF029EA3FFC001C9A7C /* MixtureIdentifier.swift in Sources */,
 				78FE5D8829E4ED380079FA06 /* SeptimValue.swift in Sources */,
 				78B8216129E4D0B500D3A6EE /* DomainLogic.docc in Sources */,
 				78FE5D9A29E872670079FA06 /* Mixture.swift in Sources */,
@@ -605,6 +614,7 @@
 			files = (
 				78FE5D8C29E4FCF00079FA06 /* XCTAssert+async.swift in Sources */,
 				78B8216E29E4D0B500D3A6EE /* DomainLogicTests.swift in Sources */,
+				786D9CEE29E99B9D001C9A7C /* Difference.swift in Sources */,
 				78FE5DAA29E88BD90079FA06 /* PerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

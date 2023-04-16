@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "762CECF3-91AC-4F9C-9381-961F57DB1528",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Brotherhood Alchemist.xcodeproj",
+        "identifier" : "78B8216529E4D0B500D3A6EE",
+        "name" : "DomainLogicTests"
+      }
+    }
+  ],
+  "version" : 1
+}

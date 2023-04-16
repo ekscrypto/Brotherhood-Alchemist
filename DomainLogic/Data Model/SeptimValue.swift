@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct SeptimValue: RawRepresentable, Codable, Sendable {
+public struct SeptimValue: RawRepresentable, Equatable, Hashable, Codable, Sendable {
     public var rawValue: UInt
     
     public init?(rawValue: UInt) {

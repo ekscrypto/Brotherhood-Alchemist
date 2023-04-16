@@ -8,8 +8,28 @@
 
 import Foundation
 
-public struct Mixture: Codable, Sendable {
-    let ingredients: [Ingredient.Id]
-    let effects: [Effect.Id]
+public struct Mixture: Codable, Hashable, Equatable, Sendable {
+    let ingredients: Set<Ingredient.Id>
+    let effects: Set<Effect.Id>
     let value: SeptimValue
+    
+    struct ViewModel {
+        let ingredients: [String]
+        let effects: [String]
+        let value: Int
+        
+        init(mixture: Mixture, appState: AppState) {
+            ingredients = appState.ingredients
+                .filter { mixture.ingredients.contains($0.id) }
+                .map { $0.name }
+                .sorted()
+            effects = appState.effects
+                .filter { mixture.effects.contains($0.id) }
+                .map { $0.name }
+                .sorted()
+            value = Int(mixture.value.rawValue)
+        }
+    }
 }
+
+

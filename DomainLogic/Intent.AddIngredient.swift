@@ -21,7 +21,6 @@ extension Intent {
             case duplicatedName
             case tooManyEffects
             case oneOrMoreEffectsAreUnknown
-            case allEffectsMustBeUnique
         }
         
         func mutate(_ initialState: AppState) throws -> AppState {
@@ -37,10 +36,6 @@ extension Intent {
             
             guard ingredient.effects.count <= 4 else {
                 throw Errors.tooManyEffects
-            }
-            
-            guard Set(ingredient.effects).count == ingredient.effects.count else {
-                throw Errors.allEffectsMustBeUnique
             }
             
             guard ingredient.effects.allSatisfy({ ingredientEffectId in

@@ -13,8 +13,9 @@ struct Brotherhood_AlchemistApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(OrientationInfo())
+            Text("Testing")
+//            ContentView()
+//                .environmentObject(OrientationInfo())
         }
     }
 }

@@ -21,7 +21,6 @@ extension Intent {
             case nameIsNotUnique
             case tooManyEffects
             case unknownEffect
-            case allEffectsMustBeUnique
         }
         
         func mutate(_ initialState: AppState) throws -> AppState {
@@ -43,10 +42,6 @@ extension Intent {
                 initialState.effects.contains(where: { $0.id == ingredientEffectId })
             }) else {
                 throw Errors.unknownEffect
-            }
-            
-            guard Set(ingredient.effects).count == ingredient.effects.count else {
-                throw Errors.allEffectsMustBeUnique
             }
             
             var updatedIngredients = initialState.ingredients.map {

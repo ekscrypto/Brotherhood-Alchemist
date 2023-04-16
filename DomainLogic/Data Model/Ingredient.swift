@@ -22,7 +22,7 @@ public struct Ingredient: Identifiable, Codable, Sendable {
     
     public let id: Id
     public var name: String
-    public var effects: [Effect.Id]
+    public var effects: Set<Effect.Id>
     
     static let abeceanLongfin = Ingredient(
         id: .string("6DFC7D0D-5BF9-4F8F-A76E-177DA329F6CF"), name: "Abecean Longfin", effects: [

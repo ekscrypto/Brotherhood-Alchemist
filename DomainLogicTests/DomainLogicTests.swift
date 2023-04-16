@@ -107,14 +107,6 @@ final class DomainLogicTests: XCTestCase {
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.AddIngredient(monkeyToes)))
     }
     
-    func testCannotAddIngredientWithSameEffectTwice() async throws {
-        let stateMachine = StateMachine()
-        try await stateMachine.ingest(Intent.AddEffect(restoreStamina))
-        let eternalTreeBark = Ingredient(id: .new, name: "Eternal Tree Bark", effects: [
-            restoreStamina.id, restoreStamina.id])
-        await XCTAssertThrowsError(try await stateMachine.ingest(Intent.AddIngredient(eternalTreeBark)))
-    }
-    
     func testCanRemoveEffectIfUnused() async throws {
         let stateMachine = StateMachine()
         try await stateMachine.ingest(Intent.AddEffect(slow))
@@ -241,17 +233,6 @@ final class DomainLogicTests: XCTestCase {
             .ingest(Intent.AddEffect(restoreStamina))
             .ingest(Intent.AddEffect(damageStamina))
             .ingest(Intent.AddEffect(bleed))
-            .ingest(Intent.AddIngredient(magicCarp))
-        await XCTAssertThrowsError(try await stateMachine.ingest(Intent.UpdateIngredient(updatedMagicCarp)))
-    }
-    
-    func testFailsToUpdateIngredientIfEffectsAreNotUnique() async throws {
-        let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [slow.id])
-        let updatedMagicCarp = Ingredient(id: magicCarp.id, name: magicCarp.name, effects: [
-            slow.id, slow.id])
-        try await stateMachine
-            .ingest(Intent.AddEffect(slow))
             .ingest(Intent.AddIngredient(magicCarp))
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.UpdateIngredient(updatedMagicCarp)))
     }
@@ -390,8 +371,7 @@ final class DomainLogicTests: XCTestCase {
         XCTAssertTrue(finalState.cantHaveEffects.isEmpty)
     }
     
-    func testCanAddAllEffectsAndIngredients() async throws {
-        let stateMachine = StateMachine()
+    private func addAllEffectsAndIngredients(to stateMachine: StateMachine) async throws {
         try await withThrowingTaskGroup(of: Void.self) { group in
             Effect.all.forEach { effect in
                 group.addTask {
@@ -414,9 +394,94 @@ final class DomainLogicTests: XCTestCase {
             
             for try await _ in group { }
         }
-        
+    }
+    
+    func testCanAddAllEffectsAndIngredients() async throws {
+        let stateMachine = StateMachine()
+        try await addAllEffectsAndIngredients(to: stateMachine)
         let finalState = await stateMachine.appState
         XCTAssertEqual(finalState.effects.count, Effect.all.count)
         XCTAssertEqual(finalState.ingredients.count, Ingredient.all.count)
     }
+    
+    func testCanIdentifyAllDefaultMixtures() async throws {
+        let stateMachine = StateMachine()
+        try await addAllEffectsAndIngredients(to: stateMachine)
+        let mixturesResult = await MixtureIdentifier.singleton.identify(from: await stateMachine.appState).result
+        guard case .success(let mixtures) = mixturesResult else {
+            fatalError()
+        }
+        XCTAssertEqual(mixtures.count, 33682)
+    }
+    
+    func testCanIdentifyMixtures() async throws {
+        let stateMachine = StateMachine()
+        try await stateMachine
+            .ingest(Intent.AddEffect(.weaknessToFrost))
+            .ingest(Intent.AddEffect(.fortifySneak))
+            .ingest(Intent.AddEffect(.weaknessToPoison))
+            .ingest(Intent.AddEffect(.fortifyRestoration))
+            .ingest(Intent.AddEffect(.resistFire))
+            .ingest(Intent.AddEffect(.weaknessToShock))
+            .ingest(Intent.AddEffect(.fortifyLockpicking))
+            .ingest(Intent.AddEffect(.restoreMagicka))
+            .ingest(Intent.AddEffect(.fortifyMarksman))
+            .ingest(Intent.AddEffect(.regenerateMagicka))
+            .ingest(Intent.AddIngredient(.abeceanLongfin))
+            .ingest(Intent.AddIngredient(.ashenGrassPod))
+            .ingest(Intent.AddIngredient(.elvesEar))
+            .ingest(Intent.AddIngredient(.fireSalts))
+        let ingestedState = await stateMachine.appState
+        let mixturesResult = await MixtureIdentifier.singleton.identify(from: ingestedState).result
+        guard case .success(let mixtures) = mixturesResult else {
+            fatalError()
+        }
+        
+        let sneakMixture = Mixture(
+            ingredients: [Ingredient.abeceanLongfin.id, Ingredient.ashenGrassPod.id],
+            effects: [Effect.fortifySneak.id],
+            value: SeptimValue(rawValue: 118)!)
+        let weaknessToFrostMixture1 = Mixture(
+            ingredients: [Ingredient.abeceanLongfin.id, Ingredient.elvesEar.id],
+            effects: [Effect.weaknessToFrost.id],
+            value: SeptimValue(rawValue: 40)!)
+        let weaknessToFrostMixture2 = Mixture(
+            ingredients: [Ingredient.abeceanLongfin.id, Ingredient.fireSalts.id],
+            effects: [Effect.weaknessToFrost.id],
+            value: SeptimValue(rawValue: 40)!)
+        let resistFireMixture1 = Mixture(
+            ingredients: [Ingredient.ashenGrassPod.id, Ingredient.elvesEar.id],
+            effects: [Effect.resistFire.id],
+            value: SeptimValue(rawValue: 86)!)
+        let resistFireMixture2 = Mixture(
+            ingredients: [Ingredient.ashenGrassPod.id, Ingredient.fireSalts.id],
+            effects: [Effect.resistFire.id],
+            value: SeptimValue(rawValue: 86)!)
+        let complexMixture1 = Mixture(
+            ingredients: [Ingredient.abeceanLongfin.id, Ingredient.ashenGrassPod.id, Ingredient.elvesEar.id],
+            effects: [Effect.fortifySneak.id, Effect.resistFire.id, Effect.weaknessToFrost.id],
+            value: SeptimValue(rawValue: 86 + 40 + 118)!)
+        let complexMixture2 = Mixture(
+            ingredients: [Ingredient.abeceanLongfin.id, Ingredient.ashenGrassPod.id, Ingredient.fireSalts.id],
+            effects: [Effect.fortifySneak.id, Effect.resistFire.id, Effect.weaknessToFrost.id],
+            value: SeptimValue(rawValue: 86 + 40 + 118)!)
+        let complexMixture3 = Mixture(
+            ingredients: [Ingredient.elvesEar.id, Ingredient.fireSalts.id],
+            effects: [Effect.resistFire.id, Effect.restoreMagicka.id, Effect.weaknessToFrost.id],
+            value: SeptimValue(rawValue: 86 + 25 + 40)!)
+        // NOTES: There are more recipes possible like Abecean Longfin + Elves Ear + Fire Salts, but the effects
+        // would be the same as just having the elves ear + fire salts.  Therefore we filter out that recipe.
+        
+        let expectedSet = Set([
+            sneakMixture,
+            weaknessToFrostMixture1,
+            weaknessToFrostMixture2,
+            resistFireMixture1,
+            resistFireMixture2,
+            complexMixture1,
+            complexMixture2,
+            complexMixture3])
+        XCTAssertEqual(mixtures, expectedSet, diff(expectedSet, mixtures).joined())
+    }
+    
 }
