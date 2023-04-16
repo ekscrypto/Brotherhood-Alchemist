@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Algorithms
 
 actor MixtureIdentifier {
     
@@ -17,78 +18,96 @@ actor MixtureIdentifier {
     func identify(from appState: AppState) -> Task<Set<Mixture>, Never> {
         ongoingIdentification?.cancel()
         let identificationTask = Task<Set<Mixture>, Never>(priority: .utility) {
-            let effects = appState.effects.filter({ !appState.cantHaveEffects.contains($0.id) })
-            let ingredients = appState.ingredients.filter({ !appState.cantHaveIngredients.contains($0.id) })
-            //            let baseIngredients = ingredients.filter({ appState.mustHaveIngredients.contains($0.id) })
-            // when must have is empty... baseIngredients is empty and mixtures is... empty
-            // if must have is more than 3 ingredients, it should produce 0 results, yet mixtures are generated
-            // logic is wrong here.  Needs revision.
+            let effects = appState.effects
+            let ingredients = appState.ingredients
             
-            let mixtures: Set<Mixture> = await withTaskGroup(of: Set<Mixture>.self) { group in
-                for baseIngredient in ingredients {
-                    guard group.addTaskUnlessCancelled(operation: {
-                        var groupMixtures: Set<Mixture> = []
-                        for secondIngredient in ingredients where secondIngredient.id != baseIngredient.id {
-                            let commonBaseAndSecond = baseIngredient.effects
-                                .intersection(secondIngredient.effects)
-                                .subtracting(appState.cantHaveEffects)
-                            
-                            if !commonBaseAndSecond.isEmpty {
-                                let value = effects
-                                    .filter({ commonBaseAndSecond.contains($0.id) })
-                                    .map { $0.baseValue.rawValue }
-                                    .reduce(0, { $0 + $1 })
-                                let mixture = Mixture(
-                                    ingredients: [baseIngredient.id, secondIngredient.id],
-                                    effects: commonBaseAndSecond,
-                                    value: SeptimValue(rawValue: value)!)
-                                groupMixtures.insert(mixture)
-                            }
-                            
-                            for thirdIngredient in ingredients where thirdIngredient.id != baseIngredient.id && thirdIngredient.id != secondIngredient.id {
-                                let commonBaseAndThird = baseIngredient.effects
-                                    .intersection(thirdIngredient.effects)
-                                    .subtracting(appState.cantHaveEffects)
-                                let commonSecondAndThird = secondIngredient.effects
-                                    .intersection(thirdIngredient.effects)
-                                    .subtracting(appState.cantHaveEffects)
-                                let complexMixtureEffectIds = commonBaseAndSecond
-                                    .union(commonBaseAndThird)
-                                    .union(commonSecondAndThird)
-                                guard !complexMixtureEffectIds.isEmpty,
-                                      complexMixtureEffectIds != commonBaseAndSecond, // third ingredient is useless
-                                      complexMixtureEffectIds != commonSecondAndThird, // base ingredient is useless
-                                      complexMixtureEffectIds != commonBaseAndThird // second ingredient is useless
-                                else { continue }
-                                
-                                let matchingEffects = effects
-                                    .filter({ complexMixtureEffectIds.contains($0.id) })
-                                let complexMixtureValue = matchingEffects
-                                    .map { $0.baseValue.rawValue }
-                                    .reduce(0, { $0 + $1 })
-                                let complexMixture = Mixture(
-                                    ingredients: [baseIngredient.id, secondIngredient.id, thirdIngredient.id],
-                                    effects: complexMixtureEffectIds,
-                                    value: SeptimValue(rawValue: complexMixtureValue)!)
-                                groupMixtures.insert(complexMixture)
-                            }
-                        }
-                        return groupMixtures
-                    }) else {
-                        break
-                    }
-                }
-                
-                var mixtures: Set<Mixture> = []
-                for await groupMixtures in group {
-                    mixtures.formUnion(groupMixtures)
-                }
-                return mixtures
-            }
-            print("Found \(mixtures.count) mixtures")
-            return mixtures
+            let mixtures: [Mixture] = effects.withContiguousStorageIfAvailable { contiguousEffects in
+                ingredients.withContiguousStorageIfAvailable { contiguousIngredients in
+                    // Based on results from known mixtures in previous production builds...
+                    // For two ingredients, there's a mixture for every 2.44 permutation
+                    // For three ingredients, there's a mixture for every 3.395 permutation
+                    // Since there are quite a few more 3-ingredient permutations than 2-ingredients
+                    // we can ignore 2-ingredient permutations here -- at worse a re-alloc will occur
+                    let countAdjustedForRatio = Float(ingredients.count) / 3.35
+                    let expectedMixtures = Int(countAdjustedForRatio * countAdjustedForRatio * countAdjustedForRatio)
+                    var mixtures: [Mixture] = []
+                    mixtures.reserveCapacity(expectedMixtures)
+                    
+                    identifyTwoIngredientMixtures(
+                        effects: contiguousEffects,
+                        ingredients: contiguousIngredients,
+                        mixtures: &mixtures)
+                    
+                    identifyThreeIngredientMixtures(
+                        effects: contiguousEffects,
+                        ingredients: contiguousIngredients,
+                        mixtures: &mixtures)
+                    
+                    return mixtures
+                } ?? []
+            } ?? []
+            
+            return Set(mixtures)
         }
+        
         ongoingIdentification = identificationTask
         return identificationTask
+    }
+    
+    private func identifyTwoIngredientMixtures(
+        effects: UnsafeBufferPointer<Effect>,
+        ingredients: UnsafeBufferPointer<Ingredient>,
+        mixtures: inout [Mixture]
+    ) {
+        for ingredient1Index in 0 ..< ingredients.count {
+            for ingredient2Index in ingredient1Index+1 ..< ingredients.count {
+                let ingredient1 = ingredients[ingredient1Index]
+                let ingredient2 = ingredients[ingredient2Index]
+                let commonEffects = ingredient1.effects.intersection(ingredient2.effects)
+                if commonEffects.isEmpty { continue }
+                let value = effects
+                    .filter({ commonEffects.contains($0.id) })
+                    .map { $0.baseValue.rawValue }
+                    .reduce(0, { $0 + $1 })
+                let mixture = Mixture(
+                    ingredients: [ingredient1.id, ingredient2.id],
+                    effects: commonEffects,
+                    value: SeptimValue(rawValue: value)!)
+                mixtures.append(mixture)
+            }
+        }
+    }
+    
+    private func identifyThreeIngredientMixtures(
+        effects: UnsafeBufferPointer<Effect>,
+        ingredients: UnsafeBufferPointer<Ingredient>,
+        mixtures: inout [Mixture]
+    ) {
+        for ingredient1Index in 0 ..< ingredients.count {
+            for ingredient2Index in ingredient1Index+1 ..< ingredients.count {
+                for ingredient3Index in ingredient2Index+1 ..< ingredients.count {
+                    let ingredient1 = ingredients[ingredient1Index]
+                    let ingredient2 = ingredients[ingredient2Index]
+                    let ingredient3 = ingredients[ingredient3Index]
+                    let commonEffects1And2 = ingredient1.effects.intersection(ingredient2.effects)
+                    let commonEffects2And3 = ingredient2.effects.intersection(ingredient3.effects)
+                    let commonEffects1And3 = ingredient1.effects.intersection(ingredient3.effects)
+                    let commonEffects = commonEffects1And2.union(commonEffects1And3).union(commonEffects2And3)
+                    let totalCount = commonEffects.count
+                    if commonEffects1And2.count == totalCount { continue } // 3 is useless
+                    if commonEffects1And3.count == totalCount { continue } // 2 is useless
+                    if commonEffects2And3.count == totalCount { continue } // 1 is useless
+                    let value = effects
+                        .filter({ commonEffects.contains($0.id) })
+                        .map { $0.baseValue.rawValue }
+                        .reduce(0, { $0 + $1 })
+                    let mixture = Mixture(
+                        ingredients: [ingredient1.id, ingredient2.id, ingredient3.id],
+                        effects: commonEffects,
+                        value: SeptimValue(rawValue: value)!)
+                    mixtures.append(mixture)
+                }
+            }
+        }
     }
 }
