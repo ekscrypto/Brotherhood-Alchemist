@@ -20,7 +20,7 @@ extension Intent {
             effect = id
         }
 
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.effects.contains(where: { $0.id == effect }) else {
                 throw Errors.unknownEffect
             }
@@ -28,7 +28,8 @@ extension Intent {
             var newState = initialState
             newState.mustHaveEffects.remove(effect)
             newState.cantHaveEffects.remove(effect)
-            return newState
+            newState.filteredMixtureViewModels = []
+            return (newState, [])
         }
     }
 }

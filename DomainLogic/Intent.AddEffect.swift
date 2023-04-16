@@ -21,7 +21,7 @@ extension Intent {
             case duplicatedName
         }
         
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard !initialState.effects.contains(where: { $0.id == effect.id }) else {
                 throw Errors.anEffectWithThisIdentifierAlreadyExists
             }
@@ -37,7 +37,7 @@ extension Intent {
             updatedEffects.append(effect)
             updatedEffects.sortByName()
             newState.effects = updatedEffects
-            return newState
+            return (newState, [])
         }
     }
 }

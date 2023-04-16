@@ -21,7 +21,7 @@ extension Intent {
             case effectIsInUse
         }
         
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.effects.contains(where: { $0.id == effectId }) else {
                 throw Errors.unknownEffect
             }
@@ -32,7 +32,7 @@ extension Intent {
             
             var newState = initialState
             newState.effects = initialState.effects.filter({ $0.id != effectId })
-            return newState
+            return (newState, [])
         }
     }
 }

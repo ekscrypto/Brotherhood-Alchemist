@@ -9,15 +9,69 @@
 import Foundation
 import Algorithms
 
-actor MixtureIdentifier {
+final actor MixtureIdentifier {
     
-    private var ongoingIdentification: Task<Set<Mixture>, Never>?
+    private var ongoingIdentificationRevision: Int64 = .min
+    private var ongoingIdentification: Task<[Mixture], Error>?
     
-    static let singleton = MixtureIdentifier()
+    static func invalidateMixtures(in appState: inout AppState) {
+        appState.mixtures = []
+        appState.mixtureViewModels = []
+        appState.filteredMixtureViewModels = []
+        appState.mixturesDataSourceRevision = appState.mixturesDataSourceRevision + 1
+    }
     
-    func identify(from appState: AppState) -> Task<Set<Mixture>, Never> {
+    static func identificationActivity(from appState: AppState) -> ExternalActivity {
+        { [appState] stateMachine in
+            Task.detached { [appState, stateMachine] in
+                let identificationTask = try await stateMachine.singletons.mixtureIdentifier.identify(from: appState)
+                guard case .success(let identifiedMixtures) = await identificationTask.result else {
+                    return
+                }
+                var ingredientNames: [Ingredient.Id: String] = [:]
+                for ingredient in appState.ingredients {
+                    ingredientNames[ingredient.id] = ingredient.name
+                }
+                var effectNames: [Effect.Id: String] = [:]
+                for effect in appState.effects {
+                    effectNames[effect.id] = effect.name
+                }
+                var viewModels: [Mixture.ViewModel] = []
+                viewModels.reserveCapacity(identifiedMixtures.count)
+                for mixture in identifiedMixtures {
+                    let ingredients = mixture.ingredients
+                        .compactMap { ingredientNames[$0] }
+                        .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
+                    let effects = mixture.effects
+                        .compactMap { effectNames[$0] }
+                        .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
+                    let viewModel = Mixture.ViewModel(
+                        ingredients: ingredients,
+                        effects: effects,
+                        value: Int(mixture.retailValue.rawValue))
+                    viewModels.append(viewModel)
+                }
+                try await stateMachine.ingest(ExternalEvent.MixturesIdentified(
+                    mixtures: identifiedMixtures,
+                    mixturesViewModels: viewModels,
+                    mixturesDatasourceRevision: appState.mixturesDataSourceRevision))
+            }
+        }
+    }
+    
+    enum Errors: Error {
+        case outdated
+    }
+
+    func identify(from appState: AppState) throws -> Task<[Mixture], Error> {
+        guard appState.mixturesDataSourceRevision > ongoingIdentificationRevision else {
+            throw Errors.outdated
+        }
+        
         ongoingIdentification?.cancel()
-        let identificationTask = Task<Set<Mixture>, Never>(priority: .utility) {
+        ongoingIdentificationRevision = appState.mixturesDataSourceRevision
+        let identificationTask = Task<[Mixture], Error>(priority: .utility) {
+            try Task.checkCancellation()
             let effects = appState.effects
             let ingredients = appState.ingredients
             
@@ -30,24 +84,27 @@ actor MixtureIdentifier {
                     // we can ignore 2-ingredient permutations here -- at worse a re-alloc will occur
                     let countAdjustedForRatio = Float(ingredients.count) / 3.35
                     let expectedMixtures = Int(countAdjustedForRatio * countAdjustedForRatio * countAdjustedForRatio)
-                    var mixtures: [Mixture] = []
-                    mixtures.reserveCapacity(expectedMixtures)
+                    var identifiedMixtures: [Mixture] = []
+                    identifiedMixtures.reserveCapacity(expectedMixtures)
                     
-                    identifyTwoIngredientMixtures(
-                        effects: contiguousEffects,
-                        ingredients: contiguousIngredients,
-                        mixtures: &mixtures)
-                    
-                    identifyThreeIngredientMixtures(
-                        effects: contiguousEffects,
-                        ingredients: contiguousIngredients,
-                        mixtures: &mixtures)
-                    
-                    return mixtures
+                    do {
+                        try identifyTwoIngredientMixtures(
+                            effects: contiguousEffects,
+                            ingredients: contiguousIngredients,
+                            mixtures: &identifiedMixtures)
+                        
+                        try identifyThreeIngredientMixtures(
+                            effects: contiguousEffects,
+                            ingredients: contiguousIngredients,
+                            mixtures: &identifiedMixtures)
+                    } catch {
+                        return []
+                    }
+                    return identifiedMixtures
                 } ?? []
             } ?? []
             
-            return Set(mixtures)
+            return mixtures
         }
         
         ongoingIdentification = identificationTask
@@ -58,9 +115,10 @@ actor MixtureIdentifier {
         effects: UnsafeBufferPointer<Effect>,
         ingredients: UnsafeBufferPointer<Ingredient>,
         mixtures: inout [Mixture]
-    ) {
+    ) throws {
         for ingredient1Index in 0 ..< ingredients.count {
             for ingredient2Index in ingredient1Index+1 ..< ingredients.count {
+                try Task.checkCancellation()
                 let ingredient1 = ingredients[ingredient1Index]
                 let ingredient2 = ingredients[ingredient2Index]
                 let commonEffects = ingredient1.effects.intersection(ingredient2.effects)
@@ -70,9 +128,10 @@ actor MixtureIdentifier {
                     .map { $0.baseValue.rawValue }
                     .reduce(0, { $0 + $1 })
                 let mixture = Mixture(
+                    id: .new,
                     ingredients: [ingredient1.id, ingredient2.id],
                     effects: commonEffects,
-                    value: SeptimValue(rawValue: value)!)
+                    retailValue: SeptimValue(rawValue: value)!)
                 mixtures.append(mixture)
             }
         }
@@ -82,10 +141,11 @@ actor MixtureIdentifier {
         effects: UnsafeBufferPointer<Effect>,
         ingredients: UnsafeBufferPointer<Ingredient>,
         mixtures: inout [Mixture]
-    ) {
+    ) throws {
         for ingredient1Index in 0 ..< ingredients.count {
             for ingredient2Index in ingredient1Index+1 ..< ingredients.count {
                 for ingredient3Index in ingredient2Index+1 ..< ingredients.count {
+                    try Task.checkCancellation()
                     let ingredient1 = ingredients[ingredient1Index]
                     let ingredient2 = ingredients[ingredient2Index]
                     let ingredient3 = ingredients[ingredient3Index]
@@ -102,9 +162,10 @@ actor MixtureIdentifier {
                         .map { $0.baseValue.rawValue }
                         .reduce(0, { $0 + $1 })
                     let mixture = Mixture(
+                        id: .new,
                         ingredients: [ingredient1.id, ingredient2.id, ingredient3.id],
                         effects: commonEffects,
-                        value: SeptimValue(rawValue: value)!)
+                        retailValue: SeptimValue(rawValue: value)!)
                     mixtures.append(mixture)
                 }
             }

@@ -23,7 +23,7 @@ extension Intent {
             case oneOrMoreEffectsAreUnknown
         }
         
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard !initialState.ingredients.contains(where: { $0.id == ingredient.id }) else {
                 throw Errors.anEffectWithThisIdentifierAlreadyExists
             }
@@ -49,7 +49,9 @@ extension Intent {
             updatedIngredients.append(ingredient)
             updatedIngredients.sortByName()
             newState.ingredients = updatedIngredients
-            return newState
+            MixtureIdentifier.invalidateMixtures(in: &newState)
+            let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
+            return (newState, [mixtureActivity])
         }
     }
 }

@@ -20,14 +20,16 @@ extension Intent {
             case unknownIngredient
         }
         
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.ingredients.contains(where: { $0.id == ingredientId }) else {
                 throw Errors.unknownIngredient
             }
             
             var newState = initialState
             newState.ingredients = initialState.ingredients.filter({ $0.id != ingredientId })
-            return newState
+            MixtureIdentifier.invalidateMixtures(in: &newState)
+            let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
+            return (newState, [mixtureActivity])
         }
     }
 }

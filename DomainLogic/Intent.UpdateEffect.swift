@@ -21,7 +21,7 @@ extension Intent {
             case nameIsNotUnique
         }
         
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.effects.contains(where: { $0.id == effect.id }) else {
                 throw Errors.unknownEffect
             }
@@ -42,7 +42,9 @@ extension Intent {
             
             var newState = initialState
             newState.effects = updatedEffects
-            return newState
+            MixtureIdentifier.invalidateMixtures(in: &newState)
+            let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
+            return (newState, [mixtureActivity])
         }
     }
 }

@@ -20,7 +20,7 @@ extension Intent {
             ingredient = id
         }
 
-        func mutate(_ initialState: AppState) throws -> AppState {
+        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.ingredients.contains(where: { $0.id == ingredient }) else {
                 throw Errors.unknownIngredient
             }
@@ -28,7 +28,8 @@ extension Intent {
             var newState = initialState
             newState.mustHaveIngredients.remove(ingredient)
             newState.cantHaveIngredients.remove(ingredient)
-            return newState
+            newState.filteredMixtureViewModels = []
+            return (newState, [])
         }
     }
 }
