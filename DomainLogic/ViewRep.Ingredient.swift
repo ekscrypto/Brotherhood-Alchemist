@@ -1,0 +1,47 @@
+//
+//  ViewRep.Ingredient.swift
+//  DomainLogic
+//
+//  Created by Dave Poirier on 2023-04-24.
+//  Copyright © 2023 Dave Poirier. All rights reserved.
+//
+
+import Foundation
+import Combine
+
+public extension ViewRep {
+    struct Ingredient: Identifiable, Equatable, Sendable {
+        public static func ==(lhs: Ingredient, rhs: Ingredient) -> Bool {
+            lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.effects == rhs.effects
+        }
+
+        public let id: DomainLogic.Ingredient.Id
+        public let name: String
+        public let effects: [Effect]
+        public let selection: SelectionStatePublisher
+
+        public struct Effect: Identifiable, Equatable, Sendable {
+            public let id: DomainLogic.Effect.Id
+            public let name: String
+            public let isPositiveOutcome: Bool
+            
+            init(from effect: DomainLogic.Effect) {
+                id = effect.id
+                name = effect.name
+                isPositiveOutcome = effect.outcome == .positive
+            }
+        }
+        
+        init(
+            from ingredient: DomainLogic.Ingredient,
+            effectsSource: [DomainLogic.Effect]
+        ) {
+            id = ingredient.id
+            name = ingredient.name
+            effects = effectsSource.filter { ingredient.effects.contains($0.id) }.map { .init(from: $0) }
+            selection = SelectionStatePublisherCache.viewRepPublisher(for: ingredient.id)
+        }
+    }
+}

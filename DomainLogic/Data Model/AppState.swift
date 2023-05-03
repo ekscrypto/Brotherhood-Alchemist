@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AppState: Codable, Sendable {
+public struct AppState: Codable, Sendable {
     var effects: [Effect]
     var ingredients: [Ingredient]
     

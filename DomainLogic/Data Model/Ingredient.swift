@@ -19,7 +19,7 @@ public struct Ingredient: Identifiable, Codable, Sendable {
     public let id: Id
     public var name: String
     public var effects: Set<Effect.Id>
-    
+        
     static let abeceanLongfin = Ingredient(
         id: .init(rawValue: 0xBC3C876A), name: "Abecean Longfin", effects: [
             Effect.weaknessToFrost.id,

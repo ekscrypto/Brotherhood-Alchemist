@@ -20,7 +20,7 @@ extension Intent {
             case unknownIngredient
         }
         
-        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
+        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.ingredients.contains(where: { $0.id == ingredientId }) else {
                 throw Errors.unknownIngredient
             }

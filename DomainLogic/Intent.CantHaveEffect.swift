@@ -20,7 +20,7 @@ extension Intent {
             effect = id
         }
 
-        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
+        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.effects.contains(where: { $0.id == effect }) else {
                 throw Errors.unknownEffect
             }

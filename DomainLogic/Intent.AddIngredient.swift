@@ -23,7 +23,7 @@ extension Intent {
             case oneOrMoreEffectsAreUnknown
         }
         
-        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
+        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard !initialState.ingredients.contains(where: { $0.id == ingredient.id }) else {
                 throw Errors.anEffectWithThisIdentifierAlreadyExists
             }

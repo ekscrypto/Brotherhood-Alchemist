@@ -21,7 +21,7 @@ extension Intent {
             case nameIsNotUnique
         }
         
-        func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
+        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
             guard initialState.effects.contains(where: { $0.id == effect.id }) else {
                 throw Errors.unknownEffect
             }

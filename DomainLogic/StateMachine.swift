@@ -9,29 +9,44 @@
 import Foundation
 import Combine
 
-protocol AtomicOperation: Sendable {
+public protocol AtomicOperation: Sendable {
     func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity])
 }
-typealias ExternalActivity = (StateMachine) -> Void
 
-actor StateMachine {
-    private(set) var appState: AppState = .initial
-    private let appStatePublisher: PassthroughSubject<AppState, Never> = .init()
-    let singletons = Singletons()
-    
-    func appStateUpdates() -> AnyPublisher<AppState, Never> {
-        appStatePublisher
-            .throttle(
-                for: 0.250,
-                scheduler: RunLoop.main,
-                latest: true)
-            .receive(on: RunLoop.main)
-            .subscribe(on: RunLoop.main)
-            .eraseToAnyPublisher()
+public typealias ExternalActivity = (StateMachine) -> Void
+
+public actor StateMachine {
+    public static var `default`: StateMachine {
+        .init()
     }
-
+    
+    private(set) var appState: AppState = .initial
+    let appStatePublisher: PassthroughSubject<AppState, Never> = .init()
+    nonisolated let singletons: Singletons = .init()
+    
+    init() {
+        _ = viewRepPublisher
+    }
+    
+    private static let viewModelQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        queue.name = "ViewModel"
+        queue.qualityOfService = .userInitiated
+        return queue
+    }()
+    
+    nonisolated private(set) public lazy var viewRepPublisher: AnyPublisher<ViewRep, Never> = appStatePublisher
+//            .throttle(for: 0.100, scheduler: Self.viewModelQueue, latest: true)
+            .subscribe(on: Self.viewModelQueue)
+            .receive(on: Self.viewModelQueue)
+            .map { ViewRep(from: $0) }
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    
     @discardableResult
-    func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
+    public func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
         let (updatedState, externalActivities) = try atomicOperation.mutate(appState)
         appState = updatedState
         appStatePublisher.send(updatedState)

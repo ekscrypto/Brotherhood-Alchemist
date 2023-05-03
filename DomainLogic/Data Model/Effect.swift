@@ -20,7 +20,7 @@ public struct Effect: Codable, Sendable, Identifiable {
     public var name: String
     public var baseValue: SeptimValue
     public var outcome: Outcome
-    
+        
     static let cureDisease = Effect(
         id: .init(rawValue: 0x284DED98),
         name: "Cure Disease", baseValue: SeptimValue(rawValue: 21)!, outcome: .positive)

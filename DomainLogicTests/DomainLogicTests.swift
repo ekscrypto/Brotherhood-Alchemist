@@ -399,8 +399,7 @@ final class DomainLogicTests: XCTestCase {
     func testCanIdentifyAllDefaultMixtures() async throws {
         let stateMachine = StateMachine()
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
-        let stateObserver = await stateMachine.appStateUpdates().sink(receiveValue: { updatedState in
-            XCTAssertTrue(Thread.isMainThread)
+        let stateObserver = await stateMachine.appStatePublisher.sink(receiveValue: { updatedState in
             if updatedState.mixtures.count == 33682, updatedState.mixtureViewModels.count == 33682 {
                 finalStateExpectation.fulfill()
             }
@@ -469,8 +468,7 @@ final class DomainLogicTests: XCTestCase {
 
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
         let stateMachine = StateMachine()
-        let stateObserver = await stateMachine.appStateUpdates().sink(receiveValue: { updatedState in
-            XCTAssertTrue(Thread.isMainThread)
+        let stateObserver = await stateMachine.appStatePublisher.sink(receiveValue: { updatedState in
             let mixtures = updatedState.mixtures
             let allExpectedMixturesFound = expectedMixtures.allSatisfy { expectedMixture in
                 mixtures.contains(where: { mixture in
@@ -507,7 +505,7 @@ final class DomainLogicTests: XCTestCase {
     func testMixtureViewModelsMatchesMixtures() async throws {
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
         let stateMachine = StateMachine()
-        let stateObserver = await stateMachine.appStateUpdates().sink(receiveValue: { updatedState in
+        let stateObserver = await stateMachine.appStatePublisher.sink(receiveValue: { updatedState in
             if updatedState.mixtures.count == 1, updatedState.mixtureViewModels.count == 1 {
                 finalStateExpectation.fulfill()
             }
