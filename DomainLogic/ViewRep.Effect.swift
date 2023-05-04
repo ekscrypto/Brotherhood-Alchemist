@@ -32,5 +32,17 @@ public extension ViewRep {
             isPositiveOutcome = effect.outcome == .positive
             selection = SelectionStatePublisherCache.viewRepPublisher(for: effect.id)
         }
+        
+        public init(id: DomainLogic.Effect.Id,
+             name: String,
+             value: UInt,
+             isPositiveOutcome: Bool
+        ) {
+            self.id = id
+            self.name = name
+            self.value = value
+            self.isPositiveOutcome = isPositiveOutcome
+            selection = SelectionStatePublisherCache.viewRepPublisher(for: id)
+        }
     }
 }

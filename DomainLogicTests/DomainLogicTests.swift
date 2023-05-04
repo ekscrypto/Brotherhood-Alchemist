@@ -529,4 +529,172 @@ final class DomainLogicTests: XCTestCase {
             mixtureViewModel.value == 151
         }))
     }
+    
+    func testViewRepEffectsIncludeAllEffectsAddedAndAreSorted() async throws {
+        let expectedEffects: [ViewRep.Effect] = [
+            .init(id: Effect.fortifyLockpicking.id,
+                  name: Effect.fortifyLockpicking.name,
+                  value: Effect.fortifyLockpicking.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.fortifyMarksman.id,
+                  name: Effect.fortifyMarksman.name,
+                  value: Effect.fortifyMarksman.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.fortifyRestoration.id,
+                  name: Effect.fortifyRestoration.name,
+                  value: Effect.fortifyRestoration.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.fortifySneak.id,
+                  name: Effect.fortifySneak.name,
+                  value: Effect.fortifySneak.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.regenerateMagicka.id,
+                  name: Effect.regenerateMagicka.name,
+                  value: Effect.regenerateMagicka.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.resistFire.id,
+                  name: Effect.resistFire.name,
+                  value: Effect.resistFire.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.restoreMagicka.id,
+                  name: Effect.restoreMagicka.name,
+                  value: Effect.restoreMagicka.baseValue.rawValue,
+                  isPositiveOutcome: true),
+            .init(id: Effect.weaknessToFrost.id,
+                  name: Effect.weaknessToFrost.name,
+                  value: Effect.weaknessToFrost.baseValue.rawValue,
+                  isPositiveOutcome: false),
+            .init(id: Effect.weaknessToPoison.id,
+                  name: Effect.weaknessToPoison.name,
+                  value: Effect.weaknessToPoison.baseValue.rawValue,
+                  isPositiveOutcome: false),
+            .init(id: Effect.weaknessToShock.id,
+                  name: Effect.weaknessToShock.name,
+                  value: Effect.weaknessToShock.baseValue.rawValue,
+                  isPositiveOutcome: false)
+        ]
+        
+        let stateMachine = StateMachine()
+
+        let finalStateExpectation = XCTestExpectation(description: "Effects all listed and sorted")
+        let viewRepObserver = stateMachine.viewRepPublisher.sink(receiveValue: { viewRep in
+            XCTAssertTrue(Thread.isMainThread)
+            if viewRep.effects == expectedEffects {
+                finalStateExpectation.fulfill()
+            }
+        })
+        
+        try await stateMachine
+            .ingest(Intent.AddEffect(.weaknessToFrost))
+            .ingest(Intent.AddEffect(.fortifySneak))
+            .ingest(Intent.AddEffect(.weaknessToPoison))
+            .ingest(Intent.AddEffect(.fortifyRestoration))
+            .ingest(Intent.AddEffect(.resistFire))
+            .ingest(Intent.AddEffect(.weaknessToShock))
+            .ingest(Intent.AddEffect(.fortifyLockpicking))
+            .ingest(Intent.AddEffect(.restoreMagicka))
+            .ingest(Intent.AddEffect(.fortifyMarksman))
+            .ingest(Intent.AddEffect(.regenerateMagicka))
+
+        await fulfillment(of: [finalStateExpectation], timeout: 3.0)
+    }
+    
+    func testViewRepIngredientsIncludeAllIngredientsAddedAndAreSorted() async throws {
+        let expectedIngredients: [ViewRep.Ingredient] = [
+            .init(id: Ingredient.abeceanLongfin.id,
+                  name: Ingredient.abeceanLongfin.name,
+                  effects: [
+                    .init(id: Effect.fortifyRestoration.id,
+                          name: Effect.fortifyRestoration.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.fortifySneak.id,
+                          name: Effect.fortifySneak.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.weaknessToFrost.id,
+                          name: Effect.weaknessToFrost.name,
+                          isPositiveOutcome: false),
+                    .init(id: Effect.weaknessToPoison.id,
+                          name: Effect.weaknessToPoison.name,
+                          isPositiveOutcome: false)
+                  ]),
+            .init(id: Ingredient.ashenGrassPod.id,
+                  name: Ingredient.ashenGrassPod.name,
+                  effects: [
+                    .init(id: Effect.fortifyLockpicking.id,
+                          name: Effect.fortifyLockpicking.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.fortifySneak.id,
+                          name: Effect.fortifySneak.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.resistFire.id,
+                          name: Effect.resistFire.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.weaknessToShock.id,
+                          name: Effect.weaknessToShock.name,
+                          isPositiveOutcome: false)
+                  ]),
+            .init(id: Ingredient.elvesEar.id,
+                  name: Ingredient.elvesEar.name,
+                  effects: [
+                    .init(id: Effect.fortifyMarksman.id,
+                          name: Effect.fortifyMarksman.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.resistFire.id,
+                          name: Effect.resistFire.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.restoreMagicka.id,
+                          name: Effect.restoreMagicka.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.weaknessToFrost.id,
+                          name: Effect.weaknessToFrost.name,
+                          isPositiveOutcome: false)
+                  ]),
+            .init(id: Ingredient.fireSalts.id,
+                  name: Ingredient.fireSalts.name,
+                  effects: [
+                    .init(id: Effect.regenerateMagicka.id,
+                          name: Effect.regenerateMagicka.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.resistFire.id,
+                          name: Effect.resistFire.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.restoreMagicka.id,
+                          name: Effect.restoreMagicka.name,
+                          isPositiveOutcome: true),
+                    .init(id: Effect.weaknessToFrost.id,
+                          name: Effect.weaknessToFrost.name,
+                          isPositiveOutcome: false)
+                  ])
+        ]
+        
+        let stateMachine = StateMachine()
+        
+        let finalStateExpectation = XCTestExpectation(description: "Ingredients all listed and sorted")
+        let viewRepObserver = stateMachine.viewRepPublisher.sink(receiveValue: { viewRep in
+            XCTAssertTrue(Thread.isMainThread)
+            if viewRep.ingredients == expectedIngredients {
+                finalStateExpectation.fulfill()
+            }
+        })
+        
+        try await stateMachine
+            .ingest(Intent.AddEffect(.weaknessToFrost))
+            .ingest(Intent.AddEffect(.fortifySneak))
+            .ingest(Intent.AddEffect(.weaknessToPoison))
+            .ingest(Intent.AddEffect(.fortifyRestoration))
+            .ingest(Intent.AddEffect(.resistFire))
+            .ingest(Intent.AddEffect(.weaknessToShock))
+            .ingest(Intent.AddEffect(.fortifyLockpicking))
+            .ingest(Intent.AddEffect(.restoreMagicka))
+            .ingest(Intent.AddEffect(.fortifyMarksman))
+            .ingest(Intent.AddEffect(.regenerateMagicka))
+        // ingredients added in non-alphabetical order on purpose
+            .ingest(Intent.AddIngredient(.ashenGrassPod))
+            .ingest(Intent.AddIngredient(.elvesEar))
+            .ingest(Intent.AddIngredient(.abeceanLongfin))
+            .ingest(Intent.AddIngredient(.fireSalts))
+
+        await fulfillment(of: [finalStateExpectation], timeout: 3.0)
+        _ = viewRepObserver
+    }
 }

@@ -32,6 +32,16 @@ public extension ViewRep {
                 name = effect.name
                 isPositiveOutcome = effect.outcome == .positive
             }
+            
+            init(
+                id: DomainLogic.Effect.Id,
+                name: String,
+                isPositiveOutcome: Bool
+            ) {
+                self.id = id
+                self.name = name
+                self.isPositiveOutcome = isPositiveOutcome
+            }
         }
         
         init(
@@ -42,6 +52,17 @@ public extension ViewRep {
             name = ingredient.name
             effects = effectsSource.filter { ingredient.effects.contains($0.id) }.map { .init(from: $0) }
             selection = SelectionStatePublisherCache.viewRepPublisher(for: ingredient.id)
+        }
+        
+        init(
+            id: DomainLogic.Ingredient.Id,
+            name: String,
+            effects: [Effect]
+        ) {
+            self.id = id
+            self.name = name
+            self.effects = effects
+            selection = SelectionStatePublisherCache.viewRepPublisher(for: id)
         }
     }
 }
