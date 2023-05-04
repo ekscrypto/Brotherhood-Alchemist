@@ -8,4 +8,4 @@
 
 import Foundation
 
-public final class Intent {}
+public enum Intent {}

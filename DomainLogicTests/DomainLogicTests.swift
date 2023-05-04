@@ -38,15 +38,15 @@ final class DomainLogicTests: XCTestCase {
         outcome: .negative)
     
     
-    func testCanAddEffects_listStaysSortedAlphabetically() async throws {
+    func testCanAddEffects_allEffectsArePresent() async throws {
         let stateMachine = StateMachine()
         try await stateMachine
             .ingest(Intent.AddEffect(restoreHealth))
             .ingest(Intent.AddEffect(bleed))
             .ingest(Intent.AddEffect(damageStamina))
         let finalState = await stateMachine.appState
-        let orderedEffects = finalState.effects.map { $0.name }
-        XCTAssertEqual(orderedEffects, ["Bleed", "Damage Stamina", "Heal"])
+        let unorderedEffects = Set(finalState.effects.map { $0.name })
+        XCTAssertEqual(unorderedEffects, Set(["Bleed", "Damage Stamina", "Heal"]))
     }
     
     func testEffectsAddedCanBeFoundById() async throws {
@@ -399,7 +399,7 @@ final class DomainLogicTests: XCTestCase {
     func testCanIdentifyAllDefaultMixtures() async throws {
         let stateMachine = StateMachine()
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
-        let stateObserver = await stateMachine.appStatePublisher.sink(receiveValue: { updatedState in
+        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(receiveValue: { (updatedState, _) in
             if updatedState.mixtures.count == 33682, updatedState.mixtureViewModels.count == 33682 {
                 finalStateExpectation.fulfill()
             }
@@ -468,7 +468,7 @@ final class DomainLogicTests: XCTestCase {
 
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
         let stateMachine = StateMachine()
-        let stateObserver = await stateMachine.appStatePublisher.sink(receiveValue: { updatedState in
+        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(receiveValue: { (updatedState, _) in
             let mixtures = updatedState.mixtures
             let allExpectedMixturesFound = expectedMixtures.allSatisfy { expectedMixture in
                 mixtures.contains(where: { mixture in
@@ -505,7 +505,7 @@ final class DomainLogicTests: XCTestCase {
     func testMixtureViewModelsMatchesMixtures() async throws {
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
         let stateMachine = StateMachine()
-        let stateObserver = await stateMachine.appStatePublisher.sink(receiveValue: { updatedState in
+        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(receiveValue: { (updatedState, _) in
             if updatedState.mixtures.count == 1, updatedState.mixtureViewModels.count == 1 {
                 finalStateExpectation.fulfill()
             }
@@ -579,6 +579,7 @@ final class DomainLogicTests: XCTestCase {
         let finalStateExpectation = XCTestExpectation(description: "Effects all listed and sorted")
         let viewRepObserver = stateMachine.viewRepPublisher.sink(receiveValue: { viewRep in
             XCTAssertTrue(Thread.isMainThread)
+            print(viewRep.effects)
             if viewRep.effects == expectedEffects {
                 finalStateExpectation.fulfill()
             }
@@ -597,6 +598,7 @@ final class DomainLogicTests: XCTestCase {
             .ingest(Intent.AddEffect(.regenerateMagicka))
 
         await fulfillment(of: [finalStateExpectation], timeout: 3.0)
+        _ = viewRepObserver
     }
     
     func testViewRepIngredientsIncludeAllIngredientsAddedAndAreSorted() async throws {

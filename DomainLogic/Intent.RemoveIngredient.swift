@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension Intent {
-    public struct RemoveIngredient: AtomicOperation, Sendable {
+public extension Intent {
+    struct RemoveIngredient: Sendable {
         let ingredientId: Ingredient.Id
         
         public init(id: Ingredient.Id) {
@@ -19,17 +19,27 @@ extension Intent {
         public enum Errors: Error {
             case unknownIngredient
         }
-        
-        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
-            guard initialState.ingredients.contains(where: { $0.id == ingredientId }) else {
-                throw Errors.unknownIngredient
-            }
-            
-            var newState = initialState
-            newState.ingredients = initialState.ingredients.filter({ $0.id != ingredientId })
-            MixtureIdentifier.invalidateMixtures(in: &newState)
-            let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
-            return (newState, [mixtureActivity])
+    }
+}
+
+extension Intent.RemoveIngredient: AtomicOperation {
+    
+    func mutate(
+        appState initialState: AppState,
+        viewRepCache initialCache: ViewRepCache
+    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+        guard initialState.ingredients.contains(where: { $0.id == ingredientId }) else {
+            throw Errors.unknownIngredient
         }
+        
+        var newState = initialState
+        newState.ingredients = initialState.ingredients.filter({ $0.id != ingredientId })
+        MixtureIdentifier.invalidateMixtures(in: &newState)
+        let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
+        
+        var newCache = initialCache
+        newCache.ingredients = .invalidated(UUID())
+        
+        return (newState, newCache, [mixtureActivity])
     }
 }

@@ -8,36 +8,44 @@
 
 import Foundation
 
-extension Intent {
-    public struct AddEffect: AtomicOperation, Sendable {
+public extension Intent {
+    struct AddEffect: Sendable {
         let effect: Effect
-        
-        public init(_ effect: Effect) {
-            self.effect = effect
-        }
         
         public enum Errors: Error {
             case anEffectWithThisIdentifierAlreadyExists
             case duplicatedName
         }
-        
-        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
-            guard !initialState.effects.contains(where: { $0.id == effect.id }) else {
-                throw Errors.anEffectWithThisIdentifierAlreadyExists
-            }
-            
-            guard !initialState.effects.contains(where: {
-                $0.name.localizedCaseInsensitiveCompare(effect.name) == .orderedSame
-            }) else {
-                throw Errors.duplicatedName
-            }
-            
-            var newState = initialState
-            var updatedEffects = initialState.effects
-            updatedEffects.append(effect)
-            updatedEffects.sortByName()
-            newState.effects = updatedEffects
-            return (newState, [])
+
+        public init(_ effect: Effect) {
+            self.effect = effect
         }
+    }
+}
+
+extension Intent.AddEffect: AtomicOperation {
+    func mutate(
+        appState initialState: AppState,
+        viewRepCache initialCache: ViewRepCache
+    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+        guard !initialState.effects.contains(where: { $0.id == effect.id }) else {
+            throw Errors.anEffectWithThisIdentifierAlreadyExists
+        }
+        
+        guard !initialState.effects.contains(where: {
+            $0.name.localizedCaseInsensitiveCompare(effect.name) == .orderedSame
+        }) else {
+            throw Errors.duplicatedName
+        }
+        
+        var newState = initialState
+        var updatedEffects = initialState.effects
+        updatedEffects.append(effect)
+        newState.effects = updatedEffects
+
+        var newCache = initialCache
+        newCache.effects = .invalidated(UUID())
+        
+        return (newState, newCache, [])
     }
 }

@@ -9,8 +9,8 @@
 import Foundation
 import Combine
 
-public protocol AtomicOperation: Sendable {
-    func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity])
+protocol AtomicOperation: Sendable {
+    func mutate(appState: AppState, viewRepCache: ViewRepCache) throws -> (AppState, ViewRepCache, [ExternalActivity])
 }
 
 public typealias ExternalActivity = (StateMachine) -> Void
@@ -21,35 +21,33 @@ public actor StateMachine {
     }
     
     private(set) var appState: AppState = .initial
-    let appStatePublisher: PassthroughSubject<AppState, Never> = .init()
+    private(set) var viewRepCache: ViewRepCache = .invalidated
+    
+    let appStateViewRepCachePublisher: PassthroughSubject<(AppState, ViewRepCache), Never> = .init()
     nonisolated let singletons: Singletons = .init()
     
     init() {
         _ = viewRepPublisher
     }
-    
-    private static let viewModelQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        queue.name = "ViewModel"
-        queue.qualityOfService = .userInitiated
-        return queue
-    }()
-    
-    nonisolated private(set) public lazy var viewRepPublisher: AnyPublisher<ViewRep, Never> = appStatePublisher
+        
+    nonisolated private(set) public lazy var viewRepPublisher: AnyPublisher<ViewRep, Never> =
+    appStateViewRepCachePublisher
 //            .throttle(for: 0.100, scheduler: Self.viewModelQueue, latest: true)
-            .subscribe(on: Self.viewModelQueue)
-            .receive(on: Self.viewModelQueue)
-            .map { ViewRep(from: $0) }
+            .map { [weak self] in ViewRep(from: $0, cachingTo: self) }
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     
     @discardableResult
-    public func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
-        let (updatedState, externalActivities) = try atomicOperation.mutate(appState)
+    func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
+        let (updatedState, updatedCache, externalActivities) = try atomicOperation.mutate(
+            appState: appState,
+            viewRepCache: viewRepCache)
+        
         appState = updatedState
-        appStatePublisher.send(updatedState)
+        viewRepCache = updatedCache
+        
+        appStateViewRepCachePublisher.send((updatedState, updatedCache))
         
         if !externalActivities.isEmpty {
             Task.detached {

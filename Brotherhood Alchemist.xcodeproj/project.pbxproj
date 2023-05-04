@@ -29,6 +29,9 @@
 		78B8217E29E4D14E00D3A6EE /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8217D29E4D14E00D3A6EE /* Ingredient.swift */; };
 		78B8218029E4D1E900D3A6EE /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8217F29E4D1E900D3A6EE /* Effect.swift */; };
 		78B8218229E4D2CF00D3A6EE /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B8218129E4D2CF00D3A6EE /* Outcome.swift */; };
+		78DF46C92A03AE9200EEC871 /* ViewRepCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46C82A03AE9200EEC871 /* ViewRepCache.swift */; };
+		78DF46CB2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */; };
+		78DF46CD2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */; };
 		78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7B29E4D4880079FA06 /* StateMachine.swift */; };
 		78FE5D7E29E4D7CB0079FA06 /* Intent.AddEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */; };
 		78FE5D8629E4EA250079FA06 /* Intent.AddIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */; };
@@ -164,6 +167,9 @@
 		78B8217D29E4D14E00D3A6EE /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		78B8217F29E4D1E900D3A6EE /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		78B8218129E4D2CF00D3A6EE /* Outcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
+		78DF46C82A03AE9200EEC871 /* ViewRepCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRepCache.swift; sourceTree = "<group>"; };
+		78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.ViewRepIngredientsCacheUpdate.swift; sourceTree = "<group>"; };
+		78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.ViewRepEffectsCacheUpdate.swift; sourceTree = "<group>"; };
 		78FE5D7B29E4D4880079FA06 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddEffect.swift; sourceTree = "<group>"; };
 		78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddIngredient.swift; sourceTree = "<group>"; };
@@ -304,6 +310,8 @@
 				78B8215F29E4D0B500D3A6EE /* DomainLogic.h */,
 				786D9D0129EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift */,
 				786D9CFF29EC4360001C9A7C /* ExternalEvent.swift */,
+				78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */,
+				78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */,
 				78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */,
 				78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */,
 				78FE5DA329E886CB0079FA06 /* Intent.CantHaveEffect.swift */,
@@ -323,6 +331,7 @@
 				786D9D0329EC6AEA001C9A7C /* Singletons.swift */,
 				7878D0B629F78E950088D107 /* SelectionState.swift */,
 				7878D0B029F778070088D107 /* ViewRep.swift */,
+				78DF46C82A03AE9200EEC871 /* ViewRepCache.swift */,
 				7878D0B229F784AF0088D107 /* ViewRep.Ingredient.swift */,
 				7878D0B429F7852B0088D107 /* ViewRep.Effect.swift */,
 			);
@@ -682,9 +691,11 @@
 				786D9D0429EC6AEA001C9A7C /* Singletons.swift in Sources */,
 				78FE5D9229E510840079FA06 /* Intent.UpdateEffect.swift in Sources */,
 				78FE5D9029E5047D0079FA06 /* Intent.RemoveIngredient.swift in Sources */,
+				78DF46C92A03AE9200EEC871 /* ViewRepCache.swift in Sources */,
 				78FE5DA229E8860F0079FA06 /* Intent.MayHaveIngredient.swift in Sources */,
 				786D9D0629EC7A72001C9A7C /* MixtureSorter.swift in Sources */,
 				786D9D0029EC4360001C9A7C /* ExternalEvent.swift in Sources */,
+				78DF46CB2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift in Sources */,
 				7878D0B729F78E950088D107 /* SelectionState.swift in Sources */,
 				78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */,
 				786D9D0229EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift in Sources */,
@@ -702,6 +713,7 @@
 				78FE5D9A29E872670079FA06 /* Mixture.swift in Sources */,
 				78FE5DA829E887470079FA06 /* Intent.MayHaveEffect.swift in Sources */,
 				78B8217C29E4D0CF00D3A6EE /* AppState.swift in Sources */,
+				78DF46CD2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift in Sources */,
 				78B8217E29E4D14E00D3A6EE /* Ingredient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

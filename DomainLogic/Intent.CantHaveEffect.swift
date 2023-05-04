@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension Intent {
-    public struct CantHaveEffect: AtomicOperation, Sendable {
-        private let effect: Effect.Id
+public extension Intent {
+    struct CantHaveEffect: Sendable {
+        let effect: Effect.Id
         
         public enum Errors: Error {
             case unknownEffect
@@ -19,17 +19,26 @@ extension Intent {
         public init(id: Effect.Id) {
             effect = id
         }
+    }
+}
 
-        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
-            guard initialState.effects.contains(where: { $0.id == effect }) else {
-                throw Errors.unknownEffect
-            }
-            
-            var newState = initialState
-            newState.mustHaveEffects.remove(effect)
-            newState.cantHaveEffects.insert(effect)
-            newState.filteredMixtureViewModels = []
-            return (newState, [])
+extension Intent.CantHaveEffect: AtomicOperation {
+    func mutate(
+        appState initialState: AppState,
+        viewRepCache initialCache: ViewRepCache
+    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+        guard initialState.effects.contains(where: { $0.id == effect }) else {
+            throw Errors.unknownEffect
         }
+        
+        var newState = initialState
+        newState.mustHaveEffects.remove(effect)
+        newState.cantHaveEffects.insert(effect)
+        newState.filteredMixtureViewModels = []
+        
+        #warning("TODO")
+        let newCache = initialCache
+        
+        return (newState, newCache, [])
     }
 }

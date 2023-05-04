@@ -50,7 +50,10 @@ public extension ViewRep {
         ) {
             id = ingredient.id
             name = ingredient.name
-            effects = effectsSource.filter { ingredient.effects.contains($0.id) }.map { .init(from: $0) }
+            effects = effectsSource
+                .filter { ingredient.effects.contains($0.id) }
+                .map { .init(from: $0) }
+                .sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending })
             selection = SelectionStatePublisherCache.viewRepPublisher(for: ingredient.id)
         }
         

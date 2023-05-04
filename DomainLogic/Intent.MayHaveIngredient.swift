@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension Intent {
-    public struct MayHaveIngredient: AtomicOperation, Sendable {
-        private let ingredient: Ingredient.Id
+public extension Intent {
+    struct MayHaveIngredient: Sendable {
+        let ingredient: Ingredient.Id
         
         public enum Errors: Error {
             case unknownIngredient
@@ -19,17 +19,27 @@ extension Intent {
         public init(id: Ingredient.Id) {
             ingredient = id
         }
+    }
+}
 
-        public func mutate(_ initialState: AppState) throws -> (AppState, [ExternalActivity]) {
-            guard initialState.ingredients.contains(where: { $0.id == ingredient }) else {
-                throw Errors.unknownIngredient
-            }
-            
-            var newState = initialState
-            newState.mustHaveIngredients.remove(ingredient)
-            newState.cantHaveIngredients.remove(ingredient)
-            newState.filteredMixtureViewModels = []
-            return (newState, [])
+extension Intent.MayHaveIngredient: AtomicOperation {
+    
+    func mutate(
+        appState initialState: AppState,
+        viewRepCache initialCache: ViewRepCache
+    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+        guard initialState.ingredients.contains(where: { $0.id == ingredient }) else {
+            throw Errors.unknownIngredient
         }
+        
+        var newState = initialState
+        newState.mustHaveIngredients.remove(ingredient)
+        newState.cantHaveIngredients.remove(ingredient)
+        newState.filteredMixtureViewModels = []
+        
+        #warning("TODO")
+        let newCache = initialCache
+        
+        return (newState, newCache, [])
     }
 }
