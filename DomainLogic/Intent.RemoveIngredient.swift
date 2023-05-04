@@ -27,7 +27,7 @@ extension Intent.RemoveIngredient: AtomicOperation {
     func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
-    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+    ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
         guard initialState.ingredients.contains(where: { $0.id == ingredientId }) else {
             throw Errors.unknownIngredient
         }
@@ -40,6 +40,6 @@ extension Intent.RemoveIngredient: AtomicOperation {
         var newCache = initialCache
         newCache.ingredients = .invalidated(UUID())
         
-        return (newState, newCache, [mixtureActivity])
+        return (newState, newCache, [MixtureIdentifier.taskIdentifier: mixtureActivity])
     }
 }

@@ -27,7 +27,7 @@ extension Intent.AddEffect: AtomicOperation {
     func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
-    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+    ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
         guard !initialState.effects.contains(where: { $0.id == effect.id }) else {
             throw Errors.anEffectWithThisIdentifierAlreadyExists
         }
@@ -46,6 +46,6 @@ extension Intent.AddEffect: AtomicOperation {
         var newCache = initialCache
         newCache.effects = .invalidated(UUID())
         
-        return (newState, newCache, [])
+        return (newState, newCache, [:])
     }
 }

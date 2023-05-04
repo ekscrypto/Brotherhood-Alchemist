@@ -29,7 +29,7 @@ extension Intent.AddIngredient: AtomicOperation {
     func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
-    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+    ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
         guard !initialState.ingredients.contains(where: { $0.id == ingredient.id }) else {
             throw Errors.anEffectWithThisIdentifierAlreadyExists
         }
@@ -61,6 +61,6 @@ extension Intent.AddIngredient: AtomicOperation {
         var newCache = initialCache
         newCache.ingredients = .invalidated(UUID())
         
-        return (newState, newCache, [mixtureActivity])
+        return (newState, newCache, [MixtureIdentifier.taskIdentifier: mixtureActivity])
     }
 }

@@ -27,7 +27,7 @@ extension Intent.MustHaveIngredient: AtomicOperation {
     func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
-    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+    ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
         guard initialState.ingredients.contains(where: { $0.id == ingredient }) else {
             throw Errors.unknownIngredient
         }
@@ -40,6 +40,6 @@ extension Intent.MustHaveIngredient: AtomicOperation {
         #warning("TODO")
         let newCache = initialCache
         
-        return (newState, newCache, [])
+        return (newState, newCache, [:])
     }
 }

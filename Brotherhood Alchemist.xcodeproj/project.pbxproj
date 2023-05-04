@@ -32,6 +32,7 @@
 		78DF46C92A03AE9200EEC871 /* ViewRepCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46C82A03AE9200EEC871 /* ViewRepCache.swift */; };
 		78DF46CB2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */; };
 		78DF46CD2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */; };
+		78DF46CF2A03E43A00EEC871 /* MixtureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CE2A03E43A00EEC871 /* MixtureFilter.swift */; };
 		78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7B29E4D4880079FA06 /* StateMachine.swift */; };
 		78FE5D7E29E4D7CB0079FA06 /* Intent.AddEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */; };
 		78FE5D8629E4EA250079FA06 /* Intent.AddIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */; };
@@ -170,6 +171,7 @@
 		78DF46C82A03AE9200EEC871 /* ViewRepCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRepCache.swift; sourceTree = "<group>"; };
 		78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.ViewRepIngredientsCacheUpdate.swift; sourceTree = "<group>"; };
 		78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.ViewRepEffectsCacheUpdate.swift; sourceTree = "<group>"; };
+		78DF46CE2A03E43A00EEC871 /* MixtureFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtureFilter.swift; sourceTree = "<group>"; };
 		78FE5D7B29E4D4880079FA06 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddEffect.swift; sourceTree = "<group>"; };
 		78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddIngredient.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				78FE5D8929E4FB4F0079FA06 /* Intent.swift */,
 				78FE5D9129E510840079FA06 /* Intent.UpdateEffect.swift */,
 				78FE5D9329E514160079FA06 /* Intent.UpdateIngredient.swift */,
+				78DF46CE2A03E43A00EEC871 /* MixtureFilter.swift */,
 				786D9CEF29EA3FFC001C9A7C /* MixtureIdentifier.swift */,
 				786D9D0529EC7A72001C9A7C /* MixtureSorter.swift */,
 				78FE5D7B29E4D4880079FA06 /* StateMachine.swift */,
@@ -682,6 +685,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DF46CF2A03E43A00EEC871 /* MixtureFilter.swift in Sources */,
 				78FE5D9E29E8762C0079FA06 /* Intent.MustHaveIngredient.swift in Sources */,
 				78FE5D9429E514160079FA06 /* Intent.UpdateIngredient.swift in Sources */,
 				78FE5D8629E4EA250079FA06 /* Intent.AddIngredient.swift in Sources */,

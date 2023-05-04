@@ -28,7 +28,7 @@ extension Intent.UpdateEffect: AtomicOperation {
     func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
-    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+    ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
         guard initialState.effects.contains(where: { $0.id == effect.id }) else {
             throw Errors.unknownEffect
         }
@@ -55,6 +55,6 @@ extension Intent.UpdateEffect: AtomicOperation {
         newCache.effects = .invalidated(UUID())
         newCache.ingredients = .invalidated(UUID())
         
-        return (newState, newCache, [mixtureActivity])
+        return (newState, newCache, [MixtureIdentifier.taskIdentifier: mixtureActivity])
     }
 }

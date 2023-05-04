@@ -579,7 +579,6 @@ final class DomainLogicTests: XCTestCase {
         let finalStateExpectation = XCTestExpectation(description: "Effects all listed and sorted")
         let viewRepObserver = stateMachine.viewRepPublisher.sink(receiveValue: { viewRep in
             XCTAssertTrue(Thread.isMainThread)
-            print(viewRep.effects)
             if viewRep.effects == expectedEffects {
                 finalStateExpectation.fulfill()
             }

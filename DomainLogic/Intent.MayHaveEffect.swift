@@ -26,7 +26,7 @@ extension Intent.MayHaveEffect: AtomicOperation {
     func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
-    ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+    ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
         guard initialState.effects.contains(where: { $0.id == effect }) else {
             throw Errors.unknownEffect
         }
@@ -39,6 +39,6 @@ extension Intent.MayHaveEffect: AtomicOperation {
         #warning("TODO")
         let newCache = initialCache
         
-        return (newState, newCache, [])
+        return (newState, newCache, [:])
     }
 }

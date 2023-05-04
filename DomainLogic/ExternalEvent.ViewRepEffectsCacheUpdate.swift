@@ -20,7 +20,7 @@ extension ExternalEvent {
         func mutate(
             appState initialState: AppState,
             viewRepCache initialCache: ViewRepCache
-        ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+        ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
             guard case .invalidated(let invalidationReference) = initialCache.effects,
                   invalidationReference == reference
             else {
@@ -30,7 +30,7 @@ extension ExternalEvent {
             var newCache = initialCache
             newCache.effects = .cached(effects)
             
-            return (initialState, newCache, [])
+            return (initialState, newCache, [:])
         }
     }
 }

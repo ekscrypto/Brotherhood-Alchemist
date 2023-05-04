@@ -21,7 +21,7 @@ extension ExternalEvent {
         func mutate(
             appState initialState: AppState,
             viewRepCache initialCache: ViewRepCache
-        ) throws -> (AppState, ViewRepCache, [ExternalActivity]) {
+        ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {
             guard initialState.mixturesDataSourceRevision == mixturesDatasourceRevision else {
                 throw Errors.outdatedData
             }
@@ -32,7 +32,7 @@ extension ExternalEvent {
             
             let newCache = initialCache
             
-            return (newState, newCache, [])
+            return (newState, newCache, [:])
         }
     }
 }

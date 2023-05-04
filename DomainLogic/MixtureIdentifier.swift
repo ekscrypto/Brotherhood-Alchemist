@@ -11,6 +11,8 @@ import Algorithms
 
 final actor MixtureIdentifier {
     
+    static let taskIdentifier = "MixtureIdentifier"
+    
     private var ongoingIdentificationRevision: Int64 = .min
     private var ongoingIdentification: Task<[Mixture], Error>?
     
@@ -23,19 +25,30 @@ final actor MixtureIdentifier {
     
     static func identificationActivity(from appState: AppState) -> ExternalActivity {
         { [appState] stateMachine in
-            Task.detached { [appState, stateMachine] in
+            Task { [appState, stateMachine] in
                 let identificationTask = try await stateMachine.singletons.mixtureIdentifier.identify(from: appState)
                 guard case .success(let identifiedMixtures) = await identificationTask.result else {
                     return
                 }
+                
+                guard !Task.isCancelled else {
+                    return
+                }
+                
                 var ingredientNames: [Ingredient.Id: String] = [:]
                 for ingredient in appState.ingredients {
                     ingredientNames[ingredient.id] = ingredient.name
                 }
+                
                 var effectNames: [Effect.Id: String] = [:]
                 for effect in appState.effects {
                     effectNames[effect.id] = effect.name
                 }
+                
+                guard !Task.isCancelled else {
+                    return
+                }
+                
                 var viewModels: [Mixture.ViewModel] = []
                 viewModels.reserveCapacity(identifiedMixtures.count)
                 for mixture in identifiedMixtures {
@@ -154,9 +167,9 @@ final actor MixtureIdentifier {
                     let commonEffects1And3 = ingredient1.effects.intersection(ingredient3.effects)
                     let commonEffects = commonEffects1And2.union(commonEffects1And3).union(commonEffects2And3)
                     let totalCount = commonEffects.count
-                    if commonEffects1And2.count == totalCount { continue } // 3 is useless
-                    if commonEffects1And3.count == totalCount { continue } // 2 is useless
-                    if commonEffects2And3.count == totalCount { continue } // 1 is useless
+                    if commonEffects1And2.count == totalCount { continue } // ingredient 3 is useless
+                    if commonEffects1And3.count == totalCount { continue } // ingredient 2 is useless
+                    if commonEffects2And3.count == totalCount { continue } // ingredient 1 is useless
                     let value = effects
                         .filter({ commonEffects.contains($0.id) })
                         .map { $0.baseValue.rawValue }
