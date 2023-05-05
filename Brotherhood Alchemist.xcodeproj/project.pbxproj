@@ -33,6 +33,7 @@
 		78DF46CB2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */; };
 		78DF46CD2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */; };
 		78DF46CF2A03E43A00EEC871 /* MixtureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46CE2A03E43A00EEC871 /* MixtureFilter.swift */; };
+		78DF46D12A04065800EEC871 /* ExternalEvent.MixturesSorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF46D02A04065800EEC871 /* ExternalEvent.MixturesSorted.swift */; };
 		78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7B29E4D4880079FA06 /* StateMachine.swift */; };
 		78FE5D7E29E4D7CB0079FA06 /* Intent.AddEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */; };
 		78FE5D8629E4EA250079FA06 /* Intent.AddIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */; };
@@ -172,6 +173,7 @@
 		78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.ViewRepIngredientsCacheUpdate.swift; sourceTree = "<group>"; };
 		78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.ViewRepEffectsCacheUpdate.swift; sourceTree = "<group>"; };
 		78DF46CE2A03E43A00EEC871 /* MixtureFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtureFilter.swift; sourceTree = "<group>"; };
+		78DF46D02A04065800EEC871 /* ExternalEvent.MixturesSorted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.MixturesSorted.swift; sourceTree = "<group>"; };
 		78FE5D7B29E4D4880079FA06 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		78FE5D7D29E4D7CB0079FA06 /* Intent.AddEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddEffect.swift; sourceTree = "<group>"; };
 		78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.AddIngredient.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				78B8216029E4D0B500D3A6EE /* DomainLogic.docc */,
 				78B8215F29E4D0B500D3A6EE /* DomainLogic.h */,
 				786D9D0129EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift */,
+				78DF46D02A04065800EEC871 /* ExternalEvent.MixturesSorted.swift */,
 				786D9CFF29EC4360001C9A7C /* ExternalEvent.swift */,
 				78DF46CA2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift */,
 				78DF46CC2A03D69800EEC871 /* ExternalEvent.ViewRepEffectsCacheUpdate.swift */,
@@ -701,6 +704,7 @@
 				786D9D0029EC4360001C9A7C /* ExternalEvent.swift in Sources */,
 				78DF46CB2A03D1E100EEC871 /* ExternalEvent.ViewRepIngredientsCacheUpdate.swift in Sources */,
 				7878D0B729F78E950088D107 /* SelectionState.swift in Sources */,
+				78DF46D12A04065800EEC871 /* ExternalEvent.MixturesSorted.swift in Sources */,
 				78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */,
 				786D9D0229EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift in Sources */,
 				78FE5DA029E883920079FA06 /* Intent.CantHaveIngredient.swift in Sources */,

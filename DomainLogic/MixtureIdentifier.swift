@@ -13,9 +13,6 @@ final actor MixtureIdentifier {
     
     static let taskIdentifier = "MixtureIdentifier"
     
-    private var ongoingIdentificationRevision: Int64 = .min
-    private var ongoingIdentification: Task<[Mixture], Error>?
-    
     static func invalidateMixtures(in appState: inout AppState) {
         appState.mixtures = []
         appState.mixtureViewModels = []
@@ -23,47 +20,68 @@ final actor MixtureIdentifier {
         appState.mixturesDataSourceRevision = appState.mixturesDataSourceRevision + 1
     }
     
+    private static func keyIngredientNames(_ ingredients: [Ingredient]) async -> [Ingredient.Id: String] {
+        var ingredientNames: [Ingredient.Id: String] = [:]
+        ingredientNames.reserveCapacity(ingredients.count)
+        for ingredient in ingredients {
+            ingredientNames[ingredient.id] = ingredient.name
+        }
+        return ingredientNames
+    }
+    
+    private static func keyEffectNames(_ effects: [Effect]) async -> [Effect.Id: String] {
+        var effectNames: [Effect.Id: String] = [:]
+        effectNames.reserveCapacity(effects.count)
+        for effect in effects {
+            effectNames[effect.id] = effect.name
+        }
+        return effectNames
+    }
+    
+    private static func generateViewModels(
+        keyedIngredients: [Ingredient.Id: String],
+        keyedEffects: [Effect.Id: String],
+        mixtures: [Mixture]
+    ) async -> [Mixture.ViewModel] {
+        var viewModels: [Mixture.ViewModel] = []
+        viewModels.reserveCapacity(mixtures.count)
+        for mixture in mixtures {
+            let ingredients = mixture.ingredients
+                .compactMap { keyedIngredients[$0] }
+                .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
+            let effects = mixture.effects
+                .compactMap { keyedEffects[$0] }
+                .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
+            let viewModel = Mixture.ViewModel(
+                ingredients: ingredients,
+                effects: effects,
+                value: Int(mixture.retailValue.rawValue))
+            viewModels.append(viewModel)
+        }
+        return viewModels
+    }
+    
     static func identificationActivity(from appState: AppState) -> ExternalActivity {
         { [appState] stateMachine in
             Task { [appState, stateMachine] in
-                let identificationTask = try await stateMachine.singletons.mixtureIdentifier.identify(from: appState)
-                guard case .success(let identifiedMixtures) = await identificationTask.result else {
-                    return
-                }
+                async let ingredientNames = keyIngredientNames(appState.ingredients)
+                async let effectNames = keyEffectNames(appState.effects)
                 
+                let identifiedMixtures = try await stateMachine.singletons.mixtureIdentifier.identify(from: appState)
+
                 guard !Task.isCancelled else {
                     return
                 }
-                
-                var ingredientNames: [Ingredient.Id: String] = [:]
-                for ingredient in appState.ingredients {
-                    ingredientNames[ingredient.id] = ingredient.name
-                }
-                
-                var effectNames: [Effect.Id: String] = [:]
-                for effect in appState.effects {
-                    effectNames[effect.id] = effect.name
-                }
-                
+
+                let viewModels = await generateViewModels(
+                    keyedIngredients: ingredientNames,
+                    keyedEffects: effectNames,
+                    mixtures: identifiedMixtures)
+
                 guard !Task.isCancelled else {
                     return
                 }
-                
-                var viewModels: [Mixture.ViewModel] = []
-                viewModels.reserveCapacity(identifiedMixtures.count)
-                for mixture in identifiedMixtures {
-                    let ingredients = mixture.ingredients
-                        .compactMap { ingredientNames[$0] }
-                        .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
-                    let effects = mixture.effects
-                        .compactMap { effectNames[$0] }
-                        .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
-                    let viewModel = Mixture.ViewModel(
-                        ingredients: ingredients,
-                        effects: effects,
-                        value: Int(mixture.retailValue.rawValue))
-                    viewModels.append(viewModel)
-                }
+
                 try await stateMachine.ingest(ExternalEvent.MixturesIdentified(
                     mixtures: identifiedMixtures,
                     mixturesViewModels: viewModels,
@@ -76,52 +94,40 @@ final actor MixtureIdentifier {
         case outdated
     }
 
-    func identify(from appState: AppState) throws -> Task<[Mixture], Error> {
-        guard appState.mixturesDataSourceRevision > ongoingIdentificationRevision else {
-            throw Errors.outdated
-        }
+    func identify(from appState: AppState) throws -> [Mixture] {
+        let effects = appState.effects
+        let ingredients = appState.ingredients
         
-        ongoingIdentification?.cancel()
-        ongoingIdentificationRevision = appState.mixturesDataSourceRevision
-        let identificationTask = Task<[Mixture], Error>(priority: .utility) {
-            try Task.checkCancellation()
-            let effects = appState.effects
-            let ingredients = appState.ingredients
-            
-            let mixtures: [Mixture] = effects.withContiguousStorageIfAvailable { contiguousEffects in
-                ingredients.withContiguousStorageIfAvailable { contiguousIngredients in
-                    // Based on results from known mixtures in previous production builds...
-                    // For two ingredients, there's a mixture for every 2.44 permutation
-                    // For three ingredients, there's a mixture for every 3.395 permutation
-                    // Since there are quite a few more 3-ingredient permutations than 2-ingredients
-                    // we can ignore 2-ingredient permutations here -- at worse a re-alloc will occur
-                    let countAdjustedForRatio = Float(ingredients.count) / 3.35
-                    let expectedMixtures = Int(countAdjustedForRatio * countAdjustedForRatio * countAdjustedForRatio)
-                    var identifiedMixtures: [Mixture] = []
-                    identifiedMixtures.reserveCapacity(expectedMixtures)
+        let mixtures: [Mixture] = effects.withContiguousStorageIfAvailable { contiguousEffects in
+            ingredients.withContiguousStorageIfAvailable { contiguousIngredients in
+                // Based on results from known mixtures in previous production builds...
+                // For two ingredients, there's a mixture for every 2.44 permutation
+                // For three ingredients, there's a mixture for every 3.395 permutation
+                // Since there are quite a few more 3-ingredient permutations than 2-ingredients
+                // we can ignore 2-ingredient permutations here -- at worse a re-alloc will occur
+                let countAdjustedForRatio = Float(ingredients.count) / 3.35
+                let expectedMixtures = Int(countAdjustedForRatio * countAdjustedForRatio * countAdjustedForRatio)
+                var identifiedMixtures: [Mixture] = []
+                identifiedMixtures.reserveCapacity(expectedMixtures)
+                
+                do {
+                    try identifyTwoIngredientMixtures(
+                        effects: contiguousEffects,
+                        ingredients: contiguousIngredients,
+                        mixtures: &identifiedMixtures)
                     
-                    do {
-                        try identifyTwoIngredientMixtures(
-                            effects: contiguousEffects,
-                            ingredients: contiguousIngredients,
-                            mixtures: &identifiedMixtures)
-                        
-                        try identifyThreeIngredientMixtures(
-                            effects: contiguousEffects,
-                            ingredients: contiguousIngredients,
-                            mixtures: &identifiedMixtures)
-                    } catch {
-                        return []
-                    }
-                    return identifiedMixtures
-                } ?? []
+                    try identifyThreeIngredientMixtures(
+                        effects: contiguousEffects,
+                        ingredients: contiguousIngredients,
+                        mixtures: &identifiedMixtures)
+                } catch {
+                    return []
+                }
+                return identifiedMixtures
             } ?? []
-            
-            return mixtures
-        }
+        } ?? []
         
-        ongoingIdentification = identificationTask
-        return identificationTask
+        return mixtures
     }
     
     private func identifyTwoIngredientMixtures(
