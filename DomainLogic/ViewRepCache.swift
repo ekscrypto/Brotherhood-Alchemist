@@ -16,8 +16,14 @@ struct ViewRepCache {
     
     var effects: Cache<[ViewRep.Effect]>
     var ingredients: Cache<[ViewRep.Ingredient]>
+    var mixtures: Cache<[ViewRep.Mixture]>
+    var filteredMixtures: Cache<[ViewRep.Mixture]>
     
     static var invalidated: ViewRepCache {
-        .init(effects: .invalidated(UUID()), ingredients: .invalidated(UUID()))
+        .init(effects: .invalidated(UUID()),
+              ingredients: .invalidated(UUID()),
+              mixtures: .invalidated(UUID()),
+              filteredMixtures: .invalidated(UUID())
+        )
     }
 }

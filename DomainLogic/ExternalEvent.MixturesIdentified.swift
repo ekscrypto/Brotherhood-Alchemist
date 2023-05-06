@@ -11,7 +11,7 @@ import Foundation
 extension ExternalEvent {
     struct MixturesIdentified: AtomicOperation, Sendable {
         let mixtures: [Mixture]
-        let mixturesViewModels: [Mixture.ViewModel]
+        let viewRep: [ViewRep.Mixture]
         let mixturesDatasourceRevision: Int64
         
         enum Errors: Error {
@@ -28,11 +28,17 @@ extension ExternalEvent {
             
             var newState = initialState
             newState.mixtures = mixtures
-            newState.mixtureViewModels = mixturesViewModels
             
-            let newCache = initialCache
+            var newCache = initialCache
+            newCache.mixtures = .cached(viewRep)
             
-            return (newState, newCache, [:])
+            guard case .invalidated(_) = newCache.filteredMixtures else {
+                fatalError()
+            }
+            
+            let filterActivity = MixtureFilter.filterActivity(from: newState, mixtures: viewRep)
+            
+            return (newState, newCache, [MixtureFilter.taskIdentifier: filterActivity])
         }
     }
 }

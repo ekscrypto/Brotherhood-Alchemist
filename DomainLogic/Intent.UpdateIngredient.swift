@@ -59,12 +59,14 @@ extension Intent.UpdateIngredient: AtomicOperation {
         }
         
         var newState = initialState
+        var newCache = initialCache
+        MixtureIdentifier.invalidateMixtures(appState: &newState, cache: &newCache)
+        
+        newCache.ingredients = .invalidated(UUID())
+
         newState.ingredients = updatedIngredients
-        MixtureIdentifier.invalidateMixtures(in: &newState)
         let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
         
-        var newCache = initialCache
-        newCache.ingredients = .invalidated(UUID())
         
         return (newState, newCache, [MixtureIdentifier.taskIdentifier: mixtureActivity])
     }

@@ -399,11 +399,12 @@ final class DomainLogicTests: XCTestCase {
     func testCanIdentifyAllDefaultMixtures() async throws {
         let stateMachine = StateMachine()
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
-        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(receiveValue: { (updatedState, _) in
-            if updatedState.mixtures.count == 33682, updatedState.mixtureViewModels.count == 33682 {
-                finalStateExpectation.fulfill()
-            }
-        })
+        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(
+            receiveValue: {(updatedState, viewRepCache) in
+                if updatedState.mixtures.count == 33682, case .cached(let mixturesViewRep) = viewRepCache.mixtures, mixturesViewRep.count == 33682 {
+                    finalStateExpectation.fulfill()
+                }
+            })
         try await addAllEffectsAndIngredients(to: stateMachine)
         await fulfillment(of: [finalStateExpectation], timeout: 10.0)
         _ = stateObserver
@@ -482,22 +483,8 @@ final class DomainLogicTests: XCTestCase {
                 finalStateExpectation.fulfill()
             }
         })
-        
-        try await stateMachine
-            .ingest(Intent.AddEffect(.weaknessToFrost))
-            .ingest(Intent.AddEffect(.fortifySneak))
-            .ingest(Intent.AddEffect(.weaknessToPoison))
-            .ingest(Intent.AddEffect(.fortifyRestoration))
-            .ingest(Intent.AddEffect(.resistFire))
-            .ingest(Intent.AddEffect(.weaknessToShock))
-            .ingest(Intent.AddEffect(.fortifyLockpicking))
-            .ingest(Intent.AddEffect(.restoreMagicka))
-            .ingest(Intent.AddEffect(.fortifyMarksman))
-            .ingest(Intent.AddEffect(.regenerateMagicka))
-            .ingest(Intent.AddIngredient(.abeceanLongfin))
-            .ingest(Intent.AddIngredient(.ashenGrassPod))
-            .ingest(Intent.AddIngredient(.elvesEar))
-            .ingest(Intent.AddIngredient(.fireSalts))
+
+        try await ingestStandardBaseSet(into: stateMachine)
         await fulfillment(of: [finalStateExpectation], timeout: 3.0)
         _ = stateObserver
     }
@@ -505,11 +492,12 @@ final class DomainLogicTests: XCTestCase {
     func testMixtureViewModelsMatchesMixtures() async throws {
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
         let stateMachine = StateMachine()
-        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(receiveValue: { (updatedState, _) in
-            if updatedState.mixtures.count == 1, updatedState.mixtureViewModels.count == 1 {
-                finalStateExpectation.fulfill()
-            }
-        })
+        let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(
+            receiveValue: { (updatedState, viewRepCache) in
+                if updatedState.mixtures.count == 1, case .cached(let mixturesViewRep) = viewRepCache.mixtures, mixturesViewRep.count == 1 {
+                    finalStateExpectation.fulfill()
+                }
+            })
         
         try await stateMachine
             .ingest(Intent.AddEffect(.weaknessToFrost))
@@ -522,11 +510,15 @@ final class DomainLogicTests: XCTestCase {
         await fulfillment(of: [finalStateExpectation], timeout: 3.0)
         _ = stateObserver
 
-        let finalState = await stateMachine.appState
-        XCTAssertTrue(finalState.mixtureViewModels.contains(where: { mixtureViewModel in
-            mixtureViewModel.effects == ["Resist Fire", "Restore Magicka", "Weakness To Frost"] &&
-            mixtureViewModel.ingredients == ["Elves Ear", "Fire Salts"] &&
-            mixtureViewModel.value == 151
+        let finalCache = await stateMachine.viewRepCache
+        guard case .cached(let mixturesViewRep) = finalCache.mixtures else {
+            XCTFail("mixtures should be defined")
+            return
+        }
+        XCTAssertTrue(mixturesViewRep.contains(where: { viewRep in
+            viewRep.effects == ["Resist Fire", "Restore Magicka", "Weakness To Frost"] &&
+            viewRep.ingredients == ["Elves Ear", "Fire Salts"] &&
+            viewRep.value == 151
         }))
     }
     
@@ -677,7 +669,14 @@ final class DomainLogicTests: XCTestCase {
                 finalStateExpectation.fulfill()
             }
         })
-        
+
+        try await ingestStandardBaseSet(into: stateMachine)
+
+        await fulfillment(of: [finalStateExpectation], timeout: 3.0)
+        _ = viewRepObserver
+    }
+    
+    private func ingestStandardBaseSet(into stateMachine: StateMachine) async throws {
         try await stateMachine
             .ingest(Intent.AddEffect(.weaknessToFrost))
             .ingest(Intent.AddEffect(.fortifySneak))
@@ -694,8 +693,84 @@ final class DomainLogicTests: XCTestCase {
             .ingest(Intent.AddIngredient(.elvesEar))
             .ingest(Intent.AddIngredient(.abeceanLongfin))
             .ingest(Intent.AddIngredient(.fireSalts))
+    }
+    
+    private static func mixturesAreSameIgnoringId(lhs: ViewRep.Mixture, rhs: ViewRep.Mixture) -> Bool {
+        lhs.effects == rhs.effects &&
+        lhs.ingredients == rhs.ingredients &&
+        lhs.value == rhs.value
+    }
+    
+    func testCantHaveEffectExcludesMixturesWithThatEffect() async throws {
+        let expectedMixtures: [ViewRep.Mixture] = [
+            .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name],
+                  effects: [Effect.fortifySneak.name],
+                  value: 118),
+            .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.elvesEar.name],
+                  effects: [Effect.weaknessToFrost.name],
+                  value: 40),
+            .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.fireSalts.name],
+                  effects: [Effect.weaknessToFrost.name],
+                  value: 40)
+        ]
+        
+        let stateMachine = StateMachine()
+        
+        let finalStateExpectation = XCTestExpectation(description: "Only expected mixtures are listed")
+        let viewRepObserver = stateMachine.viewRepPublisher.sink(receiveValue: { viewRep in
+            XCTAssertTrue(Thread.isMainThread)
+            dump(viewRep.mixtures)
+            if viewRep.mixtures.brewing == false,
+               viewRep.mixtures.mixtures.count == 3,
+               Self.mixturesAreSameIgnoringId(lhs: viewRep.mixtures.mixtures[0], rhs: expectedMixtures[0]),
+               Self.mixturesAreSameIgnoringId(lhs: viewRep.mixtures.mixtures[1], rhs: expectedMixtures[1]),
+               Self.mixturesAreSameIgnoringId(lhs: viewRep.mixtures.mixtures[2], rhs: expectedMixtures[2])
+            {
+                finalStateExpectation.fulfill()
+            }
+        })
+
+        try await ingestStandardBaseSet(into: stateMachine)
+        try await stateMachine.ingest(Intent.CantHaveEffect(id: Effect.resistFire.id))
 
         await fulfillment(of: [finalStateExpectation], timeout: 3.0)
         _ = viewRepObserver
+    }
+    
+    func testMustHaveEffectIncludesOnlyMixturesWithThatEffect() async throws {
+        let expectedMixtures: [ViewRep.Mixture] = [
+            .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name],
+                  effects: [Effect.fortifySneak.name],
+                  value: 118),
+            .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name, Ingredient.elvesEar.name],
+                  effects: [Effect.fortifySneak.name, Effect.resistFire.name, Effect.weaknessToFrost.name],
+                  value: 86 + 40 + 118),
+            .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name, Ingredient.fireSalts.name],
+                  effects: [Effect.fortifySneak.name, Effect.resistFire.name, Effect.weaknessToFrost.name],
+                  value: 86 + 40 + 118),
+        ]
+        
+        let stateMachine = StateMachine()
+        
+        let finalStateExpectation = XCTestExpectation(description: "Only expected mixtures are listed")
+        let viewRepObserver = stateMachine.viewRepPublisher.sink(receiveValue: { viewRep in
+            XCTAssertTrue(Thread.isMainThread)
+            dump(viewRep.mixtures)
+            if viewRep.mixtures.brewing == false,
+               viewRep.mixtures.mixtures.count == 3,
+               Self.mixturesAreSameIgnoringId(lhs: viewRep.mixtures.mixtures[0], rhs: expectedMixtures[0]),
+               Self.mixturesAreSameIgnoringId(lhs: viewRep.mixtures.mixtures[1], rhs: expectedMixtures[1]),
+               Self.mixturesAreSameIgnoringId(lhs: viewRep.mixtures.mixtures[2], rhs: expectedMixtures[2])
+            {
+                finalStateExpectation.fulfill()
+            }
+        })
+
+        try await ingestStandardBaseSet(into: stateMachine)
+        try await stateMachine.ingest(Intent.MustHaveEffect(id: Effect.fortifySneak.id))
+
+        await fulfillment(of: [finalStateExpectation], timeout: 3.0)
+        _ = viewRepObserver
+
     }
 }

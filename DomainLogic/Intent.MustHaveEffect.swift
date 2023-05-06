@@ -34,11 +34,19 @@ extension Intent.MustHaveEffect: AtomicOperation {
         var newState = initialState
         newState.mustHaveEffects.insert(effect)
         newState.cantHaveEffects.remove(effect)
-        newState.filteredMixtureViewModels = []
+
+        var newCache = initialCache
+        newCache.filteredMixtures = .invalidated(UUID())
+
+        let activities: [String: ExternalActivity]
+        switch newCache.mixtures {
+        case .cached(let mixtures):
+            let filterActivity = MixtureFilter.filterActivity(from: newState, mixtures: mixtures)
+            activities = [MixtureFilter.taskIdentifier: filterActivity]
+        case .invalidated(_):
+            activities = [:]
+        }
         
-        #warning("TODO")
-        let newCache = initialCache
-        
-        return (newState, newCache, [:])
+        return (newState, newCache, activities)
     }
 }

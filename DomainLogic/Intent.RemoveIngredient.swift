@@ -33,12 +33,13 @@ extension Intent.RemoveIngredient: AtomicOperation {
         }
         
         var newState = initialState
-        newState.ingredients = initialState.ingredients.filter({ $0.id != ingredientId })
-        MixtureIdentifier.invalidateMixtures(in: &newState)
-        let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
-        
         var newCache = initialCache
+        MixtureIdentifier.invalidateMixtures(appState: &newState, cache: &newCache)
+
         newCache.ingredients = .invalidated(UUID())
+
+        newState.ingredients = initialState.ingredients.filter({ $0.id != ingredientId })
+        let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
         
         return (newState, newCache, [MixtureIdentifier.taskIdentifier: mixtureActivity])
     }

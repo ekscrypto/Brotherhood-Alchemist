@@ -9,6 +9,4 @@
 import Foundation
 
 struct Singletons {
-    let mixtureIdentifier: MixtureIdentifier = .init()
-    let mixtureSorter: MixtureSorter = .init()
 }

@@ -9,15 +9,15 @@
 import Foundation
 import Algorithms
 
-final actor MixtureIdentifier {
+enum MixtureIdentifier {
     
     static let taskIdentifier = "MixtureIdentifier"
     
-    static func invalidateMixtures(in appState: inout AppState) {
+    static func invalidateMixtures(appState: inout AppState, cache: inout ViewRepCache) {
         appState.mixtures = []
-        appState.mixtureViewModels = []
-        appState.filteredMixtureViewModels = []
         appState.mixturesDataSourceRevision = appState.mixturesDataSourceRevision + 1
+        cache.filteredMixtures = .invalidated(UUID())
+        cache.mixtures = .invalidated(UUID())
     }
     
     private static func keyIngredientNames(_ ingredients: [Ingredient]) async -> [Ingredient.Id: String] {
@@ -38,12 +38,12 @@ final actor MixtureIdentifier {
         return effectNames
     }
     
-    private static func generateViewModels(
+    private static func generateViewRep(
         keyedIngredients: [Ingredient.Id: String],
         keyedEffects: [Effect.Id: String],
         mixtures: [Mixture]
-    ) async -> [Mixture.ViewModel] {
-        var viewModels: [Mixture.ViewModel] = []
+    ) async -> [ViewRep.Mixture] {
+        var viewModels: [ViewRep.Mixture] = []
         viewModels.reserveCapacity(mixtures.count)
         for mixture in mixtures {
             let ingredients = mixture.ingredients
@@ -52,7 +52,7 @@ final actor MixtureIdentifier {
             let effects = mixture.effects
                 .compactMap { keyedEffects[$0] }
                 .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
-            let viewModel = Mixture.ViewModel(
+            let viewModel = ViewRep.Mixture(
                 ingredients: ingredients,
                 effects: effects,
                 value: Int(mixture.retailValue.rawValue))
@@ -67,13 +67,13 @@ final actor MixtureIdentifier {
                 async let ingredientNames = keyIngredientNames(appState.ingredients)
                 async let effectNames = keyEffectNames(appState.effects)
                 
-                let identifiedMixtures = try await stateMachine.singletons.mixtureIdentifier.identify(from: appState)
+                let identifiedMixtures = try await identify(from: appState)
 
                 guard !Task.isCancelled else {
                     return
                 }
 
-                let viewModels = await generateViewModels(
+                let viewRep = await generateViewRep(
                     keyedIngredients: ingredientNames,
                     keyedEffects: effectNames,
                     mixtures: identifiedMixtures)
@@ -84,7 +84,7 @@ final actor MixtureIdentifier {
 
                 try await stateMachine.ingest(ExternalEvent.MixturesIdentified(
                     mixtures: identifiedMixtures,
-                    mixturesViewModels: viewModels,
+                    viewRep: viewRep,
                     mixturesDatasourceRevision: appState.mixturesDataSourceRevision))
             }
         }
@@ -94,7 +94,7 @@ final actor MixtureIdentifier {
         case outdated
     }
 
-    func identify(from appState: AppState) throws -> [Mixture] {
+    private static func identify(from appState: AppState) async throws -> [Mixture] {
         let effects = appState.effects
         let ingredients = appState.ingredients
         
@@ -130,7 +130,7 @@ final actor MixtureIdentifier {
         return mixtures
     }
     
-    private func identifyTwoIngredientMixtures(
+    private static func identifyTwoIngredientMixtures(
         effects: UnsafeBufferPointer<Effect>,
         ingredients: UnsafeBufferPointer<Ingredient>,
         mixtures: inout [Mixture]
@@ -156,7 +156,7 @@ final actor MixtureIdentifier {
         }
     }
     
-    private func identifyThreeIngredientMixtures(
+    private static func identifyThreeIngredientMixtures(
         effects: UnsafeBufferPointer<Effect>,
         ingredients: UnsafeBufferPointer<Ingredient>,
         mixtures: inout [Mixture]

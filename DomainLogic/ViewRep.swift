@@ -11,6 +11,7 @@ import Foundation
 public struct ViewRep: Equatable, Sendable {
     let ingredients: [ViewRep.Ingredient]
     let effects: [ViewRep.Effect]
+    let mixtures: Mixtures
     
     init(from stateAndCache: (AppState, ViewRepCache), cachingTo stateMachine: StateMachine?) {
         let (appState, viewRepCache) = stateAndCache
@@ -48,5 +49,7 @@ public struct ViewRep: Equatable, Sendable {
                     reference: reference))
             }
         }
+        
+        mixtures = .init(filteredMixtures: viewRepCache.filteredMixtures)
     }
 }

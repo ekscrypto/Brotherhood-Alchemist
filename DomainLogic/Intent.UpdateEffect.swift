@@ -47,13 +47,14 @@ extension Intent.UpdateEffect: AtomicOperation {
         }
         
         var newState = initialState
-        newState.effects = updatedEffects
-        MixtureIdentifier.invalidateMixtures(in: &newState)
-        let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
-        
         var newCache = initialCache
-        newCache.effects = .invalidated(UUID())
-        newCache.ingredients = .invalidated(UUID())
+        MixtureIdentifier.invalidateMixtures(appState: &newState, cache: &newCache)
+
+        newCache.effects = .invalidated(UUID()) // we are updating the effects
+        newCache.ingredients = .invalidated(UUID()) // ingredients include the effects name, which may be updated
+        
+        newState.effects = updatedEffects
+        let mixtureActivity = MixtureIdentifier.identificationActivity(from: newState)
         
         return (newState, newCache, [MixtureIdentifier.taskIdentifier: mixtureActivity])
     }

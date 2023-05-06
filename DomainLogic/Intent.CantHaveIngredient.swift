@@ -34,12 +34,20 @@ extension Intent.CantHaveIngredient: AtomicOperation {
         var newState = initialState
         newState.cantHaveIngredients.insert(ingredient)
         newState.mustHaveIngredients.remove(ingredient)
-        newState.filteredMixtureViewModels = []
         
-        #warning("TODO")
-        let newCache = initialCache
+        var newCache = initialCache
+        newCache.filteredMixtures = .invalidated(UUID())
 
-        return (newState, newCache, [:])
+        let activities: [String: ExternalActivity]
+        switch newCache.mixtures {
+        case .cached(let mixtures):
+            let filterActivity = MixtureFilter.filterActivity(from: newState, mixtures: mixtures)
+            activities = [MixtureFilter.taskIdentifier: filterActivity]
+        case .invalidated(_):
+            activities = [:]
+        }
+        
+        return (newState, newCache, activities)
     }
 }
 
