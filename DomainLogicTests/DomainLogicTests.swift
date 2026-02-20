@@ -15,27 +15,32 @@ final class DomainLogicTests: XCTestCase {
         id: .new,
         name: "Bleed",
         baseValue: SeptimValue(rawValue: 65)!,
-        outcome: .negative)
+        outcome: .negative,
+        strength: EffectStrength(baseCost: 65.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
     let restoreHealth = Effect(
         id: .new,
         name: "Heal",
         baseValue: SeptimValue(rawValue: 75)!,
-        outcome: .positive)
+        outcome: .positive,
+        strength: EffectStrength(baseCost: 75.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
     let damageStamina = Effect(
         id: .new,
         name: "Damage Stamina",
         baseValue: SeptimValue(rawValue: 20)!,
-        outcome: .negative)
+        outcome: .negative,
+        strength: EffectStrength(baseCost: 20.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
     let restoreStamina = Effect(
         id: .new,
         name: "Restore Stamina",
         baseValue: SeptimValue(rawValue: 25)!,
-        outcome: .positive)
+        outcome: .positive,
+        strength: EffectStrength(baseCost: 25.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
     let slow = Effect(
         id: .new,
         name: "Slow",
         baseValue: SeptimValue(rawValue: 90)!,
-        outcome: .negative)
+        outcome: .negative,
+        strength: EffectStrength(baseCost: 90.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
     
     
     func testCanAddEffects_allEffectsArePresent() async throws {
@@ -62,7 +67,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testCanAddIngredientWithNoDefinedEffects() async throws {
         let stateMachine = StateMachine()
-        let rubberShoelaces = Ingredient(id: .new, name: "Rubber Shoelaces", effects: [])
+        let rubberShoelaces = Ingredient(id: .new, name: "Rubber Shoelaces", effectMultipliers: [:])
         try await stateMachine.ingest(Intent.AddIngredient(rubberShoelaces))
         let finalState = await stateMachine.appState
         let storedIngredient = try XCTUnwrap(finalState.ingredients.first)
@@ -73,7 +78,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testCannotAddIngredientIfAnEffectIsUnknown() async throws {
         let stateMachine = StateMachine()
-        let copperPowder = Ingredient(id: .new, name: "Rubber Shoelaces", effects: [.new])
+        let copperPowder = Ingredient(id: .new, name: "Rubber Shoelaces", effectMultipliers: [.new: .standard])
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.AddIngredient(copperPowder)))
     }
     
@@ -84,14 +89,14 @@ final class DomainLogicTests: XCTestCase {
             .ingest(Intent.AddEffect(restoreHealth))
             .ingest(Intent.AddEffect(restoreStamina))
             .ingest(Intent.AddEffect(damageStamina))
-        let antBrains = Ingredient(id: .new, name: "Ant Brains", effects: [
-            bleed.id, restoreHealth.id, restoreStamina.id, damageStamina.id])
+        let antBrains = Ingredient(id: .new, name: "Ant Brains", effectMultipliers: [
+            bleed.id: .standard, restoreHealth.id: .standard, restoreStamina.id: .standard, damageStamina.id: .standard])
         try await stateMachine.ingest(Intent.AddIngredient(antBrains))
         let finalState = await stateMachine.appState
         let storedIngredient = try XCTUnwrap(finalState.ingredients.first)
         XCTAssertEqual(storedIngredient.id, antBrains.id)
         XCTAssertEqual(storedIngredient.name, "Ant Brains")
-        XCTAssertEqual(storedIngredient.effects, [bleed.id, restoreHealth.id, restoreStamina.id, damageStamina.id])
+        XCTAssertEqual(storedIngredient.effects, Set([bleed.id, restoreHealth.id, restoreStamina.id, damageStamina.id]))
     }
     
     func testCannotAddIngredientWithMoreThanFourEffects() async throws {
@@ -102,8 +107,8 @@ final class DomainLogicTests: XCTestCase {
             .ingest(Intent.AddEffect(restoreStamina))
             .ingest(Intent.AddEffect(damageStamina))
             .ingest(Intent.AddEffect(slow))
-        let monkeyToes = Ingredient(id: .new, name: "Monkey Toes", effects: [
-            bleed.id, slow.id, restoreHealth.id, restoreStamina.id, damageStamina.id])
+        let monkeyToes = Ingredient(id: .new, name: "Monkey Toes", effectMultipliers: [
+            bleed.id: .standard, slow.id: .standard, restoreHealth.id: .standard, restoreStamina.id: .standard, damageStamina.id: .standard])
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.AddIngredient(monkeyToes)))
     }
     
@@ -123,14 +128,14 @@ final class DomainLogicTests: XCTestCase {
     func testFailsToRemoveEffectIfInUse() async throws {
         let stateMachine = StateMachine()
         try await stateMachine.ingest(Intent.AddEffect(bleed))
-        let purpleBeesStinger = Ingredient(id: .new, name: "Purple Bees Stinger", effects: [bleed.id])
+        let purpleBeesStinger = Ingredient(id: .new, name: "Purple Bees Stinger", effectMultipliers: [bleed.id: .standard])
         try await stateMachine.ingest(Intent.AddIngredient(purpleBeesStinger))
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.RemoveEffect(id: slow.id)))
     }
     
     func testCanRemoveIngredientThatExists() async throws {
         let stateMachine = StateMachine()
-        let purpleBeesStinger = Ingredient(id: .new, name: "Purple Bees Stinger", effects: [])
+        let purpleBeesStinger = Ingredient(id: .new, name: "Purple Bees Stinger", effectMultipliers: [:])
         try await stateMachine.ingest(Intent.AddIngredient(purpleBeesStinger))
         try await stateMachine.ingest(Intent.RemoveIngredient(id: purpleBeesStinger.id))
         let finalState = await stateMachine.appState
@@ -149,7 +154,8 @@ final class DomainLogicTests: XCTestCase {
             id: bleed.id,
             name: "Deeply bleeding",
             baseValue: SeptimValue(rawValue: 125)!,
-            outcome: .negative)
+            outcome: .negative,
+            strength: EffectStrength(baseCost: 125.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
         try await stateMachine.ingest(Intent.UpdateEffect(updatedBleed))
         let finalState = await stateMachine.appState
         let storedEffect = try XCTUnwrap(finalState.effects.first)
@@ -173,14 +179,15 @@ final class DomainLogicTests: XCTestCase {
             id: slow.id,
             name: bleed.name,
             baseValue: SeptimValue(rawValue: 53)!,
-            outcome: .positive)
+            outcome: .positive,
+            strength: EffectStrength(baseCost: 53.0, baseMagnitude: 1, baseDuration: 0, powerTarget: .magnitude))
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.UpdateEffect(updatedEffect)))
     }
     
     func testCanUpdateIngredientThatExists() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [slow.id])
-        let blackCarp = Ingredient(id: magicCarp.id, name: "Black Carp", effects: [restoreHealth.id])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [slow.id: .standard])
+        let blackCarp = Ingredient(id: magicCarp.id, name: "Black Carp", effectMultipliers: [restoreHealth.id: .standard])
         try await stateMachine
             .ingest(Intent.AddEffect(slow))
             .ingest(Intent.AddEffect(restoreHealth))
@@ -190,20 +197,20 @@ final class DomainLogicTests: XCTestCase {
         let storedIngredient = try XCTUnwrap(finalState.ingredients.first)
         XCTAssertEqual(storedIngredient.id, magicCarp.id)
         XCTAssertEqual(storedIngredient.name, "Black Carp")
-        XCTAssertEqual(storedIngredient.effects, [restoreHealth.id])
+        XCTAssertEqual(storedIngredient.effects, Set([restoreHealth.id]))
     }
     
     func testFailsToUpdateIngredientThatIsUnknown() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [slow.id])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [slow.id: .standard])
         await XCTAssertThrowsError(try await stateMachine.ingest(Intent.UpdateIngredient(magicCarp)))
     }
     
     func testFailsToUpdateIngredientIfNewNameConflicts() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [slow.id])
-        let blackCarp = Ingredient(id: .new, name: "Black Carp", effects: [restoreHealth.id])
-        let renamedMagicCarp = Ingredient(id: magicCarp.id, name: "Black Carp", effects: [slow.id])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [slow.id: .standard])
+        let blackCarp = Ingredient(id: .new, name: "Black Carp", effectMultipliers: [restoreHealth.id: .standard])
+        let renamedMagicCarp = Ingredient(id: magicCarp.id, name: "Black Carp", effectMultipliers: [slow.id: .standard])
         try await stateMachine
             .ingest(Intent.AddEffect(slow))
             .ingest(Intent.AddEffect(restoreHealth))
@@ -214,8 +221,8 @@ final class DomainLogicTests: XCTestCase {
     
     func testFailsToUpdateIngredientIfContainsUnknownEffect() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [slow.id])
-        let updatedMagicCarp = Ingredient(id: magicCarp.id, name: magicCarp.name, effects: [.new])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [slow.id: .standard])
+        let updatedMagicCarp = Ingredient(id: magicCarp.id, name: magicCarp.name, effectMultipliers: [.new: .standard])
         try await stateMachine
             .ingest(Intent.AddEffect(slow))
             .ingest(Intent.AddIngredient(magicCarp))
@@ -224,9 +231,9 @@ final class DomainLogicTests: XCTestCase {
     
     func testFailsToUpdateIngredientIfContainsTooManyEffects() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [slow.id])
-        let updatedMagicCarp = Ingredient(id: magicCarp.id, name: magicCarp.name, effects: [
-            bleed.id, damageStamina.id, restoreHealth.id, restoreStamina.id, slow.id])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [slow.id: .standard])
+        let updatedMagicCarp = Ingredient(id: magicCarp.id, name: magicCarp.name, effectMultipliers: [
+            bleed.id: .standard, damageStamina.id: .standard, restoreHealth.id: .standard, restoreStamina.id: .standard, slow.id: .standard])
         try await stateMachine
             .ingest(Intent.AddEffect(slow))
             .ingest(Intent.AddEffect(restoreHealth))
@@ -239,7 +246,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testCanAddIngredientAsMustHave() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [:])
         try await stateMachine
             .ingest(Intent.AddIngredient(magicCarp))
             .ingest(Intent.MustHaveIngredient(id: magicCarp.id))
@@ -250,7 +257,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testCanAddIngredientAsCantHave() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [:])
         try await stateMachine
             .ingest(Intent.AddIngredient(magicCarp))
             .ingest(Intent.CantHaveIngredient(id: magicCarp.id))
@@ -261,7 +268,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testCantHaveIngredientCanBecomeMustHave() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [:])
         try await stateMachine
             .ingest(Intent.AddIngredient(magicCarp))
             .ingest(Intent.CantHaveIngredient(id: magicCarp.id))
@@ -273,7 +280,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testMustHaveIngredientCanBecomeCantHave() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [:])
         try await stateMachine
             .ingest(Intent.AddIngredient(magicCarp))
             .ingest(Intent.MustHaveIngredient(id: magicCarp.id))
@@ -285,7 +292,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testMustHaveIngredientCanBecomeMayHave() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [:])
         try await stateMachine
             .ingest(Intent.AddIngredient(magicCarp))
             .ingest(Intent.MustHaveIngredient(id: magicCarp.id))
@@ -297,7 +304,7 @@ final class DomainLogicTests: XCTestCase {
     
     func testCantHaveIngredientCanBecomeMayHave() async throws {
         let stateMachine = StateMachine()
-        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effects: [])
+        let magicCarp = Ingredient(id: .new, name: "Magic Carp", effectMultipliers: [:])
         try await stateMachine
             .ingest(Intent.AddIngredient(magicCarp))
             .ingest(Intent.CantHaveIngredient(id: magicCarp.id))
@@ -418,42 +425,52 @@ final class DomainLogicTests: XCTestCase {
             id: .new,
             ingredients: [Ingredient.abeceanLongfin.id, Ingredient.ashenGrassPod.id],
             effects: [Effect.fortifySneak.id],
-            retailValue: SeptimValue(rawValue: 118)!)
+            retailValue: SeptimValue(rawValue: 118)!,
+            effectStats: [:])
         let weaknessToFrostMixture1 = Mixture(
             id: .new,
             ingredients: [Ingredient.abeceanLongfin.id, Ingredient.elvesEar.id],
             effects: [Effect.weaknessToFrost.id],
-            retailValue: SeptimValue(rawValue: 40)!)
+            retailValue: SeptimValue(rawValue: 40)!,
+            effectStats: [:])
         let weaknessToFrostMixture2 = Mixture(
             id: .new,
             ingredients: [Ingredient.abeceanLongfin.id, Ingredient.fireSalts.id],
             effects: [Effect.weaknessToFrost.id],
-            retailValue: SeptimValue(rawValue: 40)!)
+            retailValue: SeptimValue(rawValue: 40)!,
+            effectStats: [:])
+        // Ashen Grass Pod has 1.33x magnitude, 1.36x value for Resist Fire
+        // making its Resist Fire gold = 160 (vs 86 for standard ingredients)
         let resistFireMixture1 = Mixture(
             id: .new,
             ingredients: [Ingredient.ashenGrassPod.id, Ingredient.elvesEar.id],
             effects: [Effect.resistFire.id],
-            retailValue: SeptimValue(rawValue: 86)!)
+            retailValue: SeptimValue(rawValue: 160)!,
+            effectStats: [:])
         let resistFireMixture2 = Mixture(
             id: .new,
             ingredients: [Ingredient.ashenGrassPod.id, Ingredient.fireSalts.id],
             effects: [Effect.resistFire.id],
-            retailValue: SeptimValue(rawValue: 86)!)
+            retailValue: SeptimValue(rawValue: 160)!,
+            effectStats: [:])
         let complexMixture1 = Mixture(
             id: .new,
             ingredients: [Ingredient.abeceanLongfin.id, Ingredient.ashenGrassPod.id, Ingredient.elvesEar.id],
             effects: [Effect.fortifySneak.id, Effect.resistFire.id, Effect.weaknessToFrost.id],
-            retailValue: SeptimValue(rawValue: 86 + 40 + 118)!)
+            retailValue: SeptimValue(rawValue: 160 + 40 + 118)!,
+            effectStats: [:])
         let complexMixture2 = Mixture(
             id: .new,
             ingredients: [Ingredient.abeceanLongfin.id, Ingredient.ashenGrassPod.id, Ingredient.fireSalts.id],
             effects: [Effect.fortifySneak.id, Effect.resistFire.id, Effect.weaknessToFrost.id],
-            retailValue: SeptimValue(rawValue: 86 + 40 + 118)!)
+            retailValue: SeptimValue(rawValue: 160 + 40 + 118)!,
+            effectStats: [:])
         let complexMixture3 = Mixture(
             id: .new,
             ingredients: [Ingredient.elvesEar.id, Ingredient.fireSalts.id],
             effects: [Effect.resistFire.id, Effect.restoreMagicka.id, Effect.weaknessToFrost.id],
-            retailValue: SeptimValue(rawValue: 86 + 25 + 40)!)
+            retailValue: SeptimValue(rawValue: 86 + 25 + 40)!,
+            effectStats: [:])
         // NOTES: There are more recipes possible like Abecean Longfin + Elves Ear + Fire Salts, but the effects
         // would be the same as just having the elves ear + fire salts.  Therefore we filter out that recipe.
         
@@ -705,13 +722,13 @@ final class DomainLogicTests: XCTestCase {
         let expectedMixtures: [ViewRep.Mixture] = [
             .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name],
                   effects: [Effect.fortifySneak.name],
-                  value: 118),
+                  effectDetails: [], value: 118),
             .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.elvesEar.name],
                   effects: [Effect.weaknessToFrost.name],
-                  value: 40),
+                  effectDetails: [], value: 40),
             .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.fireSalts.name],
                   effects: [Effect.weaknessToFrost.name],
-                  value: 40)
+                  effectDetails: [], value: 40)
         ]
         
         let stateMachine = StateMachine()
@@ -741,13 +758,13 @@ final class DomainLogicTests: XCTestCase {
         let expectedMixtures: [ViewRep.Mixture] = [
             .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name],
                   effects: [Effect.fortifySneak.name],
-                  value: 118),
+                  effectDetails: [], value: 118),
             .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name, Ingredient.elvesEar.name],
                   effects: [Effect.fortifySneak.name, Effect.resistFire.name, Effect.weaknessToFrost.name],
-                  value: 86 + 40 + 118),
+                  effectDetails: [], value: 160 + 40 + 118),
             .init(ingredients: [Ingredient.abeceanLongfin.name, Ingredient.ashenGrassPod.name, Ingredient.fireSalts.name],
                   effects: [Effect.fortifySneak.name, Effect.resistFire.name, Effect.weaknessToFrost.name],
-                  value: 86 + 40 + 118),
+                  effectDetails: [], value: 160 + 40 + 118),
         ]
         
         let stateMachine = StateMachine()

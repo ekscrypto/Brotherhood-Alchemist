@@ -13,6 +13,7 @@ public struct Mixture: Identifiable, Codable, Sendable {
     let ingredients: Set<Ingredient.Id>
     let effects: Set<Effect.Id>
     let retailValue: SeptimValue
+    let effectStats: [Effect.Id: MixtureEffectStats]
     
     public struct Id: RawRepresentable, Hashable, Sendable, Codable {
         public let rawValue: Int64

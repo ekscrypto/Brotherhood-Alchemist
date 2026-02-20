@@ -29,18 +29,25 @@ enum MixtureIdentifier {
         return ingredientNames
     }
     
-    private static func keyEffectNames(_ effects: [Effect]) async -> [Effect.Id: String] {
-        var effectNames: [Effect.Id: String] = [:]
-        effectNames.reserveCapacity(effects.count)
+    private struct EffectInfo {
+        let name: String
+        let isPositiveOutcome: Bool
+    }
+
+    private static func keyEffectInfo(_ effects: [Effect]) async -> [Effect.Id: EffectInfo] {
+        var effectInfo: [Effect.Id: EffectInfo] = [:]
+        effectInfo.reserveCapacity(effects.count)
         for effect in effects {
-            effectNames[effect.id] = effect.name
+            effectInfo[effect.id] = EffectInfo(
+                name: effect.name,
+                isPositiveOutcome: effect.outcome == .positive)
         }
-        return effectNames
+        return effectInfo
     }
     
     private static func generateViewRep(
         keyedIngredients: [Ingredient.Id: String],
-        keyedEffects: [Effect.Id: String],
+        keyedEffects: [Effect.Id: EffectInfo],
         mixtures: [Mixture]
     ) async -> [ViewRep.Mixture] {
         var viewModels: [ViewRep.Mixture] = []
@@ -49,12 +56,23 @@ enum MixtureIdentifier {
             let ingredients = mixture.ingredients
                 .compactMap { keyedIngredients[$0] }
                 .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
-            let effects = mixture.effects
-                .compactMap { keyedEffects[$0] }
-                .sorted(by: { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending })
+            var effectDetails: [ViewRep.EffectDetail] = []
+            effectDetails.reserveCapacity(mixture.effectStats.count)
+            for (effectId, stats) in mixture.effectStats {
+                guard let info = keyedEffects[effectId] else { continue }
+                effectDetails.append(ViewRep.EffectDetail(
+                    name: info.name,
+                    isPositiveOutcome: info.isPositiveOutcome,
+                    magnitude: stats.magnitude,
+                    duration: stats.duration,
+                    goldValue: stats.goldValue))
+            }
+            effectDetails.sort(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending })
+            let effects = effectDetails.map { $0.name }
             let viewModel = ViewRep.Mixture(
                 ingredients: ingredients,
                 effects: effects,
+                effectDetails: effectDetails,
                 value: Int(mixture.retailValue.rawValue))
             viewModels.append(viewModel)
         }
@@ -65,7 +83,7 @@ enum MixtureIdentifier {
         { [appState] stateMachine in
             Task { [appState, stateMachine] in
                 async let ingredientNames = keyIngredientNames(appState.ingredients)
-                async let effectNames = keyEffectNames(appState.effects)
+                async let effectInfo = keyEffectInfo(appState.effects)
                 
                 let identifiedMixtures = try await identify(from: appState)
 
@@ -75,7 +93,7 @@ enum MixtureIdentifier {
 
                 let viewRep = await generateViewRep(
                     keyedIngredients: ingredientNames,
-                    keyedEffects: effectNames,
+                    keyedEffects: effectInfo,
                     mixtures: identifiedMixtures)
 
                 guard !Task.isCancelled else {
@@ -142,15 +160,18 @@ enum MixtureIdentifier {
                 let ingredient2 = ingredients[ingredient2Index]
                 let commonEffects = ingredient1.effects.intersection(ingredient2.effects)
                 if commonEffects.isEmpty { continue }
-                let value = effects
-                    .filter({ commonEffects.contains($0.id) })
-                    .map { $0.baseValue.rawValue }
-                    .reduce(0, { $0 + $1 })
+                let ingredientIds: Set<Ingredient.Id> = [ingredient1.id, ingredient2.id]
+                let (effectStats, totalGold) = PotionCalculator.computeMixtureStats(
+                    sharedEffects: commonEffects,
+                    ingredientIds: ingredientIds,
+                    effects: effects,
+                    ingredients: ingredients)
                 let mixture = Mixture(
                     id: .new,
-                    ingredients: [ingredient1.id, ingredient2.id],
+                    ingredients: ingredientIds,
                     effects: commonEffects,
-                    retailValue: SeptimValue(rawValue: value)!)
+                    retailValue: SeptimValue(rawValue: max(1, min(totalGold, 99_998)))!,
+                    effectStats: effectStats)
                 mixtures.append(mixture)
             }
         }
@@ -176,15 +197,18 @@ enum MixtureIdentifier {
                     if commonEffects1And2.count == totalCount { continue } // ingredient 3 is useless
                     if commonEffects1And3.count == totalCount { continue } // ingredient 2 is useless
                     if commonEffects2And3.count == totalCount { continue } // ingredient 1 is useless
-                    let value = effects
-                        .filter({ commonEffects.contains($0.id) })
-                        .map { $0.baseValue.rawValue }
-                        .reduce(0, { $0 + $1 })
+                    let ingredientIds: Set<Ingredient.Id> = [ingredient1.id, ingredient2.id, ingredient3.id]
+                    let (effectStats, totalGold) = PotionCalculator.computeMixtureStats(
+                        sharedEffects: commonEffects,
+                        ingredientIds: ingredientIds,
+                        effects: effects,
+                        ingredients: ingredients)
                     let mixture = Mixture(
                         id: .new,
-                        ingredients: [ingredient1.id, ingredient2.id, ingredient3.id],
+                        ingredients: ingredientIds,
                         effects: commonEffects,
-                        retailValue: SeptimValue(rawValue: value)!)
+                        retailValue: SeptimValue(rawValue: max(1, min(totalGold, 99_998)))!,
+                        effectStats: effectStats)
                     mixtures.append(mixture)
                 }
             }
