@@ -262,7 +262,7 @@ public struct Effect: Codable, Sendable, Identifiable {
         name: "Spell Absorption", baseValue: SeptimValue(rawValue: 380)!, outcome: .positive,
         strength: EffectStrength(baseCost: 0.1, baseMagnitude: 50, baseDuration: 60, powerTarget: .duration))
 
-    static let all: [Effect] = [
+    public static let all: [Effect] = [
         .cureDisease,
         .damageHealth,
         .damageMagicka,

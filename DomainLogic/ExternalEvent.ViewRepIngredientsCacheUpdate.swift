@@ -17,7 +17,7 @@ extension ExternalEvent {
             case noLongerRelevant
         }
         
-        func mutate(
+        public func mutate(
             appState initialState: AppState,
             viewRepCache initialCache: ViewRepCache
         ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {

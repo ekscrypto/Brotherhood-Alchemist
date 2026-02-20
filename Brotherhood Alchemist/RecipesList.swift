@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import DomainLogic
 
 @MainActor
 struct RecipesList: View {
@@ -15,23 +16,24 @@ struct RecipesList: View {
     let seekedEffect: SeekedEffect
     let seekedIngredient: SeekedIngredient
 
-    @State var concoctions: [Concoction] = []
+    @EnvironmentObject var appViewModel: AppViewModel
+
     @State var showOptions: Bool = false
-    
+
     enum SortBy: String, CaseIterable {
         case value =  "value ↓, ingredients ↑"
         case ingredientsFewerFirst = "ingredients ↑, effects ↓"
         case effectsMostFirst = "effects ↓, ingredients ↑"
     }
     @State var sortBy: SortBy = .value
-    
+
     enum IngredientsLimit: String, CaseIterable {
         case two = "two ingredients only"
         case three = "three ingredients only"
         case noPreference = "no preference"
     }
     @State var ingredientLimit: IngredientsLimit = .noPreference
-    
+
     enum EffectsLimit: String, CaseIterable {
         case positive = "positive effects only"
         case negative = "negative effects only"
@@ -39,105 +41,87 @@ struct RecipesList: View {
         case noPreference = "no preference"
     }
     @State var effectsLimit: EffectsLimit = .oneOrTheOther
-    @State var isBrewing: Bool = true
-    
-    @MainActor
-    private func updateConcoctions() {
-        concoctions = sortedConcoctions
+
+    private var isBrewing: Bool {
+        appViewModel.viewRep?.mixtures.brewing ?? true
     }
 
-    @MainActor
-    private var effectsFilteredConcoctions: [Concoction] {
-        guard case let .identified(identifiedConcoctions) = Registry.active.matchingConcoctions else {
-            isBrewing = true
-            return []
-        }
-        isBrewing = false
-        
+    private var effectsFilteredMixtures: [ViewRep.Mixture] {
+        guard let mixtures = appViewModel.viewRep?.mixtures.mixtures else { return [] }
+
         if effectsLimit == .noPreference {
-            return identifiedConcoctions
+            return mixtures
         }
-        
-        return identifiedConcoctions
-            .filter({ concoction in
-                let effects = concoction.effects
-                switch effectsLimit {
-                case .positive:
-                    return effects.allSatisfy({ $0.isPositive })
-                case .negative:
-                    return effects.allSatisfy({ $0.isPositive == false })
-                case .oneOrTheOther:
-                    let hasPositive = effects.reduce(false, { $1.isPositive || $0 })
-                    let hasNegative = effects.reduce(false, { !$1.isPositive || $0 })
-                    return hasNegative != hasPositive
-                case .noPreference:
-                    return true
-                }
-            })
+
+        return mixtures.filter { mixture in
+            let details = mixture.effectDetails
+            switch effectsLimit {
+            case .positive:
+                return details.allSatisfy { $0.isPositiveOutcome }
+            case .negative:
+                return details.allSatisfy { !$0.isPositiveOutcome }
+            case .oneOrTheOther:
+                let hasPositive = details.contains { $0.isPositiveOutcome }
+                let hasNegative = details.contains { !$0.isPositiveOutcome }
+                return hasNegative != hasPositive
+            case .noPreference:
+                return true
+            }
+        }
     }
-    
-    @MainActor
-    private var ingreditsLimitedConcoctions: [Concoction] {
+
+    private var ingredientsLimitedMixtures: [ViewRep.Mixture] {
         switch ingredientLimit {
         case .two:
-            return effectsFilteredConcoctions
-                .filter({ $0.ingredients.count == 2 })
+            return effectsFilteredMixtures.filter { $0.ingredients.count == 2 }
         case .three:
-            return effectsFilteredConcoctions
-                .filter({ $0.ingredients.count == 3 })
+            return effectsFilteredMixtures.filter { $0.ingredients.count == 3 }
         case .noPreference:
-            return effectsFilteredConcoctions
+            return effectsFilteredMixtures
         }
     }
-    
-    @MainActor
-    private var sortedConcoctions: [Concoction] {
-        let concoctions = ingreditsLimitedConcoctions
+
+    private var sortedMixtures: [ViewRep.Mixture] {
+        let mixtures = ingredientsLimitedMixtures
         switch sortBy {
         case .value:
-            return concoctions.sorted(by: {
-                if $0.estimatedValue != $1.estimatedValue {
-                    return $0.estimatedValue > $1.estimatedValue
+            return mixtures.sorted(by: {
+                if $0.value != $1.value {
+                    return $0.value > $1.value
                 }
-                
                 return $0.ingredients.count < $1.ingredients.count
             })
-            
+
         case .ingredientsFewerFirst:
-            return concoctions.sorted(by: {
+            return mixtures.sorted(by: {
                 if $0.ingredients.count != $1.ingredients.count {
                     return $0.ingredients.count < $1.ingredients.count
                 }
-                
                 if $0.effects.count != $1.effects.count {
                     return $0.effects.count > $1.effects.count
                 }
-                
-                return $0.estimatedValue > $1.estimatedValue
+                return $0.value > $1.value
             })
-            
+
         case .effectsMostFirst:
-            return concoctions
-                .sorted(by: {
-                    if $0.effects.count != $1.effects.count {
-                        return $0.effects.count > $1.effects.count
-                    }
-                    
-                    if $0.ingredients.count != $1.ingredients.count {
-                        return $0.ingredients.count < $1.ingredients.count
-                    }
-                    
-                    return $0.estimatedValue > $1.estimatedValue
-                })
+            return mixtures.sorted(by: {
+                if $0.effects.count != $1.effects.count {
+                    return $0.effects.count > $1.effects.count
+                }
+                if $0.ingredients.count != $1.ingredients.count {
+                    return $0.ingredients.count < $1.ingredients.count
+                }
+                return $0.value > $1.value
+            })
         }
     }
-    
+
     // MARK: -
     var body: some View {
         ZStack {
             VStack {
                 header
-                
+
                 if isBrewing {
                     VStack {
                         Text("Brewing…")
@@ -149,8 +133,8 @@ struct RecipesList: View {
                         Spacer()
                     }
                 } else {
-                    
-                    if concoctions.count == 0 {
+
+                    if sortedMixtures.count == 0 {
                         VStack {
                             Text("No match :(")
                                 .padding()
@@ -163,7 +147,7 @@ struct RecipesList: View {
             }
             .blur(radius: showOptions ? 4 : 0)
             .allowsHitTesting(!showOptions)
-            
+
             if showOptions {
                 RecipesListOptions(
                     listBottomPadding: listBottomPadding,
@@ -173,31 +157,10 @@ struct RecipesList: View {
                     showOptions: $showOptions)
             }
         }
-        .onReceive(Registry.active.$matchingConcoctions) { _ in
-            DispatchQueue.main.async {
-                updateConcoctions()
-            }
-        }
-        .onChange(of: effectsLimit) { _ in
-            updateConcoctions()
-        }
-        .onChange(of: ingredientLimit) { _ in
-            updateConcoctions()
-        }
-        .onChange(of: sortBy) { newValue in
-            updateConcoctions()
-        }
     }
-    
+
     // MARK: -
-    
-    private func concoctionInfo(_ concoction: Concoction) -> some View {
-        RecipeDetails(
-            concoction: concoction,
-            seekedEffect: seekedEffect,
-            seekedIngredient: seekedIngredient)
-    }
-    
+
     private var header: some View {
         HStack {
             VStack(alignment: .leading, spacing: 1.0) {
@@ -208,7 +171,7 @@ struct RecipesList: View {
             .font(Font.system(.caption))
             .foregroundColor(Color("itemForeground"))
             .padding([.leading, .trailing])
-            
+
             Button(action: {
                 showOptions = true
             }) {
@@ -216,16 +179,19 @@ struct RecipesList: View {
             }
         }
     }
-    
+
     private var listOfRecipes: some View {
         ScrollView {
             ScrollViewReader { scrollview in
                 LazyVStack {
-                    ForEach(concoctions) { concoction in
-                        concoctionInfo(concoction)
+                    ForEach(sortedMixtures) { mixture in
+                        RecipeDetails(
+                            mixture: mixture,
+                            seekedEffect: seekedEffect,
+                            seekedIngredient: seekedIngredient)
                     }
                 }
-                
+
                 Color.clear
                     .frame(height: listBottomPadding)
             }
@@ -239,5 +205,6 @@ struct RecipesList_Previews: PreviewProvider {
             listBottomPadding: 0,
             seekedEffect: .init(),
             seekedIngredient: .init())
+        .environmentObject(AppViewModel())
     }
 }

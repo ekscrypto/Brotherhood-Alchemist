@@ -18,9 +18,9 @@ extension ViewRep {
         public let goldValue: Int
     }
 
-    struct Mixtures: Equatable, Sendable {
-        let brewing: Bool
-        let mixtures: [Mixture]
+    public struct Mixtures: Equatable, Sendable {
+        public let brewing: Bool
+        public let mixtures: [Mixture]
 
         init(filteredMixtures: ViewRepCache.Cache<[ViewRep.Mixture]>) {
             switch filteredMixtures {

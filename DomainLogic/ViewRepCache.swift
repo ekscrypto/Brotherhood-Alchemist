@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct ViewRepCache {
-    enum Cache<T> {
+public struct ViewRepCache {
+    public enum Cache<T> {
         case cached(T)
         case invalidated(UUID)
     }

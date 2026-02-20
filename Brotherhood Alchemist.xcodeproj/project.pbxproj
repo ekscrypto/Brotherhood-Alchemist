@@ -93,6 +93,8 @@
 		CC0000022B1A000100000002 /* IngredientEffectMultiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000022B1A000000000002 /* IngredientEffectMultiplier.swift */; };
 		CC0000032B1A000100000003 /* MixtureEffectStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000032B1A000000000003 /* MixtureEffectStats.swift */; };
 		CC0000042B1A000100000004 /* PotionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000042B1A000000000004 /* PotionCalculator.swift */; };
+		CC0000052B1A000100000005 /* Intent.LoadAllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000052B1A000000000005 /* Intent.LoadAllData.swift */; };
+		CC0000062B1A000100000006 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0000062B1A000000000006 /* AppViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +201,8 @@
 		CC0000022B1A000000000002 /* IngredientEffectMultiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEffectMultiplier.swift; sourceTree = "<group>"; };
 		CC0000032B1A000000000003 /* MixtureEffectStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtureEffectStats.swift; sourceTree = "<group>"; };
 		CC0000042B1A000000000004 /* PotionCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotionCalculator.swift; sourceTree = "<group>"; };
+		CC0000052B1A000000000005 /* Intent.LoadAllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.LoadAllData.swift; sourceTree = "<group>"; };
+		CC0000062B1A000000000006 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		78FE5DA929E88BD90079FA06 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		A9585F282813300800E78F47 /* SeekedEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekedEffect.swift; sourceTree = "<group>"; };
 		A9585F2A2813303200E78F47 /* SeekedIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekedIngredient.swift; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 				78FE5D8529E4EA250079FA06 /* Intent.AddIngredient.swift */,
 				78FE5DA329E886CB0079FA06 /* Intent.CantHaveEffect.swift */,
 				78FE5D9F29E883920079FA06 /* Intent.CantHaveIngredient.swift */,
+				CC0000052B1A000000000005 /* Intent.LoadAllData.swift */,
 				78FE5DA729E887470079FA06 /* Intent.MayHaveEffect.swift */,
 				78FE5DA129E8860F0079FA06 /* Intent.MayHaveIngredient.swift */,
 				78FE5DA529E887290079FA06 /* Intent.MustHaveEffect.swift */,
@@ -409,6 +414,7 @@
 		A9B524C2280E495300F4ABCA /* Brotherhood Alchemist */ = {
 			isa = PBXGroup;
 			children = (
+				CC0000062B1A000000000006 /* AppViewModel.swift */,
 				A9B524C7280E495400F4ABCA /* Assets.xcassets */,
 				A9585FD928151A5F00E78F47 /* Brotherhood Alchemist.entitlements */,
 				A9B524C3280E495300F4ABCA /* Brotherhood_AlchemistApp.swift */,
@@ -739,6 +745,7 @@
 				CC0000022B1A000100000002 /* IngredientEffectMultiplier.swift in Sources */,
 				CC0000032B1A000100000003 /* MixtureEffectStats.swift in Sources */,
 				CC0000042B1A000100000004 /* PotionCalculator.swift in Sources */,
+				CC0000052B1A000100000005 /* Intent.LoadAllData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +800,7 @@
 				A9585F86281428E000E78F47 /* EffectValue.swift in Sources */,
 				A9585FD62814EE9E00E78F47 /* RecipeDetails.swift in Sources */,
 				A9585F742813959E00E78F47 /* ConstrainedName.swift in Sources */,
+				CC0000062B1A000100000006 /* AppViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,7 +1232,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1263,7 +1271,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

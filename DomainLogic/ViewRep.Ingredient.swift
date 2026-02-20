@@ -33,7 +33,7 @@ public extension ViewRep {
                 isPositiveOutcome = effect.outcome == .positive
             }
             
-            init(
+            public init(
                 id: DomainLogic.Effect.Id,
                 name: String,
                 isPositiveOutcome: Bool
@@ -57,7 +57,7 @@ public extension ViewRep {
             selection = SelectionStatePublisherCache.viewRepPublisher(for: ingredient.id)
         }
         
-        init(
+        public init(
             id: DomainLogic.Ingredient.Id,
             name: String,
             effects: [Effect]

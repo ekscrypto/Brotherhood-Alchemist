@@ -11,27 +11,20 @@ import Combine
 
 @MainActor
 struct ContentView: View {
-    
+
+    @EnvironmentObject var appViewModel: AppViewModel
+
     let seekedEffect: SeekedEffect = .init()
     let seekedIngredient: SeekedIngredient = .init()
-    
+
     @State private var tabButtonsWidth: CGFloat = .zero
     @State private var tabbarOrigin: CGFloat = .zero
     @State private var listHeight: CGFloat = .zero
     @State var selectedTab: Tab = .recipes
     @State private var viewWidth: CGFloat = .zero
-    
-    @State var registriesLoaded: Bool = false
 
     private var listBottomPadding: CGFloat {
         listHeight - tabbarOrigin
-    }
-    
-    private func loadRegistryOnce() {
-        Task {
-            await RegistryStorage.active.load(into: Registry.active)
-            registriesLoaded = true
-        }
     }
 
     private var isPad: Bool {
@@ -47,17 +40,17 @@ struct ContentView: View {
     }
 
     var body: some View {
-        if false == registriesLoaded {
-            loadingRegistriesView
+        if appViewModel.viewRep == nil {
+            loadingView
         } else {
             deviceLayout
         }
     }
-    
-    var loadingRegistriesView: some View {
+
+    var loadingView: some View {
         Text("Pickpocketing nirnroot…")
             .onAppear {
-                loadRegistryOnce()
+                appViewModel.loadData()
             }
     }
 
@@ -130,13 +123,13 @@ struct ContentView: View {
             .overlay(TabsOriginCoordinator(via: $tabbarOrigin))
         }
         .overlay(MinWidthCoordinator(via: $viewWidth))
-        .onReceive(seekedEffect.$effect) { effectOrNil in
-            if effectOrNil != nil {
+        .onReceive(seekedEffect.$name) { nameOrNil in
+            if nameOrNil != nil {
                 selectedTab = .effects
             }
         }
-        .onReceive(seekedIngredient.$ingredient) { ingredientOrNil in
-            if ingredientOrNil != nil {
+        .onReceive(seekedIngredient.$name) { nameOrNil in
+            if nameOrNil != nil {
                 selectedTab = .ingredients
             }
         }
@@ -155,9 +148,11 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AppViewModel())
             .previewDevice("iPhone 13 Pro")
-        
+
         ContentView()
+            .environmentObject(AppViewModel())
             .previewDevice("iPad Air (5th generation)")
     }
 }

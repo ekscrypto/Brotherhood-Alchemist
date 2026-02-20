@@ -10,12 +10,14 @@ import SwiftUI
 
 @main
 struct Brotherhood_AlchemistApp: App {
-    
+
+    @StateObject var appViewModel = AppViewModel()
+
     var body: some Scene {
         WindowGroup {
-            Text("Testing")
-//            ContentView()
-//                .environmentObject(OrientationInfo())
+            ContentView()
+                .environmentObject(appViewModel)
+                .environmentObject(OrientationInfo())
         }
     }
 }

@@ -7,25 +7,16 @@
 //
 
 import SwiftUI
+import DomainLogic
 
 @MainActor
 struct RecipeDetails: View {
-    let concoction: Concoction
+    let mixture: ViewRep.Mixture
     let seekedEffect: SeekedEffect
     let seekedIngredient: SeekedIngredient
-    
-    @EnvironmentObject var orientationInfo: OrientationInfo
 
     private var isPad: Bool {
         UIDevice.current.userInterfaceIdiom == .pad
-    }
-
-    private var sortedEffects: [Effect] {
-        concoction.effects.sorted(by: { ~$0.name < ~$1.name })
-    }
-    
-    private var sortedIngredients: [Ingredient] {
-        concoction.ingredients.sorted(by: { ~$0.name < ~$1.name })
     }
 
     var body: some View {
@@ -38,7 +29,7 @@ struct RecipeDetails: View {
                 Text("Estimated value:")
                     .font(Font.system(.caption))
                     .foregroundColor(Color("selectionText"))
-                Text("\(concoction.estimatedValue)")
+                Text("\(mixture.value)")
                     .font(Font.system(.headline))
                 Text("septims")
                     .font(Font.system(.caption))
@@ -46,7 +37,7 @@ struct RecipeDetails: View {
             }
             .padding([.leading, .trailing])
             .padding(.bottom, 3.0)
-            
+
             listOfIngredients
 
             Text("Effects")
@@ -59,13 +50,13 @@ struct RecipeDetails: View {
         .frame(maxWidth: .infinity)
         .padding(.bottom)
     }
-    
+
     private var listOfEffects: some View {
-        ForEach(sortedEffects) { effect in
+        ForEach(mixture.effectDetails, id: \.name) { detail in
             Button(action: {
-                seekedEffect.effect = effect
+                seekedEffect.name = detail.name
             }) {
-                summaryOfEffect(effect)
+                summaryOfEffect(detail)
             }
             .foregroundColor(Color(UIColor.systemBlue))
             .frame(height: 32)
@@ -77,28 +68,39 @@ struct RecipeDetails: View {
         .frame(maxWidth: .infinity)
         .padding([.leading, .trailing])
     }
-    
-    private func summaryOfEffect(_ effect: Effect) -> some View {
-        HStack(spacing: 1) {
-            SelectionIndicator(state: effect.selection)
-                .saturation(0.0)
-            SelectionText(state: effect.selection)
-                .scaleEffect(0.8)
-                .frame(width: 40)
-            Text(~effect.name)
+
+    private func summaryOfEffect(_ detail: ViewRep.EffectDetail) -> some View {
+        HStack(spacing: 4) {
+            Text(detail.name)
                 .font(.system(isPad ? .caption : .headline))
-                .frame(maxWidth: .infinity,
-                       alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading)
+            if detail.magnitude > 0 {
+                Text("mag:\(detail.magnitude)")
+                    .font(.system(.caption2))
+                    .foregroundColor(Color("selectionText"))
+            }
+            if detail.duration > 0 {
+                Text("dur:\(detail.duration)s")
+                    .font(.system(.caption2))
+                    .foregroundColor(Color("selectionText"))
+            }
+            Text("\(detail.goldValue)g")
+                .font(.system(.caption2))
+                .foregroundColor(Color("selectionText"))
+                .padding(.trailing, 8)
         }
     }
-    
+
     private var listOfIngredients: some View {
-        ForEach(sortedIngredients) { ingredient in
+        ForEach(mixture.ingredients, id: \.self) { ingredientName in
             Button(action: {
-                seekedIngredient.ingredient = ingredient
+                seekedIngredient.name = ingredientName
             }) {
-                summaryOfIngredient(ingredient)
+                Text(ingredientName)
+                    .font(.system(isPad ? .caption : .headline))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
             }
             .foregroundColor(Color(UIColor.systemBlue))
             .frame(height: 32)
@@ -109,43 +111,18 @@ struct RecipeDetails: View {
         }
         .frame(maxWidth: .infinity)
         .padding([.leading, .trailing])
-    }
-    
-    private func summaryOfIngredient(_ ingredient: Ingredient) -> some View {
-        HStack(spacing: 1) {
-            SelectionIndicator(state: ingredient.selection)
-                .saturation(0.0)
-            SelectionText(state: ingredient.selection)
-                .scaleEffect(0.8)
-                .frame(width: 40)
-            Text(~ingredient.name)
-                .font(.system(isPad ? .caption : .headline))
-                .frame(maxWidth: .infinity,
-                       alignment: .leading)
-                .padding(.leading)
-        }
     }
 }
 
 struct RecipeDetails_Previews: PreviewProvider {
     static var previews: some View {
         RecipeDetails(
-            concoction: Concoction(
-                effects: [
-                    Effect(name: "Fear", value: 1, isPositive: false),
-                    Effect(name: "Paralysis", value: 1, isPositive: false),
-                    Effect(name: "Resist Magic", value: 1, isPositive: true),
-                    Effect(name: "Fortify Carry Weight", value: 1, isPositive: true),
-                    Effect(name: "Restore Stamina", value: 1, isPositive: true)
-                ],
-                ingredients: [
-                    Ingredient(name: "Gleamblossom", effects: []),
-                    Ingredient(name: "Netch Jelly", effects: []),
-                    Ingredient(name: "Wisp Wrappings", effects: [])
-                ],
-                estimatedValue: 689),
+            mixture: ViewRep.Mixture.preview(
+                ingredients: ["Gleamblossom", "Netch Jelly", "Wisp Wrappings"],
+                effects: ["Fear", "Paralysis", "Resist Magic", "Fortify Carry Weight", "Restore Stamina"],
+                value: 689),
             seekedEffect: .init(),
             seekedIngredient: .init())
+        .environmentObject(AppViewModel())
     }
-
 }

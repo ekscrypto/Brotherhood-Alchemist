@@ -24,7 +24,7 @@ public extension Intent {
 
 extension Intent.MustHaveIngredient: AtomicOperation {
     
-    func mutate(
+    public func mutate(
         appState initialState: AppState,
         viewRepCache initialCache: ViewRepCache
     ) throws -> (AppState, ViewRepCache, [String: ExternalActivity]) {

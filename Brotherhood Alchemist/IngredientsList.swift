@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import DomainLogic
 
 @MainActor
 struct IngredientsList: View {
@@ -15,33 +16,38 @@ struct IngredientsList: View {
     let seekedEffect: SeekedEffect
     let seekedIngredient: SeekedIngredient
 
+    @EnvironmentObject var appViewModel: AppViewModel
+
     @State var controlButtonsWidth: CGFloat = .zero
     @State var expanded: Bool = false
-    @State var filter: String = "" {
-        didSet { updateFilteredIngredients() }
-    }
+    @State var filter: String = ""
     @State var showResetModal: Bool = false
-    @State var filteredIngredients: [Ingredient] = []
-    
-    @MainActor
-    private func updateFilteredIngredients() {
-        filteredIngredients = Registry.active.ingredients(filteredBy: filter)
+
+    private var filteredIngredients: [ViewRep.Ingredient] {
+        guard let ingredients = appViewModel.viewRep?.ingredients else { return [] }
+        let trimmed = filter.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if trimmed.isEmpty { return ingredients }
+        if trimmed.hasPrefix("=") {
+            let expected = String(trimmed.dropFirst())
+            return ingredients.filter { $0.name.lowercased() == expected }
+        }
+        return ingredients.filter { $0.name.localizedCaseInsensitiveContains(trimmed) }
     }
-    
+
     // MARK: -
     var body: some View {
         return ZStack {
             VStack(spacing: 1) {
                 Color((UIColor.systemBackground))
                     .frame(height: 1)
-                
+
                 ListHeader(
                     expanded: $expanded,
                     showResetModal: $showResetModal,
                     title: "Ingredients")
-                
+
                 FilterControl(filter: $filter)
-                
+
                 listOfIngredients
             }
             .blur(radius: showResetModal ? 4 : 0)
@@ -51,34 +57,25 @@ struct IngredientsList: View {
                 ResetModal(
                     queryText: "Set all ingredients as:",
                     resetAction: {
-                        Registry.active.resetIngredients(to: $0)
+                        appViewModel.resetAllIngredients(to: $0)
                     },
                     visibility: $showResetModal)
             }
         }
         .background(Color("itemBackground"))
-        .onChange(of: filter, perform: { _ in
-            updateFilteredIngredients()
-        })
-        .onReceive(Registry.active.$ingredients) { _ in updateFilteredIngredients()
-        }
-        .onReceive(seekedIngredient.$ingredient) { ingredientOrNil in
-            guard let ingredient = ingredientOrNil else { return }
-            filter = "=\(~ingredient.name)"
+        .onReceive(seekedIngredient.$name) { nameOrNil in
+            guard let name = nameOrNil else { return }
+            filter = "=\(name)"
             expanded = true
         }
     }
-    
-//    private func onReset(_ selection: SelectionState) {
-//        Registry.active.resetIngredients(to: selection)
-//    }
-    
+
     // MARK: -
-    
+
     private var listOfIngredients: some View {
         ScrollView(showsIndicators: false) {
             ScrollViewReader { scrollView in
-                
+
                 LazyVStack(spacing: 1) {
                     ForEach(filteredIngredients) { ingredient in
                         IngredientDetails(
@@ -87,7 +84,7 @@ struct IngredientsList: View {
                             seekedEffect: seekedEffect)
                     }
                 }
-                
+
                 Color.clear
                     .frame(height: listBottomPadding)
             }
@@ -102,16 +99,12 @@ struct IngredientsList_Previews: PreviewProvider {
             listBottomPadding: 0,
             seekedEffect: .init(),
             seekedIngredient: .init())
-//            .preferredColorScheme(.light)
-//            .previewDisplayName("Light")
-//            .previewDevice("iPhone 14")
+        .environmentObject(AppViewModel())
 
         IngredientsList(
             listBottomPadding: 0,
             seekedEffect: .init(),
             seekedIngredient: .init())
-//            .preferredColorScheme(.dark)
-//            .previewDisplayName("Dark")
-//            .previewDevice("iPhone 14")
+        .environmentObject(AppViewModel())
     }
 }

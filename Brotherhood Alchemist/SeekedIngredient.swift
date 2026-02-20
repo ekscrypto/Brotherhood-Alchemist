@@ -9,5 +9,5 @@
 import Foundation
 
 class SeekedIngredient {
-    @Published var ingredient: Ingredient?
+    @Published var name: String?
 }

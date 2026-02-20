@@ -9,5 +9,5 @@
 import Foundation
 
 class SeekedEffect {
-    @Published var effect: Effect?
+    @Published var name: String?
 }

@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-protocol AtomicOperation: Sendable {
+public protocol AtomicOperation: Sendable {
     /// Attempt to mutate the AppState and ViewRepCache using the provided AtomicOperation
     ///
     /// - Parameters:
@@ -45,7 +45,7 @@ public actor StateMachine {
     let appStateViewRepCachePublisher: PassthroughSubject<(AppState, ViewRepCache), Never> = .init()
     nonisolated let singletons: Singletons = .init()
     
-    init() {
+    public init() {
         _ = viewRepPublisher
     }
         
@@ -58,7 +58,7 @@ public actor StateMachine {
             .eraseToAnyPublisher()
     
     @discardableResult
-    func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
+    public func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
         let (updatedState, updatedCache, externalActivities) = try atomicOperation.mutate(
             appState: appState,
             viewRepCache: viewRepCache)

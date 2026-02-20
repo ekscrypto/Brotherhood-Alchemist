@@ -1057,7 +1057,7 @@ public struct Ingredient: Identifiable, Codable, Sendable {
             Effect.weaknessToFire.id: .standard,
             Effect.restoreStamina.id: .standard])
 
-    static let all: [Ingredient] = [
+    public static let all: [Ingredient] = [
         .abeceanLongfin,
         .ancestorMothWing,
         .ashCreepCluster,
