@@ -46,6 +46,10 @@ struct RecipesList: View {
         appViewModel.viewRep?.mixtures.brewing ?? true
     }
 
+    private var brewingProgress: Double {
+        appViewModel.viewRep?.mixtures.progress ?? 0
+    }
+
     private var effectsFilteredMixtures: [ViewRep.Mixture] {
         guard let mixtures = appViewModel.viewRep?.mixtures.mixtures else { return [] }
 
@@ -124,7 +128,7 @@ struct RecipesList: View {
 
                 if isBrewing {
                     VStack {
-                        Text("Brewing…")
+                        Text("Brewing… \(Int(brewingProgress * 100))%")
                             .padding(.top, 80)
                             .padding(.bottom)
                         Text("Attempting not to blow up my fingers")

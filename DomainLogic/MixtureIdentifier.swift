@@ -16,6 +16,7 @@ enum MixtureIdentifier {
     static func invalidateMixtures(appState: inout AppState, cache: inout ViewRepCache) {
         appState.mixtures = []
         appState.mixturesDataSourceRevision = appState.mixturesDataSourceRevision + 1
+        appState.mixtureIdentificationProgress = 0
         cache.filteredMixtures = .invalidated(UUID())
         cache.mixtures = .invalidated(UUID())
     }
@@ -84,8 +85,14 @@ enum MixtureIdentifier {
             Task { [appState, stateMachine] in
                 async let ingredientNames = keyIngredientNames(appState.ingredients)
                 async let effectInfo = keyEffectInfo(appState.effects)
-                
-                let identifiedMixtures = try await identify(from: appState)
+                let revision = appState.mixturesDataSourceRevision
+                let identifiedMixtures = try await identify(from: appState) { completed, total in
+                    Task {
+                        try? await stateMachine.ingest(ExternalEvent.MixtureIdentificationProgress(
+                            progress: Double(completed) / Double(total),
+                            mixturesDataSourceRevision: revision))
+                    }
+                }
 
                 guard !Task.isCancelled else {
                     return
@@ -112,10 +119,13 @@ enum MixtureIdentifier {
         case outdated
     }
 
-    private static func identify(from appState: AppState) async throws -> [Mixture] {
+    private static func identify(
+        from appState: AppState,
+        onProgress: @escaping @Sendable (Int, Int) -> Void
+    ) async throws -> [Mixture] {
         let effects = appState.effects
         let ingredients = appState.ingredients
-        
+
         let mixtures: [Mixture] = effects.withContiguousStorageIfAvailable { contiguousEffects in
             ingredients.withContiguousStorageIfAvailable { contiguousIngredients in
                 // Based on results from known mixtures in previous production builds...
@@ -127,24 +137,25 @@ enum MixtureIdentifier {
                 let expectedMixtures = Int(countAdjustedForRatio * countAdjustedForRatio * countAdjustedForRatio)
                 var identifiedMixtures: [Mixture] = []
                 identifiedMixtures.reserveCapacity(expectedMixtures)
-                
+
                 do {
                     try identifyTwoIngredientMixtures(
                         effects: contiguousEffects,
                         ingredients: contiguousIngredients,
                         mixtures: &identifiedMixtures)
-                    
+
                     try identifyThreeIngredientMixtures(
                         effects: contiguousEffects,
                         ingredients: contiguousIngredients,
-                        mixtures: &identifiedMixtures)
+                        mixtures: &identifiedMixtures,
+                        onOuterLoopProgress: onProgress)
                 } catch {
                     return []
                 }
                 return identifiedMixtures
             } ?? []
         } ?? []
-        
+
         return mixtures
     }
     
@@ -180,10 +191,15 @@ enum MixtureIdentifier {
     private static func identifyThreeIngredientMixtures(
         effects: UnsafeBufferPointer<Effect>,
         ingredients: UnsafeBufferPointer<Ingredient>,
-        mixtures: inout [Mixture]
+        mixtures: inout [Mixture],
+        onOuterLoopProgress: (Int, Int) -> Void
     ) throws {
-        for ingredient1Index in 0 ..< ingredients.count {
-            for ingredient2Index in ingredient1Index+1 ..< ingredients.count {
+        let n = ingredients.count
+        let totalIterations = n * (n - 1) * (n - 2) / 6
+        var completedIterations = 0
+        for ingredient1Index in 0 ..< n {
+            onOuterLoopProgress(completedIterations, totalIterations)
+            for ingredient2Index in ingredient1Index+1 ..< n {
                 for ingredient3Index in ingredient2Index+1 ..< ingredients.count {
                     try Task.checkCancellation()
                     let ingredient1 = ingredients[ingredient1Index]
@@ -212,6 +228,8 @@ enum MixtureIdentifier {
                     mixtures.append(mixture)
                 }
             }
+            let remaining = n - 1 - ingredient1Index
+            completedIterations += remaining * (remaining - 1) / 2
         }
     }
 }

@@ -8,8 +8,18 @@
 
 import Foundation
 
+import DomainLogic
+
 enum SelectionState: UInt8, Equatable, Codable {
     case cantHave
     case mayHave
     case mustHave
+
+    var domainLogic: DomainLogic.SelectionState {
+        switch self {
+        case .cantHave: return .cantHave
+        case .mayHave: return .mayHave
+        case .mustHave: return .mustHave
+        }
+    }
 }

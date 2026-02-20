@@ -60,6 +60,6 @@ public struct ViewRep: Equatable, Sendable {
             }
         }
 
-        mixtures = .init(filteredMixtures: viewRepCache.filteredMixtures)
+        mixtures = .init(filteredMixtures: viewRepCache.filteredMixtures, identificationProgress: appState.mixtureIdentificationProgress)
     }
 }

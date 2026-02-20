@@ -13,6 +13,7 @@ public struct AppState: Codable, Sendable {
     var ingredients: [Ingredient]
     
     var mixturesDataSourceRevision: Int64
+    var mixtureIdentificationProgress: Double
     var mixtures: [Mixture]
     
     var mixturesFilterSourceRevision: Int64
@@ -26,6 +27,7 @@ public struct AppState: Codable, Sendable {
         effects: [],
         ingredients: [],
         mixturesDataSourceRevision: 0,
+        mixtureIdentificationProgress: 0,
         mixtures: [],
         mixturesFilterSourceRevision: 0,
         mixingMode: .septimExtorsion,

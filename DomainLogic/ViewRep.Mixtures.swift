@@ -20,16 +20,19 @@ extension ViewRep {
 
     public struct Mixtures: Equatable, Sendable {
         public let brewing: Bool
+        public let progress: Double
         public let mixtures: [Mixture]
 
-        init(filteredMixtures: ViewRepCache.Cache<[ViewRep.Mixture]>) {
+        init(filteredMixtures: ViewRepCache.Cache<[ViewRep.Mixture]>, identificationProgress: Double) {
             switch filteredMixtures {
             case .cached(let mixtures):
                 self.mixtures = mixtures
                 brewing = false
+                progress = 1.0
             case .invalidated(_):
                 self.mixtures = []
                 brewing = true
+                progress = identificationProgress
             }
         }
     }

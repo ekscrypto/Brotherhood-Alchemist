@@ -13,6 +13,9 @@
 		786D9CFB29EBA088001C9A7C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D9CFA29EBA088001C9A7C /* main.swift */; };
 		786D9D0029EC4360001C9A7C /* ExternalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D9CFF29EC4360001C9A7C /* ExternalEvent.swift */; };
 		786D9D0229EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D9D0129EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift */; };
+		AA0000012A000001001C9A7C /* ExternalEvent.MixtureIdentificationProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000002A000001001C9A7C /* ExternalEvent.MixtureIdentificationProgress.swift */; };
+		AA0000032A000002001C9A7C /* Intent.ResetAllEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000022A000002001C9A7C /* Intent.ResetAllEffects.swift */; };
+		AA0000052A000003001C9A7C /* Intent.ResetAllIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000042A000003001C9A7C /* Intent.ResetAllIngredients.swift */; };
 		786D9D0429EC6AEA001C9A7C /* Singletons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786D9D0329EC6AEA001C9A7C /* Singletons.swift */; };
 		7878D0B129F778070088D107 /* ViewRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7878D0B029F778070088D107 /* ViewRep.swift */; };
 		7878D0B329F784AF0088D107 /* ViewRep.Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7878D0B229F784AF0088D107 /* ViewRep.Ingredient.swift */; };
@@ -155,6 +158,9 @@
 		786D9CFA29EBA088001C9A7C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		786D9CFF29EC4360001C9A7C /* ExternalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.swift; sourceTree = "<group>"; };
 		786D9D0129EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.MixturesIdentified.swift; sourceTree = "<group>"; };
+		AA0000002A000001001C9A7C /* ExternalEvent.MixtureIdentificationProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalEvent.MixtureIdentificationProgress.swift; sourceTree = "<group>"; };
+		AA0000022A000002001C9A7C /* Intent.ResetAllEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.ResetAllEffects.swift; sourceTree = "<group>"; };
+		AA0000042A000003001C9A7C /* Intent.ResetAllIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.ResetAllIngredients.swift; sourceTree = "<group>"; };
 		786D9D0329EC6AEA001C9A7C /* Singletons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singletons.swift; sourceTree = "<group>"; };
 		787334E927DE445F009120C5 /* GrimoireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrimoireTests.swift; sourceTree = "<group>"; };
 		787334F427DE81B1009120C5 /* ConcoctionEffectsFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcoctionEffectsFilterTests.swift; sourceTree = "<group>"; };
@@ -324,6 +330,7 @@
 				78FE5D7A29E4D44D0079FA06 /* Data Model */,
 				78B8216029E4D0B500D3A6EE /* DomainLogic.docc */,
 				78B8215F29E4D0B500D3A6EE /* DomainLogic.h */,
+				AA0000002A000001001C9A7C /* ExternalEvent.MixtureIdentificationProgress.swift */,
 				786D9D0129EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift */,
 				78DF46D02A04065800EEC871 /* ExternalEvent.MixturesFiltered.swift */,
 				786D9CFF29EC4360001C9A7C /* ExternalEvent.swift */,
@@ -340,6 +347,8 @@
 				78FE5D9D29E8762C0079FA06 /* Intent.MustHaveIngredient.swift */,
 				78FE5D8D29E501CC0079FA06 /* Intent.RemoveEffect.swift */,
 				78FE5D8F29E5047D0079FA06 /* Intent.RemoveIngredient.swift */,
+				AA0000022A000002001C9A7C /* Intent.ResetAllEffects.swift */,
+				AA0000042A000003001C9A7C /* Intent.ResetAllIngredients.swift */,
 				78FE5D8929E4FB4F0079FA06 /* Intent.swift */,
 				78FE5D9129E510840079FA06 /* Intent.UpdateEffect.swift */,
 				78FE5D9329E514160079FA06 /* Intent.UpdateIngredient.swift */,
@@ -725,6 +734,9 @@
 				78DF46D12A04065800EEC871 /* ExternalEvent.MixturesFiltered.swift in Sources */,
 				78FE5D7C29E4D4880079FA06 /* StateMachine.swift in Sources */,
 				786D9D0229EC439C001C9A7C /* ExternalEvent.MixturesIdentified.swift in Sources */,
+				AA0000012A000001001C9A7C /* ExternalEvent.MixtureIdentificationProgress.swift in Sources */,
+				AA0000032A000002001C9A7C /* Intent.ResetAllEffects.swift in Sources */,
+				AA0000052A000003001C9A7C /* Intent.ResetAllIngredients.swift in Sources */,
 				78FE5DA029E883920079FA06 /* Intent.CantHaveIngredient.swift in Sources */,
 				78FE5D7E29E4D7CB0079FA06 /* Intent.AddEffect.swift in Sources */,
 				78B8218229E4D2CF00D3A6EE /* Outcome.swift in Sources */,

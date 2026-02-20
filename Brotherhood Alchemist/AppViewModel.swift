@@ -73,38 +73,14 @@ final class AppViewModel: ObservableObject {
     }
 
     func resetAllIngredients(to selection: SelectionState) {
-        guard let viewRep else { return }
         Task {
-            for ingredient in viewRep.ingredients {
-                let current = selectionState(forIngredient: ingredient.id)
-                if current == selection { continue }
-                switch selection {
-                case .mustHave:
-                    try await stateMachine.ingest(Intent.MustHaveIngredient(id: ingredient.id))
-                case .cantHave:
-                    try await stateMachine.ingest(Intent.CantHaveIngredient(id: ingredient.id))
-                case .mayHave:
-                    try await stateMachine.ingest(Intent.MayHaveIngredient(id: ingredient.id))
-                }
-            }
+            try await stateMachine.ingest(Intent.ResetAllIngredients(to: selection.domainLogic))
         }
     }
 
     func resetAllEffects(to selection: SelectionState) {
-        guard let viewRep else { return }
         Task {
-            for effect in viewRep.effects {
-                let current = selectionState(forEffect: effect.id)
-                if current == selection { continue }
-                switch selection {
-                case .mustHave:
-                    try await stateMachine.ingest(Intent.MustHaveEffect(id: effect.id))
-                case .cantHave:
-                    try await stateMachine.ingest(Intent.CantHaveEffect(id: effect.id))
-                case .mayHave:
-                    try await stateMachine.ingest(Intent.MayHaveEffect(id: effect.id))
-                }
-            }
+            try await stateMachine.ingest(Intent.ResetAllEffects(to: selection.domainLogic))
         }
     }
 }
