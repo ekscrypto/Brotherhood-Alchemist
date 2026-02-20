@@ -686,7 +686,376 @@ public struct Ingredient: Identifiable, Codable, Sendable {
             Effect.fortifyRestoration.id,
             Effect.fortifyHealth.id,
             Effect.damageStaminaRegen.id])
-    
+
+    // MARK: - Rare Curios (Anniversary Edition)
+
+    static let alocasiaFruit = Ingredient(
+        id: .init(rawValue: 0x0C79FB93), name: "Alocasia Fruit", effects: [
+            Effect.regenerateStamina.id,
+            Effect.light.id,
+            Effect.ravageMagicka.id,
+            Effect.regenerateHealth.id])
+    static let ambrosia = Ingredient(
+        id: .init(rawValue: 0x0DF6A822), name: "Ambrosia", effects: [
+            Effect.restoreHealth.id,
+            Effect.regenerateHealth.id,
+            Effect.fortifyHealth.id,
+            Effect.curePoison.id])
+    static let asterBloomCore = Ingredient(
+        id: .init(rawValue: 0x10C8399E), name: "Aster Bloom Core", effects: [
+            Effect.resistMagic.id,
+            Effect.fortifyLightArmor.id,
+            Effect.fortifyBlock.id,
+            Effect.paralysis.id])
+    static let bittergreenPetals = Ingredient(
+        id: .init(rawValue: 0x111F5BE2), name: "Bittergreen Petals", effects: [
+            Effect.lingeringDamageStamina.id,
+            Effect.invisibility.id,
+            Effect.curePoison.id,
+            Effect.damageMagicka.id])
+    static let blindWatchersEye = Ingredient(
+        id: .init(rawValue: 0x11B03D91), name: "Blind Watcher's Eye", effects: [
+            Effect.light.id,
+            Effect.fortifyMagicka.id,
+            Effect.fortifyAlteration.id,
+            Effect.spellAbsorption.id])
+    static let blisterPodCap = Ingredient(
+        id: .init(rawValue: 0x11CEC2B5), name: "Blister Pod Cap", effects: [
+            Effect.restoreMagicka.id,
+            Effect.fortifyMagicka.id,
+            Effect.nightEye.id,
+            Effect.invisibility.id])
+    static let bogBeacon = Ingredient(
+        id: .init(rawValue: 0x13050582), name: "Bog Beacon", effects: [
+            Effect.restoreMagicka.id,
+            Effect.fortifyHeavyArmor.id,
+            Effect.fear.id,
+            Effect.damageStamina.id])
+    static let bunglersBane = Ingredient(
+        id: .init(rawValue: 0x1415231B), name: "Bungler's Bane", effects: [
+            Effect.slow.id,
+            Effect.ravageStamina.id,
+            Effect.damageStaminaRegen.id,
+            Effect.resistMagic.id])
+    static let chokeberry = Ingredient(
+        id: .init(rawValue: 0x1A8DC382), name: "Chokeberry", effects: [
+            Effect.damageHealth.id,
+            Effect.ravageHealth.id,
+            Effect.lingeringDamageHealth.id,
+            Effect.weaknessToPoison.id])
+    static let chokeweed = Ingredient(
+        id: .init(rawValue: 0x1D2AC084), name: "Chokeweed", effects: [
+            Effect.weaknessToFrost.id,
+            Effect.restoreStamina.id,
+            Effect.cureDisease.id,
+            Effect.damageMagicka.id])
+    static let codaFlower = Ingredient(
+        id: .init(rawValue: 0x209D27D3), name: "Coda Flower", effects: [
+            Effect.damageHealth.id,
+            Effect.lingeringDamageStamina.id,
+            Effect.ravageMagicka.id,
+            Effect.fortifyCarryWeight.id])
+    static let comberry = Ingredient(
+        id: .init(rawValue: 0x214C17E0), name: "Comberry", effects: [
+            Effect.damageStamina.id,
+            Effect.spellAbsorption.id,
+            Effect.restoreMagicka.id,
+            Effect.fortifyDestruction.id])
+    static let congealedPutrescence = Ingredient(
+        id: .init(rawValue: 0x23D78086), name: "Congealed Putrescence", effects: [
+            Effect.ravageHealth.id,
+            Effect.restoreMagicka.id,
+            Effect.weaknessToFire.id,
+            Effect.fortifyConjuration.id])
+    static let corkbulbRoot = Ingredient(
+        id: .init(rawValue: 0x27CD024C), name: "Corkbulb Root", effects: [
+            Effect.paralysis.id,
+            Effect.restoreHealth.id,
+            Effect.resistShock.id,
+            Effect.fortifyMarksman.id])
+    static let daedraSilk = Ingredient(
+        id: .init(rawValue: 0x28D8EAF1), name: "Daedra Silk", effects: [
+            Effect.lingeringDamageStamina.id,
+            Effect.paralysis.id,
+            Effect.nightEye.id,
+            Effect.invisibility.id])
+    static let daedraVenin = Ingredient(
+        id: .init(rawValue: 0x2AF2296F), name: "Daedra Venin", effects: [
+            Effect.ravageHealth.id,
+            Effect.paralysis.id,
+            Effect.fortifyDestruction.id,
+            Effect.spellAbsorption.id])
+    static let daedrothTeeth = Ingredient(
+        id: .init(rawValue: 0x2DB7BD59), name: "Daedroth Teeth", effects: [
+            Effect.resistFrost.id,
+            Effect.light.id,
+            Effect.damageMagickaRegen.id,
+            Effect.regenerateStamina.id])
+    static let dreughWax = Ingredient(
+        id: .init(rawValue: 0x337BA1A5), name: "Dreugh Wax", effects: [
+            Effect.weaknessToMagic.id,
+            Effect.frenzy.id,
+            Effect.fortifyEnchanting.id,
+            Effect.fortifySmithing.id])
+    static let elytraIchor = Ingredient(
+        id: .init(rawValue: 0x3546F37C), name: "Elytra Ichor", effects: [
+            Effect.restoreMagicka.id,
+            Effect.invisibility.id,
+            Effect.slow.id,
+            Effect.fear.id])
+    static let firePetal = Ingredient(
+        id: .init(rawValue: 0x35D1F0F3), name: "Fire Petal", effects: [
+            Effect.damageHealth.id,
+            Effect.resistFire.id,
+            Effect.spellAbsorption.id,
+            Effect.paralysis.id])
+    static let flameStalk = Ingredient(
+        id: .init(rawValue: 0x3B039849), name: "Flame Stalk", effects: [
+            Effect.restoreHealth.id,
+            Effect.resistFrost.id,
+            Effect.weaknessToFire.id,
+            Effect.invisibility.id])
+    static let fungusstalk = Ingredient(
+        id: .init(rawValue: 0x3CA6AF23), name: "Fungus Stalk", effects: [
+            Effect.restoreMagicka.id,
+            Effect.fortifyHealth.id,
+            Effect.fortifyStamina.id,
+            Effect.waterbreathing.id])
+    static let gnarlBark = Ingredient(
+        id: .init(rawValue: 0x3D911E5A), name: "Gnarl Bark", effects: [
+            Effect.damageHealth.id,
+            Effect.regenerateHealth.id,
+            Effect.fortifyHeavyArmor.id,
+            Effect.resistFire.id])
+    static let goldKanet = Ingredient(
+        id: .init(rawValue: 0x3EA0DE81), name: "Gold Kanet", effects: [
+            Effect.paralysis.id,
+            Effect.ravageHealth.id,
+            Effect.weaknessToFrost.id,
+            Effect.fortifySmithing.id])
+    static let hackleLoLeaf = Ingredient(
+        id: .init(rawValue: 0x43C5812F), name: "Hackle-Lo Leaf", effects: [
+            Effect.restoreStamina.id,
+            Effect.paralysis.id,
+            Effect.waterbreathing.id,
+            Effect.fortifyRestoration.id])
+    static let heartOfOrder = Ingredient(
+        id: .init(rawValue: 0x43EAB7FE), name: "Heart of Order", effects: [
+            Effect.restoreHealth.id,
+            Effect.fortifyHealth.id,
+            Effect.fortifyOneHanded.id,
+            Effect.fortifyTwoHanded.id])
+    static let hungerTongue = Ingredient(
+        id: .init(rawValue: 0x4B17D886), name: "Hunger Tongue", effects: [
+            Effect.weaknessToFire.id,
+            Effect.cureDisease.id,
+            Effect.curePoison.id,
+            Effect.fortifyMagicka.id])
+    static let hydnumAzureGiantSpore = Ingredient(
+        id: .init(rawValue: 0x4C46972F), name: "Hydnum Azure Giant Spore", effects: [
+            Effect.resistFrost.id,
+            Effect.fortifyHealth.id,
+            Effect.regenerateHealth.id,
+            Effect.light.id])
+    static let hyphaFacia = Ingredient(
+        id: .init(rawValue: 0x4E082F65), name: "Hypha Facia", effects: [
+            Effect.weaknessToPoison.id,
+            Effect.frenzy.id,
+            Effect.ravageStamina.id,
+            Effect.resistMagic.id])
+    static let impGall = Ingredient(
+        id: .init(rawValue: 0x4E57B0C5), name: "Imp Gall", effects: [
+            Effect.damageHealth.id,
+            Effect.weaknessToFire.id,
+            Effect.fortifyBarter.id,
+            Effect.curePoison.id])
+    static let kagoutiHide = Ingredient(
+        id: .init(rawValue: 0x55328130), name: "Kagouti Hide", effects: [
+            Effect.lingeringDamageStamina.id,
+            Effect.nightEye.id,
+            Effect.fortifyCarryWeight.id,
+            Effect.resistShock.id])
+    static let kreshFiber = Ingredient(
+        id: .init(rawValue: 0x58997AD8), name: "Kresh Fiber", effects: [
+            Effect.weaknessToMagic.id,
+            Effect.slow.id,
+            Effect.fortifySneak.id,
+            Effect.fortifyPickpocket.id])
+    static let lichor = Ingredient(
+        id: .init(rawValue: 0x58B79350), name: "Lichor", effects: [
+            Effect.restoreMagicka.id,
+            Effect.regenerateMagicka.id,
+            Effect.fortifyMagicka.id,
+            Effect.spellAbsorption.id])
+    static let luminousRussula = Ingredient(
+        id: .init(rawValue: 0x59A68D7F), name: "Luminous Russula", effects: [
+            Effect.lingeringDamageStamina.id,
+            Effect.lingeringDamageHealth.id,
+            Effect.waterbreathing.id,
+            Effect.fear.id])
+    static let marshmerrow = Ingredient(
+        id: .init(rawValue: 0x5A769A0C), name: "Marshmerrow", effects: [
+            Effect.restoreHealth.id,
+            Effect.fortifyCarryWeight.id,
+            Effect.weaknessToMagic.id,
+            Effect.damageStamina.id])
+    static let minotaurHorn = Ingredient(
+        id: .init(rawValue: 0x5AC4B6D4), name: "Minotaur Horn", effects: [
+            Effect.resistPoison.id,
+            Effect.damageMagickaRegen.id,
+            Effect.regenerateHealth.id,
+            Effect.regenerateMagicka.id])
+    static let ogresTeeth = Ingredient(
+        id: .init(rawValue: 0x5E2FEF27), name: "Ogre's Teeth", effects: [
+            Effect.weaknessToShock.id,
+            Effect.resistPoison.id,
+            Effect.lingeringDamageMagicka.id,
+            Effect.regenerateHealth.id])
+    static let redKelpGasBladder = Ingredient(
+        id: .init(rawValue: 0x5E5B175A), name: "Red Kelp Gas Bladder", effects: [
+            Effect.regenerateStamina.id,
+            Effect.waterbreathing.id,
+            Effect.cureDisease.id,
+            Effect.fortifyMagicka.id])
+    static let redwortFlower = Ingredient(
+        id: .init(rawValue: 0x602BFE3E), name: "Redwort Flower", effects: [
+            Effect.resistFrost.id,
+            Effect.curePoison.id,
+            Effect.damageHealth.id,
+            Effect.invisibility.id])
+    static let roobrush = Ingredient(
+        id: .init(rawValue: 0x6069533F), name: "Roobrush", effects: [
+            Effect.weaknessToMagic.id,
+            Effect.fortifySneak.id,
+            Effect.lingeringDamageHealth.id,
+            Effect.curePoison.id])
+    static let saltrice = Ingredient(
+        id: .init(rawValue: 0x611FF16A), name: "Saltrice", effects: [
+            Effect.restoreStamina.id,
+            Effect.fortifyMagicka.id,
+            Effect.damageStaminaRegen.id,
+            Effect.restoreHealth.id])
+    static let scalonFin = Ingredient(
+        id: .init(rawValue: 0x61B6D39E), name: "Scalon Fin", effects: [
+            Effect.waterbreathing.id,
+            Effect.damageHealth.id,
+            Effect.lingeringDamageMagicka.id,
+            Effect.damageMagickaRegen.id])
+    static let scribJelly = Ingredient(
+        id: .init(rawValue: 0x6472F90D), name: "Scrib Jelly", effects: [
+            Effect.regenerateMagicka.id,
+            Effect.curePoison.id,
+            Effect.cureDisease.id,
+            Effect.regenerateStamina.id])
+    static let scribJerky = Ingredient(
+        id: .init(rawValue: 0x67C995F6), name: "Scrib Jerky", effects: [
+            Effect.restoreStamina.id,
+            Effect.fortifyStamina.id,
+            Effect.paralysis.id,
+            Effect.waterbreathing.id])
+    static let sloadSoap = Ingredient(
+        id: .init(rawValue: 0x67FE62D3), name: "Sload Soap", effects: [
+            Effect.resistFire.id,
+            Effect.fear.id,
+            Effect.fortifyConjuration.id,
+            Effect.fortifyAlteration.id])
+    static let stoneflowerPetals = Ingredient(
+        id: .init(rawValue: 0x68CB00DA), name: "Stoneflower Petals", effects: [
+            Effect.weaknessToShock.id,
+            Effect.fortifyOneHanded.id,
+            Effect.fortifyMagicka.id,
+            Effect.fortifyEnchanting.id])
+    static let voidEssence = Ingredient(
+        id: .init(rawValue: 0x6941EDFE), name: "Void Essence", effects: [
+            Effect.restoreHealth.id,
+            Effect.fortifyHealth.id,
+            Effect.fortifyStamina.id,
+            Effect.regenerateHealth.id])
+    static let watchersEye = Ingredient(
+        id: .init(rawValue: 0x6A2B45C8), name: "Watcher's Eye", effects: [
+            Effect.nightEye.id,
+            Effect.fortifyMagicka.id,
+            Effect.fortifyIllusion.id,
+            Effect.spellAbsorption.id])
+    static let wispStalkCaps = Ingredient(
+        id: .init(rawValue: 0x6B0CD99B), name: "Wisp Stalk Caps", effects: [
+            Effect.damageHealth.id,
+            Effect.weaknessToPoison.id,
+            Effect.frenzy.id,
+            Effect.spellAbsorption.id])
+    static let witheringMoon = Ingredient(
+        id: .init(rawValue: 0x6B3BAE30), name: "Withering Moon", effects: [
+            Effect.restoreMagicka.id,
+            Effect.spellAbsorption.id,
+            Effect.fortifyLightArmor.id,
+            Effect.cureDisease.id])
+    static let wormsHeadCap = Ingredient(
+        id: .init(rawValue: 0x6C1316D5), name: "Worm's Head Cap", effects: [
+            Effect.fortifyLockpicking.id,
+            Effect.nightEye.id,
+            Effect.fortifyCarryWeight.id,
+            Effect.slow.id])
+
+    // MARK: - Saints & Seducers (Anniversary Edition)
+
+    static let blissBugThorax = Ingredient(
+        id: .init(rawValue: 0x6DF11FA7), name: "Bliss Bug Thorax", effects: [
+            Effect.weaknessToFire.id,
+            Effect.resistFire.id,
+            Effect.fortifyHeavyArmor.id,
+            Effect.fortifyIllusion.id])
+    static let greenButterflyWing = Ingredient(
+        id: .init(rawValue: 0x70D0390A), name: "Green Butterfly Wing", effects: [
+            Effect.restoreMagicka.id,
+            Effect.fear.id,
+            Effect.slow.id,
+            Effect.invisibility.id])
+    static let purpleButterflyWing = Ingredient(
+        id: .init(rawValue: 0x73535146), name: "Purple Butterfly Wing", effects: [
+            Effect.regenerateHealth.id,
+            Effect.regenerateMagicka.id,
+            Effect.regenerateStamina.id,
+            Effect.paralysis.id])
+    static let rotScale = Ingredient(
+        id: .init(rawValue: 0x7726FFBF), name: "Rot Scale", effects: [
+            Effect.slow.id,
+            Effect.lingeringDamageHealth.id,
+            Effect.fear.id,
+            Effect.paralysis.id])
+    static let screamingMaw = Ingredient(
+        id: .init(rawValue: 0x77EE4F1B), name: "Screaming Maw", effects: [
+            Effect.regenerateMagicka.id,
+            Effect.fortifyAlteration.id,
+            Effect.invisibility.id,
+            Effect.regenerateHealth.id])
+    static let thornHook = Ingredient(
+        id: .init(rawValue: 0x77F1C92D), name: "Thorn Hook", effects: [
+            Effect.lingeringDamageHealth.id,
+            Effect.paralysis.id,
+            Effect.regenerateMagicka.id,
+            Effect.regenerateHealth.id])
+
+    // MARK: - The Cause (Anniversary Edition)
+
+    static let bloodgrass = Ingredient(
+        id: .init(rawValue: 0x7C849020), name: "Bloodgrass", effects: [
+            Effect.invisibility.id,
+            Effect.resistPoison.id,
+            Effect.slow.id,
+            Effect.fortifyHealth.id])
+    static let harrada = Ingredient(
+        id: .init(rawValue: 0x7E5FB839), name: "Harrada", effects: [
+            Effect.damageHealth.id,
+            Effect.damageMagicka.id,
+            Effect.paralysis.id,
+            Effect.damageMagickaRegen.id])
+    static let spiddalStick = Ingredient(
+        id: .init(rawValue: 0x7E7790A5), name: "Spiddal Stick", effects: [
+            Effect.damageHealth.id,
+            Effect.damageMagicka.id,
+            Effect.weaknessToFire.id,
+            Effect.restoreStamina.id])
+
     static let all: [Ingredient] = [
         .abeceanLongfin,
         .ancestorMothWing,
@@ -798,7 +1167,70 @@ public struct Ingredient: Identifiable, Codable, Sendable {
         .wheat,
         .whiteCap,
         .wispWrappings,
-        .yellowMountainFlower
+        .yellowMountainFlower,
+        // Rare Curios
+        .alocasiaFruit,
+        .ambrosia,
+        .asterBloomCore,
+        .bittergreenPetals,
+        .blindWatchersEye,
+        .blisterPodCap,
+        .bogBeacon,
+        .bunglersBane,
+        .chokeberry,
+        .chokeweed,
+        .codaFlower,
+        .comberry,
+        .congealedPutrescence,
+        .corkbulbRoot,
+        .daedraSilk,
+        .daedraVenin,
+        .daedrothTeeth,
+        .dreughWax,
+        .elytraIchor,
+        .firePetal,
+        .flameStalk,
+        .fungusstalk,
+        .gnarlBark,
+        .goldKanet,
+        .hackleLoLeaf,
+        .heartOfOrder,
+        .hungerTongue,
+        .hydnumAzureGiantSpore,
+        .hyphaFacia,
+        .impGall,
+        .kagoutiHide,
+        .kreshFiber,
+        .lichor,
+        .luminousRussula,
+        .marshmerrow,
+        .minotaurHorn,
+        .ogresTeeth,
+        .redKelpGasBladder,
+        .redwortFlower,
+        .roobrush,
+        .saltrice,
+        .scalonFin,
+        .scribJelly,
+        .scribJerky,
+        .sloadSoap,
+        .stoneflowerPetals,
+        .voidEssence,
+        .watchersEye,
+        .wispStalkCaps,
+        .witheringMoon,
+        .wormsHeadCap,
+        // Saints & Seducers
+        .blissBugThorax,
+        .greenButterflyWing,
+        .purpleButterflyWing,
+        .rotScale,
+        .screamingMaw,
+        .thornHook,
+        // The Cause
+        .bloodgrass,
+        .harrada,
+        .spiddalStick
     ]
 }
 

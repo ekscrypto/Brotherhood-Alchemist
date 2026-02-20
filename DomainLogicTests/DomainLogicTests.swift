@@ -401,12 +401,12 @@ final class DomainLogicTests: XCTestCase {
         let finalStateExpectation = XCTestExpectation(description: "Expected mixtures should be found in the AppState")
         let stateObserver = await stateMachine.appStateViewRepCachePublisher.sink(
             receiveValue: {(updatedState, viewRepCache) in
-                if updatedState.mixtures.count == 33682, case .cached(let mixturesViewRep) = viewRepCache.mixtures, mixturesViewRep.count == 33682 {
+                if updatedState.mixtures.count == 117696, case .cached(let mixturesViewRep) = viewRepCache.mixtures, mixturesViewRep.count == 117696 {
                     finalStateExpectation.fulfill()
                 }
             })
         try await addAllEffectsAndIngredients(to: stateMachine)
-        await fulfillment(of: [finalStateExpectation], timeout: 10.0)
+        await fulfillment(of: [finalStateExpectation], timeout: 30.0)
         _ = stateObserver
         let finalState = await stateMachine.appState
         XCTAssertEqual(finalState.effects.count, Effect.all.count)

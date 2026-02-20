@@ -186,7 +186,22 @@ public struct Effect: Codable, Sendable, Identifiable {
     static let weaknessToShock = Effect(
         id: .init(rawValue: 0xE8AA6F24),
         name: "Weakness To Shock", baseValue: SeptimValue(rawValue: 56)!, outcome: .negative)
-    
+
+    // MARK: - Anniversary Edition (Creation Club)
+
+    static let curePoison = Effect(
+        id: .init(rawValue: 0x02C96F0E),
+        name: "Cure Poison", baseValue: SeptimValue(rawValue: 3)!, outcome: .positive)
+    static let light = Effect(
+        id: .init(rawValue: 0x04B8FF84),
+        name: "Light", baseValue: SeptimValue(rawValue: 25)!, outcome: .positive)
+    static let nightEye = Effect(
+        id: .init(rawValue: 0x05261767),
+        name: "Night Eye", baseValue: SeptimValue(rawValue: 38)!, outcome: .positive)
+    static let spellAbsorption = Effect(
+        id: .init(rawValue: 0x072BAFE8),
+        name: "Spell Absorption", baseValue: SeptimValue(rawValue: 380)!, outcome: .positive)
+
     static let all: [Effect] = [
         .cureDisease,
         .damageHealth,
@@ -242,7 +257,11 @@ public struct Effect: Codable, Sendable, Identifiable {
         .weaknessToFrost,
         .weaknessToMagic,
         .weaknessToPoison,
-        .weaknessToShock
+        .weaknessToShock,
+        .curePoison,
+        .light,
+        .nightEye,
+        .spellAbsorption
     ]
 }
 
