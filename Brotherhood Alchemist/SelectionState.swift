@@ -22,4 +22,12 @@ enum SelectionState: UInt8, Equatable, Codable {
         case .mustHave: return .mustHave
         }
     }
+
+    var accessibilityDescription: String {
+        switch self {
+        case .cantHave: return "can't have"
+        case .mayHave: return "may have"
+        case .mustHave: return "must have"
+        }
+    }
 }

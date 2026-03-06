@@ -48,6 +48,7 @@ struct Tabs: View {
         .foregroundColor(tabColor(tab))
         .frame(minWidth: buttonsWidth)
         .overlay(MinWidthCoordinator(via: $buttonsWidth))
+        .accessibilityAddTraits(tab == selectedTab ? .isSelected : [])
     }
     
     private func tabColor(_ tab: Tab) -> Color {

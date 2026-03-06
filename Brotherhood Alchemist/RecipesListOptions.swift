@@ -47,6 +47,7 @@ struct RecipesListOptions: View {
                                     }
                                 }
                                 .foregroundColor(Color("itemForeground"))
+                                .accessibilityAddTraits(sortBy == option ? .isSelected : [])
                             }
                         }
                     }
@@ -76,6 +77,7 @@ struct RecipesListOptions: View {
                                     }
                                 }
                                 .foregroundColor(Color("itemForeground"))
+                                .accessibilityAddTraits(ingredientsLimit == option ? .isSelected : [])
                             }
                         }
                     }
@@ -105,6 +107,7 @@ struct RecipesListOptions: View {
                                     }
                                 }
                                 .foregroundColor(Color("itemForeground"))
+                                .accessibilityAddTraits(effectsLimit == option ? .isSelected : [])
                             }
                         }
                     }
@@ -127,6 +130,7 @@ struct RecipesListOptions: View {
                 .frame(height: listBottomPadding)
 
         }
+        .accessibilityAddTraits(.isModal)
     }
 }
 

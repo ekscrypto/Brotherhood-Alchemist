@@ -39,14 +39,18 @@ struct EffectDetails: View {
             }) {
                 HStack(spacing: 1) {
                     SelectionIndicator(state: selection)
+                        .accessibilityHidden(true)
                     SelectionText(state: selection)
                         .frame(width: 40)
+                        .accessibilityHidden(true)
                     Text(effect.name)
                         .font(.system(isPad ? .caption : .headline))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color("itemForeground"))
                 }
             }
+            .accessibilityLabel("\(selection.accessibilityDescription) \(effect.name)")
+            .accessibilityHint("Tap to toggle between may, must, can't")
 
             if expanded {
                 additionalInfo

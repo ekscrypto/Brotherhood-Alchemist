@@ -181,6 +181,7 @@ struct RecipesList: View {
             }) {
                 Image(systemName: "square.and.pencil")
             }
+            .accessibilityLabel("Sort and filter options")
         }
     }
 

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Brotherhood Alchemist is a SwiftUI iOS app for finding Skyrim alchemy recipes. It computes all valid 2- and 3-ingredient potion/poison combinations (~33,682 mixtures) from 92 ingredients and 53 effects.
 
-The `state-machine` branch is an active rewrite from the legacy architecture to an actor-based state machine. The SwiftUI views are not yet reconnected — the app entry point currently shows placeholder text.
+The `state-machine` branch is an active rewrite from the legacy architecture to an actor-based state machine. The SwiftUI views have been reconnected to the new state machine.
 
 ## Build & Test Commands
 
@@ -57,12 +57,23 @@ ExternalEvents follow the same `AtomicOperation` protocol but arrive from backgr
 
 ### Background Processing
 
-- **`MixtureIdentifier`** — Finds all valid mixtures using optimized combinatorial search with `UnsafeBufferPointer` for performance. Supports cooperative cancellation via `Task.checkCancellation()`
+- **`MixtureIdentifier`** — Finds all valid mixtures using optimized combinatorial search with `UnsafeBufferPointer` for performance. Supports cooperative cancellation via `Task.checkCancellation()`. Reports progress via `ExternalEvent.MixtureIdentificationProgress`
 - **`MixtureFilter`** — Actor that filters mixtures by constraints and mixing mode (`.septimExtorsion` = all, `.inflictingPain` = negative effects, `.exploration` = positive effects)
+- **`PotionCalculator`** — Computes magnitude, duration, and gold value per effect using Skyrim alchemy formulas (power factor 6.0, level 100 Alchemy, no perks). Uses per-ingredient effect multipliers from `IngredientEffectMultiplier`
 
 ### Cancellable Task Management
 
 The state machine tracks tasks by string key. Ingesting a new activity with the same key cancels the previous task. Keys starting with `"."` are fire-and-forget (not tracked).
+
+### Data Loading
+
+Static data lives in `Effect.all` and `Ingredient.all` (predefined arrays with 60 effects and 92 Skyrim Anniversary Edition ingredients). The app boots via `Intent.LoadAllData`, which populates `AppState` and triggers `MixtureIdentifier` to compute all valid combinations.
+
+### SwiftUI App Layer
+
+- **`AppViewModel`** — `@MainActor ObservableObject` that owns the `StateMachine`, subscribes to `ViewRep` updates, and exposes actions (loadData, toggleSelection, resetAll)
+- **Layout** — iPad uses a 3-column split (Ingredients | Recipes | Effects); iPhone uses tab-based navigation
+- **Selection flow** — Tapping an ingredient/effect cycles through `mayHave` → `mustHave` → `cantHave` → `mayHave`, dispatching the corresponding Intent
 
 ## Concurrency Model
 

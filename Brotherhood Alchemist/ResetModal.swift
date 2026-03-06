@@ -35,6 +35,7 @@ struct ResetModal: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityAddTraits(.isModal)
     }
     
     private var resetCantHaveButton: some View {
