@@ -33,29 +33,33 @@ public protocol AtomicOperation: Sendable {
 
 public typealias ExternalActivity = (StateMachine) -> Task<Void, Error>
 
+private final class WeakStateMachineRef: @unchecked Sendable {
+    weak var stateMachine: StateMachine?
+}
+
 public actor StateMachine {
     public static var `default`: StateMachine {
         .init()
     }
-    
+
     private(set) var appState: AppState = .initial
     private(set) var viewRepCache: ViewRepCache = .invalidated
     private(set) var cancellableTasks: [String: Task<Void, Error>] = [:]
-    
+
     let appStateViewRepCachePublisher: PassthroughSubject<(AppState, ViewRepCache), Never> = .init()
     nonisolated let singletons: Singletons = .init()
-    
+
+    nonisolated public let viewRepPublisher: AnyPublisher<ViewRep, Never>
+
     public init() {
-        _ = viewRepPublisher
-    }
-        
-    nonisolated private(set) public lazy var viewRepPublisher: AnyPublisher<ViewRep, Never> =
-    appStateViewRepCachePublisher
-//            .throttle(for: 0.100, scheduler: Self.viewModelQueue, latest: true)
-            .map { [weak self] in ViewRep(from: $0, cachingTo: self) }
+        let weakRef = WeakStateMachineRef()
+        viewRepPublisher = appStateViewRepCachePublisher
+            .map { ViewRep(from: $0, cachingTo: weakRef.stateMachine) }
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+        weakRef.stateMachine = self
+    }
     
     @discardableResult
     public func ingest(_ atomicOperation: AtomicOperation) throws -> Self {
